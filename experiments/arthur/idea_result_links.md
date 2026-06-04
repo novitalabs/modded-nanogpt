@@ -1698,3 +1698,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T14:21:34Z: codex-1780582681467-e9711df1
+
+- Trigger: 1 run(s) finished
+- Summary: paired_head_off 两个有效样本均未达标，val_loss=3.2824/3.2816，说明 paired head attention 在当前 root 中是稳定小幅质量正贡献，但不足以进入强证据层。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖多数候选。当前强证据集中在 Polar/Muon 子项、EoS alignment、value embeddings、bigram hash、batch schedule mean、long windows、MUDD、QK norm、MTP；低位边界仍需等待已排队的 smear、residual decay、embed/lm_head untie 稳定样本。
+- Code changes: no; 未修改代码；本轮只分析 paired_head_off_rerun1，结果文件由实验脚本自动落盘。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-paired-head-off-rerun1-1780582501-315249e2
+- Linked experiment ids: readme-top10-paired-head-off-rerun1
+- Input code commits: 835fbda58e01a1f90b8e8abcbab743663f49d673
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

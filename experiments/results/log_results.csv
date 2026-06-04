@@ -995,6 +995,7 @@ local_rerun,track_1_short,logs/readme_top10_mtp_off_rerun1.txt,1380,1380,3.2894,
 local_rerun,track_1_short,logs/readme_top10_mudd_off_fixed_rerun1.txt,1380,1380,3.2904,75742.0,1.2623666666666666,54.89,31327,47432,True,False
 local_rerun,track_1_short,logs/readme_top10_mudd_off_fixed_rerun2.txt,1380,1380,3.2906,75699.0,1.26165,54.85,31429,47452,True,False
 local_rerun,track_1_short,logs/readme_top10_paired_head_off.txt,1380,1380,3.2824,75948.0,1.2658,55.03,31429,48512,True,False
+local_rerun,track_1_short,logs/readme_top10_paired_head_off_rerun1.txt,1380,1380,3.2816,76021.0,1.2670166666666667,55.09,31262,48252,True,False
 local_rerun,track_1_short,logs/readme_top10_pko_off.txt,1380,1380,3.2796,76914.0,1.2819,55.73,31327,48232,True,True
 local_rerun,track_1_short,logs/readme_top10_polar_express_off.txt,1380,1380,10.8258,69951.0,1.16585,50.69,31429,48292,True,False
 local_rerun,track_1_short,logs/readme_top10_polar_express_off_rerun2_py3.txt,1380,1380,10.8258,69882.0,1.1647,50.64,31429,48412,True,False
