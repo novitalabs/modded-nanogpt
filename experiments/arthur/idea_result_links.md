@@ -3011,3 +3011,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T19:13:23Z: codex-1780600261626-1e8fcebc
+
+- Trigger: 1 run(s) finished
+- Summary: polar_express_to_ns5 首样本 val_loss=3.2828、target_met=false，显示 Polar Express 相对 NS5 有边界质量信号；但只有一个有效样本，暂不能把 Polar Express 独立贡献定为强 top10。
+- Goal progress: README 历史先验已建立，当前代码 ablation 已覆盖并复验大多数候选。强证据仍集中在 Rotary、ReLU2、value embeddings、bigram、long-window/YaRN、batch schedule、MUDD、QK norm、MTP、NorMuon、EoS/文档边界、FP8 train-head speed；当前缺口是 Polar Express vs NS5 的复验稳定性。
+- Code changes: no; 未修改代码；仅分析新完成的 polar_express_to_ns5 结果。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-polar-express-to-ns5-pod72-1780600081-e7f950eb
+- Linked experiment ids: readme-top10-polar-express-to-ns5-pod72
+- Input code commits: faf2fad7211aaa941f2bf81cbafb020cd93a39c4
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-polar-express-to-ns5-rerun1-pod72 | Polar Express vs NS5 stability | 第二个 polar_express_to_ns5 样本若仍高于 3.28，则 Polar Express 相对经典 NS5 有稳定独立质量贡献；若回到 <=3.28，则首样本更可能是短跑噪声。 | new | 首样本是边界未达标，且该分支只替换正交化算法，不混入关闭 Muon/正交化导致的发散效应；现在复验最能决定 Polar Express 是否作为独立 top10 项保留。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
