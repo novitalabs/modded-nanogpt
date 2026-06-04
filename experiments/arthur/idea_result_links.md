@@ -3668,3 +3668,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T21:38:38Z: codex-1780608841766-66e0abb7
+
+- Trigger: 1 run(s) finished
+- Summary: bigram_off 第三个有效样本 val_loss=3.3019；三次有效样本约 3.2999/3.3018/3.3019，确认 Bigram hash embedding 在当前代码中有稳定质量贡献，强度接近 long-window+YaRN 和 batch schedule mean。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖大多数候选。强证据集中在 Rotary、ReLU2、Value embeddings、long-window/YaRN、Bigram、batch schedule、MUDD、MTP、QK norm、NorMuon。ReLU2、batch mean、zero init、embedding skip、block3 skip 的第三样本已在队列中；剩余较有价值缺口是 max document count 与 FP8 lm_head 这类高历史先验但当前证据偏中性的候选需要补第三样本以稳固降级或修正排名。
+- Code changes: no; 未修改训练代码或 ablation runner；本轮只分析 Arthur 自动产出的 bigram_off 结果文件和汇总表。
+- Suggested experiments: 2
+- Pending result runs: readme-top10-bigram-off-rerun2-pod72-1780608661-78ea8949
+- Linked experiment ids: readme-top10-bigram-off-rerun2-pod72
+- Input code commits: accad71a43906df0b74a794f49e0aa6871509156
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-max-doc-count-off-rerun2-pod72 | Max doc count third sample | 第三个 max_doc_count_off 样本若仍不劣化，则 max document count table 在当前代码中不是强 top10 因果项；若升高，则 EoS/max-doc family 需要上调。 | new | 历史 rank 10，但当前两个有限样本约 3.2764/3.2788 偏中性，需要第三样本确认是否降级。 |
+| readme-top10-fp8-lm-head-off-rerun2-pod72 | FP8 lm_head third sample | 第三个 fp8_lm_head_off 样本若仍约 3.278-3.281，则 FP8 lm_head 本身不是当前强 top10 因果项；若明显升高，则 FP8/logit family 需上调。 | new | FP8/logit family 历史 rank 5；dense train 与 logit rescale 已有证据，直接 fp8_lm_head_off 仍只有两个样本。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

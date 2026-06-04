@@ -1,0 +1,13 @@
+{
+  "variant_id": "readme_top10_bigram_off_rerun2_pod72",
+  "ablation": "bigram_off",
+  "log": "logs/readme_top10_bigram_off_rerun2_pod72.txt",
+  "step": "1380",
+  "total_steps": "1380",
+  "val_loss": "3.301900",
+  "train_time_min": "1.269367",
+  "step_avg_ms": "55.190000",
+  "target_loss": "3.280000",
+  "target_met": "false",
+  "run_exit_code": "0"
+}
