@@ -1575,3 +1575,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T13:46:58Z: codex-1780580701396-98bab435
+
+- Trigger: 1 run(s) finished
+- Summary: cautious_wd_off 第二个样本完整落盘：val_loss=3.2862、train_time_min=1.2851、target_met=false。两次样本均未达标，说明 cautious weight decay 在当前 root 中有稳定小正贡献，但不改变当前强证据排序。
+- Goal progress: README 历史先验已建立，当前 ablation 已覆盖多数强候选。强证据仍集中在 Polar/Muon、EoS alignment、value embeddings、bigram hash embedding、batch schedule mean、long windows、QK norm、MTP，以及 FP8 head 的速度贡献；cautious WD 现在从单样本边界项升级为稳定小贡献。剩余主要缺口仍是 paired head、MUDD 首样本，以及 smear、residual decay、embed/lm_head untie 的稳定性样本，现有 queued 实验已覆盖。
+- Code changes: no; 未修改代码；本轮只分析 readme-top10-cautious-wd-off-rerun1 结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-cautious-wd-off-rerun1-1780580521-cec87cd6
+- Linked experiment ids: readme-top10-cautious-wd-off-rerun1
+- Input code commits: efd1fb0bf25f8a6e0d7670ae35065ff50f0c9a27
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
