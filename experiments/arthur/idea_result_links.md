@@ -3137,3 +3137,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T19:34:55Z: codex-1780601581954-9403fe25
+
+- Trigger: 1 run(s) finished
+- Summary: single_activation_input_off 第三次尝试未产生因果证据；失败发生在本机 Python 依赖预检，不是训练结果。max_seq_len_schedule_off 三个有效样本为 3.2795/3.2814/3.2811，已降级为弱边界项。
+- Goal progress: README 历史先验已建立，当前 ablation 已覆盖多数候选。强证据仍集中在 Rotary、ReLU2、value embeddings、bigram、long-window/YaRN、MUDD、QK norm、MTP、NorMuon、FP8/head-logit 家族等；缺口是 single activation input 仍只有两个边界样本，需要第三个有效 pod72 样本定级。
+- Code changes: no; 未修改代码；仅分析失败日志和现有结果汇总。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-single-activation-input-off-rerun2-pod72-1780601521-3fe7c22c
+- Linked experiment ids: readme-top10-single-activation-input-off-rerun2-pod72
+- Input code commits: 2d5e9a75d483c28599933a1728f9c32489d32591
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-single-activation-input-off-rerun3-pod72 | Single activation valid third sample | 第三个有效 single_activation_input_off 样本若仍高于 3.28，则 single activation input 有稳定弱质量贡献；若达标，则应降级为非强 top10。 | new | 上一条 rerun2 只因 direct/local 使用无 torch/triton 的 /usr/bin/python 失败；这次强制走 pod72/kubectl 路径，隔离同一变量。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
