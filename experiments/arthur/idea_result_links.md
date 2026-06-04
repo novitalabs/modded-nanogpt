@@ -97,6 +97,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+## 2026-06-04T22:25:01Z: fp8_lm_head_off_rerun2_pod72 analysis
+
+- Trigger: 1 run(s) finished
+- Summary: fp8_lm_head_off 第三个样本 val_loss=3.2815，未达到 3.280 target；三样本 3.2805/3.2774/3.2815，均值约 3.2798，表现为边界/近中性而非强退化。单独禁用 FP8 lm_head 目前不支持把它列为当前代码中的强 top10 因果贡献；需要继续等待 embed/lm_head untie、value gates、residual decay、PKO 的第三样本来细分 late-stage head/logit/skip 家族。
+- Goal progress: README 历史先验已建立，当前 ablation 已对 Rotary、ReLU2、Value embeddings、long-window/YaRN、Batch schedule、Bigram、MUDD、MTP、QK norm、NorMuon 等形成更强证据层级；zero-init、embedding skip、block3 skip、max-doc 和 FP8 lm_head 已有三样本或近三样本证据，整体应降级或标为边界。剩余缺口已在队列中覆盖，无需新增重复实验。
+- Code changes: no; 未修改训练代码或 ablation runner；仅追加本 journal 记录并分析 Arthur 自动产出的 fp8_lm_head_off_rerun2_pod72 结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-fp8-lm-head-off-rerun2-pod72-1780611721-f40c16c5
+- Linked experiment ids: readme-top10-fp8-lm-head-off-rerun2-pod72
+- Input code commits: ebf61e97de5c94041777c121998dcfc373d0261f
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
 
 ## 2026-06-04T22:20:33Z: codex-1780611541529-9b5143e4
 
@@ -3897,6 +3920,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - Pending result runs: readme-top10-max-doc-count-off-rerun2-pod72-1780611361-be6bae53
 - Linked experiment ids: readme-top10-max-doc-count-off-rerun2-pod72
 - Input code commits: 437e6f77134dd6c2d9c64409b9431cf446f40041
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T22:27:10Z: codex-1780611901675-f1a74f0d
+
+- Trigger: 1 run(s) finished
+- Summary: fp8_lm_head_off_rerun2_pod72 完成到 1380/1380，val_loss=3.2815，target_met=false；结合前两次 3.2805 和 3.2774，三样本均值约 3.2798，单独关闭 FP8 lm_head 目前是边界/近中性证据。
+- Goal progress: README 历史先验已建立，当前 ablation 已对 Rotary、ReLU2、Value embeddings、long-window/YaRN、Batch schedule、Bigram、MUDD、MTP、QK norm、NorMuon 等形成较强证据层级；zero-init、embedding skip、block3 skip、max-doc 和 FP8 lm_head 已被降级或标为边界。剩余 embed/lm_head untie、value gates、residual decay、PKO 第三样本已在队列中覆盖。
+- Code changes: no; 未修改训练代码或 ablation runner；仅追加 experiments/arthur/idea_result_links.md 的本轮结果分析记录。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-fp8-lm-head-off-rerun2-pod72-1780611721-f40c16c5
+- Linked experiment ids: readme-top10-fp8-lm-head-off-rerun2-pod72
+- Input code commits: ebf61e97de5c94041777c121998dcfc373d0261f
 
 ### Ideas
 
