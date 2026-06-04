@@ -4346,3 +4346,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T23:52:21Z: codex-1780617001366-fb003e9b
+
+- Trigger: 1 run(s) finished
+- Summary: normuon_varred_off 第五个有效样本 val_loss=3.2886，五样本均值约 3.28876；NorMuon variance reduction 仍是 top10 边界候选，但没有明显压过 YaRN-only、MTP 或 QK norm。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖主要候选。强证据项已基本稳定；剩余缺口集中在第10位附近，MTP、YaRN-only、NorMuon variance reduction、QK norm 的均值差小于采样噪声。QK norm 第五样本已 queued，本轮新增 MTP 第五样本以对齐边界候选样本数。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur 自动生成的 normuon_varred_off 第五样本结果。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-normuon-varred-off-rerun5-pod72-1780616822-7581441b
+- Linked experiment ids: readme-top10-normuon-varred-off-rerun5-pod72
+- Input code commits: bdd3463fef91da1227dec0104ab20d6a8c2d4913
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-mtp-off-rerun4-pod72 | MTP fifth boundary sample | 第五个 mtp_off 样本若仍约 3.289，则 MTP 作为第10位边界候选的证据与 YaRN-only、NorMuon、QK norm 可直接比较；若明显回落，则 MTP 应降到边界外。 | new | QK norm 第五样本已排队；MTP 目前只有四个有效样本，补齐到五个可减少第10位边界排序的不对称。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
