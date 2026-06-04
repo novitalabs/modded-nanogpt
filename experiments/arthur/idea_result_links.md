@@ -93,7 +93,6 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
-
 ## 2026-06-04T12:47:17Z: codex-fp8-dense-train-fixed-result
 
 - Trigger: 1 run(s) finished
@@ -211,6 +210,30 @@ depending on whether the priority is tighter step count or higher confidence.
 | experiment id | title | hypothesis | status at analysis | notes |
 | --- | --- | --- | --- | --- |
 | readme-top10-embed-lm-head-untie-off-rerun1 | Embed/lm_head untie stability | 第二个全程 tied 样本若仍达标且速度接近默认，则说明 2/3 untie 在当前 root 中不是 top10 强因果项；若明显退化，则首样本可能是边界噪声。 | new | 首样本 val_loss=3.2771，低于阈值且接近默认，信息指向降级；但该项是 README rank13/top10 边界候选，单样本不足以完全排除噪声。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+
+## 2026-06-04T14:26:25Z: codex-1780583101342-e9b40b6b
+
+- Trigger: 1 run(s) finished
+- Summary: embed_lm_head_untie_off 第二个样本完成 1380/1380，val_loss=3.2757、train_time_min=1.2861、target_met=true；结合首样本 3.2771，保持 embed/lm_head 全程 tied 没有造成 loss 或速度退化，因此 2/3 训练时 untie 目前不支持进入当前 top10 强因果项。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖多数候选。当前强证据层仍集中在 Polar/Muon 子项、EoS alignment、value embeddings、bigram hash、batch schedule mean、long windows、MUDD、QK norm、MTP/XSA 和 FP8 lm_head 的速度贡献；paired head/cautious WD 是稳定小正贡献，embed/lm_head untie 与 block3 skip 更像非强项。剩余主要缺口是已排队的 smear 与 residual decay 稳定性样本。
+- Code changes: no; 未修改训练代码或 ablation 脚本；本轮只分析 embed/lm_head untie stability 结果，并追加本分析日志。结果文件由实验脚本自动落盘。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-embed-lm-head-untie-off-rerun1-1780582921-78d7ca79
+- Linked experiment ids: readme-top10-embed-lm-head-untie-off-rerun1
+- Input code commits: d1e52e0183063128fd06f5b0bbe561bff3a6eae1
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
 
 ### Linked Result Files
 
@@ -1709,6 +1732,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - Pending result runs: readme-top10-paired-head-off-rerun1-1780582501-315249e2
 - Linked experiment ids: readme-top10-paired-head-off-rerun1
 - Input code commits: 835fbda58e01a1f90b8e8abcbab743663f49d673
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T14:33:21Z: codex-1780583101342-e9b40b6b
+
+- Trigger: 1 run(s) finished
+- Summary: embed_lm_head_untie_off 第二个样本完成 1380/1380，val_loss=3.2757、train_time_min=1.2861、target_met=true；结合首样本 3.2771，保持 embed/lm_head 全程 tied 没有造成 loss 或速度退化，因此 2/3 训练时 untie 目前不支持进入当前 top10 强因果项。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖多数候选。强证据层仍集中在 Polar/Muon 子项、EoS alignment、value embeddings、bigram hash、batch schedule mean、long windows、MUDD、QK norm、MTP/XSA 和 FP8 lm_head 的速度贡献；paired head/cautious WD 是稳定小正贡献，embed/lm_head untie 与 block3 skip 更像非强项。剩余主要缺口是已排队的 smear 与 residual decay 稳定性样本。
+- Code changes: no; 未修改训练代码或 ablation 脚本；本轮只追加 experiments/arthur/idea_result_links.md 分析日志，结果文件由实验脚本自动落盘。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-embed-lm-head-untie-off-rerun1-1780582921-78d7ca79
+- Linked experiment ids: readme-top10-embed-lm-head-untie-off-rerun1
+- Input code commits: d1e52e0183063128fd06f5b0bbe561bff3a6eae1
 
 ### Ideas
 
