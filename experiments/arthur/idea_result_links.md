@@ -839,3 +839,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T11:05:30Z: codex-1780571041971-bc27641e
+
+- Trigger: 1 run(s) finished
+- Summary: 本轮新完成的 batch_schedule_constant_final_local target_met=true，但属于更慢且混杂的探索结果；不提升 batch schedule 的干净因果证据等级。当前强证据仍是 Polar Express/Muon 子项最强，其次是 EoS alignment nan、value embeddings、bigram hash embedding、batch schedule mean、long-window family、QK norm 单样本。
+- Goal progress: README record-history delta 历史先验已建立，当前代码 ablation 已覆盖大多数 top10 候选。剩余缺口是 max document count 拆分、block3 skip、cautious WD、residual decay 首样本，以及 QK/EoS 稳定性样本；这些已经在现有 queued 实验中覆盖，先等待队列推进。
+- Code changes: no; 未修改代码；本轮只分析 readme-top10-batch-schedule-constant-final-local 新结果。运行产物已由实验脚本落盘，等待 Arthur 提交。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-batch-schedule-constant-final-local-1780570801-31aaa546
+- Linked experiment ids: readme-top10-batch-schedule-constant-final-local
+- Input code commits: 06da2a1a99a4405a6eb4bf41d53988a8f0670338
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
