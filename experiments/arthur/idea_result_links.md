@@ -3980,3 +3980,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T22:38:37Z: codex-1780612621709-d1dc5d70
+
+- Trigger: 1 run(s) finished
+- Summary: eos_alignment_off 第四个样本完成但 val_loss=nan；4/4 样本均为 NaN，支持 EoS batch alignment 是当前代码中不可直接移除的关键稳定性/正确性优化。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖大部分候选。强因果证据仍集中在 Rotary、ReLU2、value embeddings、long-window/YaRN、batch schedule、bigram、MUDD、MTP、QK norm、NorMuon 等；EoS alignment 可列为关键稳定项但不能用有限 loss delta 排序。剩余主要缺口已由队列中的 embed/lm_head untie、residual decay、Partial Key Offset 第三样本覆盖。
+- Code changes: no; 未修改训练代码或 ablation runner；本轮仅分析 Arthur 自动产出的 eos_alignment_off 结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-eos-alignment-off-1780612441-a165cb96
+- Linked experiment ids: readme-top10-eos-alignment-off
+- Input code commits: 80d3fa5657c372c054cefbfe788cba88f18510f5
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
