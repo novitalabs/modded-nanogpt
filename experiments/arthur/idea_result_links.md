@@ -33,6 +33,32 @@ captured their outcomes.
     - `logs/56110775-7b50-4650-a044-b057fc1b19c1.txt`
     - `logs/bbde751f-8520-45a2-9b65-58257328cd88.txt`
 - `experiments/results/summary.json`
+
+
+## 2026-06-04T20:54:01Z: codex-polar-express-to-ns5-third
+
+- Trigger: 1 run(s) finished
+- Summary: `polar_express_to_ns5` 第三个有效样本完成 1380/1380，`val_loss=3.2817`、`target_met=false`、`train_time=1.2910min`。三次样本为 3.2828/3.2844/3.2817，均值约 3.2830，说明 Polar Express 相对 NS5 的当前代码因果贡献稳定但幅度小。
+- Goal progress: README 历史先验和当前可逆 ablation 已覆盖并复验多数候选。当前强/中强证据仍集中在 Rotary、ReLU2、value embeddings、bigram hash、long-window/YaRN、MUDD、YaRN-only、MTP、QK norm、NorMuon、batch schedule 与 FP8 train-head speed；Polar Express vs NS5 现在应归入低位稳定贡献组，而不是强 top10 候选。
+- Code changes: no; 未修改训练代码或实验 runner。本轮只记录 `polar_express_to_ns5` 第三个样本，结果汇总文件由运行流程自动更新。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-polar-express-to-ns5-rerun2-pod72-1780606261-c130d72d
+- Linked experiment ids: readme-top10-polar-express-to-ns5-rerun2-pod72
+- Input code commits: 1593b031ec394559c366bef0d9b14ad6c33e4d05
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/readme_top10_ablation_results.csv`
+- `experiments/results/readme_top10_readme_top10_polar_express_to_ns5_rerun2_pod72.json`
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
   - Updates `log_results` and `local_rerun_groups` counts after these runs.
 
 ### Decision
@@ -3477,6 +3503,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - Pending result runs: readme-top10-adam-every-step-rerun2-pod72-1780605901-b5b5c8e1
 - Linked experiment ids: readme-top10-adam-every-step-rerun2-pod72
 - Input code commits: c0e2d17bcde1c77823765b9ae0bc11b5724c34fe
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T20:57:21Z: codex-1780606441105-c57b340d
+
+- Trigger: 1 run(s) finished
+- Summary: polar_express_to_ns5 第三个有效样本 val_loss=3.2817，三样本均值约 3.2830，说明 Polar Express 相对 NS5 是稳定小幅质量贡献，但不属于强 top10 候选。
+- Goal progress: README 历史先验和当前可逆 ablation 已覆盖并复验多数候选。强/中强证据仍集中在 Rotary、ReLU2、value embeddings、bigram hash、long-window/YaRN、MUDD、YaRN-only、MTP、QK norm、NorMuon、batch schedule 与 FP8 train-head speed。Polar Express vs NS5 已从不确定项降为低位稳定项；剩余低位排序缺口已有 logit rescale 第三样本和 paired head 第三样本在队列中。
+- Code changes: no; 未修改训练代码或 ablation runner；仅追加 experiments/arthur/idea_result_links.md 的实验分析记录，结果汇总文件由运行流程自动更新。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-polar-express-to-ns5-rerun2-pod72-1780606261-c130d72d
+- Linked experiment ids: readme-top10-polar-express-to-ns5-rerun2-pod72
+- Input code commits: 1593b031ec394559c366bef0d9b14ad6c33e4d05
 
 ### Ideas
 

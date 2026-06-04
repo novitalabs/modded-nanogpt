@@ -1,0 +1,13 @@
+{
+  "variant_id": "readme_top10_polar_express_to_ns5_rerun2_pod72",
+  "ablation": "polar_express_to_ns5",
+  "log": "logs/readme_top10_polar_express_to_ns5_rerun2_pod72.txt",
+  "step": "1380",
+  "total_steps": "1380",
+  "val_loss": "3.281700",
+  "train_time_min": "1.291017",
+  "step_avg_ms": "56.130000",
+  "target_loss": "3.280000",
+  "target_met": "false",
+  "run_exit_code": "0"
+}
