@@ -1768,3 +1768,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T14:37:22Z: codex-1780583701789-3dca3c20
+
+- Trigger: 1 run(s) finished
+- Summary: smear_off-rerun1 是环境失败，不是方法失败；当前 top10 主排序不变，MUDD 已有稳定较强退化，paired head 是稳定小正贡献，embed/lm_head untie 暂不支持进入强项。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖多数候选。剩余主要缺口是 smear 的第二个有效样本，以及已排队的 residual decay 稳定样本；本轮失败需要用可用 pod 重跑，避免本地无依赖解释器污染证据。
+- Code changes: no; 未修改代码；仅检查失败日志、结果表和 ablation 脚本。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-smear-off-rerun1-1780583641-ae896466
+- Linked experiment ids: readme-top10-smear-off-rerun1
+- Input code commits: f099749a7a7d96d914c7e225fcd7379357ae94ec
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-smear-off-rerun2-pod72 | Smear pod72 stability | 第二个有效 smear_off 样本将判断 one-token lookback smear 的小幅退化是否稳定；若仍高于阈值，可保留为当前 top10 低位候选，否则降级为噪声/边界项。 | new | 上一条 smear 复验因 RUN_README_ABLATION_DIRECT=1 落到本地无 torch/triton 的 /usr/bin/python；本实验强制走 .72 pod，隔离同一变量。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
