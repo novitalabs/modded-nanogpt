@@ -3813,3 +3813,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T22:09:41Z: codex-1780610881111-afc2a9f1
+
+- Trigger: 1 run(s) finished
+- Summary: embedding_skip_off 第三个样本 val_loss=3.2764，三样本均值约 3.2781 且全部 target_met=true；关闭 embedding-to-block skip 未造成稳定退化，应从当前 top10 强候选降级。
+- Goal progress: README 历史先验已建立，当前 ablation 已确认 Rotary、ReLU2、Value embeddings、long-window/YaRN、Batch schedule、Bigram、MUDD、MTP、QK norm、NorMuon 等主力/边界项的大致证据层级。embedding skip 与 zero-init 现在均有三样本近中性证据；剩余 block3 skip、max-doc、FP8 lm_head、value gates、embed/lm_head untie、residual decay、PKO 的第三样本已在队列中覆盖。
+- Code changes: no; 未修改训练代码或 ablation runner；本轮只分析 Arthur 自动落盘的 embedding_skip_off_rerun2_pod72 结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-embedding-skip-off-rerun2-pod72-1780610701-428f6450
+- Linked experiment ids: readme-top10-embedding-skip-off-rerun2-pod72
+- Input code commits: 44672472481f5c43ae3917320d1a926b79fa12ae
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

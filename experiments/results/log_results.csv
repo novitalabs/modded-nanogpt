@@ -993,6 +993,7 @@ local_rerun,track_1_short,logs/readme_top10_embed_lm_head_untie_off.txt,1380,138
 local_rerun,track_1_short,logs/readme_top10_embed_lm_head_untie_off_rerun1.txt,1380,1380,3.2757,77168.0,1.2861333333333334,55.92,31262,48252,True,True
 local_rerun,track_1_short,logs/readme_top10_embedding_skip_off.txt,1380,1380,3.2779,76550.0,1.2758333333333334,55.47,31262,48312,True,True
 local_rerun,track_1_short,logs/readme_top10_embedding_skip_off_rerun1.txt,1380,1380,3.2799,76567.0,1.2761166666666666,55.48,31429,48472,True,True
+local_rerun,track_1_short,logs/readme_top10_embedding_skip_off_rerun2_pod72.txt,1380,1380,3.2764,76569.0,1.27615,55.48,31429,48412,True,True
 local_rerun,track_1_short,logs/readme_top10_fp8_lm_head_dense_train_off_fixed.txt,1380,1380,3.2779,96314.0,1.6052333333333333,69.79,31326,52328,True,True
 local_rerun,track_1_short,logs/readme_top10_fp8_lm_head_dense_train_off_rerun2.txt,1380,1380,3.2782,96224.0,1.6037333333333332,69.73,31428,52308,True,True
 local_rerun,track_1_short,logs/readme_top10_fp8_lm_head_dense_train_off_rerun3_pod72_retry.txt,1380,1380,3.2809,96423.0,1.60705,69.87,31326,52248,True,False
