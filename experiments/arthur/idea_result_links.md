@@ -913,3 +913,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T11:22:26Z: codex-1780572061775-316485d6
+
+- Trigger: 1 run(s) finished
+- Summary: max_doc_count_off 两个有效样本分别为 val_loss=3.2764 和 3.2788，均 target_met=true；当前代码下没有看到 TRAIN_MAX_NUM_DOCS table 的正向因果贡献，暂时从 top10 强候选降级为边界/无效项。
+- Goal progress: README record-history delta 历史先验已建立，当前 ablation 已覆盖大多数候选。强因果证据仍集中在 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、batch schedule mean、long windows、QK norm 等；max document count 已从缺口变成反证项。剩余关键缺口是 block3 skip 和 residual decay 首样本，以及 QK/EoS/cautious WD 稳定性样本，这些已经在现有 queued 实验中覆盖。
+- Code changes: no; 未修改代码；本轮只分析 readme-top10-max-doc-count-off-rerun1 新结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-max-doc-count-off-rerun1-1780571881-195fb678
+- Linked experiment ids: readme-top10-max-doc-count-off-rerun1
+- Input code commits: 0e7e90a2c6e9b14ff7bf0d323257c30f430bca77
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
