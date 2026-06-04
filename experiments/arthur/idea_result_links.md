@@ -3288,3 +3288,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T20:11:00Z: codex-1780603741951-8bb13d69
+
+- Trigger: 1 run(s) finished
+- Summary: qk_norm_off 第三个有效样本 val_loss=3.2878；结合前两次 3.2907/3.2866，QK norm 的质量贡献已稳定成立，属于当前 top10 边界上的中强候选。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖并复验多数候选。强证据集中在 Polar/Muon、Rotary、ReLU2、value embeddings、bigram、long-window/YaRN、MUDD、QK norm、MTP、NorMuon 等；缺口是 MTP/YaRN/NorMuon/MUDD/QK 这组中强项的边界排序仍需要少量第三样本加固。
+- Code changes: no; 未修改代码；仅分析最新 qk_norm_off 运行结果。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-qk-norm-off-rerun2-pod72-1780603561-7b53a8af
+- Linked experiment ids: readme-top10-qk-norm-off-rerun2-pod72
+- Input code commits: 52d60b0987ee6fa208c7734b721e51cbcccc849a
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-mtp-off-rerun2-pod72 | MTP third sample | 第三个 mtp_off 样本若仍稳定高于 3.28，则 multi-token prediction 可与 QK norm、YaRN、NorMuon 一起列入当前 top10 边界候选；若回落到阈值附近，则 MTP 排名应下调。 | new | MTP 现有两样本 3.2873/3.2894，和 qk_norm_off 均值几乎相同；第三样本能直接提高 top10 边界排序可信度。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

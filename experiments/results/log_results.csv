@@ -1025,6 +1025,7 @@ local_rerun,track_1_short,logs/readme_top10_polar_express_to_ns5_pod72.txt,1380,
 local_rerun,track_1_short,logs/readme_top10_polar_express_to_ns5_rerun1_pod72.txt,1380,1380,3.2844,77510.0,1.2918333333333334,56.17,31429,48452,True,False
 local_rerun,track_1_short,logs/readme_top10_qk_norm_off.txt,1380,1380,3.2907,78942.0,1.3157,57.2,31262,46418,True,False
 local_rerun,track_1_short,logs/readme_top10_qk_norm_off_rerun1.txt,1380,1380,3.2866,78613.0,1.3102166666666666,56.97,31262,47138,True,False
+local_rerun,track_1_short,logs/readme_top10_qk_norm_off_rerun2_pod72.txt,1380,1380,3.2878,78581.0,1.3096833333333333,56.94,31429,47278,True,False
 local_rerun,track_1_short,logs/readme_top10_relu_square_off_pod72.txt,1380,1380,3.3189,77927.0,1.2987833333333334,56.47,31429,49752,True,False
 local_rerun,track_1_short,logs/readme_top10_relu_square_off_rerun1_pod72.txt,1380,1380,3.3143,78025.0,1.3004166666666668,56.54,31429,49732,True,False
 local_rerun,track_1_short,logs/readme_top10_relu_square_unfused_pod72.txt,1380,1380,3.2815,78565.0,1.3094166666666667,56.93,30979,48892,True,False

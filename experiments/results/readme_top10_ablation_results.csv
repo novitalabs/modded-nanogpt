@@ -89,3 +89,4 @@ readme_top10_single_activation_input_off_rerun3_pod72,single_activation_input_of
 readme_top10_long_window_yarn_off_rerun1_pod72,long_window_yarn_off,logs/readme_top10_long_window_yarn_off_rerun1_pod72.txt,1380,1380,3.301300,1.276767,55.510000,3.280000,false,0
 readme_top10_yarn_off_pod72,yarn_off,logs/readme_top10_yarn_off_pod72.txt,1380,1380,3.288500,1.286583,55.940000,3.280000,false,0
 readme_top10_yarn_off_rerun1_pod72,yarn_off,logs/readme_top10_yarn_off_rerun1_pod72.txt,1380,1380,3.290000,1.287317,55.970000,3.280000,false,0
+readme_top10_qk_norm_off_rerun2_pod72,qk_norm_off,logs/readme_top10_qk_norm_off_rerun2_pod72.txt,1380,1380,3.287800,1.309683,56.940000,3.280000,false,0
