@@ -1970,3 +1970,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T15:19:40Z: codex-1780586281318-aaad9605
+
+- Trigger: 1 run(s) finished
+- Summary: extension-5-final-only 完整完成 1380/1380，但 val_loss=3.2811 > 3.28，属于目标未命中；训练时间 1.2879 min、step_avg 56.00ms，性能形态正常。
+- Goal progress: README 历史先验和多数可逆 ablation 复验已完成。当前强证据 top10 仍暂定为 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、batch schedule、long windows、MUDD、QK norm、MTP、FP8 train head。extension-5 结果只影响默认 root extension 稳定性判断；README top10 的主要剩余缺口是已排队的 PKO 第二样本。
+- Code changes: no; 未修改训练代码或实验 runner；本轮只分析 extension-5-final-only 的自动落盘结果。
+- Suggested experiments: 0
+- Pending result runs: extension-5-final-only-1780586102-da72fc25
+- Linked experiment ids: extension-5-final-only
+- Input code commits: 525ad3f5ce347b2c43b64d362f519c2a4c43f09c
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
