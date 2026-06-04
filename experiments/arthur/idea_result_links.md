@@ -3837,3 +3837,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T22:15:29Z: codex-1780611181683-ba117ef4
+
+- Trigger: 1 run(s) finished
+- Summary: block3_skip_off 第三个有效样本 val_loss=3.2798，三样本均 target_met=true 且均值约 3.2797；关闭 block3 skip 未造成可见退化，应从 README 高先验 skip family 中降级。当前强贡献仍主要集中在 Rotary、ReLU²、Value embeddings、long-window/YaRN、Batch schedule、Bigram、MUDD、MTP、QK norm、NorMuon 一带。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖大多数 top 候选，并把 zero-init、embedding skip、block3 skip 等高历史先验但当前近中性的项排除出强 top10。剩余缺口主要是已排队的 max-doc、FP8 lm_head、value skip gates、embed/lm_head untie、residual decay、PKO 等边界第三样本，以及 EoS alignment 的 NaN 稳定性解释。
+- Code changes: no; 未修改训练代码或 ablation runner；本轮只分析 Arthur 自动产出的 block3_skip_off_rerun2_pod72 结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-block3-skip-off-rerun2-pod72-1780611001-9ddd3bbc
+- Linked experiment ids: readme-top10-block3-skip-off-rerun2-pod72
+- Input code commits: c8cca7ff556ecf1547389331f62ba6e52c5001a2
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
