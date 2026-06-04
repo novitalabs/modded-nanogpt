@@ -988,3 +988,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T11:35:40Z: codex-1780572841641-b6f32b95
+
+- Trigger: 1 run(s) finished
+- Summary: readme_top10_eos_alignment_off_rerun1 完成 1380/1380 后 val_loss=nan、target_met=false；EoS alignment 从异常单样本升级为多样本强证据。当前强因果证据集中在 Polar Express/Muon 子项、EoS alignment、value embeddings、bigram hash embedding、batch schedule mean、long-window family；QK norm 仍需稳定样本，cautious WD/block3 skip 属边界候选，max_doc_count 暂降级为无效或边界项。
+- Goal progress: README record-history delta 历史先验已建立，当前代码 ablation 已覆盖大多数 top10 候选。本轮补强了 EoS alignment 稳定性证据；主要缺口仍是 QK norm 稳定性、residual decay 首样本，以及 cautious WD/block3 skip 的边界复验，这些已在现有 queued 实验中覆盖。
+- Code changes: no; 未修改代码；本轮只分析新完成的 eos_alignment_off 复跑结果。运行产物已落盘，等待 Arthur 提交。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-eos-alignment-off-rerun1-1780572661-fb62c7d2
+- Linked experiment ids: readme-top10-eos-alignment-off-rerun1
+- Input code commits: b74fd3d622a3bd9aaaa90cc504ba14a7355abc2f
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

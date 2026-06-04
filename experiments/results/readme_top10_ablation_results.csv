@@ -33,3 +33,4 @@ readme_top10_cautious_wd_off,cautious_wd_off,logs/readme_top10_cautious_wd_off.t
 readme_top10_max_doc_count_off_local,max_doc_count_off,logs/readme_top10_max_doc_count_off_local.txt,1380,1380,3.276400,1.295317,56.320000,3.280000,true,0
 readme_top10_max_doc_count_off_rerun1,max_doc_count_off,logs/readme_top10_max_doc_count_off_rerun1.txt,1380,1380,3.278800,1.296200,56.360000,3.280000,true,0
 readme_top10_block3_skip_off,block3_skip_off,logs/readme_top10_block3_skip_off.txt,1380,1380,3.279800,1.277600,55.550000,3.280000,true,0
+readme_top10_eos_alignment_off_rerun1,eos_alignment_off,logs/readme_top10_eos_alignment_off_rerun1.txt,1380,1380,nan,1.148433,49.930000,3.280000,false,0
