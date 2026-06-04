@@ -132,6 +132,15 @@ elif ablation == "value_embeds_off":
         "ve = self.value_embeds.view(5, self.vocab_size, -1)[:, input_seq]",
         "ve = torch.zeros((5, input_seq.numel(), self.embed.weight.shape[1]), device=input_seq.device, dtype=self.embed.weight.dtype)",
     )
+elif ablation == "value_skip_gates_static":
+    replace_once(
+        "skip_gate_out = torch.sigmoid(skip_lambda) * 2 * torch.sigmoid(self.skip_gate(x0[..., :self.skip_gate.weight.size(-1)]))",
+        "skip_gate_out = torch.sigmoid(skip_lambda) * torch.ones_like(x0[..., :1])  # Arthur ablation: freeze skip data gate",
+    )
+    replace_once(
+        "ve_gate_out = 2 * torch.sigmoid(F.linear(gate_in, ve_gates[i])).view(B, T, self.num_heads, 1)",
+        "ve_gate_out = torch.ones((B, T, self.num_heads, 1), device=x.device, dtype=x.dtype)  # Arthur ablation: freeze value-embed gate",
+    )
 elif ablation == "fp8_lm_head_off":
     replace_once(
         'use_fp8 = not os.environ.get("DISABLE_FP8", False)',

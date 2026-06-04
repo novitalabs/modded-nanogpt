@@ -2886,3 +2886,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T18:35:26Z: codex-1780597921854-be011942
+
+- Trigger: 1 run(s) finished
+- Summary: max seq length schedule 关闭后仍达标且速度接近默认，当前证据偏中性；下一步应测试尚未单独隔离的 value embedding / skip connection gates。
+- Goal progress: README 历史先验和当前代码 ablation 已覆盖大多数候选。强证据仍集中在 Polar/Muon、EoS alignment、Rotary、ReLU2、value embeddings、bigram、long windows/YaRN、batch schedule、MUDD、QK norm、MTP、FP8 train-head speed；缺口是 value/skip gates 这种低位但未拆分的当前因果证据。
+- Code changes: yes; 修改 experiments/arthur/run_readme_ablation.sh：新增 value_skip_gates_static ablation 分支，冻结非 MUDD value-embed gate 为常数 1，并冻结 skip data gate 为初始化常数路径；未修改 train_gpt.py。已通过 bash -n 和生成代码 compile 校验。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-max-seq-len-schedule-off-pod72-1780597681-c36dfe01
+- Linked experiment ids: readme-top10-max-seq-len-schedule-off-pod72
+- Input code commits: d653b5303bc54b7563af106be6e43113bd6a85a9
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-value-skip-gates-static-pod72 | Freeze value and skip gates | 保持 value embeddings、block3 skip 和 MUDD 存在，只冻结 value-embed gate 与 skip data gate；若 loss 明显劣化，则 Additional gating on value embeddings and skip connection 有当前代码因果贡献，否则应降级为非 top10。 | new | 这是 README 技术列表中尚未单独拆分的候选；新分支只改 gate 路径，不关 value embeddings、skip connection 或 MUDD。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
