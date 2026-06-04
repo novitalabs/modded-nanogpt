@@ -4,5 +4,6 @@ __pycache__/
 logs/
 .arthur-agent/
 .arthur_variant_*.py
+.arthur_top10_*.py
 .cache/
 .DS_Store
