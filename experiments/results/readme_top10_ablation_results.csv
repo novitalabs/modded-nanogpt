@@ -113,3 +113,4 @@ readme_top10_max_doc_count_off_rerun2_pod72,max_doc_count_off,logs/readme_top10_
 readme_top10_fp8_lm_head_off_rerun2_pod72,fp8_lm_head_off,logs/readme_top10_fp8_lm_head_off_rerun2_pod72.txt,1380,1380,3.281500,1.287417,55.970000,3.280000,false,0
 readme_top10_value_skip_gates_static_rerun2_pod72,value_skip_gates_static,logs/readme_top10_value_skip_gates_static_rerun2_pod72.txt,1380,1380,3.278700,1.274183,55.400000,3.280000,true,0
 readme_top10_eos_alignment_off,eos_alignment_off,logs/readme_top10_eos_alignment_off.txt,1380,1380,nan,1.147333,49.880000,3.280000,false,0
+readme_top10_embed_lm_head_untie_off_rerun2_pod72,embed_lm_head_untie_off,logs/readme_top10_embed_lm_head_untie_off_rerun2_pod72.txt,1380,1380,3.274200,1.286317,55.930000,3.280000,true,0

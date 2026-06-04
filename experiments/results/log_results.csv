@@ -992,6 +992,7 @@ local_rerun,track_1_short,logs/readme_top10_cautious_wd_off_rerun1.txt,1380,1380
 local_rerun,track_1_short,logs/readme_top10_cautious_wd_off_rerun2_pod72.txt,1380,1380,3.2832,77171.0,1.2861833333333332,55.92,31429,48512,True,False
 local_rerun,track_1_short,logs/readme_top10_embed_lm_head_untie_off.txt,1380,1380,3.2771,77222.0,1.2870333333333333,55.96,31262,48252,True,True
 local_rerun,track_1_short,logs/readme_top10_embed_lm_head_untie_off_rerun1.txt,1380,1380,3.2757,77168.0,1.2861333333333334,55.92,31262,48252,True,True
+local_rerun,track_1_short,logs/readme_top10_embed_lm_head_untie_off_rerun2_pod72.txt,1380,1380,3.2742,77179.0,1.2863166666666668,55.93,31347,48232,True,True
 local_rerun,track_1_short,logs/readme_top10_embedding_skip_off.txt,1380,1380,3.2779,76550.0,1.2758333333333334,55.47,31262,48312,True,True
 local_rerun,track_1_short,logs/readme_top10_embedding_skip_off_rerun1.txt,1380,1380,3.2799,76567.0,1.2761166666666666,55.48,31429,48472,True,True
 local_rerun,track_1_short,logs/readme_top10_embedding_skip_off_rerun2_pod72.txt,1380,1380,3.2764,76569.0,1.27615,55.48,31429,48412,True,True

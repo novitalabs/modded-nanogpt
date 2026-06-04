@@ -1,0 +1,13 @@
+{
+  "variant_id": "readme_top10_embed_lm_head_untie_off_rerun2_pod72",
+  "ablation": "embed_lm_head_untie_off",
+  "log": "logs/readme_top10_embed_lm_head_untie_off_rerun2_pod72.txt",
+  "step": "1380",
+  "total_steps": "1380",
+  "val_loss": "3.274200",
+  "train_time_min": "1.286317",
+  "step_avg_ms": "55.930000",
+  "target_loss": "3.280000",
+  "target_met": "true",
+  "run_exit_code": "0"
+}

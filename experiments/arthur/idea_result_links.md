@@ -97,6 +97,30 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T22:43:02Z: codex-1780612921610-4e7d8939
+
+- Trigger: 1 run(s) finished
+- Summary: embed_lm_head_untie_off 第三个有效样本完成到 1380/1380，val_loss=3.2742，target_met=true；三样本为 3.2771/3.2757/3.2742，均值约 3.2757，3/3 达标。当前证据显示“取消 untie”不伤害短轨 loss，embed/lm_head untie 不应进入当前因果 top10。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已对大多数候选形成三样本证据。强因果证据仍集中在 Rotary、ReLU2、value embeddings、long-window/YaRN、batch schedule、bigram、MUDD、MTP、QK norm、NorMuon 等；EoS alignment 属关键稳定性项但以 NaN 失效而非有限 delta 排序。剩余主要缺口是已排队的 residual_decay 与 Partial Key Offset 第三样本。
+- Code changes: no; 未修改训练代码或 ablation runner；本轮只分析 Arthur 自动产出的 embed_lm_head_untie_off_rerun2_pod72 结果并追加本记录。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-embed-lm-head-untie-off-rerun2-pod72-1780612741-66abf443
+- Linked experiment ids: readme-top10-embed-lm-head-untie-off-rerun2-pod72
+- Input code commits: 554028cdaab4cddee549478ef1e8c71ac8ead96b
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
 ## 2026-06-04T22:25:01Z: fp8_lm_head_off_rerun2_pod72 analysis
 
 - Trigger: 1 run(s) finished
@@ -3991,6 +4015,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - Pending result runs: readme-top10-eos-alignment-off-1780612441-a165cb96
 - Linked experiment ids: readme-top10-eos-alignment-off
 - Input code commits: 80d3fa5657c372c054cefbfe788cba88f18510f5
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T22:44:26Z: codex-1780612921610-4e7d8939
+
+- Trigger: 1 run(s) finished
+- Summary: embed_lm_head_untie_off 第三个有效样本完成，三样本均值约 3.2757 且 3/3 达标；当前因果证据显示 embed/lm_head untie 不是当前代码短轨 top10 正贡献项。强证据仍集中在 Rotary、ReLU2、value embeddings、long-window/YaRN、batch schedule、bigram、MUDD、MTP、QK norm、NorMuon 等候选；EoS alignment 属稳定性关键项但以 NaN 失效而非有限 loss delta 排序。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖多数候选并形成三样本证据。剩余主要缺口是已排队的 residual_decay 与 Partial Key Offset 第三样本；等待这两个结果后可更新最终 top10 排序置信度。
+- Code changes: no; 未修改训练代码或 ablation runner；仅追加 experiments/arthur/idea_result_links.md 的本轮分析记录。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-embed-lm-head-untie-off-rerun2-pod72-1780612741-66abf443
+- Linked experiment ids: readme-top10-embed-lm-head-untie-off-rerun2-pod72
+- Input code commits: 554028cdaab4cddee549478ef1e8c71ac8ead96b
 
 ### Ideas
 
