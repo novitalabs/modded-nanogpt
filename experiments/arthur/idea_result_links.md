@@ -1674,3 +1674,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T14:14:22Z: codex-1780582261966-24968519
+
+- Trigger: 1 run(s) finished
+- Summary: readme_top10_mudd_off_fixed_rerun2 完成 1380/1380，val_loss=3.2906，train_time_min=1.2616，target_met=false；结合 rerun1=3.2904，MUDD off 平均约 3.2905，相对当前 1380-step baseline 均值约 3.2780 退化 +0.0125，MUDD skip connections 可升级为稳定中等正贡献。
+- Goal progress: README 历史先验和当前可逆 ablation 已覆盖多数强候选。当前强证据层仍是 Polar/Muon、EoS alignment、value embeddings、bigram hash、batch schedule mean、long windows；MUDD 现在稳定排在 QK norm/MTP 附近或略高。剩余缺口主要是已有队列中的 paired head、smear、residual decay、embed/lm_head untie 等低位边界稳定性样本。
+- Code changes: no; 未修改代码；本轮只分析自动落盘的 MUDD stability 结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-mudd-off-fixed-rerun2-1780582081-83ef2aac
+- Linked experiment ids: readme-top10-mudd-off-fixed-rerun2
+- Input code commits: 408dcdea9fd023b8e4e3127bd8f2d42cc1d45ac2
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
