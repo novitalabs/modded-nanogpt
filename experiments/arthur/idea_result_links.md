@@ -2489,3 +2489,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T17:10:23Z: codex-1780592821910-845f9e3c
+
+- Trigger: 1 run(s) finished
+- Summary: relu_square_off 第二样本 val_loss=3.3143、target_met=false；结合首样本 3.3189 和 relu_square_unfused 控制 3.2815，ReLU² 的质量贡献证据已较强。
+- Goal progress: README 历史先验已建立，当前代码 ablation 已覆盖大多数候选。ReLU² 已从 Modernized architecture 子项补齐到两次直接因果样本；FP8 train head quality 样本仍在队列中。剩余明显缺口是 README top10 中 Single activation input for last 3 attention layers 尚无当前代码直接 ablation。
+- Code changes: yes; 修改 experiments/arthur/run_readme_ablation.sh，新增 single_activation_input_off 可逆 ablation 分支，仅将 attention 输入从共享 cache.get(7, x) 改为当前层 x；未修改 train_gpt.py。已通过 bash -n 和生成源码 AST 解析校验。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-relu-square-off-rerun1-pod72-1780592641-2fcfccd4
+- Linked experiment ids: readme-top10-relu-square-off-rerun1-pod72
+- Input code commits: 7f046c4ff94fe4a056c6dc37e1094bb8f61c8905
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-single-activation-input-off-pod72 | Ablate single activation input | 如果把最后几层 attention 的共享 layer-7 activation 输入改回当前层 activation 后 val_loss 劣化或速度变慢，则 Single activation input 是 README top10 中仍有效的当前代码优化；若无明显变化，则其历史收益可能已被后续结构吸收。 | new | 这是 README 历史 top10 中尚缺当前因果证据的高优先项；新分支只隔离一个变量。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

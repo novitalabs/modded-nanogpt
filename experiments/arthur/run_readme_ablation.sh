@@ -279,6 +279,11 @@ elif ablation == "attn_gate_freeze":
         "y = y * torch.sigmoid(F.linear(x[..., :12], attn_gate_w)).view(B, T, self.num_heads, 1)",
         "y = y * 0.5  # Arthur ablation: freeze sparse attention gate at init scale",
     )
+elif ablation == "single_activation_input_off":
+    replace_once(
+        "attn_in_normed = norm(cache.get(7, x))",
+        "attn_in_normed = norm(x)  # Arthur ablation: no shared layer-7 input for final attention layers",
+    )
 elif ablation == "adam_every_step":
     replace_once(
         '''    def _is_adam_step(self, step: int):
