@@ -1012,3 +1012,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T11:40:57Z: codex-1780573141088-cd463419
+
+- Trigger: 1 run(s) finished
+- Summary: qk_norm_off 稳定性样本完成：val_loss=3.2866、target_met=false；结合首样本 3.2907，QK norm 从单样本中等退化升级为双样本稳定中等退化信号。当前强证据仍集中在 Polar Express/Muon 子项、EoS alignment、value embeddings、bigram hash、batch schedule mean 和 long windows；QK norm 排在这些之后但明显强于 fp8/pko/zero/block3/max_doc 等边界或反证项。
+- Goal progress: README record-history delta 历史先验已建立，当前代码 ablation 已覆盖历史 top10 的大部分关键候选。本轮补强了 modern architecture family 中 QK norm 的因果证据；剩余主要缺口是 residual_decay 首样本，以及 block3_skip/cautious_wd 等边界候选复验，这些已经在现有 queued 实验中覆盖。max_doc_count_off 两个样本均达标，暂不支持 max document count table 是当前强贡献项。
+- Code changes: no; 未修改代码；本轮只分析 readme-top10-qk-norm-off-rerun1 的运行结果。实验结果文件由运行脚本生成，等待 Arthur 提交。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-qk-norm-off-rerun1-1780572961-57bf29b9
+- Linked experiment ids: readme-top10-qk-norm-off-rerun1
+- Input code commits: 706c63ecc3691a769349ea71adb18ffe325244f0
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
