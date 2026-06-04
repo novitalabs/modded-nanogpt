@@ -4051,3 +4051,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T22:50:22Z: codex-1780613281894-6cd0431e
+
+- Trigger: 1 run(s) finished
+- Summary: extension-2-final-only 完整结束但 val_loss=3.2803 > 3.28，属于边界未达标而非运行错误；1377 步组现在 2/2 未达标，均值约 3.2810，说明 +2 extension 不能稳定跨过目标阈值。
+- Goal progress: README 历史先验已建立，可逆 ablation 已覆盖大多数候选并形成三样本证据。强因果证据仍主要集中在 Rotary/ReLU2/value embeddings/long-window+YaRN/bigram/MUDD/MTP/QK norm/NorMuon 等；EoS alignment 是 NaN 级稳定性关键项。剩余缺口主要是已排队的 residual_decay 与 Partial Key Offset 第三样本，以及 extension-3 边界样本。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur 自动收集的 extension-2-final-only 结果。
+- Suggested experiments: 0
+- Pending result runs: extension-2-final-only-1780613101-490781af
+- Linked experiment ids: extension-2-final-only
+- Input code commits: 7e6e26f875528f56addfcd8a865043f37701cc75
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
