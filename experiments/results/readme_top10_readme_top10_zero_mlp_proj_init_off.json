@@ -1,0 +1,13 @@
+{
+  "variant_id": "readme_top10_zero_mlp_proj_init_off",
+  "ablation": "zero_mlp_proj_init_off",
+  "log": "logs/readme_top10_zero_mlp_proj_init_off.txt",
+  "step": "1380",
+  "total_steps": "1380",
+  "val_loss": "3.278200",
+  "train_time_min": "1.285900",
+  "step_avg_ms": "55.910000",
+  "target_loss": "3.280000",
+  "target_met": "true",
+  "run_exit_code": "0"
+}

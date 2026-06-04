@@ -140,3 +140,130 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T07:39:59Z: codex-1780558561595-1171be05
+
+- Trigger: 1 run(s) finished
+- Summary: 历史先验已给出 README top10；当前因果证据新增 XSA-off 单样本，结果变差且未达标，但需要重复样本或与相邻 baseline 交错确认噪声。Bigram 正在运行，其余若干小特性已排队。
+- Goal progress: 已完成历史排序，并开始当前代码可逆 ablation。缺口是 top10 中 FP8 lm_head/softcap、batch size schedule、EoS-aligned batches 还没有当前反事实结果；Muon 和现代架构整体仍需要更谨慎拆分实验。
+- Code changes: yes; 修改 experiments/arthur/run_readme_ablation.sh，新增 fp8_lm_head_off、batch_schedule_constant_final、eos_alignment_off 三个临时 ablation 分支；未修改 train_gpt.py。
+- Suggested experiments: 3
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-fp8-lm-head-off | Ablate FP8 lm_head | 关闭 FP8 lm_head 会量化 README top10 中 FP8 head/softcap/logit rescale 家族在当前代码中的速度与 loss 贡献。 | new | 历史先验 rank 5，尚无当前 ablation；脚本已支持该可逆分支。 |
+| readme-top10-batch-schedule-constant-final | Ablate batch schedule | 把前两阶段 batch size 改为最终 batch size，可隔离 batch size ramp 是否仍改善收敛/速度。 | new | 历史先验 rank 8；该实验只改变 batch schedule，保留其它 schedule。 |
+| readme-top10-eos-alignment-off | Ablate EoS batch alignment | 训练 batch 不再从 BOS/EoS 边界对齐会量化 EoS-aligned batches 在当前代码中的贡献。 | new | 历史先验 rank 10；验证数据仍保持原设置，仅关闭训练 batch 对齐。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+
+## 2026-06-04T08:03:05Z: codex-1780559941818-a0b08a3d
+
+- Trigger: 1 run(s) finished
+- Summary: 以现有 1380-step 达标样本 val_loss≈3.2778 为粗参照，已观测 ablation 退化排序为 value_embeds_off +0.0346、bigram_off +0.0245、mtp_off +0.0095、xsa_off +0.0057、smear_off +0.0049。当前结论仍是 provisional。
+- Goal progress: README 历史先验已建立；当前代码已有 5 个单因素 ablation 指标，但 bigram/value 需要干净重跑，FP8/EoS/PKO 还缺有效当前证据，batch schedule 正在等待结果。
+- Code changes: no; 本轮未修改代码；仅检查了 ablation 脚本语法和结果文件。
+- Suggested experiments: 5
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-fp8-lm-head-off-local | Ablate FP8 lm_head on .72 | 只关闭 lm_head 的 FP8 matmul 路径会量化 FP8 head 在当前代码中的速度和 loss 贡献。 | new | 上一条 FP8 失败原因是 .75 pod NotFound；改用已可用的 .72 pod 获取有效证据。 |
+| readme-top10-value-embeds-off-clean-rerun | Clean value embeddings ablation | 关闭 value embeddings 会稳定造成最大 loss 退化，确认其当前 top10 因果贡献。 | new | 已有训练结果很强，但 Arthur run 被旧脚本 EOF 标失败；需要 clean rerun。 |
+| readme-top10-bigram-off-clean-rerun | Clean bigram embedding ablation | 关闭 bigram hash embedding 会稳定造成显著 loss 退化，确认其当前因果贡献。 | new | 已有单样本退化仅次于 value embeddings，但 run 状态同样不干净。 |
+| readme-top10-eos-alignment-off-local | Ablate EoS alignment on .72 | 关闭训练 batch 的 BOS/EoS 对齐会量化 README rank10 数据对齐方法的当前贡献。 | new | 现有 queued 命令可能仍指向 .75；用 .72 避免环境失败。 |
+| readme-top10-pko-off-local | Ablate Partial Key Offset on .72 | 关闭 Partial Key Offset 可判断这个较新的 attention 细节是否超过 smear/XSA/MTP 等小项。 | new | 补齐当前代码中尚未测量的 attention 小特性，且单变量隔离。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+
+## 2026-06-04T08:21:34Z: codex-1780561081184-de750bad
+
+- Trigger: plan empty and no running experiments
+- Summary: 当前 provisional 因果排序：value_embeds_off 平均 +0.0360 loss，bigram_off 平均 +0.0229，mtp_off +0.0095，xsa_off +0.0057，smear_off +0.0049，fp8_lm_head_off +0.0027，partial_key_offset_off +0.0018。bigram clean rerun 虽被 Arthur 标 failed，但日志和 JSON 已有完整 final_result，失败来自脚本尾部 shell 错误，不应丢弃训练结果。
+- Goal progress: 历史先验 top10 已建立，当前代码已有 7 个单因素 ablation 证据；缺口是 README 历史 top10 中 EoS alignment、batch schedule、zero projection init、embedding/block skips、QK norm/modern architecture 仍缺当前反事实结果，Muon 和 FA3/window family 还需要更谨慎拆分。
+- Code changes: no; 本轮未修改代码；仅检查了 ablation 脚本、结果表和失败日志。
+- Suggested experiments: 5
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-eos-alignment-off-local | Ablate EoS alignment on .72 | 关闭训练 batch BOS/EoS 对齐会量化 README top10 中 EoS-aligned batches 的当前贡献。 | new | 上一条失败仅因 .75 pod NotFound；改用已可用的 .72 pod 补有效因果证据。 |
+| readme-top10-batch-schedule-constant-final-local | Ablate batch schedule on .72 | 把前两阶段 batch size 改成最终 batch size，可隔离 batch size ramp 对当前收敛和速度的贡献。 | new | 上一条同样因 .75 pod NotFound 无效；这是历史 top10 里尚未测到的调度变量。 |
+| readme-top10-zero-mlp-proj-init-off | Ablate zero projection init | 取消 MLP projection zero init 会量化历史 rank3 zero-init 在当前 root 中的因果贡献。 | new | 历史先验很高，脚本已有可逆分支，单变量明确。 |
+| readme-top10-embedding-skip-off | Ablate embedding skips | 关闭 embedding-to-block skip 注入会量化 README skip connection family 的主要当前贡献。 | new | 历史 rank4 仍未有当前 ablation；先测 embedding skip，避免和 block3 skip 混在一起。 |
+| readme-top10-qk-norm-off | Ablate QK norm | 关闭 QK norm 可为 modern architecture family 提供一个可逆、局部的当前因果样本。 | new | modern architecture 整体不可一次性公平 ablate；QK norm 是可隔离的高先验子项。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+
+## 2026-06-04T08:31:53Z: codex-1780561501969-4caa7641
+
+- Trigger: 1 run(s) finished
+- Summary: 当前因果证据暂列：value embeddings 和 bigram hash embedding 最强；EoS alignment 关闭导致 val_loss=nan，需用修复后的解析器正式记录；MTP/XSA/smear/FP8 是小到中等信号；PKO 当前近似中性；batch schedule 旧结果无效，需修复后重跑。
+- Goal progress: README 历史先验 top10 已建立，当前代码已有 value、bigram、MTP、XSA、smear、PKO、FP8、EoS 的单因素证据或日志；缺口是 batch schedule 的有效结果、zero init 排队结果、skip family 和 modern architecture 子项如 QK norm 的当前反事实证据。Muon 和 FA3/window family 仍需要更谨慎拆分。
+- Code changes: yes; 修改 experiments/arthur/run_readme_ablation.sh：结果解析支持 nan/inf val_loss 并将非有限 loss 标为 target_met=false；batch_schedule_constant_final 变体把 TRAIN_MAX_NUM_DOCS[49152] 扩到 256，避免 constant-final batch 在早期 seq_len 下因 cum_seqlens 容量崩溃。
+- Suggested experiments: 4
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-batch-schedule-constant-final-local-fixed | Fixed batch schedule ablation | 把前两阶段 batch size 改为最终 batch size 后，若 dataloader 容量足够，可隔离 batch size ramp 对当前收敛和速度的贡献。 | new | 上一条 batch schedule 在 step 50 因 cum_lengths 容量失败；脚本已修复该采集问题，需要重跑获取有效证据。 |
+| readme-top10-eos-alignment-off-local-nan-record | Record EoS alignment ablation | 关闭训练 batch BOS/EoS 对齐会破坏最终验证稳定性，修复后的解析器应把 nan loss 作为有效反事实证据记录下来。 | new | 已有日志显示 val_loss:nan，但旧解析器把它误判为无验证结果；需要干净结果文件。 |
+| readme-top10-embedding-skip-off | Ablate embedding skips | 关闭 embedding-to-block skip 注入会量化 README rank4 skip connection family 的主要当前贡献。 | new | skip family 历史先验高，当前还没有隔离 ablation。 |
+| readme-top10-qk-norm-off | Ablate QK norm | 关闭 QK norm 可为 README rank1 modern architecture family 提供一个局部、可逆的当前因果样本。 | new | modern architecture 整体不可公平一次性关闭；QK norm 是当前代码中清晰可隔离的子项。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+
+## 2026-06-04T08:52:51Z: codex-1780562881307-8868132d
+
+- Trigger: plan empty and no running experiments
+- Summary: 当前最强当前代码 ablation 信号：value_embeds_off 平均 val_loss 3.3138，bigram_off 平均 3.3007，eos_alignment_off 得到 nan；MTP/XSA/smear/FP8 也会轻中度恶化。batch_schedule_constant_final 训练完成且 val_loss 3.2346，但耗时 1.8595min，说明 batch schedule 主要是速度优化而非单纯降 loss。
+- Goal progress: README 历史先验 top10 已建立，当前已有 13 条可解析 ablation 记录。缺口是历史 rank1 modern architecture 只缺局部拆分证据，rank2 Muon 还没有安全完整反事实，rank7 long-window/YaRN 尚未测，skip family 只测了 embedding skip 还缺 block3 skip。
+- Code changes: yes; 修改 experiments/arthur/run_readme_ablation.sh：新增 long_window_yarn_off、cautious_wd_off、residual_decay_off 可逆 ablation 分支；未修改 train_gpt.py。已通过 bash -n 和新增/待跑 ablation 替换串 dry-run。
+- Suggested experiments: 5
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-qk-norm-off | Ablate QK norm | 关闭 QK norm 可为 README rank1 modern architecture family 提供局部当前因果证据。 | new | 最高历史先验仍缺当前反事实；QK norm 是可安全隔离的子项。 |
+| readme-top10-long-window-off | Ablate long windows | 把长窗口层改为短窗口可隔离 long-short sliding window pattern 的当前贡献。 | new | 覆盖历史 rank7 FA3/window family 中最清晰可逆的单变量。 |
+| readme-top10-block3-skip-off | Ablate block3 skip | 关闭 block3-to-layer6 skip 可补足 skip connection family 中非 embedding skip 的当前贡献。 | new | embedding_skip_off 单样本近中性，需拆开 block skip 判断 skip family 排名。 |
+| readme-top10-polar-express-off | Ablate Polar Express | 用普通 momentum 更新替代 Polar Express 可给 Muon optimizer family 提供一个当前反事实样本。 | new | 完整 Muon-off 代价太大；先测优化器 family 中已有可逆分支。 |
+| readme-top10-cautious-wd-off | Ablate cautious WD | 把 cautious weight decay 改回普通 decoupled WD 可量化该 optimizer regularization 技巧的当前贡献。 | new | 历史先验虽低于 top10，但与 optimizer family 排名相关，且单变量明确。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

@@ -1,0 +1,13 @@
+{
+  "variant_id": "readme_top10_pko_off",
+  "ablation": "partial_key_offset_off",
+  "log": "logs/readme_top10_pko_off.txt",
+  "step": "1380",
+  "total_steps": "1380",
+  "val_loss": "3.279600",
+  "train_time_min": "1.281900",
+  "step_avg_ms": "55.730000",
+  "target_loss": "3.280000",
+  "target_met": "true",
+  "run_exit_code": "0"
+}

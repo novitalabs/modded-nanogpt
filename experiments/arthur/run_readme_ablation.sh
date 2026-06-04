@@ -30,7 +30,7 @@ cleanup() {
 }
 trap cleanup EXIT
 
-python - "${variant_script}" "${ablation}" "${variant_id}" <<'PY'
+python - "${variant_script}" "${ablation}" "${variant_id}" <<'VARIANT_PY'
 import json
 import sys
 from pathlib import Path
@@ -61,6 +61,24 @@ elif ablation == "partial_key_offset_off":
         "key_offset = [b==ws_long for b in bm_sizes] # apply partial key offset to long windows",
         "key_offset = [False for _ in bm_sizes] # Arthur ablation: disable partial key offset",
     )
+elif ablation == "long_window_off":
+    replace_once(
+        "bm_sizes = [ws_short, ws_short, ws_short, ws_long, ws_short, ws_short, None, ws_short, ws_short, ws_short, ws_long]",
+        "bm_sizes = [ws_short, ws_short, ws_short, ws_short, ws_short, ws_short, None, ws_short, ws_short, ws_short, ws_short]",
+    )
+elif ablation == "long_window_yarn_off":
+    replace_once(
+        "bm_sizes = [ws_short, ws_short, ws_short, ws_long, ws_short, ws_short, None, ws_short, ws_short, ws_short, ws_long]",
+        "bm_sizes = [ws_short, ws_short, ws_short, ws_short, ws_short, ws_short, None, ws_short, ws_short, ws_short, ws_short]",
+    )
+    replace_once(
+        """if new_ws_long != self.ws_long:
+            self.model.yarn.apply(self.ws_long * self.block_size, new_ws_long * self.block_size)
+            self.model.yarn_paired_head.apply(self.ws_long * self.block_size, new_ws_long * self.block_size)""",
+        """if False and new_ws_long != self.ws_long:
+            self.model.yarn.apply(self.ws_long * self.block_size, new_ws_long * self.block_size)
+            self.model.yarn_paired_head.apply(self.ws_long * self.block_size, new_ws_long * self.block_size)""",
+    )
 elif ablation == "mtp_off":
     replace_once(
         "mtp_weights_start=[1.0, 0.5, 0.25], mtp_weights_end=[1.0, 0.5, 0.0]),",
@@ -80,6 +98,86 @@ elif ablation == "value_embeds_off":
         "ve = self.value_embeds.view(5, self.vocab_size, -1)[:, input_seq]",
         "ve = torch.zeros((5, input_seq.numel(), self.embed.weight.shape[1]), device=input_seq.device, dtype=self.embed.weight.dtype)",
     )
+elif ablation == "fp8_lm_head_off":
+    replace_once(
+        'use_fp8 = not os.environ.get("DISABLE_FP8", False)',
+        "use_fp8 = False",
+    )
+elif ablation == "batch_schedule_constant_final":
+    replace_once(
+        "TrainingStage(duration=1/3, train_max_seq_len=896, batch_size=8 * 2048 * 8, window_sizes=(1, 3), lr_mul=1.0,",
+        "TrainingStage(duration=1/3, train_max_seq_len=896, batch_size=24 * 2048 * 8, window_sizes=(1, 3), lr_mul=1.0,",
+    )
+    replace_once(
+        "TrainingStage(duration=1/3, train_max_seq_len=2048, batch_size=16 * 2048 * 8, window_sizes=(3, 7), lr_mul=1.52,",
+        "TrainingStage(duration=1/3, train_max_seq_len=2048, batch_size=24 * 2048 * 8, window_sizes=(3, 7), lr_mul=1.52,",
+    )
+    replace_once(
+        "TRAIN_MAX_NUM_DOCS = {16384: 64, 32768: 96, 49152: 128}",
+        "TRAIN_MAX_NUM_DOCS = {16384: 64, 32768: 96, 49152: 256}",
+    )
+elif ablation == "zero_mlp_proj_init_off":
+    replace_once(
+        "self.mlp_bank[:, 1, :, :].zero_()  # c_proj - zero init suggested by @Grad62304977",
+        "self.mlp_bank[:, 1, :, :].uniform_(-bound, bound)  # Arthur ablation: disable c_proj zero init",
+    )
+elif ablation == "cautious_wd_off":
+    replace_once(
+        "mask = (update * p_slice) > 0",
+        "mask = torch.ones_like(update, dtype=torch.bool)  # Arthur ablation: ordinary decoupled WD",
+    )
+    replace_once(
+        "mask = (grad * p_precise) >= 0",
+        "mask = torch.ones_like(p_precise, dtype=torch.bool)  # Arthur ablation: ordinary decoupled WD",
+    )
+elif ablation == "residual_decay_off":
+    replace_once(
+        "self.resid_lambdas = nn.Parameter(torch.full((num_layers, 2), 1.1**0.5))",
+        "self.resid_lambdas = nn.Parameter(torch.ones(num_layers, 2))",
+    )
+    replace_once(
+        "bs_init[0, 8]  = 1.1**0.5 / self._mudd_scale  # resid_attn[10]",
+        "bs_init[0, 8]  = 1.0 / self._mudd_scale  # Arthur ablation: no residual scaling init",
+    )
+    replace_once(
+        "bs_init[0, 12] = 1.1**0.5 / self._mudd_scale  # resid_mlp[10]",
+        "bs_init[0, 12] = 1.0 / self._mudd_scale  # Arthur ablation: no residual scaling init",
+    )
+elif ablation == "embedding_skip_off":
+    replace_once(
+        "x0_inject = (x0 * x0_lambdas[0],) + tuple(x0 * x0_lambdas[i] + x0_bigram * bigram_lambdas[i] for i in range(1, self.num_layers))",
+        "x0_inject = (torch.zeros_like(x0),) + tuple(x0_bigram * bigram_lambdas[i] for i in range(1, self.num_layers))",
+    )
+elif ablation == "block3_skip_off":
+    replace_once(
+        "x = x + skip_gate_out * cache[3]",
+        "x = x  # Arthur ablation: disable block-3-to-layer-6 skip",
+    )
+elif ablation == "qk_norm_off":
+    replace_once(
+        "q, k = norm(q), norm(k) # QK norm @Grad62304977",
+        "q, k = q, k  # Arthur ablation: disable QK norm",
+    )
+elif ablation == "polar_express_off":
+    replace_once(
+        """v_chunk = polar_express(
+            grad_chunk, p_state["momentum_buffer"], self._momentum_t,
+            split_baddbmm=is_large_matrix,
+        )""",
+        """momentum = self._momentum_t.to(grad_chunk.dtype)
+        p_state["momentum_buffer"].lerp_(grad_chunk, 1 - momentum)
+        v_chunk = grad_chunk.lerp(p_state["momentum_buffer"], momentum)""",
+    )
+elif ablation == "eos_alignment_off":
+    train_loader_call = "distributed_data_generator(args.train_files, TRAINING_STAGES[0].batch_size, TRAINING_STAGES[0].train_max_seq_len, grad_accum_steps=grad_accum_steps)"
+    replace_once(
+        train_loader_call,
+        "distributed_data_generator(args.train_files, TRAINING_STAGES[0].batch_size, TRAINING_STAGES[0].train_max_seq_len, grad_accum_steps=grad_accum_steps, align_to_bos=False)",
+    )
+    replace_once(
+        train_loader_call,
+        "distributed_data_generator(args.train_files, TRAINING_STAGES[0].batch_size, TRAINING_STAGES[0].train_max_seq_len, grad_accum_steps=grad_accum_steps, align_to_bos=False)",
+    )
 else:
     raise SystemExit(f"unknown ablation: {ablation}")
 
@@ -94,14 +192,14 @@ banner = [
 ]
 target.write_text("\n".join(banner) + code)
 print(f"variant_script={target}")
-PY
+VARIANT_PY
 
 started_at="$(date -Iseconds)"
 echo "starting readme_top10 variant=${variant_id} ablation=${ablation} pod=$(hostname) at ${started_at}"
 nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader
 
 set +e
-timeout "${timeout_value}" torchrun --standalone --nproc_per_node=8 "${variant_script}"
+timeout "${timeout_value}" torchrun --standalone --nproc_per_node=8 "${variant_script}" </dev/null
 rc=$?
 set -e
 
@@ -120,9 +218,10 @@ tail -180 "${latest_log}"
 mkdir -p "${results_dir}"
 python experiments/collect_results.py
 
-python - "${latest_log}" "${variant_id}" "${ablation}" "${target_loss}" "${results_dir}" "${rc}" <<'PY'
+python - "${latest_log}" "${variant_id}" "${ablation}" "${target_loss}" "${results_dir}" "${rc}" <<'RESULT_PY'
 import csv
 import json
+import math
 import re
 import sys
 from pathlib import Path
@@ -135,8 +234,9 @@ results_dir = Path(sys.argv[5])
 run_rc = int(sys.argv[6])
 text = path.read_text(errors="ignore")
 matches = re.findall(
-    r"step:(\d+)/(\d+)\s+val_loss:([0-9.]+)\s+train_time:([0-9.]+)ms\s+step_avg:([0-9.]+)ms",
+    r"step:(\d+)/(\d+)\s+val_loss:([0-9.]+|nan|inf|-inf)\s+train_time:([0-9.]+)ms\s+step_avg:([0-9.]+)ms",
     text,
+    flags=re.IGNORECASE,
 )
 if not matches:
     raise SystemExit(f"no validation result found in {path}")
@@ -144,7 +244,7 @@ if not matches:
 step, total, loss, train_ms, step_avg = matches[-1]
 loss_f = float(loss)
 train_min = float(train_ms) / 60000.0
-target_met = loss_f <= target_loss
+target_met = math.isfinite(loss_f) and loss_f <= target_loss
 row = {
     "variant_id": variant_id,
     "ablation": ablation,
@@ -175,5 +275,5 @@ print(
 )
 if run_rc != 0:
     raise SystemExit(f"training command exited {run_rc}")
-PY
+RESULT_PY
 REMOTE

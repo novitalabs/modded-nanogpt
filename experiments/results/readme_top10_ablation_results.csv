@@ -1,0 +1,14 @@
+variant_id,ablation,log,step,total_steps,val_loss,train_time_min,step_avg_ms,target_loss,target_met,run_exit_code
+readme_top10_xsa_off,xsa_off,logs/readme_top10_xsa_off.txt,1380,1380,3.283500,1.266400,55.060000,3.280000,false,0
+readme_top10_bigram_off,bigram_off,logs/readme_top10_bigram_off.txt,1380,1380,3.302300,1.269417,55.190000,3.280000,false,0
+readme_top10_value_embeds_off,value_embeds_off,logs/readme_top10_value_embeds_off.txt,1380,1380,3.312400,1.248600,54.290000,3.280000,false,0
+readme_top10_mtp_off,mtp_off,logs/readme_top10_mtp_off.txt,1380,1380,3.287300,1.282467,55.760000,3.280000,false,0
+readme_top10_smear_off,smear_off,logs/readme_top10_smear_off.txt,1380,1380,3.282700,1.282417,55.760000,3.280000,false,0
+readme_top10_pko_off,partial_key_offset_off,logs/readme_top10_pko_off.txt,1380,1380,3.279600,1.281900,55.730000,3.280000,true,0
+readme_top10_fp8_lm_head_off_local,fp8_lm_head_off,logs/readme_top10_fp8_lm_head_off_local.txt,1380,1380,3.280500,1.284717,55.860000,3.280000,false,0
+readme_top10_value_embeds_off_clean_rerun,value_embeds_off,logs/readme_top10_value_embeds_off_clean_rerun.txt,1380,1380,3.315300,1.247667,54.250000,3.280000,false,0
+readme_top10_bigram_off_clean_rerun,bigram_off,logs/readme_top10_bigram_off_clean_rerun.txt,1380,1380,3.299100,1.269233,55.180000,3.280000,false,0
+readme_top10_zero_mlp_proj_init_off,zero_mlp_proj_init_off,logs/readme_top10_zero_mlp_proj_init_off.txt,1380,1380,3.278200,1.285900,55.910000,3.280000,true,0
+readme_top10_batch_schedule_constant_final_local_fixed,batch_schedule_constant_final,logs/readme_top10_batch_schedule_constant_final_local_fixed.txt,1380,1380,3.234600,1.859467,80.850000,3.280000,true,0
+readme_top10_eos_alignment_off_local_nan_record,eos_alignment_off,logs/readme_top10_eos_alignment_off_local_nan_record.txt,1380,1380,nan,1.147550,49.890000,3.280000,false,0
+readme_top10_embedding_skip_off,embedding_skip_off,logs/readme_top10_embedding_skip_off.txt,1380,1380,3.277900,1.275833,55.470000,3.280000,true,0
