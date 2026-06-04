@@ -1,0 +1,88 @@
+{
+  "objective": "rank top10 README optimization methods by historical speedup prior and current-code ablation evidence",
+  "method": "keyword attribution over README record deltas; multi-technique records split credit equally",
+  "ranking_csv": "experiments/results/readme_top10_ranking.csv",
+  "details_csv": "experiments/results/readme_top10_historical_details.csv",
+  "top10": [
+    {
+      "technique": "Modernized architecture: Rotary embeddings, QK-Norm, and ReLU2",
+      "historical_delta_min": 17.304,
+      "historical_delta_pct": 51.310677999999996,
+      "mentions": 4,
+      "historical_rank": 1,
+      "ablation_status": "pending"
+    },
+    {
+      "technique": "Muon optimizer",
+      "historical_delta_min": 11.386,
+      "historical_delta_pct": 52.544323000000006,
+      "mentions": 11,
+      "historical_rank": 2,
+      "ablation_status": "pending"
+    },
+    {
+      "technique": "Zero initialization of projections",
+      "historical_delta_min": 3.55,
+      "historical_delta_pct": 15.919283,
+      "mentions": 1,
+      "historical_rank": 3,
+      "ablation_status": "pending"
+    },
+    {
+      "technique": "Embedding/block skip connections",
+      "historical_delta_min": 1.944333,
+      "historical_delta_pct": 22.220096999999996,
+      "mentions": 5,
+      "historical_rank": 4,
+      "ablation_status": "pending"
+    },
+    {
+      "technique": "FP8 lm_head, asymmetric rescale, and softcap logits",
+      "historical_delta_min": 1.8804999999999998,
+      "historical_delta_pct": 32.996320000000004,
+      "mentions": 8,
+      "historical_rank": 5,
+      "ablation_status": "pending"
+    },
+    {
+      "technique": "Value embeddings",
+      "historical_delta_min": 1.007833,
+      "historical_delta_pct": 24.571555,
+      "mentions": 8,
+      "historical_rank": 6,
+      "ablation_status": "pending"
+    },
+    {
+      "technique": "Flash Attention 3, long-short sliding windows, window warmup, YaRN",
+      "historical_delta_min": 0.5555,
+      "historical_delta_pct": 14.055437,
+      "mentions": 5,
+      "historical_rank": 7,
+      "ablation_status": "pending"
+    },
+    {
+      "technique": "Batch size schedule",
+      "historical_delta_min": 0.104,
+      "historical_delta_pct": 3.9737039999999997,
+      "mentions": 2,
+      "historical_rank": 8,
+      "ablation_status": "pending"
+    },
+    {
+      "technique": "Bigram hash embedding",
+      "historical_delta_min": 0.098,
+      "historical_delta_pct": 5.645041,
+      "mentions": 2,
+      "historical_rank": 9,
+      "ablation_status": "pending"
+    },
+    {
+      "technique": "EoS-aligned batches and max document length",
+      "historical_delta_min": 0.07350000000000001,
+      "historical_delta_pct": 2.579759,
+      "mentions": 2,
+      "historical_rank": 10,
+      "ablation_status": "pending"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "experiments": [
+    {
+      "id": "readme-top10-history-ranking",
+      "title": "Rank README optimization methods by historical deltas",
+      "hypothesis": "README record-history deltas provide a useful prior for the top 10 most effective optimization methods before expensive ablations.",
+      "command": "python experiments/arthur/run_readme_top10_ranking.py",
+      "check": "test -s experiments/results/readme_top10_ranking.csv && test -s experiments/results/readme_top10_plan.md",
+      "priority": 120,
+      "tags": ["readme-top10", "analysis", "ranking"]
+    },
+    {
+      "id": "readme-top10-node75-preflight",
+      "title": "Prepare optional 8xH200 node .75 pod",
+      "hypothesis": "Node .75 has 8 free GPUs and can mount /data/develop/modded-nanogpt with the required runtime and data for top10 ablation experiments.",
+      "command": "bash experiments/arthur/ensure_pod_75.sh",
+      "check": "kubectl get pod modded-nanogpt-repro-75 -o jsonpath='{.status.phase}' | grep -q Running",
+      "priority": 115,
+      "tags": ["readme-top10", "preflight", "node-75", "pod"]
+    },
+    {
+      "id": "readme-top10-xsa-off",
+      "title": "Ablate Learnable XSA",
+      "hypothesis": "Disabling Learnable XSA will worsen loss or speed enough to estimate its current-code contribution relative to README top10 candidates.",
+      "command": "VARIANT_ID=readme_top10_xsa_off ABLATION=xsa_off MODDED_NANOGPT_POD=${MODDED_NANOGPT_POD_75:-modded-nanogpt-repro-75} bash experiments/arthur/run_readme_ablation.sh",
+      "check": "test -s experiments/results/readme_top10_readme_top10_xsa_off.json",
+      "priority": 100,
+      "tags": ["readme-top10", "ablation", "learnable-xsa", "node-75"]
+    },
+    {
+      "id": "readme-top10-bigram-off",
+      "title": "Ablate Bigram hash embedding",
+      "hypothesis": "Disabling the bigram hash embedding will expose whether the recent historical speedup still has a large causal contribution in the current root.",
+      "command": "VARIANT_ID=readme_top10_bigram_off ABLATION=bigram_off MODDED_NANOGPT_POD=${MODDED_NANOGPT_POD_75:-modded-nanogpt-repro-75} bash experiments/arthur/run_readme_ablation.sh",
+      "check": "test -s experiments/results/readme_top10_readme_top10_bigram_off.json",
+      "priority": 96,
+      "tags": ["readme-top10", "ablation", "bigram", "node-75"]
+    },
+    {
+      "id": "readme-top10-value-embeds-off",
+      "title": "Ablate value embeddings",
+      "hypothesis": "Disabling value embeddings will estimate the current contribution of the README value-embedding family, including later value-gate tuning.",
+      "command": "VARIANT_ID=readme_top10_value_embeds_off ABLATION=value_embeds_off MODDED_NANOGPT_POD=${MODDED_NANOGPT_POD_75:-modded-nanogpt-repro-75} bash experiments/arthur/run_readme_ablation.sh",
+      "check": "test -s experiments/results/readme_top10_readme_top10_value_embeds_off.json",
+      "priority": 92,
+      "tags": ["readme-top10", "ablation", "value-embeddings", "node-75"]
+    },
+    {
+      "id": "readme-top10-mtp-off",
+      "title": "Ablate multi-token prediction",
+      "hypothesis": "Turning MTP weights into single-token prediction should quantify whether MTP remains a top current-code contributor.",
+      "command": "VARIANT_ID=readme_top10_mtp_off ABLATION=mtp_off MODDED_NANOGPT_POD=${MODDED_NANOGPT_POD_75:-modded-nanogpt-repro-75} bash experiments/arthur/run_readme_ablation.sh",
+      "check": "test -s experiments/results/readme_top10_readme_top10_mtp_off.json",
+      "priority": 88,
+      "tags": ["readme-top10", "ablation", "multi-token-prediction", "node-75"]
+    },
+    {
+      "id": "readme-top10-smear-off",
+      "title": "Ablate smear one-token lookback",
+      "hypothesis": "Disabling smear isolates a small but cheap architecture feature that may or may not remain top10 in the current root.",
+      "command": "VARIANT_ID=readme_top10_smear_off ABLATION=smear_off MODDED_NANOGPT_POD=${MODDED_NANOGPT_POD_75:-modded-nanogpt-repro-75} bash experiments/arthur/run_readme_ablation.sh",
+      "check": "test -s experiments/results/readme_top10_readme_top10_smear_off.json",
+      "priority": 84,
+      "tags": ["readme-top10", "ablation", "smear", "node-75"]
+    },
+    {
+      "id": "readme-top10-pko-off",
+      "title": "Ablate Partial Key Offset",
+      "hypothesis": "Disabling partial key offset will quantify whether this late README optimization remains a strong contributor in the current root.",
+      "command": "VARIANT_ID=readme_top10_pko_off ABLATION=partial_key_offset_off MODDED_NANOGPT_POD=${MODDED_NANOGPT_POD_75:-modded-nanogpt-repro-75} bash experiments/arthur/run_readme_ablation.sh",
+      "check": "test -s experiments/results/readme_top10_readme_top10_pko_off.json",
+      "priority": 80,
+      "tags": ["readme-top10", "ablation", "partial-key-offset", "node-75"]
+    }
+  ]
+}

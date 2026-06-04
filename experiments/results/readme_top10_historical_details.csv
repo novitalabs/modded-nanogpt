@@ -1,0 +1,73 @@
+technique,record_number,date,description,previous_time_min,record_time_min,delta_min,delta_pct,attribution
+"Modernized architecture: Rotary embeddings, QK-Norm, and ReLU2",2,06/06/24,Tuned learning rate & rotary embeddings,45.000000,31.400000,13.600000,30.222222,historical_description_keyword_split
+Muon optimizer,3,10/04/24,Introduced the Muon optimizer,31.400000,24.900000,6.500000,20.700637,historical_description_keyword_split
+Muon optimizer,4,10/11/24,Muon improvements,24.900000,22.300000,2.600000,10.441767,historical_description_keyword_split
+"Modernized architecture: Rotary embeddings, QK-Norm, and ReLU2",5,10/14/24,"Pad embeddings, ReLU², zero-init projections, QK-norm",22.300000,15.200000,3.550000,15.919283,historical_description_keyword_split
+Zero initialization of projections,5,10/14/24,"Pad embeddings, ReLU², zero-init projections, QK-norm",22.300000,15.200000,3.550000,15.919283,historical_description_keyword_split
+Muon optimizer,6,10/18/24,Distributed the overhead of Muon,15.200000,13.100000,2.100000,13.815789,historical_description_keyword_split
+"FP8 lm_head, asymmetric rescale, and softcap logits",9,11/06/24,"Value and embedding skip connections, momentum warmup, logit softcap",10.800000,8.200000,1.300000,12.037037,historical_description_keyword_split
+Embedding/block skip connections,9,11/06/24,"Value and embedding skip connections, momentum warmup, logit softcap",10.800000,8.200000,1.300000,12.037037,historical_description_keyword_split
+Embedding/block skip connections,11,11/10/24,U-net pattern skip connections & double lr,7.800000,7.200000,0.600000,7.692308,historical_description_keyword_split
+"Flash Attention 3, long-short sliding windows, window warmup, YaRN",13,11/24/24,Attention window warmup,5.030000,4.660000,0.370000,7.355865,historical_description_keyword_split
+Value embeddings,14,12/04/24,Value Embeddings,4.660000,4.410000,0.250000,5.364807,historical_description_keyword_split
+Value embeddings,15,12/08/24,"U-net pattern value embeddings, assorted code optimizations",4.410000,3.950000,0.460000,10.430839,historical_description_keyword_split
+Value embeddings,16,12/10/24,"Split value embeddings, block sliding window, separate block mask",3.950000,3.800000,0.150000,3.797468,historical_description_keyword_split
+"Modernized architecture: Rotary embeddings, QK-Norm, and ReLU2",17,12/17/24,"Sparsify value embeddings, improve rotary embeddings, drop an attn layer",3.800000,3.570000,0.115000,3.026316,historical_description_keyword_split
+Value embeddings,17,12/17/24,"Sparsify value embeddings, improve rotary embeddings, drop an attn layer",3.800000,3.570000,0.115000,3.026316,historical_description_keyword_split
+"FP8 lm_head, asymmetric rescale, and softcap logits",18,01/04/25,Lower logit softcap from 30 to 15,3.570000,3.400000,0.170000,4.761905,historical_description_keyword_split
+"FP8 lm_head, asymmetric rescale, and softcap logits",19,01/13/25,"FP8 head, offset logits, lr decay to 0.1 instead of 0.0",3.400000,3.142000,0.258000,7.588235,historical_description_keyword_split
+Muon optimizer,20,01/16/25,"Merged QKV weights, long-short attention, attention scale, lower Adam epsilon, batched Muon",3.142000,2.992000,0.075000,2.387015,historical_description_keyword_split
+"Flash Attention 3, long-short sliding windows, window warmup, YaRN",20,01/16/25,"Merged QKV weights, long-short attention, attention scale, lower Adam epsilon, batched Muon",3.142000,2.992000,0.075000,2.387015,historical_description_keyword_split
+Batch size schedule,21,01/26/25,Reduced batch size,2.992000,2.933000,0.059000,1.971925,historical_description_keyword_split
+EoS-aligned batches and max document length,26,07/13/25,"Align training batch starts with EoS, increase cooldown frac to .45",2.896000,2.863000,0.033000,1.139503,historical_description_keyword_split
+Sparse attention gate,28,08/23/25,Sparse attention gate,2.817000,2.812000,0.005000,0.177494,historical_description_keyword_split
+"Flash Attention 3, long-short sliding windows, window warmup, YaRN",29,09/03/25,"Flash Attention 3, 2048 max_doc_len, update ws schedule",2.812000,2.731000,0.040500,1.440256,historical_description_keyword_split
+EoS-aligned batches and max document length,29,09/03/25,"Flash Attention 3, 2048 max_doc_len, update ws schedule",2.812000,2.731000,0.040500,1.440256,historical_description_keyword_split
+"Flash Attention 3, long-short sliding windows, window warmup, YaRN",31,09/10/25,Dynamically incorporate YaRN during training and validation,2.717000,2.656000,0.061000,2.245123,historical_description_keyword_split
+Embedding/block skip connections,32,09/11/25,"Optimize distributed training, improve skip connection gating, and enhance bfloat16 usage",2.656000,2.625000,0.015500,0.583584,historical_description_keyword_split
+Value embedding and skip gates,32,09/11/25,"Optimize distributed training, improve skip connection gating, and enhance bfloat16 usage",2.656000,2.625000,0.015500,0.583584,historical_description_keyword_split
+Smear one-token lookback,34,09/18/25,Smear token embeddings 1 position forward,2.565000,2.547000,0.018000,0.701754,historical_description_keyword_split
+Muon optimizer,36,09/23/25,"MuonCustomSizing, perform mlp and attn reduce scatter in shared call",2.527000,2.495000,0.032000,1.266324,historical_description_keyword_split
+Polar Express in Muon,38,09/29/25,"Polar Express, replacement for Newton-Schulz",2.483000,2.476000,0.007000,0.281917,historical_description_keyword_split
+Muon optimizer,41,10/24/25,NorMuon,2.358000,2.345000,0.006500,0.275657,historical_description_keyword_split
+NorMuon,41,10/24/25,NorMuon,2.358000,2.345000,0.006500,0.275657,historical_description_keyword_split
+Muon optimizer,42,10/27/25,"Update NorMuon LR, Step Logic",2.345000,2.313000,0.016000,0.682303,historical_description_keyword_split
+NorMuon,42,10/27/25,"Update NorMuon LR, Step Logic",2.345000,2.313000,0.016000,0.682303,historical_description_keyword_split
+Cautious Weight Decay,43,11/10/25,Cautious Weight Decay w/ schedule,2.313000,2.284000,0.029000,1.253783,historical_description_keyword_split
+Residual stream exponential decay,45,11/18/25,"Refine skip arch, update exponential decay init",2.269000,2.248000,0.021000,0.925518,historical_description_keyword_split
+Batch size schedule,46,11/29/25,Batch size schedule,2.248000,2.203000,0.045000,2.001779,historical_description_keyword_split
+Muon optimizer,48,12/11/25,"Speed up Muon, additional pre-multiply lambda, reshape matrices, update lr, update NorMuon axis",2.193000,2.170000,0.011500,0.524396,historical_description_keyword_split
+NorMuon,48,12/11/25,"Speed up Muon, additional pre-multiply lambda, reshape matrices, update lr, update NorMuon axis",2.193000,2.170000,0.011500,0.524396,historical_description_keyword_split
+Partial Key Offset,49,12/14/25,Partial Key Offset,2.170000,2.146000,0.024000,1.105991,historical_description_keyword_split
+Cautious Weight Decay,50,12/18/25,Extend Cautious Weight Decay to Adam parameters,2.146000,2.128000,0.018000,0.838770,historical_description_keyword_split
+"FP8 lm_head, asymmetric rescale, and softcap logits",51,12/19/25,"Retie Embed to lm_head, retune fp8 scales",2.128000,2.075000,0.026500,1.245301,historical_description_keyword_split
+Untie embed and lm_head at 2/3 training,51,12/19/25,"Retie Embed to lm_head, retune fp8 scales",2.128000,2.075000,0.026500,1.245301,historical_description_keyword_split
+Smear one-token lookback,52,12/21/25,"Smooth scalars via beta increase, decrease smear gate lr, freeze scalars during transitions, adam all reduce",2.075000,2.037000,0.038000,1.831325,historical_description_keyword_split
+Multi-token prediction,53,12/22/25,"Multi-token prediction, untie embed/lm_head at 2/3 training, lr update, tweak CWD",2.037000,1.988000,0.024500,1.202749,historical_description_keyword_split
+Untie embed and lm_head at 2/3 training,53,12/22/25,"Multi-token prediction, untie embed/lm_head at 2/3 training, lr update, tweak CWD",2.037000,1.988000,0.024500,1.202749,historical_description_keyword_split
+"FP8 lm_head, asymmetric rescale, and softcap logits",54,12/26/25,Asymmetric Logit Rescale,1.988000,1.940000,0.048000,2.414487,historical_description_keyword_split
+Embedding/block skip connections,55,12/29/25,Gates on value embeds and skip connection,1.940000,1.918000,0.007333,0.378007,historical_description_keyword_split
+Value embeddings,55,12/29/25,Gates on value embeds and skip connection,1.940000,1.918000,0.007333,0.378007,historical_description_keyword_split
+Value embedding and skip gates,55,12/29/25,Gates on value embeds and skip connection,1.940000,1.918000,0.007333,0.378007,historical_description_keyword_split
+Muon optimizer,56,12/31/25,"Optimize and compile Adam, increase Adam buffer precision, move gates from Muon to Adam parameter banks",1.918000,1.894000,0.024000,1.251303,historical_description_keyword_split
+Muon optimizer,57,01/04/26,"Bfloat16 attn/mlp weights, mixed precision Muon, interweave Adam/Muon, finer-grain Adam beta",1.894000,1.878000,0.016000,0.844773,historical_description_keyword_split
+Paired head attention,58,01/07/26,Paired Head Attention,1.878000,1.820000,0.058000,3.088392,historical_description_keyword_split
+"Modernized architecture: Rotary embeddings, QK-Norm, and ReLU2",59,01/10/26,Fused triton kernel for linear relu square MLP step,1.820000,1.781000,0.039000,2.142857,historical_description_keyword_split
+"FP8 lm_head, asymmetric rescale, and softcap logits",60,01/16/26,Fused triton kernel for softcapped multi-token prediction cross entropy step,1.781000,1.765000,0.008000,0.449186,historical_description_keyword_split
+Multi-token prediction,60,01/16/26,Fused triton kernel for softcapped multi-token prediction cross entropy step,1.781000,1.765000,0.008000,0.449186,historical_description_keyword_split
+Bigram hash embedding,62,01/19/26,Bigram Hash Embedding,1.748000,1.655000,0.093000,5.320366,historical_description_keyword_split
+Value embeddings,63,01/26/26,Untie Value Embeds,1.655000,1.650000,0.005000,0.302115,historical_description_keyword_split
+Value embeddings,65,01/30/26,Group Value Embeds into single parameter,1.630000,1.613000,0.017000,1.042945,historical_description_keyword_split
+"FP8 lm_head, asymmetric rescale, and softcap logits",67,01/31/26,Tune fused softcap kernels and fuse fp8 quantization in LM head,1.595000,1.540000,0.055000,3.448276,historical_description_keyword_split
+Bigram hash embedding,68,01/31/26,Move bigram hash to GPU,1.540000,1.535000,0.005000,0.324675,historical_description_keyword_split
+Value embeddings,70,02/03/26,Tune value embed layout and ve_gates,1.528000,1.521000,0.003500,0.229058,historical_description_keyword_split
+Value embedding and skip gates,70,02/03/26,Tune value embed layout and ve_gates,1.528000,1.521000,0.003500,0.229058,historical_description_keyword_split
+Max seq length schedule,72,02/10/26,Increase minimum lr and add max_seq_len schedule,1.516000,1.496000,0.020000,1.319261,historical_description_keyword_split
+Single activation input for last attention layers,73,02/12/26,Partitioned Hyperconnections,1.496000,1.485000,0.011000,0.735294,historical_description_keyword_split
+Single activation input for last attention layers,77,03/06/26,Replace partitioned hyperconnections with single saved activation,1.446000,1.435000,0.011000,0.760719,historical_description_keyword_split
+"Flash Attention 3, long-short sliding windows, window warmup, YaRN",78,03/22/26,Tighten bounds on fa3 max_num_docs to match fineweb distribution,1.435000,1.426000,0.009000,0.627178,historical_description_keyword_split
+"FP8 lm_head, asymmetric rescale, and softcap logits",79,04/04/26,"Fuse Cross Entropy Fwd/Bwk Kernel, to avoid recalc on softcap sigmoid",1.426000,1.411000,0.015000,1.051893,historical_description_keyword_split
+Muon optimizer,80,04/08/26,"In Muon orthogonize Q and K matrices in pairs of heads, instead of across the full 6 head matrix",1.411000,1.406000,0.005000,0.354359,historical_description_keyword_split
+Embedding/block skip connections,81,04/22/26,MUDD Skip Connections,1.406000,1.363000,0.021500,1.529161,historical_description_keyword_split
+MUDD skip connections,81,04/22/26,MUDD Skip Connections,1.406000,1.363000,0.021500,1.529161,historical_description_keyword_split
+Learnable XSA,82,04/29/26,Learnable XSA,1.363000,1.353000,0.010000,0.733676,historical_description_keyword_split

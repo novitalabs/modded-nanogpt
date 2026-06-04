@@ -1,0 +1,27 @@
+historical_rank,technique,historical_delta_min,historical_delta_pct,mentions,ablation_status
+1,"Modernized architecture: Rotary embeddings, QK-Norm, and ReLU2",17.304000,51.310678,4,pending
+2,Muon optimizer,11.386000,52.544323,11,pending
+3,Zero initialization of projections,3.550000,15.919283,1,pending
+4,Embedding/block skip connections,1.944333,22.220097,5,pending
+5,"FP8 lm_head, asymmetric rescale, and softcap logits",1.880500,32.996320,8,pending
+6,Value embeddings,1.007833,24.571555,8,pending
+7,"Flash Attention 3, long-short sliding windows, window warmup, YaRN",0.555500,14.055437,5,pending
+8,Batch size schedule,0.104000,3.973704,2,pending
+9,Bigram hash embedding,0.098000,5.645041,2,pending
+10,EoS-aligned batches and max document length,0.073500,2.579759,2,pending
+11,Paired head attention,0.058000,3.088392,1,pending
+12,Smear one-token lookback,0.056000,2.533079,2,pending
+13,Untie embed and lm_head at 2/3 training,0.051000,2.448050,2,pending
+14,Cautious Weight Decay,0.047000,2.092553,2,pending
+15,NorMuon,0.034000,1.482356,3,pending
+16,Multi-token prediction,0.032500,1.651935,2,pending
+17,Value embedding and skip gates,0.026333,1.190649,3,pending
+18,Partial Key Offset,0.024000,1.105991,1,pending
+19,Single activation input for last attention layers,0.022000,1.496013,2,pending
+20,MUDD skip connections,0.021500,1.529161,1,pending
+21,Residual stream exponential decay,0.021000,0.925518,1,pending
+22,Max seq length schedule,0.020000,1.319261,1,pending
+23,Learnable XSA,0.010000,0.733676,1,pending
+24,Polar Express in Muon,0.007000,0.281917,1,pending
+25,Sparse attention gate,0.005000,0.177494,1,pending
+26,Embedding/lm_head gradient accumulation,0.000000,0.000000,0,pending
