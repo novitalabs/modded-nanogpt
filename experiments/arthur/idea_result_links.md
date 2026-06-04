@@ -2616,3 +2616,51 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+## 2026-06-04T17:42:01Z: codex-rotary-rerun1
+
+- Trigger: 1 run(s) finished
+- Summary: rotary_off 第二样本完成 1380/1380，val_loss=3.7593、target_met=false；结合首样本 3.6612，关闭 Rotary embeddings 的质量退化非常稳定且远大于 ReLU2、value embeddings、bigram、long-window、MUDD、QK norm、MTP 等中等项。
+- Goal progress: README 历史先验已建立，当前代码可逆 ablation 已覆盖并复验主要 top 候选。Modernized architecture 可以拆为 Rotary、ReLU2、QK norm，其中 Rotary 是当前最强单项质量贡献；强 top10 证据现在集中在 Polar Express/Muon、EoS alignment、Rotary、ReLU2、value embeddings、bigram hash embedding、long window/YaRN、batch schedule、MUDD、QK norm/MTP/FP8 train-head speed 边界组。剩余缺口主要是 FP8 train-head 质量样本仍在队列中，Muon/NorMuon 的全量替换需要避免 Adam 步频和 LR 混杂后再设计。
+- Code changes: no; 未修改训练代码或 ablation runner；本轮只分析自动落盘的 rotary_off 第二样本并追加 Arthur 分析记录。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-rotary-off-rerun1-pod72-1780594741-c509987f
+- Linked experiment ids: readme-top10-rotary-off-rerun1-pod72
+- Input code commits: c3db3a5777627a34acac139e02eca0d589314fb1
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/readme_top10_ablation_results.csv`
+- `experiments/results/readme_top10_readme_top10_rotary_off_rerun1_pod72.json`
+- `experiments/results/summary.json`
+
+## 2026-06-04T17:49:42Z: codex-1780594921937-99985a47
+
+- Trigger: 1 run(s) finished
+- Summary: rotary_off 第二样本 val_loss=3.7593、target_met=false；结合首样本 3.6612，关闭 Rotary embeddings 的质量退化稳定且很大，Rotary 可提升为强 top10 当前因果项。
+- Goal progress: README 历史先验已建立，当前代码 ablation 已覆盖并复验大多数候选。强证据集中在 Polar Express/Muon、EoS alignment、Rotary、ReLU2、value embeddings、bigram hash embedding、long window/YaRN、batch schedule、MUDD、QK norm/MTP/FP8 train-head speed 边界组。剩余主要缺口是已排队的 FP8 train-head quality 样本，以及 Muon/NorMuon 全量替换需要避免 Adam 步频和 LR 混杂后再单独设计。
+- Code changes: no; 未修改训练代码或 ablation runner；只追加 experiments/arthur/idea_result_links.md 的本轮分析记录，并纳入自动落盘的 rotary_off 复验结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-rotary-off-rerun1-pod72-1780594741-c509987f
+- Linked experiment ids: readme-top10-rotary-off-rerun1-pod72
+- Input code commits: c3db3a5777627a34acac139e02eca0d589314fb1
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
