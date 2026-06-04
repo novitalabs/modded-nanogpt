@@ -3313,3 +3313,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T20:15:34Z: codex-1780604041550-a68c2908
+
+- Trigger: 1 run(s) finished
+- Summary: MTP third sample 完成，val_loss=3.2894；三次 mtp_off 均高于 3.28，说明 multi-token prediction 在当前代码中有稳定质量贡献。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖并复验大多数候选。强证据集中在 Rotary、ReLU2、value embeddings、bigram、long-window/YaRN、MUDD、QK norm、MTP、NorMuon 等；当前缺口是 MUDD/YaRN/NorMuon 等中强边界项还缺少第三样本来稳定最终 top10 排序。
+- Code changes: no; 未修改代码；本轮只分析最新 mtp_off_rerun2 结果。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-mtp-off-rerun2-pod72-1780603860-edb91075
+- Linked experiment ids: readme-top10-mtp-off-rerun2-pod72
+- Input code commits: 770c9b896294c5164c8209c82243998def8c9743
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-mudd-off-rerun3-pod72 | MUDD third sample | 第三个 mudd_off 样本若仍稳定在约 3.29 或更高，则 MUDD skip connections 可稳定位于当前 top10 边界组前列；若回落到阈值附近，则前两个样本的排序权重应下调。 | new | MUDD 当前两个有效样本为 3.2904/3.2906，信号强且稳定，但仍只有两个样本；第三样本能直接帮助它与 QK norm、MTP、YaRN、NorMuon 的 top10 边界排序。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
