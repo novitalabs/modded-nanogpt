@@ -77,3 +77,4 @@ readme_top10_fp8_lm_head_dense_train_off_rerun3_pod72_retry,fp8_lm_head_dense_tr
 readme_top10_normuon_varred_off_pod72,normuon_varred_off,logs/readme_top10_normuon_varred_off_pod72.txt,1380,1380,3.286700,1.293833,56.250000,3.280000,false,0
 readme_top10_normuon_varred_off_rerun2_pod72,normuon_varred_off,logs/readme_top10_normuon_varred_off_rerun2_pod72.txt,1380,1380,3.287800,1.292300,56.190000,3.280000,false,0
 readme_top10_max_seq_len_schedule_off_pod72,max_seq_len_schedule_off,logs/readme_top10_max_seq_len_schedule_off_pod72.txt,1380,1380,3.279500,1.293083,56.220000,3.280000,true,0
+readme_top10_value_skip_gates_static_pod72,value_skip_gates_static,logs/readme_top10_value_skip_gates_static_pod72.txt,1380,1380,3.280900,1.275217,55.440000,3.280000,false,0

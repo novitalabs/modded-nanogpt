@@ -170,6 +170,15 @@ elif ablation == "fp8_lm_head_dense_train_off":
             elif target_seq.numel() > mtp_offset:
                 loss_per_token[:-mtp_offset] += mtp_weight * F.cross_entropy(flat_logits[:-mtp_offset], target_seq[mtp_offset:], reduction="none")""",
     )
+elif ablation == "logit_rescale_symmetric":
+    replace_once(
+        "loss_per_token = FusedSoftcappedCrossEntropy.apply(x.view(-1, x.size(-1)), target_seq, mtp_weights, self.lm_head.weight, self.lm_head.x_s, self.lm_head.w_s, self.lm_head.grad_s, grad_scale)",
+        "loss_per_token = FusedSoftcappedCrossEntropy.apply(x.view(-1, x.size(-1)), target_seq, mtp_weights, self.lm_head.weight, self.lm_head.x_s, self.lm_head.w_s, self.lm_head.grad_s, grad_scale, 30.0, 0.0, 7.5)",
+    )
+    replace_once(
+        "logits = 23 * torch.sigmoid((logits + 5) / 7.5)",
+        "logits = 30 * torch.sigmoid(logits / 7.5)  # Arthur ablation: old symmetric 15-tanh-equivalent softcap",
+    )
 elif ablation == "embed_lm_head_untie_off":
     replace_once(
         "self.split_step = training_schedule.split_step",

@@ -2911,3 +2911,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T18:46:22Z: codex-1780598521857-a3f33b89
+
+- Trigger: 1 run(s) finished
+- Summary: value_skip_gates_static 首样本为 3.2809、target_met=false，属于边界弱信号；max_seq_len_schedule_off 为 3.2795，偏中性。当前强证据仍集中在 Polar/Muon、EoS alignment、Rotary、ReLU2、value embeddings、bigram、long-window/YaRN、MUDD、QK norm、MTP、NorMuon variance reduction 和 FP8 train-head speed。
+- Goal progress: README 历史先验已建立，当前代码可逆 ablation 已覆盖并复验多数候选。主要缺口转向 FP8 lm_head/softcap 家族中尚未单独隔离的 asymmetric logit rescale / softcap，以及 value/skip gates 这种边界项的复验。
+- Code changes: yes; 修改 experiments/arthur/run_readme_ablation.sh，新增 logit_rescale_symmetric ablation 分支：保持 FP8 fused CE 路径不变，仅把当前 23*sigmoid((logits+5)/7.5) 回退为旧 symmetric 15-tanh 等价形式。已通过 bash -n 和生成 variant compile 校验。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-value-skip-gates-static-pod72-1780598161-dbadcb4a
+- Linked experiment ids: readme-top10-value-skip-gates-static-pod72
+- Input code commits: 1a87dbaeb6060f9ceffaebb5202f4b18eac27f91
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-logit-rescale-symmetric-pod72 | Ablate asymmetric logit rescale | 保持 FP8 lm_head、fused CE 和 MTP 不变，仅把当前 asymmetric 23*sigmoid((logits+5)/7.5) softcap 回退到旧 symmetric 15-tanh 等价形式；若 loss 或速度显著变差，则 asymmetric rescale/softcap 是 README rank3 家族中的独立有效项。 | new | FP8 train-head 已显示稳定速度贡献，但 softcap/rescale 质量贡献仍混在同一 README 方法族里；该实验是当前最小单变量隔离。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
