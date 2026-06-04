@@ -2338,3 +2338,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T16:31:37Z: codex-1780590541622-be36f389
+
+- Trigger: 1 run(s) finished
+- Summary: 最新 long_window_yarn_off 失败是环境/调度问题，不是训练或 ablation 结果：direct local 使用 /usr/bin/python，无法 import torch/triton，训练未启动。已有 long_window_off 6/6 未达标，long-window 家族仍是强 top10 候选；需要一个修正环境后的 YaRN 组合关闭样本补清混淆。
+- Goal progress: README 历史先验已建立，当前代码主要可逆 ablation 已覆盖并完成多项复验。当前缺口仍是 long-window/YaRN 组合关闭的干净 pod72 样本；FP8 train head 质量样本已排队，等待结果即可。
+- Code changes: no; 未修改代码；本轮只分析失败原因并修正下一次实验命令。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-long-window-yarn-off-pod72-1780590481-be0181f5
+- Linked experiment ids: readme-top10-long-window-yarn-off-pod72
+- Input code commits: 29c55ba95df816e97dd61535ef2fe135719a48e4
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-long-window-yarn-off-pod72-rerun1 | Long window YaRN pod rerun | 同时关闭 long-window layout 和 YaRN warmup 后若仍显著未达标，可确认 README long-window/FA3/YaRN 家族是稳定 top10 主项，而不是单一 long_window_off 实现伪影。 | new | 修正上一轮误用 RUN_README_ABLATION_DIRECT=1 的环境问题；成功样本应走 pod72/kubectl 路径，pod 内有 /usr/local/bin/python 和 torch/triton。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
