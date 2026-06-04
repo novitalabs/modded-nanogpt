@@ -4246,3 +4246,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T23:26:26Z: codex-1780615441404-28f0c0d3
+
+- Trigger: 1 run(s) finished
+- Summary: 最新完成的 qk_norm_off 第四样本是无验证结果的运行失败，不提供质量证据；MTP 四样本均值约 3.2890、YaRN-only 四样本均值约 3.2895，均支持 top10 边界贡献候选。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖主要候选。第 10 位附近仍需 QK norm 与已 queued 的 NorMuon variance reduction 第四个有效样本来收口排序；本轮不应更新最终 top10。
+- Code changes: no; 未修改训练代码或实验脚本；只分析现有日志和结果表。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-qk-norm-off-rerun3-pod72-1780615381-0df22b60
+- Linked experiment ids: readme-top10-qk-norm-off-rerun3-pod72
+- Input code commits: a57aa916c39d2478ffe2200e2a03d439903974f0
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-qk-norm-off-rerun4-pod72 | QK norm fourth valid retry | 补一个有效 qk_norm_off 第四样本：若仍约 3.286-3.291，则 QK norm 是稳定 top10 边界贡献；若回落到 <=3.28，则其排序应低于 MTP/YaRN/NorMuon。 | new | 上一条 qk_norm_off_rerun3 只启动到 nvidia-smi/进程状态，没有 step 或 val_loss；这是同变量重跑，不引入新改动。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
