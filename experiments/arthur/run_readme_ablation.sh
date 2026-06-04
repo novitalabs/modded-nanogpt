@@ -161,6 +161,11 @@ elif ablation == "fp8_lm_head_dense_train_off":
             elif target_seq.numel() > mtp_offset:
                 loss_per_token[:-mtp_offset] += mtp_weight * F.cross_entropy(flat_logits[:-mtp_offset], target_seq[mtp_offset:], reduction="none")""",
     )
+elif ablation == "embed_lm_head_untie_off":
+    replace_once(
+        "self.split_step = training_schedule.split_step",
+        "self.split_step = -1  # Arthur ablation: keep embed and lm_head tied for all training",
+    )
 elif ablation == "batch_schedule_constant_final":
     replace_once(
         "TrainingStage(duration=1/3, train_max_seq_len=896, batch_size=8 * 2048 * 8, window_sizes=(1, 3), lr_mul=1.0,",

@@ -1357,3 +1357,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T13:00:59Z: codex-1780577881873-e8bdb6f8
+
+- Trigger: 1 run(s) finished
+- Summary: FP8 lm_head 真实训练路径已有两个有效样本：step_avg=69.79ms 和 69.94ms，较当前默认约 56ms 明显变慢，因此 FP8 head 家族应作为强速度贡献；val_loss=3.2779 与 3.2824，质量方向证据不足。
+- Goal progress: README 历史先验已完成，当前 ablation 已覆盖多数强候选。强因果证据集中在 Polar/Muon、value embeddings、bigram hash、batch schedule、long windows、QK norm、MTP、EoS alignment/稳定性以及 FP8 head 速度贡献。缺口是 paired head、MUDD、smear/cautious 等队列样本，以及尚未覆盖的 embed/lm_head untie 边界候选。
+- Code changes: yes; 修改 experiments/arthur/run_readme_ablation.sh，新增 embed_lm_head_untie_off ablation 分支：将 split_step 设为 -1，使 embed 和 lm_head 全程保持 tied；未修改 train_gpt.py。已通过 bash -n。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-fp8-lm-head-dense-train-off-stability-pod72-1780577641-d1bc20c9
+- Linked experiment ids: readme-top10-fp8-lm-head-dense-train-off-stability-pod72
+- Input code commits: 4baaa12f1ba2a40257624730639899ff4771b4df
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-embed-lm-head-untie-off | Ablate embed/lm_head untie | 如果 2/3 训练时 untie embed 和 lm_head 是当前代码里的有效优化，那么保持两者全程 tied 会导致 final val_loss 退化或速度/稳定性变化。 | new | README 历史 rank13，delta 接近 paired/smear/cautious 的 top10 边界候选；当前没有 ablation 证据，且本轮已新增可逆脚本分支。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

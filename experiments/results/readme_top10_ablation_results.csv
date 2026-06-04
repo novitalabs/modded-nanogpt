@@ -41,3 +41,4 @@ readme_top10_xsa_off_rerun1,xsa_off,logs/readme_top10_xsa_off_rerun1.txt,1380,13
 readme_top10_bigram_off,bigram_off,logs/readme_top10_bigram_off.txt,1380,1380,3.299900,1.269883,55.210000,3.280000,false,0
 readme_top10_fp8_lm_head_off,fp8_lm_head_off,logs/readme_top10_fp8_lm_head_off.txt,1380,1380,3.277400,1.287950,56.000000,3.280000,true,0
 readme_top10_fp8_lm_head_dense_train_off_fixed,fp8_lm_head_dense_train_off,logs/readme_top10_fp8_lm_head_dense_train_off_fixed.txt,1380,1380,3.277900,1.605233,69.790000,3.280000,true,0
+readme_top10_fp8_lm_head_dense_train_off_stability_pod72,fp8_lm_head_dense_train_off,logs/readme_top10_fp8_lm_head_dense_train_off_stability_pod72.txt,1380,1380,3.282400,1.608517,69.940000,3.280000,false,0
