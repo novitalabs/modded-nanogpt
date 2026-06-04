@@ -2060,7 +2060,15 @@ val_loader = distributed_data_generator(args.val_files, args.val_batch_size, -1,
 
 transition_steps = training_manager.get_transition_steps()
 # first and last pair of steps in each transition
-warmup_steps = sorted({0, 1} | {s + offset for s in transition_steps for offset in [-2, -1, 0, 1] if s + offset >= 2})
+warmup_steps = sorted(
+    {0, 1}
+    | {
+        s + offset
+        for s in transition_steps
+        for offset in [-2, -1, 0, 1]
+        if 2 <= s + offset <= training_schedule.total_steps
+    }
+)
 print0(f"Sampling steps {warmup_steps} for warmup", console=True)
 for step in warmup_steps:
     training_manager.advance_schedule(step)

@@ -1,0 +1,12 @@
+{
+  "experiments": [
+    {
+      "id": "scheduled-1373-no-extension",
+      "title": "1373 scheduled no extension",
+      "hypothesis": "1373 scheduled iterations without extension may preserve the <=3.28 loss target while saving 12 steps versus the original baseline and 2 steps versus the current best 1375-step no-extension result.",
+      "command": "VARIANT_ID=scheduled_1373_no_extension REPLACEMENTS_JSON='{\"num_scheduled_iterations: int = 1375\":\"num_scheduled_iterations: int = 1373\",\"num_extension_iterations: int = 10\":\"num_extension_iterations: int = 0\"}' bash experiments/arthur/run_variant.sh",
+      "priority": 73,
+      "tags": ["training", "step-count", "boundary-search"]
+    }
+  ]
+}

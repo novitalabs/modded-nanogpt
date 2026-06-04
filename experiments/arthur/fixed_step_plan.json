@@ -1,0 +1,20 @@
+{
+  "experiments": [
+    {
+      "id": "no-extension-steps-warmup-clamp",
+      "title": "Remove extension steps with warmup clamp",
+      "hypothesis": "With warmup sampling clamped to total_steps, removing the 10 extension steps can run to completion and may still meet val_loss <= 3.28.",
+      "command": "VARIANT_ID=no_extension_steps_warmup_clamp WARMUP_CLAMP=1 REPLACEMENTS_JSON='{\"num_extension_iterations: int = 10\":\"num_extension_iterations: int = 0\"}' bash experiments/arthur/run_variant.sh",
+      "priority": 72,
+      "tags": ["training", "step-count", "warmup-fix"]
+    },
+    {
+      "id": "scheduled-1370-no-extension-warmup-clamp",
+      "title": "1370 scheduled no extension with warmup clamp",
+      "hypothesis": "After clamping warmup sampling, 1370 scheduled iterations without extension can test whether 15 fewer steps still meet the target.",
+      "command": "VARIANT_ID=scheduled_1370_no_extension_warmup_clamp WARMUP_CLAMP=1 REPLACEMENTS_JSON='{\"num_scheduled_iterations: int = 1375\":\"num_scheduled_iterations: int = 1370\",\"num_extension_iterations: int = 10\":\"num_extension_iterations: int = 0\"}' bash experiments/arthur/run_variant.sh",
+      "priority": 68,
+      "tags": ["training", "step-count", "warmup-fix"]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "experiments": [
+    {
+      "id": "pod-preflight",
+      "title": "Pod environment and data preflight",
+      "hypothesis": "The dedicated Kubernetes pod has the required PyTorch/Triton runtime, 8 idle H200 GPUs, and complete FineWeb10B shards.",
+      "command": "bash experiments/arthur/pod_preflight.sh",
+      "priority": 100,
+      "tags": ["preflight", "pod", "data"]
+    },
+    {
+      "id": "results-baseline-summary",
+      "title": "Refresh existing reproduction summary",
+      "hypothesis": "Existing logs provide a current baseline for target loss, train time, and failed attempts before new training starts.",
+      "command": "bash experiments/arthur/collect_results.sh",
+      "priority": 90,
+      "tags": ["analysis", "baseline"]
+    },
+    {
+      "id": "current-baseline-rerun-1",
+      "title": "Current root short-track baseline rerun",
+      "hypothesis": "The current root implementation can reproduce the short-track target on the dedicated 8xH200 pod; the measured time and loss define the next optimization baseline.",
+      "command": "BASELINE_TIMEOUT=45m bash experiments/arthur/run_current_baseline.sh",
+      "priority": 80,
+      "tags": ["training", "baseline", "short-track"]
+    }
+  ]
+}

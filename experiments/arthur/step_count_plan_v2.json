@@ -1,0 +1,20 @@
+{
+  "experiments": [
+    {
+      "id": "no-extension-steps-v2",
+      "title": "Remove extension steps on clamped root",
+      "hypothesis": "The current clamped root script can remove the 10 extension steps, run to completion, and still meet val_loss <= 3.28.",
+      "command": "VARIANT_ID=no_extension_steps_v2 REPLACEMENTS_JSON='{\"num_extension_iterations: int = 10\":\"num_extension_iterations: int = 0\"}' bash experiments/arthur/run_variant.sh",
+      "priority": 74,
+      "tags": ["training", "step-count", "short-track"]
+    },
+    {
+      "id": "scheduled-1370-no-extension-v2",
+      "title": "1370 scheduled no extension on clamped root",
+      "hypothesis": "The current clamped root script can test 1370 scheduled iterations with no extension, saving 15 steps versus baseline while checking val_loss <= 3.28.",
+      "command": "VARIANT_ID=scheduled_1370_no_extension_v2 REPLACEMENTS_JSON='{\"num_scheduled_iterations: int = 1375\":\"num_scheduled_iterations: int = 1370\",\"num_extension_iterations: int = 10\":\"num_extension_iterations: int = 0\"}' bash experiments/arthur/run_variant.sh",
+      "priority": 69,
+      "tags": ["training", "step-count", "short-track"]
+    }
+  ]
+}

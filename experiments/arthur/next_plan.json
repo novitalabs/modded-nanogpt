@@ -1,0 +1,28 @@
+{
+  "experiments": [
+    {
+      "id": "final-validation-only",
+      "title": "Final validation only",
+      "hypothesis": "Skipping intermediate validation keeps final loss and measured train_time comparable while reducing real wall-clock cost for future iterations.",
+      "command": "VARIANT_ID=final_validation_only REPLACEMENTS_JSON='{\"val_loss_every: int = 250\":\"val_loss_every: int = 0\"}' bash experiments/arthur/run_variant.sh",
+      "priority": 75,
+      "tags": ["training", "iteration-speed", "validation"]
+    },
+    {
+      "id": "no-extension-steps",
+      "title": "Remove 10 extension steps",
+      "hypothesis": "The current baseline has enough loss margin to remove the 10 post-schedule extension steps and still meet val_loss <= 3.28.",
+      "command": "VARIANT_ID=no_extension_steps REPLACEMENTS_JSON='{\"num_extension_iterations: int = 10\":\"num_extension_iterations: int = 0\"}' bash experiments/arthur/run_variant.sh",
+      "priority": 70,
+      "tags": ["training", "step-count", "short-track"]
+    },
+    {
+      "id": "scheduled-1370-no-extension",
+      "title": "1370 scheduled steps without extension",
+      "hypothesis": "A small reduction in scheduled iterations plus no extension may still meet the target and save 15 total training steps versus baseline.",
+      "command": "VARIANT_ID=scheduled_1370_no_extension REPLACEMENTS_JSON='{\"num_scheduled_iterations: int = 1375\":\"num_scheduled_iterations: int = 1370\",\"num_extension_iterations: int = 10\":\"num_extension_iterations: int = 0\"}' bash experiments/arthur/run_variant.sh",
+      "priority": 65,
+      "tags": ["training", "step-count", "short-track"]
+    }
+  ]
+}

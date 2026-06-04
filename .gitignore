@@ -2,5 +2,7 @@ fineweb10B/
 pylog124M/
 __pycache__/
 logs/
+.arthur-agent/
+.arthur_variant_*.py
 .cache/
 .DS_Store
