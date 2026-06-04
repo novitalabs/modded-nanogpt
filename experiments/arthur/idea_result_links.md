@@ -70,6 +70,34 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T16:50:01Z: codex-1780591801553-e1c8d228
+
+- Trigger: 1 run(s) finished
+- Summary: relu_square_unfused_pod72 完成 1380/1380，val_loss=3.2815、target_met=false、train_time=1.3094min。这个样本保持 ReLU² 数学不变，只切到 unfused 路径；loss 仅比阈值差 0.0015 且速度慢于当前 root 均值，因此只能说明实现路径本身有小幅速度/质量噪声，不能替代真正的 relu_square_off 算法 ablation。
+- Goal progress: README 历史先验已建立，当前代码主候选已覆盖。Modernized architecture 里的 ReLU² 仍缺直接因果样本；已排队的 relu_square_off 应继续执行，用于和本轮 unfused control 成对解释。FP8 train head 质量稳定性样本也已排队，等待结果再决定它按速度项还是速度+质量项进入 top10。
+- Code changes: no; 未修改代码；本轮只分析自动落盘的 relu_square_unfused_pod72 结果并记录决策。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-relu-square-unfused-pod72-1780591441-2f31c2ea
+- Linked experiment ids: readme-top10-relu-square-unfused-pod72
+- Input code commits: 02ac86b812ce11a663c68e2412253a7a1b09d393
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-relu-square-off-pod72 | Ablate ReLU squared | 把 MLP 激活从 ReLU² 改为 ReLU 后若 val_loss 明显劣化，则 ReLU² 是 Modernized architecture 历史大项中的有效当前代码子项。 | queued | 已排队，等待结果；本轮不重复创建。 |
+| readme-top10-fp8-train-head-rerun3-pod72 | FP8 train head quality sample | 关闭 FP8 train head 的速度劣化已稳定；新增质量样本决定它是纯速度 top10 还是速度+质量 top10。 | queued | 已排队，等待结果；本轮不重复创建。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/readme_top10_ablation_results.csv`
+- `experiments/results/readme_top10_readme_top10_relu_square_unfused_pod72.json`
+- `experiments/results/summary.json`
+
 ## 2026-06-04T16:13:19Z: codex-1780589521350-529e0daa
 
 - Trigger: 1 run(s) finished
@@ -2381,6 +2409,29 @@ depending on whether the priority is tighter step count or higher confidence.
 | --- | --- | --- | --- | --- |
 | readme-top10-relu-square-unfused-pod72 | ReLU2 unfused control | 保持 ReLU² 数学不变、只改用 unfused PyTorch 路径后，若 loss 接近默认但速度变慢，则后续 relu_square_off 的 loss 差异可归因于激活平方而非实现路径。 | new | 先跑实现路径对照，避免把 fused kernel 速度差误判成 ReLU² 算法贡献。 |
 | readme-top10-relu-square-off-pod72 | Ablate ReLU squared | 把 MLP 激活从 ReLU² 改为 ReLU 后若 val_loss 明显劣化，则 ReLU² 是 Modernized architecture 历史大项中的有效当前代码子项。 | new | 直接补 Modernized architecture 的未拆分子项；和 unfused control 成对解释。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T16:52:21Z: codex-1780591801553-e1c8d228
+
+- Trigger: 1 run(s) finished
+- Summary: relu_square_unfused_pod72 完成 1380/1380，val_loss=3.2815，target_met=false，train_time=1.3094min。该结果支持把 unfused 路径视为带有小幅速度/质量扰动的控制样本，ReLU² 的算法贡献仍需等待 relu_square_off 结果。
+- Goal progress: README 历史先验已建立，当前代码 ablation 已覆盖主要候选。强证据仍集中在 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、long windows/YaRN、QK norm、MUDD、MTP、batch schedule、FP8 train head。当前缺口是已排队的 relu_square_off 直接样本和 FP8 train head 质量稳定性样本。
+- Code changes: no; 未修改训练代码或 ablation 脚本；仅追加 Arthur 实验分析记录到 experiments/arthur/idea_result_links.md。结果表文件由本轮完成的 run 自动更新。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-relu-square-unfused-pod72-1780591441-2f31c2ea
+- Linked experiment ids: readme-top10-relu-square-unfused-pod72
+- Input code commits: 02ac86b812ce11a663c68e2412253a7a1b09d393
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
 
 ### Linked Result Files
 

@@ -66,3 +66,4 @@ readme_top10_adam_every_step_rerun1,adam_every_step,logs/readme_top10_adam_every
 readme_top10_smear_off_rerun3_pod72,smear_off,logs/readme_top10_smear_off_rerun3_pod72.txt,1380,1380,3.279600,1.283283,55.800000,3.280000,true,0
 readme_top10_cautious_wd_off_rerun2_pod72,cautious_wd_off,logs/readme_top10_cautious_wd_off_rerun2_pod72.txt,1380,1380,3.283200,1.286183,55.920000,3.280000,false,0
 readme_top10_long_window_yarn_off_pod72_rerun1,long_window_yarn_off,logs/readme_top10_long_window_yarn_off_pod72_rerun1.txt,1380,1380,3.302100,1.278517,55.590000,3.280000,false,0
+readme_top10_relu_square_unfused_pod72,relu_square_unfused,logs/readme_top10_relu_square_unfused_pod72.txt,1380,1380,3.281500,1.309417,56.930000,3.280000,false,0
