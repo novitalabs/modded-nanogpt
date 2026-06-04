@@ -3615,3 +3615,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T21:22:48Z: codex-1780608001393-ed1504b8
+
+- Trigger: 1 run(s) finished
+- Summary: rotary_off 第三个样本 val_loss=3.5378，三样本 3.6612/3.7593/3.5378，均值约 3.6528；Rotary embeddings 的当前因果贡献远高于其它有限-loss ablation。
+- Goal progress: README 历史先验已建立，当前代码可逆 ablation 已覆盖大多数候选。强证据目前集中在 Rotary、ReLU2、value embeddings、long-window/YaRN、bigram、batch schedule、MUDD、MTP、QK norm、NorMuon。ReLU2 与 batch schedule 第三样本已 queued；主要缺口是 value embeddings 和 bigram hash 仍只有两个有效样本。
+- Code changes: no; 未修改训练代码或 ablation runner；本轮只分析最新 rotary_off 自动产出的结果文件。
+- Suggested experiments: 2
+- Pending result runs: readme-top10-rotary-off-rerun2-pod72-1780607822-21917d14
+- Linked experiment ids: readme-top10-rotary-off-rerun2-pod72
+- Input code commits: 5559b7df063c2ebaee03be25f5b2435451c1f910
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-value-embeds-off-rerun2-pod72 | Value embeddings third sample | 第三个 value_embeds_off 样本若仍约 3.312-3.315，则 Value embeddings 可稳定排入当前 top10 强贡献项。 | new | value_embeds_off 目前两样本均强退化，是未三样本化的强 top10 候选。 |
+| readme-top10-bigram-off-rerun2-pod72 | Bigram hash third sample | 第三个 bigram_off 样本若仍约 3.300-3.302，则 Bigram hash embedding 可稳定排在 batch schedule/long-window 边界附近。 | new | bigram_off 目前两样本均约 3.30，接近 batch schedule 与 long-window 贡献，需要第三样本稳定排序。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
