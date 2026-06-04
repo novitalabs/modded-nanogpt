@@ -59,6 +59,7 @@ captured their outcomes.
 - `experiments/results/local_reruns.csv`
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
+
   - Updates `log_results` and `local_rerun_groups` counts after these runs.
 
 ### Decision
@@ -96,7 +97,6 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
-
 ## 2026-06-04T21:51:28Z: codex-1780609741566-a5f02e49
 
 - Trigger: 1 run(s) finished
@@ -121,7 +121,6 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/local_reruns.csv`
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
-
 
 ## 2026-06-04T19:43:21Z: codex-single-activation-valid-third
 
@@ -3763,6 +3762,49 @@ depending on whether the priority is tighter step count or higher confidence.
 | --- | --- | --- | --- | --- |
 | readme-top10-residual-decay-off-rerun2-pod72 | Residual decay third sample | 第三个 residual_decay_off 样本若仍约 3.278，则 residual decay 在当前代码中不是强 top10 因果项；若显著升高，则 residual/skip family 需上调。 | new | 历史 rank 16，当前两个样本均为 3.2779，补第三样本可稳固 top10 边界排除。 |
 | readme-top10-pko-off-rerun2-pod72 | Partial Key Offset third sample | 第三个 partial_key_offset_off 样本若仍约 3.279，则 PKO 不是当前强 top10 因果项；若升高，则 attention-positioning family 需上调。 | new | 历史 rank 19，当前两样本 3.2796/3.2791 偏中性；第三样本用于确认是否降级。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T21:58:32Z: codex-1780610221986-0abdcade
+
+- Trigger: 1 run(s) finished
+- Summary: zero_mlp_proj_init_off 第三个有效样本 val_loss=3.2794，三样本 3.2782/3.2799/3.2794 均 target_met=true，说明 zero projection init 的 README 历史高先验在当前代码中没有得到强因果支持，应从强 top10 候选降级。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已把 Rotary、ReLU2、Value embeddings、long-window+YaRN、Batch schedule、Bigram、MUDD、MTP/QK/NorMuon 等主力项排出粗序；zero-init 现在有三次近中性样本，可基本排除强贡献。剩余缺口已由当前 queued 的 embedding/block skip、max-doc、FP8 lm_head、value skip gates、embed/lm_head untie、residual decay 和 PKO 第三样本覆盖。
+- Code changes: no; 未修改训练代码或 ablation runner；本轮只分析 Arthur 自动产出的 zero-init 结果文件和汇总表，并追加本 journal 记录。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-zero-mlp-proj-init-off-rerun2-pod72-1780610041-5d297142
+- Linked experiment ids: readme-top10-zero-mlp-proj-init-off-rerun2-pod72
+- Input code commits: 2e593b1acb3573177ad395661cb4eb38da1afe2d
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/readme_top10_ablation_results.csv`
+- `experiments/results/readme_top10_readme_top10_zero_mlp_proj_init_off_rerun2_pod72.json`
+- `experiments/results/summary.json`
+
+## 2026-06-04T22:04:08Z: codex-1780610221986-0abdcade
+
+- Trigger: 1 run(s) finished
+- Summary: zero_mlp_proj_init_off 第三个有效样本 val_loss=3.2794；三样本 3.2782/3.2799/3.2794 均 target_met=true，说明 zero projection init 的 README 历史高先验在当前代码中没有得到强因果支持，应降级。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已把 Rotary、ReLU2、Value embeddings、long-window+YaRN、Batch schedule、Bigram、MUDD、MTP、QK norm、NorMuon 等主力项排出粗序。zero-init 现在有三次近中性样本；剩余缺口已由 queued 的 embedding/block skip、max-doc、FP8 lm_head、value gates、embed/lm_head untie、residual decay 和 PKO 第三样本覆盖。
+- Code changes: no; 未修改训练代码或 ablation runner；仅追加 experiments/arthur/idea_result_links.md，并分析 Arthur 自动产出的 zero-init 结果汇总/JSON。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-zero-mlp-proj-init-off-rerun2-pod72-1780610041-5d297142
+- Linked experiment ids: readme-top10-zero-mlp-proj-init-off-rerun2-pod72
+- Input code commits: 2e593b1acb3573177ad395661cb4eb38da1afe2d
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
 
 ### Linked Result Files
 
