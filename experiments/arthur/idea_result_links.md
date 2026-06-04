@@ -3263,3 +3263,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T20:05:03Z: codex-1780603321097-e37375af
+
+- Trigger: 1 run(s) finished
+- Summary: YaRN-only ablation 已有两个有效样本 3.2885/3.2900，均高于 3.28，支持 YaRN 是 long-window/FA3 家族中的稳定独立贡献；但 long_window_off 和 long_window_yarn_off 的损失退化更强。
+- Goal progress: README 历史先验已建立，当前代码可逆 ablation 已覆盖并复验多数候选。强证据集中在 Polar/Muon、Rotary、ReLU2、value embeddings、bigram、long-window/YaRN、MUDD、QK norm、MTP、NorMuon、EoS alignment/文档边界和 FP8 train-head speed；当前缺口是 QK/MTP/YaRN/NorMuon 这组中等强度项的边界排序仍可用第三样本加固。
+- Code changes: no; 未修改代码；本轮只分析最新 yarn_off_rerun1 结果。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-yarn-off-rerun1-pod72-1780603141-d77a4187
+- Linked experiment ids: readme-top10-yarn-off-rerun1-pod72
+- Input code commits: 07572cc4d6a56a3003d16df23fe8e668acc4b158
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-qk-norm-off-rerun2-pod72 | QK norm third sample | 第三个 qk_norm_off 样本若仍显著高于 3.28，则 QK norm 可稳定位于当前 top10 边界组；若回到阈值内，则前两个样本的排序权重应下调。 | new | QK norm 现有两样本为 3.2907/3.2866，方向一致但方差大；第三样本能直接帮助区分它与 YaRN、MTP、NorMuon、MUDD 的 top10 边界排序。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
