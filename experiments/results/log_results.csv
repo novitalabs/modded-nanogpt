@@ -1033,6 +1033,7 @@ local_rerun,track_1_short,logs/readme_top10_rotary_off_pod72.txt,1380,1380,3.661
 local_rerun,track_1_short,logs/readme_top10_rotary_off_rerun1_pod72.txt,1380,1380,3.7593,77077.0,1.2846166666666667,55.85,31262,48332,True,False
 local_rerun,track_1_short,logs/readme_top10_single_activation_input_off_pod72.txt,1380,1380,3.2804,77258.0,1.2876333333333334,55.98,30529,47552,True,False
 local_rerun,track_1_short,logs/readme_top10_single_activation_input_off_rerun1_pod72.txt,1380,1380,3.2798,77283.0,1.28805,56.0,31429,48452,True,True
+local_rerun,track_1_short,logs/readme_top10_single_activation_input_off_rerun3_pod72.txt,1380,1380,3.2809,77372.0,1.2895333333333334,56.07,31429,48452,True,False
 local_rerun,track_1_short,logs/readme_top10_smear_off.txt,1380,1380,3.2827,76945.0,1.2824166666666668,55.76,31230,47952,True,False
 local_rerun,track_1_short,logs/readme_top10_smear_off_rerun2_pod72.txt,1380,1380,3.279,76978.0,1.2829666666666666,55.78,31230,48112,True,True
 local_rerun,track_1_short,logs/readme_top10_smear_off_rerun3_pod72.txt,1380,1380,3.2796,76997.0,1.2832833333333333,55.8,31230,48012,True,True

@@ -71,6 +71,33 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/summary.json`
 
 
+## 2026-06-04T19:43:21Z: codex-single-activation-valid-third
+
+- Trigger: 1 run(s) finished
+- Summary: single_activation_input_off 第三个有效样本完成：val_loss=3.2809、target_met=false；结合此前 3.2804/3.2798，三样本均贴近 3.28 阈值，当前只支持 single activation input 为弱边界贡献，不支持它进入强 top10。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖并复验多数候选。强证据仍集中在 Rotary、ReLU2、value embeddings、bigram、long-window/YaRN、MUDD、QK norm、MTP、NorMuon、FP8 train-head speed、EoS/文档边界；single activation、max seq length schedule、value/skip gates、smear、Polar Express vs NS5、logit rescale 属于边界层。下一个缺口是 long_window_yarn_off 只有一个有效样本，需复验以判断 long-window/YaRN 是否作为组合强项还是拆分排序项。
+- Code changes: no training code changes; only appended this experiment note to experiments/arthur/idea_result_links.md.
+- Suggested experiments: 1
+- Pending result runs: readme-top10-single-activation-input-off-rerun3-pod72-1780601701-fd710d37
+- Linked experiment ids: readme-top10-single-activation-input-off-rerun3-pod72
+- Input code commits: a638e9cf5ae7e98fc8192e1d363c3e36f786620b
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-long-window-yarn-off-rerun1-pod72 | Long window plus YaRN stability | 第二个 long_window_yarn_off 样本若仍明显高于 3.28，则 long windows + YaRN warmup 是稳定强质量项；若回到阈值附近，则首样本可能是短跑噪声，需要拆分 long_window_off 与 YaRN 的排序。 | new | long_window_yarn_off 首个有效样本 val_loss=3.3021，信号强于 single/max-seq/value-gate 等边界项，但目前只有一个有效样本。 |
+
+### Linked Result Files
+
+- `experiments/results/readme_top10_ablation_results.csv`
+- `experiments/results/readme_top10_readme_top10_single_activation_input_off_rerun3_pod72.json`
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+
 ## 2026-06-04T19:17:01Z: codex-polar-express-to-ns5-rerun1
 
 - Trigger: 1 run(s) finished
@@ -3154,6 +3181,30 @@ depending on whether the priority is tighter step count or higher confidence.
 | experiment id | title | hypothesis | status at analysis | notes |
 | --- | --- | --- | --- | --- |
 | readme-top10-single-activation-input-off-rerun3-pod72 | Single activation valid third sample | 第三个有效 single_activation_input_off 样本若仍高于 3.28，则 single activation input 有稳定弱质量贡献；若达标，则应降级为非强 top10。 | new | 上一条 rerun2 只因 direct/local 使用无 torch/triton 的 /usr/bin/python 失败；这次强制走 pod72/kubectl 路径，隔离同一变量。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T19:44:28Z: codex-1780601882079-8219f67c
+
+- Trigger: 1 run(s) finished
+- Summary: single_activation_input_off 已从不确定项降级为弱边界贡献；强证据仍主要集中在 Rotary、ReLU2、value embeddings、bigram、long-window/YaRN、MUDD、QK norm、MTP、NorMuon、FP8 train-head speed、EoS/文档边界。
+- Goal progress: README 历史先验已建立，当前代码可逆 ablation 已覆盖并复验多数候选。主要缺口转向强但样本少的 long_window_yarn_off，需要第二个有效样本决定 long-window/YaRN 是稳定强组合项还是需要拆分排序。
+- Code changes: yes; 未修改 train_gpt.py 或 ablation runner；仅追加 experiments/arthur/idea_result_links.md，记录 single_activation_input_off 第三个有效样本结论和下一步实验。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-single-activation-input-off-rerun3-pod72-1780601701-fd710d37
+- Linked experiment ids: readme-top10-single-activation-input-off-rerun3-pod72
+- Input code commits: a638e9cf5ae7e98fc8192e1d363c3e36f786620b
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-long-window-yarn-off-rerun1-pod72 | Long window plus YaRN stability | 第二个 long_window_yarn_off 样本若仍明显高于 3.28，则 long windows + YaRN warmup 是稳定强质量项；若回到阈值附近，则首样本可能是短跑噪声，需要拆分 long_window_off 与 YaRN 的排序。 | new | long_window_yarn_off 首个有效样本 val_loss=3.3021，信号强于 single/max-seq/value-gate 等边界项，但目前只有一个有效样本。 |
 
 ### Linked Result Files
 
