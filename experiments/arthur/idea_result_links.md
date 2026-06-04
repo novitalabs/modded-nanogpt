@@ -1551,3 +1551,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T13:41:35Z: codex-1780580401466-ed3c0c52
+
+- Trigger: 1 run(s) finished
+- Summary: value embeddings 关闭后三个样本均明显未达标，最新 val_loss=3.3118 且速度更快，说明主要是质量贡献而非训练时间副作用；它应保持在当前 README top10 强证据层。
+- Goal progress: 历史先验已建立，当前 ablation 已给出 Polar/Muon、EoS alignment、value embeddings、bigram hash、long windows、batch schedule mean、QK norm、MTP/XSA、FP8 lm_head 等主要证据层。剩余缺口主要是 paired head、MUDD 首样本，以及 cautious WD、smear、residual decay、embed/lm_head untie 等边界项稳定性，现有 queued 实验已覆盖。
+- Code changes: no; 未修改代码；本轮只分析 readme_top10_value_embeds_off 最新结果。结果文件由实验脚本自动更新。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-value-embeds-off-1780580221-1dc16e43
+- Linked experiment ids: readme-top10-value-embeds-off
+- Input code commits: a3a27eee34379106e88f6f40770f11d60c9350df
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
