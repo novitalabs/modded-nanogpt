@@ -115,3 +115,4 @@ readme_top10_value_skip_gates_static_rerun2_pod72,value_skip_gates_static,logs/r
 readme_top10_eos_alignment_off,eos_alignment_off,logs/readme_top10_eos_alignment_off.txt,1380,1380,nan,1.147333,49.880000,3.280000,false,0
 readme_top10_embed_lm_head_untie_off_rerun2_pod72,embed_lm_head_untie_off,logs/readme_top10_embed_lm_head_untie_off_rerun2_pod72.txt,1380,1380,3.274200,1.286317,55.930000,3.280000,true,0
 readme_top10_residual_decay_off_rerun2_pod72,residual_decay_off,logs/readme_top10_residual_decay_off_rerun2_pod72.txt,1380,1380,3.279900,1.286650,55.940000,3.280000,true,0
+readme_top10_pko_off_rerun2_pod72,partial_key_offset_off,logs/readme_top10_pko_off_rerun2_pod72.txt,1380,1380,3.279100,1.282900,55.780000,3.280000,true,0

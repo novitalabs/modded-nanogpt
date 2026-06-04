@@ -4169,3 +4169,31 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T23:11:02Z: codex-1780614421778-919a7314
+
+- Trigger: 1 run(s) finished
+- Summary: Partial Key Offset 第三个样本确认无明显当前因果贡献；当前强证据集中在 Polar/Muon 正交化、EoS alignment、Rotary、ReLU2、value embeddings、long-window/YaRN、batch schedule、bigram hash、MUDD。第 10 位质量边界仍主要在 YaRN-only、MTP、QK norm、NorMuon variance reduction 之间；FP8 train head 是稳定速度贡献而非质量贡献。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖主要候选，多数关键项已有三样本证据。缺口从“候选是否有效”转为“第 10 位附近的排序置信度”；需要对边界组追加同条件样本。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur 自动生成的 pko_off 结果。
+- Suggested experiments: 4
+- Pending result runs: readme-top10-pko-off-rerun2-pod72-1780614241-20c03c36
+- Linked experiment ids: readme-top10-pko-off-rerun2-pod72
+- Input code commits: 66597f66bd390680576b013f542e33dbe3a90e1c
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-yarn-off-rerun3-pod72 | YaRN only fourth sample | 第四个 yarn_off 样本若仍约 3.288-3.290，则 YaRN-only 可作为 long-window family 的独立强边界项；若回落到 <=3.28，则将其并入 family 而不单列。 | new | 当前 yarn_off 三样本均值约 3.28877，正处于第 10 位质量边界。 |
+| readme-top10-mtp-off-rerun3-pod72 | MTP fourth sample | 第四个 mtp_off 样本若仍约 3.288-3.289，则 MTP 可压过 QK/NorMuon 成为质量第 10 位候选。 | new | MTP 三样本均值约 3.28870，和 YaRN/QK/NorMuon 边界非常接近。 |
+| readme-top10-qk-norm-off-rerun3-pod72 | QK norm fourth sample | 第四个 qk_norm_off 样本将判断 QK norm 的 3.2866-3.2907 波动是否仍稳定高于 NorMuon，并确认其 top10 边界位置。 | new | QK norm 当前三样本均值约 3.28837，但方差比 MTP/NorMuon 更大。 |
+| readme-top10-normuon-varred-off-rerun4-pod72 | NorMuon variance fourth sample | 第四个 normuon_varred_off 样本若仍约 3.287-3.288，则 NorMuon variance reduction 是稳定边界贡献；若显著低于 MTP/QK，则不进入质量 top10。 | new | NorMuon variance reduction 当前均值约 3.28753，是第 10 位附近的下沿候选。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
