@@ -70,6 +70,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+## 2026-06-04T13:32:01Z: codex-1780579921701-75b507e1
+
+- Trigger: 1 run(s) finished
+- Summary: `extension_4_final_only_rerun2_fixed` 实际训练成功，完成 1379/1379，`val_loss=3.2782`、`train_time_min=1.2864`、`step_avg=55.97ms`；Arthur 状态显示 failed 但 run exit_code 为 0，应视为 check/status 层问题而不是训练失败。`unknown_total_steps_1379` 现在是 5 个样本、4 个达标，继续支持 +4 extension 是更快边界候选，但存在一次 `3.2804` miss，稳定性仍弱于保守的 +5/1380-step 路径。
+- Goal progress: 本轮没有新增 README 技术 ablation 证据；历史先验和当前反事实证据的主排序不变。强证据仍是 Polar Express/Muon 路径、EoS alignment、value embeddings、batch ramp、bigram hash、long windows、QK norm、MTP/XSA，以及 FP8 lm_head 的速度贡献。低位缺口主要是 paired head、MUDD 首样本和 smear/cautious WD/residual decay/embed untie 稳定样本，这些已在队列中。
+- Code changes: no; 未修改训练代码或实验 runner。本轮只分析 `extension-4-final-only-rerun-2-fixed`，结果汇总文件由刚完成的 run/collect_results 自动更新。
+- Suggested experiments: 0
+- Pending result runs: extension-4-final-only-rerun-2-fixed-1780579741-5fcb4ad0
+- Linked experiment ids: extension-4-final-only-rerun-2-fixed
+- Input code commits: af065f8e03def2886d183d47f4d1f9aa3142b644
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
 
 ## 2026-06-04T12:47:17Z: codex-fp8-dense-train-fixed-result
 
@@ -1497,6 +1520,29 @@ depending on whether the priority is tighter step count or higher confidence.
 | experiment id | title | hypothesis | status at analysis | notes |
 | --- | --- | --- | --- | --- |
 | extension-4-final-only-rerun-2-fixed | 1375 plus 4 extension fixed rerun | 修复 runner 后，1375 scheduled + 4 extension 是否能第三次稳定达到 val_loss <= 3.28。 | new | 刚失败的是 runner replacement 问题，不是训练结果；修复后应重跑同一问题，隔离 +4 extension 稳定性。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T13:36:05Z: codex-1780579921701-75b507e1
+
+- Trigger: 1 run(s) finished
+- Summary: extension_4_final_only_rerun2_fixed 实际训练成功，val_loss=3.2782，train_time_min=1.2864；这增强了 +4 extension 的边界候选证据，但因已有一次 3.2804 miss，不能替代更保守的 +5/1380-step 稳定路径。README top10 因果排序主结论不变：Polar Express/Muon、EoS alignment、value embeddings、batch ramp、bigram hash、long windows、QK norm、MTP/XSA、FP8 lm_head 速度贡献仍是当前主要证据层。
+- Goal progress: 历史 README delta 先验已建立，当前可逆 ablation 已覆盖大多数强候选。剩余缺口主要是 paired head、MUDD 首样本，以及 smear、cautious WD、residual decay、embed/lm_head untie 等低位边界项稳定性；这些已有 queued 实验覆盖，当前不需要重复新增。
+- Code changes: no; 未修改训练代码或实验 runner；仅追加 experiments/arthur/idea_result_links.md 的本轮分析记录。结果汇总文件由 run/collect_results 自动更新。
+- Suggested experiments: 0
+- Pending result runs: extension-4-final-only-rerun-2-fixed-1780579741-5fcb4ad0
+- Linked experiment ids: extension-4-final-only-rerun-2-fixed
+- Input code commits: af065f8e03def2886d183d47f4d1f9aa3142b644
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
 
 ### Linked Result Files
 
