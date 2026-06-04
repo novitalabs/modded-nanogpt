@@ -1,0 +1,13 @@
+{
+  "variant_id": "readme_top10_mudd_off_rerun3_pod72",
+  "ablation": "mudd_off",
+  "log": "logs/readme_top10_mudd_off_rerun3_pod72.txt",
+  "step": "1380",
+  "total_steps": "1380",
+  "val_loss": "3.291200",
+  "train_time_min": "1.261367",
+  "step_avg_ms": "54.840000",
+  "target_loss": "3.280000",
+  "target_met": "false",
+  "run_exit_code": "0"
+}

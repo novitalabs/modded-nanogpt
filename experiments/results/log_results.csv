@@ -1014,6 +1014,7 @@ local_rerun,track_1_short,logs/readme_top10_mtp_off_rerun1.txt,1380,1380,3.2894,
 local_rerun,track_1_short,logs/readme_top10_mtp_off_rerun2_pod72.txt,1380,1380,3.2894,77218.0,1.2869666666666666,55.96,31262,48352,True,False
 local_rerun,track_1_short,logs/readme_top10_mudd_off_fixed_rerun1.txt,1380,1380,3.2904,75742.0,1.2623666666666666,54.89,31327,47432,True,False
 local_rerun,track_1_short,logs/readme_top10_mudd_off_fixed_rerun2.txt,1380,1380,3.2906,75699.0,1.26165,54.85,31429,47452,True,False
+local_rerun,track_1_short,logs/readme_top10_mudd_off_rerun3_pod72.txt,1380,1380,3.2912,75682.0,1.2613666666666667,54.84,31429,47452,True,False
 local_rerun,track_1_short,logs/readme_top10_normuon_varred_off_pod72.txt,1380,1380,3.2867,77630.0,1.2938333333333334,56.25,31262,48352,True,False
 local_rerun,track_1_short,logs/readme_top10_normuon_varred_off_rerun2_pod72.txt,1380,1380,3.2878,77538.0,1.2923,56.19,31262,48212,True,False
 local_rerun,track_1_short,logs/readme_top10_paired_head_off.txt,1380,1380,3.2824,75948.0,1.2658,55.03,31429,48512,True,False

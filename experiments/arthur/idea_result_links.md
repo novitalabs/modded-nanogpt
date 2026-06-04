@@ -3338,3 +3338,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T20:20:30Z: codex-1780604341557-57c1bee9
+
+- Trigger: 1 run(s) finished
+- Summary: MUDD third sample 完成，val_loss=3.2912；结合前两个有效样本 3.2904/3.2906，关闭 MUDD 的退化稳定，支持 MUDD skip connections 是当前代码中的稳定中强质量贡献。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖并复验多数候选。强证据包括 Polar/Muon、Rotary、ReLU2、value embeddings、bigram、long-window/YaRN、MUDD；中强边界组包括 YaRN-only、MTP、QK norm、NorMuon variance reduction。当前主要缺口是 NorMuon 只有两个有效样本，需第三样本稳定 top10 边界排序。
+- Code changes: no; 未修改代码；本轮只分析最新 mudd_off_rerun3 结果。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-mudd-off-rerun3-pod72-1780604161-ef128243
+- Linked experiment ids: readme-top10-mudd-off-rerun3-pod72
+- Input code commits: 77bce0246015ae7ec783f0712d2c2b7efec3a9a0
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-normuon-varred-off-rerun3-pod72 | NorMuon variance third sample | 第三个 normuon_varred_off 样本若仍稳定高于 3.28，则 NorMuon variance reduction 可稳定位于当前 top10 边界候选；若回落到阈值内，则它应排在 MUDD、MTP、QK norm、YaRN 之后。 | new | NorMuon variance reduction 现有两个有效样本为 3.2867/3.2878，方向一致但样本数少；第三样本能直接帮助它与 QK norm、MTP、YaRN、MUDD 做最终边界排序。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
