@@ -1,0 +1,6 @@
+label,track,runs,target_met_runs,all_train_time_min_mean,all_train_time_min_best,all_val_loss_mean,all_val_loss_best,target_train_time_min_mean,target_train_time_min_best,target_val_loss_mean,target_val_loss_best,paths
+2024-10-10_Muon,track_1_short,1,0,15.724616666666666,15.724616666666666,3.3006,3.3006,,,,,logs/f34daba5-179a-439b-9809-af4ac20b7d73.txt
+2024-10-14_ModernArch,track_1_short,1,0,11.7995,11.7995,3.2939,3.2939,,,,,logs/8fec36ab-393f-4389-b773-baebace6c927.txt
+2024-12-04_ValueEmbed,track_1_short,1,1,3.9030833333333335,3.9030833333333335,3.2735,3.2735,3.9030833333333335,3.9030833333333335,3.2735,3.2735,logs/a1f3f41b-abfe-4012-89fd-7e4defdd8ee5.txt
+2025-11-12_BlockMaskRedundantOp,track_2_medium,1,1,23.108766666666668,23.108766666666668,2.919982,2.919982,23.108766666666668,23.108766666666668,2.919982,2.919982,logs/000_cb759f2a-2d38-4884-bc01-eeb5703c2e78.txt
+current_root_learnable_xsa,track_1_short,2,1,1.2945833333333332,1.2936833333333333,3.27965,3.279,1.2954833333333333,1.2954833333333333,3.279,3.279,logs/818163c0-2996-448f-82e2-302cc2b8b920.txt;logs/e9cbdea0-b98c-442d-87fc-918463ef113f.txt

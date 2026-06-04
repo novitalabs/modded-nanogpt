@@ -11,6 +11,7 @@ with open(os.path.join(os.path.dirname(sys.argv[0]), 'triton_kernels.py'), 'r') 
 import copy
 import glob
 import math
+import platform
 import threading
 import time
 import uuid
@@ -1059,7 +1060,28 @@ class AttnArgs:
     xsa_alpha: torch.Tensor | None
     train_max_seq_len: torch.Tensor
 
-flash_attn_interface = get_kernel('varunneal/flash-attention-3').flash_attn_interface
+def load_flash_attn_interface():
+    try:
+        return get_kernel('varunneal/flash-attention-3').flash_attn_interface
+    except Exception:
+        from huggingface_hub import snapshot_download
+
+        torch_version = torch.__version__.split('+')[0].split('.')
+        torch_tag = f"torch{torch_version[0]}{torch_version[1]}"
+        cuda_tag = f"cu{torch.version.cuda.replace('.', '')}"
+        abi_tag = "cxx11" if torch._C._GLIBCXX_USE_CXX11_ABI else "precxx11"
+        variant = f"{torch_tag}-{abi_tag}-{cuda_tag}-{platform.machine()}-{sys.platform}"
+        repo_path = Path(snapshot_download(
+            "varunneal/flash-attention-3",
+            repo_type="model",
+            revision="main",
+            allow_patterns=[f"build/{variant}/*"],
+        ))
+        sys.path.insert(0, str(repo_path / "build" / variant))
+        from flash_attention_3 import flash_attn_interface
+        return flash_attn_interface
+
+flash_attn_interface = load_flash_attn_interface()
 
 class CausalSelfAttention(nn.Module):
     def __init__(self, dim: int, head_dim: int, num_heads: int, paired: bool = False):

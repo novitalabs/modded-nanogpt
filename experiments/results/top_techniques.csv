@@ -1,0 +1,27 @@
+technique
+"Modernized architecture: Rotary embeddings, QK-Norm, and ReLU²"
+The Muon optimizer [writeup] [repo]
+"Use FP8 matmul for head, and asymmetric rescale and softcap logits"
+Initialization of projections to zero (muP-like)
+Skip connections from embedding to every block as well as from block 3 to 6
+Extra embeddings which are mixed into the values in attention layers (inspired by Zhou et al. 2024)
+Flash Attention 3 with long-short sliding window attention pattern (inspired by Gemma 2) and window size warmup with YaRN
+Align training batch starts with EoS and set a max document length
+Accumulate gradients for 2 steps for embedding and lm_head before updating parameters
+Single activation input for last 3 attention layers
+Polar Express implementation in Muon
+Smear module to enable 1 token look back
+Sparse attention gate
+NorMuon
+Cautious Weight Decay w/ schedule tied to LR
+Exponential decay of residual stream
+Batch size schedule
+Max seq length schedule
+Partial Key Offset
+Multi token prediction
+Untie embed and lm_head at 2/3 of training
+Additional gating on value embeddings and skip connection
+Paired head attention
+Bigram hash embedding
+MUDD skip connections to residual stream and attention values
+Learnable XSA
