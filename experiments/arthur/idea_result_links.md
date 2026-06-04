@@ -70,6 +70,31 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+## 2026-06-04T16:13:19Z: codex-1780589521350-529e0daa
+
+- Trigger: 1 run(s) finished
+- Summary: `no_extension_finalval_rerun1` 最新复跑实际完成 1375/1375，`val_loss=3.2781`、`train_time_min=1.2806`、`step_avg=55.88ms`；Arthur run 状态显示 failed 但进程 `rc=0` 且 collect_results 将该日志计为 `target_met=true`，应视为有效成功观测而不是训练失败。
+- Goal progress: README 历史先验已建立，主要当前代码可逆 ablation 已覆盖并多数复验。`unknown_total_steps_1375` 现在 3 个 no-extension/1375-step 样本，2 个达标，均值 `3.27917`、最好 `3.2781`；这说明去掉 extension 步本身没有稳定劣化，但其边界稳定性与 `+4 extension` 类似，仍属于运行步数/默认配置问题，不改变 README top10 因果排序。top10 低位仍需在 smear、cautious WD、XSA/Adam/sparse gate/paired head/FP8 speed 之间补足边界证据。
+- Code changes: no; 未修改训练代码或实验 runner；本轮只分析 `no-extension-finalval-rerun-1` 运行结果，结果汇总文件由运行/collect_results 自动更新。
+- Suggested experiments: 2
+- Pending result runs: no-extension-finalval-rerun-1-1780589342-7706d476
+- Linked experiment ids: no-extension-finalval-rerun-1
+- Input code commits: c6f212856be0ddcf323a81d6c284e81ea8a0aa37
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-smear-off-rerun3-pod72 | Smear third sample | 关闭 smear one-token lookback 的第三个有效样本若仍达标，则 smear 应降级为非 top10；若再次未达标，则它是低位候选但效应小且方差大。 | new | 目前 smear_off 两个有效样本一 miss 一 pass，是低位 top10 排序里最不稳定的质量项。 |
+| readme-top10-cautious-wd-off-rerun2-pod72 | Cautious WD third sample | 关闭 cautious weight decay 的第三个有效样本若继续未达标，则确认其小幅稳定质量贡献；若达标，则把它降到 Adam/gate/paired head 之后。 | new | 两个已有样本均未达标但效应量小，需要第三样本估计低位排序稳定性。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
 ## 2026-06-04T16:06:52Z: codex-1780589041142-235d3a22
 
 - Trigger: 1 run(s) finished
@@ -2230,6 +2255,31 @@ depending on whether the priority is tighter step count or higher confidence.
 
 | experiment id | title | hypothesis | status at analysis | notes |
 | --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T16:15:54Z: codex-1780589521350-529e0daa
+
+- Trigger: 1 run(s) finished
+- Summary: no-extension 最新复跑完成 1375/1375，val_loss=3.2781，计入 unknown_total_steps_1375 后该组为 3 个样本、2 个达标、均值约 3.27917。去掉 extension 步本身没有稳定劣化，但这是步数/默认配置证据，不改变 README top10 因果排序。
+- Goal progress: README 历史先验和主要当前代码可逆 ablation 已基本覆盖并多数复验。强证据仍集中在 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、batch schedule、long windows、MUDD、QK norm、MTP、FP8 train head；低位候选仍需补 smear、cautious WD 等边界项稳定性。
+- Code changes: no; 未修改训练代码或实验 runner；追加 experiments/arthur/idea_result_links.md 分析记录，并保留运行/collect_results 自动更新的 comparison.md、local_reruns.csv、log_results.csv、summary.json。
+- Suggested experiments: 2
+- Pending result runs: no-extension-finalval-rerun-1-1780589342-7706d476
+- Linked experiment ids: no-extension-finalval-rerun-1
+- Input code commits: c6f212856be0ddcf323a81d6c284e81ea8a0aa37
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-smear-off-rerun3-pod72 | Smear third sample | 关闭 smear one-token lookback 的第三个有效样本若仍达标，则 smear 应降级为非 top10；若再次未达标，则它是低位候选但效应小且方差大。 | new | smear_off 目前两个有效样本一 miss 一 pass，是低位 top10 排序里最不稳定的质量项。 |
+| readme-top10-cautious-wd-off-rerun2-pod72 | Cautious WD third sample | 关闭 cautious weight decay 的第三个有效样本若继续未达标，则确认其小幅稳定质量贡献；若达标，则把它降到 Adam/gate/paired head 之后。 | new | cautious_wd_off 两个已有样本均未达标但效应量小，第三样本能直接决定低位排序稳定性。 |
 
 ### Linked Result Files
 
