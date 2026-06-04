@@ -973,6 +973,7 @@ local_rerun,track_1_short,logs/readme_top10_adam_every_step.txt,1380,1380,3.2837
 local_rerun,track_1_short,logs/readme_top10_adam_every_step_rerun1.txt,1380,1380,3.2834,79003.0,1.3167166666666668,57.25,31145,48152,True,False
 local_rerun,track_1_short,logs/readme_top10_attn_gate_freeze.txt,1380,1380,3.2844,75814.0,1.2635666666666667,54.94,31262,47888,True,False
 local_rerun,track_1_short,logs/readme_top10_attn_gate_freeze_rerun2_pod72.txt,1380,1380,3.2828,75841.0,1.2640166666666666,54.96,31262,47888,True,False
+local_rerun,track_1_short,logs/readme_top10_attn_gate_freeze_rerun3_pod72.txt,1380,1380,3.282,75760.0,1.2626666666666666,54.9,31429,48028,True,False
 local_rerun,track_1_short,logs/readme_top10_batch_schedule_constant_final.txt,1380,1380,3.2332,111687.0,1.86145,80.93,31430,48424,True,True
 local_rerun,track_1_short,logs/readme_top10_batch_schedule_constant_final_local.txt,1380,1380,3.233,111629.0,1.8604833333333333,80.89,31286,48264,True,True
 local_rerun,track_1_short,logs/readme_top10_batch_schedule_constant_final_local_fixed.txt,1380,1380,3.2342,111744.0,1.8624,80.97,31430,48424,True,True

@@ -3439,3 +3439,30 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T20:44:55Z: codex-1780605721123-27a7ef2e
+
+- Trigger: 1 run(s) finished
+- Summary: attn_gate_freeze 第三个有效样本 val_loss=3.2820；三样本均值约 3.2831，支持 sparse attention gate 有稳定小幅贡献，但当前证据不足以把它放进强 top10。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖大多数候选。强证据集中在 Rotary/ReLU2、value embeddings、bigram、long window/YaRN、batch schedule、MUDD、MTP、QK norm、NorMuon 等；剩余缺口主要是低位边界和组合拆分：Adam 第三样本已 queued，仍需 Polar Express vs NS5、logit rescale、paired head 等第三样本来稳定排序。
+- Code changes: no; 未修改训练或实验代码；本轮只分析已完成运行产出的 experiments/results/* 结果文件。
+- Suggested experiments: 3
+- Pending result runs: readme-top10-attn-gate-freeze-rerun3-pod72-1780605541-7673281f
+- Linked experiment ids: readme-top10-attn-gate-freeze-rerun3-pod72
+- Input code commits: 88ca5f92a60d4cc143283f5c53aead40c593ff24
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-polar-express-to-ns5-rerun2-pod72 | Polar Express vs NS5 third sample | 第三个 polar_express_to_ns5 样本若仍约 3.283-3.284，则 Polar Express 相对 NS5 是稳定小幅质量贡献；若回到 <=3.28，则应把 Polar Express 的当前代码因果贡献下调。 | new | 已有两样本 3.2828/3.2844；这是比 polar_express_off 更干净的隔离变量，用来评估 Polar Express 相对旧 NS5 的真实贡献。 |
+| readme-top10-logit-rescale-symmetric-rerun2-pod72 | Logit rescale third sample | 第三个 logit_rescale_symmetric 样本若仍约 3.2817，则 asymmetric logit rescale 是小但稳定的质量贡献；若达标，则在 FP8/logit 组合中应降低其独立权重。 | new | README 历史先验把 FP8/head/logit 组合排很高，但当前 logit rescale 只有两个小幅样本 3.2819/3.2816，需要第三样本拆分组合贡献。 |
+| readme-top10-paired-head-off-rerun2-pod72 | Paired head third sample | 第三个 paired_head_off 样本若仍在 3.281-3.282，则 paired head attention 是稳定小幅贡献但大概率低于 top10 边界；若升到 3.284+，则需重新纳入边界讨论。 | new | 已有两样本 3.2824/3.2816，和 logit/attn gate/XSA 低位边界接近；第三样本可降低排序噪声。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

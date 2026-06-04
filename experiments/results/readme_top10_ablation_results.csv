@@ -95,3 +95,4 @@ readme_top10_mudd_off_rerun3_pod72,mudd_off,logs/readme_top10_mudd_off_rerun3_po
 readme_top10_normuon_varred_off_rerun3_pod72,normuon_varred_off,logs/readme_top10_normuon_varred_off_rerun3_pod72.txt,1380,1380,3.288100,1.291750,56.160000,3.280000,false,0
 readme_top10_yarn_off_rerun2_pod72,yarn_off,logs/readme_top10_yarn_off_rerun2_pod72.txt,1380,1380,3.287800,1.285067,55.870000,3.280000,false,0
 readme_top10_xsa_off_rerun2_pod72,xsa_off,logs/readme_top10_xsa_off_rerun2_pod72.txt,1380,1380,3.282600,1.266017,55.040000,3.280000,false,0
+readme_top10_attn_gate_freeze_rerun3_pod72,attn_gate_freeze,logs/readme_top10_attn_gate_freeze_rerun3_pod72.txt,1380,1380,3.282000,1.262667,54.900000,3.280000,false,0
