@@ -70,6 +70,32 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+## 2026-06-04T10:19:09Z: codex-1780567982051-0da1b9b7
+
+- Trigger: 1 run(s) finished
+- Summary: `readme_top10_batch_schedule_constant_mean_local` 完成 1380/1380 且 run exit code 为 0；Arthur 状态为 failed 是因为 `target_met=false`，不是训练或脚本失败。该等均值 batch ablation 得到 `val_loss=3.3004`、`train_time_min=1.2898`、`step_avg=56.08ms`，相比当前 root/target 附近样本属于明显 loss 退化而无速度收益，说明 8/16/24 batch ramp 在当前 root 上有独立正贡献；之前 `constant_final` 的低 loss 主要混入了额外 token/更慢训练预算，不能作为同一问题的干净证据。
+- Goal progress: README record-history delta 先验已建立，当前 ablation 已覆盖大部分历史 top10 候选。当前强证据层级为 Polar Express/Muon 子项最强，EoS alignment 单样本 nan，value embeddings 与 bigram hash embedding 双样本稳定退化，long-window 多样本稳定退化，batch schedule 有一个干净等均值负向样本，QK norm 单样本中等退化。主要缺口仍是 EoS/QK/batch schedule 的稳定性样本，以及 block3 skip、cautious WD、residual decay 的首样本证据；现有队列已覆盖大部分缺口，本轮只建议补一个等均值 batch 复跑。
+- Code changes: no; 未修改训练代码或运行脚本。仅追加本分析记录；结果 CSV/JSON/汇总文件来自刚完成的 run/collect_results。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-batch-schedule-constant-mean-local-1780567741-d44e4079
+- Linked experiment ids: readme-top10-batch-schedule-constant-mean-local
+- Input code commits: 09d7ea1e2ae6cfa4a68703447f34166f7d97191b
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-batch-schedule-constant-mean-rerun1 | Mean batch schedule stability | 如果 16/16/16 等均值常量 batch 再次给出约 3.30 loss 且速度无收益，则 batch size ramp 可从预算混淆中剥离出来，作为当前 top10 的稳定因果证据。 | new | 首个 constant_mean 样本有效但只有一次；该变量历史先验靠后但当前等预算信号接近 bigram/long-window，值得复跑一次确认方差。 |
+
+### Linked Result Files
+
+- `experiments/results/readme_top10_ablation_results.csv`
+- `experiments/results/readme_top10_readme_top10_batch_schedule_constant_mean_local.json`
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
 
 ## 2026-06-04T06:59:50Z: codex-1780556282012-cfa70b64
 
@@ -612,6 +638,30 @@ depending on whether the priority is tighter step count or higher confidence.
 | experiment id | title | hypothesis | status at analysis | notes |
 | --- | --- | --- | --- | --- |
 | readme-top10-batch-schedule-constant-mean-local | Mean batch schedule ablation | 如果 batch size schedule 本身有效，那么在近似保持三段 scheduled token 总量的 16/16/16 常量 batch 下，loss 或 time/target tradeoff 应劣于当前 8/16/24 schedule；这比 constant_final 更少混入额外 token 预算。 | new | 现在跑是因为现有 batch_schedule_constant_final 结果 val_loss=3.2346 但 step_avg≈80.85ms，不能直接作为 README batch schedule 的正反证。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T10:20:22Z: codex-1780567982051-0da1b9b7
+
+- Trigger: 1 run(s) finished
+- Summary: batch_schedule_constant_mean_local 有效完成但未达标：val_loss=3.3004, train_time_min=1.2898, step_avg_ms=56.08。它提供了 batch size ramp 的首个干净负向 ablation 证据。
+- Goal progress: README 历史先验已建立，当前最强因果证据仍是 Polar Express/Muon 子项，其次是 EoS alignment nan、value embeddings、bigram hash embedding、long-window、batch schedule、QK norm。缺口是 batch/QK/EoS 稳定性样本，以及 block3 skip、cautious WD、residual decay 的首样本证据。
+- Code changes: no; 未修改训练代码或运行脚本；仅追加 Arthur 分析日志。结果 CSV/JSON/summary 是刚完成 run 的落盘更新。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-batch-schedule-constant-mean-local-1780567741-d44e4079
+- Linked experiment ids: readme-top10-batch-schedule-constant-mean-local
+- Input code commits: 09d7ea1e2ae6cfa4a68703447f34166f7d97191b
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-batch-schedule-constant-mean-rerun1 | Mean batch schedule stability | 如果 16/16/16 等均值常量 batch 再次得到约 3.30 loss 且无速度收益，则 batch size ramp 可作为当前 top10 的稳定因果贡献项。 | new | 首个 constant_mean 样本有效但只有一次；复跑可确认这是 batch ramp 的稳定贡献，而非单次方差。 |
 
 ### Linked Result Files
 

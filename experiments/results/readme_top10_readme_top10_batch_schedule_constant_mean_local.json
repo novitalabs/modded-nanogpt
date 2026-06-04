@@ -1,0 +1,13 @@
+{
+  "variant_id": "readme_top10_batch_schedule_constant_mean_local",
+  "ablation": "batch_schedule_constant_mean",
+  "log": "logs/readme_top10_batch_schedule_constant_mean_local.txt",
+  "step": "1380",
+  "total_steps": "1380",
+  "val_loss": "3.300400",
+  "train_time_min": "1.289800",
+  "step_avg_ms": "56.080000",
+  "target_loss": "3.280000",
+  "target_met": "false",
+  "run_exit_code": "0"
+}
