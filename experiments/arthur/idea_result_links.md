@@ -767,3 +767,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T10:49:21Z: codex-1780570021519-7a159655
+
+- Trigger: 1 run(s) finished
+- Summary: batch_schedule_constant_final_local_fixed 完成：val_loss=3.2342, target_met=true，但 train_time_min=1.8624、step_avg_ms=80.97，明显慢于当前 root/clean ablation 的约 1.27-1.29 分钟。该结果说明更大固定 batch/更多文档设置能降低 loss，但因同时改动 batch schedule 和 TRAIN_MAX_NUM_DOCS，不能作为干净的 batch schedule 因果证据。
+- Goal progress: README 历史先验已建立，当前代码 ablation 已覆盖多数 top10 候选。强证据仍是 Polar Express/Muon 子项、EoS alignment、value embeddings、bigram hash embedding、long-window family、batch_schedule_constant_mean 单样本和 QK norm 单样本。缺口仍是 batch_schedule_constant_mean 稳定性、max document count 拆分、block3 skip、cautious WD、residual decay 首样本，以及 QK/EoS 稳定样本；这些已经在现有队列中。
+- Code changes: no; 未修改代码；本轮只分析刚完成的 batch_schedule_constant_final_local_fixed 结果。结果 CSV/JSON/comparison 由运行落盘，等待 Arthur 提交。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-batch-schedule-constant-final-local-fixed-1780569781-3841b63c
+- Linked experiment ids: readme-top10-batch-schedule-constant-final-local-fixed
+- Input code commits: 0e80b6eec05eb9788ab0ccbf51dcc167add4b6eb
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

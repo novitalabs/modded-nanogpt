@@ -25,3 +25,4 @@ readme_top10_long_window_off_clean_rerun1,long_window_off,logs/readme_top10_long
 readme_top10_long_window_off_depfix_rerun3,long_window_off,logs/readme_top10_long_window_off_depfix_rerun3.txt,1380,1380,3.296200,1.277533,55.540000,3.280000,false,0
 readme_top10_polar_express_off_rerun1,polar_express_off,logs/readme_top10_polar_express_off_rerun1.txt,1380,1380,nan,1.147750,49.900000,3.280000,false,0
 readme_top10_eos_alignment_off_local,eos_alignment_off,logs/readme_top10_eos_alignment_off_local.txt,1380,1380,nan,1.147167,49.880000,3.280000,false,0
+readme_top10_batch_schedule_constant_final_local_fixed,batch_schedule_constant_final,logs/readme_top10_batch_schedule_constant_final_local_fixed.txt,1380,1380,3.234200,1.862400,80.970000,3.280000,true,0
