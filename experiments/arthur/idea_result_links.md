@@ -1209,3 +1209,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T12:23:09Z: codex-1780575661470-81c3b82c
+
+- Trigger: 1 run(s) finished
+- Summary: current-root-extension4-rerun-1 成功完成，1380/1380 步 val_loss=3.2786，target_met=true；这是当前 root extension-4 默认配置的稳定性证据，不是新的 README ablation，因此不改变 top10 因果排序。
+- Goal progress: README 历史先验已建立，当前代码 ablation 已覆盖多数强候选。现有证据显示 Polar Express/Muon、value embeddings、bigram hash embedding、batch schedule mean、long windows 为强贡献；QK norm 和 MTP 为中等稳定贡献；XSA 为小幅稳定贡献。剩余缺口主要是 paired head attention、MUDD skips、smear、cautious WD、block3 skip 等低位候选的稳定排序，这些已在队列中或已有计划覆盖。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析刚完成的 root extension-4 验证结果。
+- Suggested experiments: 0
+- Pending result runs: current-root-extension4-rerun-1-1780575481-cb177fef
+- Linked experiment ids: current-root-extension4-rerun-1
+- Input code commits: 0e99a6eae72f95e2424aa8e8b6952b7477f1ef02
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
