@@ -2288,3 +2288,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T16:21:21Z: codex-1780589941243-7bcff96e
+
+- Trigger: 1 run(s) finished
+- Summary: readme-top10-smear-off-rerun3-pod72 完成 1380/1380，val_loss=3.2796，target_met=true。smear_off 三个有效样本为 3.2827、3.2790、3.2796，2/3 达标，均值约 3.28043，当前证据支持将 smear 降为低位边界候选。
+- Goal progress: README 历史先验已建立，主要当前代码可逆 ablation 已覆盖并多项复验。强证据 top10 仍倾向于 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、batch schedule、long windows、MUDD、QK norm、MTP、FP8 train head；smear 不再是优先补证据对象。剩余近期缺口是已排队的 cautious WD 第三样本，用于决定低位边界排序。
+- Code changes: no; 未修改训练代码或实验 runner；本轮仅使用运行/收集流程已更新的结果文件。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-smear-off-rerun3-pod72-1780589761-b85dac21
+- Linked experiment ids: readme-top10-smear-off-rerun3-pod72
+- Input code commits: 4f492288d88c56b8c090eea0850653a969cff204
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

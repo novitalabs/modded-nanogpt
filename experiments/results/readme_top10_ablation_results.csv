@@ -63,3 +63,4 @@ readme_top10_adam_every_step,adam_every_step,logs/readme_top10_adam_every_step.t
 readme_top10_attn_gate_freeze,attn_gate_freeze,logs/readme_top10_attn_gate_freeze.txt,1380,1380,3.284400,1.263567,54.940000,3.280000,false,0
 readme_top10_attn_gate_freeze_rerun2_pod72,attn_gate_freeze,logs/readme_top10_attn_gate_freeze_rerun2_pod72.txt,1380,1380,3.282800,1.264017,54.960000,3.280000,false,0
 readme_top10_adam_every_step_rerun1,adam_every_step,logs/readme_top10_adam_every_step_rerun1.txt,1380,1380,3.283400,1.316717,57.250000,3.280000,false,0
+readme_top10_smear_off_rerun3_pod72,smear_off,logs/readme_top10_smear_off_rerun3_pod72.txt,1380,1380,3.279600,1.283283,55.800000,3.280000,true,0
