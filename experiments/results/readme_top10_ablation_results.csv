@@ -117,3 +117,4 @@ readme_top10_embed_lm_head_untie_off_rerun2_pod72,embed_lm_head_untie_off,logs/r
 readme_top10_residual_decay_off_rerun2_pod72,residual_decay_off,logs/readme_top10_residual_decay_off_rerun2_pod72.txt,1380,1380,3.279900,1.286650,55.940000,3.280000,true,0
 readme_top10_pko_off_rerun2_pod72,partial_key_offset_off,logs/readme_top10_pko_off_rerun2_pod72.txt,1380,1380,3.279100,1.282900,55.780000,3.280000,true,0
 readme_top10_yarn_off_rerun3_pod72,yarn_off,logs/readme_top10_yarn_off_rerun3_pod72.txt,1380,1380,3.291700,1.285217,55.880000,3.280000,false,0
+readme_top10_mtp_off_rerun3_pod72,mtp_off,logs/readme_top10_mtp_off_rerun3_pod72.txt,1380,1380,3.289700,1.286867,55.950000,3.280000,false,0

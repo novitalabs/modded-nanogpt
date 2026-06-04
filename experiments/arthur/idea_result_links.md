@@ -4222,3 +4222,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T23:22:55Z: codex-1780615261379-a57cef94
+
+- Trigger: 1 run(s) finished
+- Summary: MTP 第四样本 val_loss=3.2897，四样本为 3.2873/3.2894/3.2894/3.2897，均值约 3.28895，支持 MTP 是稳定的 top10 边界质量贡献候选。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖主要候选。强证据集中在 EoS alignment、Rotary、ReLU2、value embeddings、long-window/YaRN、batch schedule、bigram hash、MUDD、YaRN-only、MTP；第 10 位附近还需等待已 queued 的 QK norm 第四样本和 NorMuon variance 第四样本来收口。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur 自动生成的 mtp_off 第四样本结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-mtp-off-rerun3-pod72-1780615082-1d151938
+- Linked experiment ids: readme-top10-mtp-off-rerun3-pod72
+- Input code commits: 05d0896dc2c58506530c14c9def42c003261fce1
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
