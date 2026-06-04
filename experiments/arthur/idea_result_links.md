@@ -3363,3 +3363,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T20:25:54Z: codex-1780604641549-f4ab9c99
+
+- Trigger: 1 run(s) finished
+- Summary: normuon_varred_off 第三个有效样本 val_loss=3.2881；三次样本均高于 3.28，支持 NorMuon variance reduction 是当前代码中的稳定质量贡献，但强度略低于 MUDD，并接近 MTP/QK norm/YaRN-only 边界组。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖并复验多数候选。强证据包括 Rotary、ReLU2、value embeddings、bigram、long-window/YaRN、long windows、MUDD；中强边界组包括 YaRN-only、MTP、QK norm、NorMuon variance reduction。当前缺口是 YaRN-only 只有两个样本，需第三样本稳定最终 top10 边界排序。
+- Code changes: no; 未修改代码；本轮只分析最新 normuon_varred_off_rerun3 结果。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-normuon-varred-off-rerun3-pod72-1780604461-1a4fa7df
+- Linked experiment ids: readme-top10-normuon-varred-off-rerun3-pod72
+- Input code commits: c288a90ab369e3a5765588a5afccbc4e55fff070
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-yarn-off-rerun2-pod72 | YaRN only third sample | 第三个 yarn_off 样本若仍稳定在约 3.289 或更高，则 YaRN-only 可排在 NorMuon/QK norm/MTP 边界组前列；若回落到 3.28 附近，则应下调其独立贡献排名。 | new | YaRN-only 现有两个样本为 3.2885/3.2900，均值高于 NorMuon/QK/MTP；第三样本能直接减少 top10 边界排序不确定性。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
