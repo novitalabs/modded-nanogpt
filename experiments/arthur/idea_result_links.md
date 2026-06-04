@@ -1455,3 +1455,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T13:22:48Z: codex-1780579261995-1b69131f
+
+- Trigger: 1 run(s) finished
+- Summary: block3 skip 两个样本均达标且速度接近默认，当前不像强贡献项；强证据仍集中在 Polar/EoS、value embeddings、bigram、long windows、batch ramp、QK norm、MTP/XSA，以及 FP8 lm_head 的速度贡献。
+- Goal progress: README 历史先验已建立，当前 ablation 已覆盖大部分候选。paired head 和 MUDD 首样本已在队列中，cautious WD、smear、embed/lm_head untie 也已有稳定性队列；主要新增缺口是 residual decay 只有一个达标样本，尚不足以判断是否应降级。
+- Code changes: no; 未修改代码；本轮只分析刚完成的 block3 skip 稳定性结果。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-block3-skip-off-rerun1-1780579081-f6e00210
+- Linked experiment ids: readme-top10-block3-skip-off-rerun1
+- Input code commits: 6101829701ff675f9c55ca6a4d0d755481a8ce62
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-residual-decay-off-rerun1 | Residual decay stability | 第二个 residual_decay_off 样本若仍达标且速度接近默认，则指数 residual decay 在当前 root 中不是强 top10 因果项；若明显退化，则首样本可能是噪声。 | new | residual decay 是 README 历史候选但当前只有一个 val_loss=3.2779 的低信号样本；补一个复跑能把它与 block3 skip、embed untie 一起归入边界项或保留为待定。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
