@@ -3563,3 +3563,30 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T21:09:35Z: codex-1780607221097-f0669f66
+
+- Trigger: 1 run(s) finished
+- Summary: paired_head_off 第三个有效样本 val_loss=3.2846；三样本 3.2824/3.2816/3.2846，均值约 3.2829，说明 paired head attention 是稳定小幅贡献，但不足以进入强 top10。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖并复验多数候选。强证据集中在 Rotary/ReLU2、value embeddings、bigram hash、long-window/YaRN、batch schedule、MUDD、MTP、QK norm、NorMuon、FP8 train-head speed 和 EoS alignment。低位边界组 paired head/logit rescale/Polar-vs-NS5/XSA/attn gate/Adam 已基本完成三样本排序；剩余缺口主要是若干强或中强候选只有两次有效样本，需要第三样本稳定 top10 归因。
+- Code changes: no; 未修改训练代码或实验 runner；本轮只分析最新 paired_head_off_rerun2_pod72 自动产出的结果文件。
+- Suggested experiments: 3
+- Pending result runs: readme-top10-paired-head-off-rerun2-pod72-1780607041-74156126
+- Linked experiment ids: readme-top10-paired-head-off-rerun2-pod72
+- Input code commits: 1e69b954db1e536459016fde676385b39d8890d3
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-long-window-yarn-off-rerun2-pod72 | Long window plus YaRN third sample | 第三个 long_window_yarn_off 样本若仍约 3.301-3.302，则 long-window/YaRN 组合是稳定强质量贡献；若明显回落，则需要把 long-window 与 YaRN-only 的拆分权重下调。 | new | 已有两样本 3.3021/3.3013，是 top10 强候选但样本数仍少于 MTP/QK/NorMuon 等边界项。 |
+| readme-top10-batch-schedule-mean-rerun2-pod72 | Batch schedule mean third sample | 第三个 batch_schedule_constant_mean 样本若仍约 3.3003，则 batch size schedule 是稳定强质量/compute 贡献；若回落到 3.28 附近，则此前两次可能受 schedule 替代方式影响。 | new | batch schedule 是历史 top10 候选，mean constant ablation 已有两次几乎一致的 3.3004/3.3003，第三样本可稳固排名。 |
+| readme-top10-relu-square-off-rerun2-pod72 | ReLU squared third sample | 第三个 relu_square_off 样本若仍约 3.315-3.319，则 ReLU squared 是 Modernized architecture 中稳定强贡献；若显著回落，则需要重新估计架构拆分权重。 | new | Modernized architecture 是历史 rank 1；ReLU2 off 目前两样本均强退化，第三样本用于稳定拆分贡献。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
