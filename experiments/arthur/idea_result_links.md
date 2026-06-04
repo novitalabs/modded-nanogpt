@@ -401,3 +401,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T09:32:05Z: codex-1780565281106-7d758e6c
+
+- Trigger: 1 run(s) finished
+- Summary: 最新 long_window_off clean rerun 在 .75 上失败于环境/同步问题，未产生训练证据；现有有效证据不变：polar_express_off 单样本 val_loss=10.8258 最强但需复跑，eos_alignment_off 为 nan 强异常信号，value_embeds_off 与 bigram_off 有双样本稳定退化，long_window_off 单样本 val_loss=3.2969 约 +0.02，qk_norm_off 单样本中等退化。
+- Goal progress: README 历史先验已建立，当前代码已覆盖多数候选优化的可逆 ablation。缺口仍是 polar_express_off、long_window_off、eos_alignment_off、qk_norm_off 的稳定性样本，以及 block3 skip、cautious WD、residual decay 的未完成 queued 结果；这些已经在现有队列中覆盖，优先使用 .72 pod，暂不把 .75 失败计入因果排名。
+- Code changes: yes; 修改 experiments/arthur/run_readme_ablation.sh：只有 logs 目录存在时才用 find 回退查找最新训练日志，避免远端训练在创建 logs 前失败时，set -euo pipefail 下的 find 错误掩盖真实根因。已通过 bash -n 和无 logs 目录复现检查。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-long-window-off-clean-rerun1-1780564861-9718a038
+- Linked experiment ids: readme-top10-long-window-off-clean-rerun1
+- Input code commits: e52e0f83a773c6f353b915129a917bc9591b8bf3
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

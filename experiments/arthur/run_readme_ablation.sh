@@ -229,7 +229,7 @@ rc=$?
 set -e
 
 latest_log="logs/${variant_id}.txt"
-if [[ ! -f "${latest_log}" ]]; then
+if [[ ! -f "${latest_log}" && -d logs ]]; then
   latest_log="$(find logs -maxdepth 1 -type f -name '*.txt' -newermt "${started_at}" -printf '%T@ %p\n' 2>/dev/null | sort -n | tail -1 | cut -d' ' -f2-)"
 fi
 if [[ -z "${latest_log}" || ! -f "${latest_log}" ]]; then
