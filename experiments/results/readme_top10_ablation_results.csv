@@ -37,3 +37,4 @@ readme_top10_eos_alignment_off_rerun1,eos_alignment_off,logs/readme_top10_eos_al
 readme_top10_qk_norm_off_rerun1,qk_norm_off,logs/readme_top10_qk_norm_off_rerun1.txt,1380,1380,3.286600,1.310217,56.970000,3.280000,false,0
 readme_top10_residual_decay_off,residual_decay_off,logs/readme_top10_residual_decay_off.txt,1380,1380,3.277900,1.286817,55.950000,3.280000,true,0
 readme_top10_mtp_off_rerun1,mtp_off,logs/readme_top10_mtp_off_rerun1.txt,1380,1380,3.289400,1.287250,55.970000,3.280000,false,0
+readme_top10_xsa_off_rerun1,xsa_off,logs/readme_top10_xsa_off_rerun1.txt,1380,1380,3.284000,1.266217,55.050000,3.280000,false,0

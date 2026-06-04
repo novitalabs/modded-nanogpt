@@ -1139,3 +1139,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T12:10:49Z: codex-1780574881846-32fcaab0
+
+- Trigger: 1 run(s) finished
+- Summary: xsa_off_rerun1 完成 1380/1380，val_loss=3.2840，target_met=false；结合首样本 3.2835，XSA-off 均值约 3.2838，显示稳定小幅退化。
+- Goal progress: README 历史先验已建立，当前 ablation 已形成较清楚层级：Polar Express/Muon、value embeddings、bigram hash、batch schedule mean、long windows 为强证据；QK norm 和 MTP 为中等稳定证据；XSA 为稳定小正贡献。缺口主要在 smear/cautious WD/block3 skip/paired head/MUDD 的低位排序，现有 queued 实验已覆盖这些问题。
+- Code changes: no; 未修改代码；本轮只分析 xsa_off_rerun1 自动生成的结果文件。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-xsa-off-rerun1-1780574701-53b35b67
+- Linked experiment ids: readme-top10-xsa-off-rerun1
+- Input code commits: 96ff862cd99b765d229445487b04b167454413e8
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
