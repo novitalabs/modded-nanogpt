@@ -2363,3 +2363,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T16:43:22Z: codex-1780591021943-5c4bf8ea
+
+- Trigger: 1 run(s) finished
+- Summary: long_window_yarn_off_pod72_rerun1 成功完成，val_loss=3.3021，target_met=false；结合 long_window_off 6/6 未达标，long-window/FA3/YaRN 家族可视为稳定强 top10 当前因果证据。cautious WD 三样本均未达标但效应小；smear 三样本 2/3 达标，降为边界候选。
+- Goal progress: README 历史先验已建立，当前代码 ablation 已覆盖大多数候选。强证据仍集中在 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、long windows/YaRN、QK norm、MUDD、MTP、batch schedule、FP8 train head；缺口是 FP8 train head 质量稳定性样本已排队，以及 Modernized architecture 中 ReLU² 还缺直接拆分证据。
+- Code changes: yes; 修改 experiments/arthur/run_readme_ablation.sh，新增 relu_square_off 与 relu_square_unfused 两个可逆 ablation 分支；未修改 train_gpt.py。已通过 bash -n 和生成源码 AST 解析校验。
+- Suggested experiments: 2
+- Pending result runs: readme-top10-long-window-yarn-off-pod72-rerun1-1780590721-97bd29c4
+- Linked experiment ids: readme-top10-long-window-yarn-off-pod72-rerun1
+- Input code commits: c916fd9d8858687c0683478c09d2ad85be1d6d65
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-relu-square-unfused-pod72 | ReLU2 unfused control | 保持 ReLU² 数学不变、只改用 unfused PyTorch 路径后，若 loss 接近默认但速度变慢，则后续 relu_square_off 的 loss 差异可归因于激活平方而非实现路径。 | new | 先跑实现路径对照，避免把 fused kernel 速度差误判成 ReLU² 算法贡献。 |
+| readme-top10-relu-square-off-pod72 | Ablate ReLU squared | 把 MLP 激活从 ReLU² 改为 ReLU 后若 val_loss 明显劣化，则 ReLU² 是 Modernized architecture 历史大项中的有效当前代码子项。 | new | 直接补 Modernized architecture 的未拆分子项；和 unfused control 成对解释。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

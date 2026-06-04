@@ -230,6 +230,20 @@ elif ablation == "qk_norm_off":
         "q, k = norm(q), norm(k) # QK norm @Grad62304977",
         "q, k = q, k  # Arthur ablation: disable QK norm",
     )
+elif ablation == "relu_square_off":
+    replace_once(
+        "ReLUSqrdMLP = FusedLinearReLUSquareFunction.apply",
+        """def ReLUSqrdMLP(x, W1, W2):
+    h = F.relu(F.linear(x, W1.type_as(x)))
+    return h @ W2.type_as(h)""",
+    )
+elif ablation == "relu_square_unfused":
+    replace_once(
+        "ReLUSqrdMLP = FusedLinearReLUSquareFunction.apply",
+        """def ReLUSqrdMLP(x, W1, W2):
+    h = F.relu(F.linear(x, W1.type_as(x))).square()
+    return h @ W2.type_as(h)""",
+    )
 elif ablation == "polar_express_off":
     replace_once(
         """v_chunk = polar_express(
