@@ -3112,3 +3112,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T19:31:10Z: codex-1780601341544-928d5ecf
+
+- Trigger: 1 run(s) finished
+- Summary: max_seq_len_schedule_off 已从不确定项降级为弱边界项；当前强证据仍集中在 Rotary/ReLU2/value embeddings/bigram/long-window/YaRN/MUDD/QK norm/MTP/NorMuon/FP8-head-logit 家族等，Polar Express 相对 NS5 有稳定但边界的独立贡献。
+- Goal progress: README 历史先验已建立，当前代码 ablation 已覆盖并复验多数候选。缺口主要在 README 名义 top10 的 single activation input：已有 3.2804/3.2798 两个样本，一未达标一达标，需要第三样本决定是否保留在 top10 边界。
+- Code changes: no; 未修改代码；本轮只分析新完成的 max_seq_len_schedule_off_rerun2 结果。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-max-seq-len-schedule-off-rerun2-pod72-1780601161-57c885f1
+- Linked experiment ids: readme-top10-max-seq-len-schedule-off-rerun2-pod72
+- Input code commits: afa56f02992856e6200cab6193e4f180b22f68b9
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-single-activation-input-off-rerun2-pod72 | Single activation third sample | 第三个 single_activation_input_off 样本若仍高于 3.28，则 single activation input 对最后注意力层有稳定弱质量贡献；若达标，则该 README top10 名义项应降级为非强 top10。 | new | 该变量当前两样本一过一不过，且属于 README 名义 top10；第三样本的信息增益高于继续复验已降级的 max_seq_len/value_skip/smear。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
