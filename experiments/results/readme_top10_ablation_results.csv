@@ -100,3 +100,4 @@ readme_top10_adam_every_step_rerun2_pod72,adam_every_step,logs/readme_top10_adam
 readme_top10_polar_express_to_ns5_rerun2_pod72,polar_express_to_ns5,logs/readme_top10_polar_express_to_ns5_rerun2_pod72.txt,1380,1380,3.281700,1.291017,56.130000,3.280000,false,0
 readme_top10_logit_rescale_symmetric_rerun2_pod72,logit_rescale_symmetric,logs/readme_top10_logit_rescale_symmetric_rerun2_pod72.txt,1380,1380,3.283500,1.288317,56.010000,3.280000,false,0
 readme_top10_paired_head_off_rerun2_pod72,paired_head_off,logs/readme_top10_paired_head_off_rerun2_pod72.txt,1380,1380,3.284600,1.266900,55.080000,3.280000,false,0
+readme_top10_long_window_yarn_off_rerun2_pod72,long_window_yarn_off,logs/readme_top10_long_window_yarn_off_rerun2_pod72.txt,1380,1380,3.303500,1.277933,55.560000,3.280000,false,0

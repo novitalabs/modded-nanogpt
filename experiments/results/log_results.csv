@@ -1007,6 +1007,7 @@ local_rerun,track_1_short,logs/readme_top10_long_window_off_local_fallback.txt,1
 local_rerun,track_1_short,logs/readme_top10_long_window_off_local_pod72_rerun2.txt,1380,1380,3.2975,76717.0,1.2786166666666667,55.59,31262,48212,True,False
 local_rerun,track_1_short,logs/readme_top10_long_window_yarn_off_pod72_rerun1.txt,1380,1380,3.3021,76711.0,1.2785166666666667,55.59,31328,47512,True,False
 local_rerun,track_1_short,logs/readme_top10_long_window_yarn_off_rerun1_pod72.txt,1380,1380,3.3013,76606.0,1.2767666666666666,55.51,31328,48332,True,False
+local_rerun,track_1_short,logs/readme_top10_long_window_yarn_off_rerun2_pod72.txt,1380,1380,3.3035,76676.0,1.2779333333333334,55.56,31429,48392,True,False
 local_rerun,track_1_short,logs/readme_top10_max_doc_count_off_local.txt,1380,1380,3.2764,77719.0,1.2953166666666667,56.32,31262,48352,True,True
 local_rerun,track_1_short,logs/readme_top10_max_doc_count_off_rerun1.txt,1380,1380,3.2788,77772.0,1.2962,56.36,31262,48352,True,True
 local_rerun,track_1_short,logs/readme_top10_max_seq_len_schedule_off_pod72.txt,1380,1380,3.2795,77585.0,1.2930833333333334,56.22,31262,48312,True,True

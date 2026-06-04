@@ -3590,3 +3590,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T21:16:22Z: codex-1780607581558-b025a5be
+
+- Trigger: 1 run(s) finished
+- Summary: long_window_yarn_off 第三个样本 val_loss=3.3035，三样本均值约 3.3023，确认 long-window+YaRN 是稳定强质量贡献；低位边界组已基本三样本化。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖大多数候选。强候选中 value embeddings、bigram、long-window+YaRN、MUDD、YaRN-only、MTP、QK norm、NorMuon 已有至少三次有效样本；batch schedule mean 和 ReLU2 第三样本已在队列中。主要缺口是 Rotary 仍只有两次有效样本，另 EoS alignment 证据为重复 NaN，后续只能作为稳定性/失效证据而非有限 loss 均值。
+- Code changes: no; 未修改训练代码或 ablation runner；本轮只分析最新 long_window_yarn_off 自动产出的结果文件。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-long-window-yarn-off-rerun2-pod72-1780607401-c6177def
+- Linked experiment ids: readme-top10-long-window-yarn-off-rerun2-pod72
+- Input code commits: f5a11e93b444993cdacaa47a700b9f57726cad8e
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-rotary-off-rerun2-pod72 | Rotary off third sample | 第三个 rotary_off 样本若仍显著高于 3.28，则 Rotary embeddings 可作为 Modernized architecture 中独立且稳定的强 top10 因果项。 | new | Rotary 是强候选但目前只有两次有效样本；已排队的 batch schedule mean 和 ReLU2 会覆盖另外两个两样本强候选，因此这里不重复排队。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
