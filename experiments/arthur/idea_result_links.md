@@ -2514,3 +2514,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T17:20:42Z: codex-1780593421234-73c910e1
+
+- Trigger: 1 run(s) finished
+- Summary: single_activation_input_off 首样本 val_loss=3.2804、target_met=false，效应很小且只有一个样本；暂列为低位边界候选，不改变当前强 top10 排序。
+- Goal progress: README 历史先验已建立，当前代码可逆 ablation 已覆盖大多数候选并完成多项复验。ReLU2 已有强双样本因果证据；single activation input 仍需一个稳定性样本判断首个边界 miss 是否为噪声；FP8 train head quality 样本已排队等待结果。
+- Code changes: no; 未修改代码；本轮只分析自动落盘的 single_activation_input_off_pod72 结果，结果汇总文件由运行/collect_results 更新。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-single-activation-input-off-pod72-1780593061-846832cc
+- Linked experiment ids: readme-top10-single-activation-input-off-pod72
+- Input code commits: ea3c468ce262a8f07bd7920dbab7eb2a85f95076
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-single-activation-input-off-rerun1-pod72 | Single activation stability | 第二个 single_activation_input_off 样本若仍未达标，则说明最后几层共享 layer-7 activation 有稳定但小的质量贡献；若达标，则首样本更可能是阈值附近噪声，应降级为非 top10。 | new | 首样本只 miss 0.0004，必须复验才能决定它是低位真实贡献还是训练方差。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
