@@ -3466,3 +3466,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T20:50:21Z: codex-1780606081414-26a7f2e0
+
+- Trigger: 1 run(s) finished
+- Summary: adam_every_step 第三个有效样本 val_loss=3.2851、step_avg=57.17ms；三样本均值约 3.2841，支持 Adam 两步累积是稳定小幅质量和速度贡献。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖并复验多数候选。强/中强证据集中在 Rotary、ReLU2、value embeddings、bigram、long-window/YaRN、MUDD、YaRN-only、MTP、QK norm、NorMuon 等；Adam 两步累积现在可归入低位稳定贡献组。剩余低位排序缺口已由当前 queued 的 Polar Express vs NS5、logit rescale、paired head 第三样本覆盖。
+- Code changes: no; 未修改训练或实验代码；本轮只分析最新 adam_every_step_rerun2_pod72 结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-adam-every-step-rerun2-pod72-1780605901-b5b5c8e1
+- Linked experiment ids: readme-top10-adam-every-step-rerun2-pod72
+- Input code commits: c0e2d17bcde1c77823765b9ae0bc11b5724c34fe
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
