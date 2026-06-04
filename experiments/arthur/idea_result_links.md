@@ -3413,3 +3413,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T20:38:40Z: codex-1780605361114-e30050d3
+
+- Trigger: 1 run(s) finished
+- Summary: XSA 第三个有效样本 val_loss=3.2826；结合前两次 3.2835/3.2840，Learnable XSA 当前证据为稳定但较小的质量贡献，低于 MUDD/MTP/QK norm/NorMuon/YaRN 等中强项。
+- Goal progress: README 历史先验已建立，当前代码可逆 ablation 已覆盖大多数候选并完成多个三样本复验。强证据仍集中在 Rotary/ReLU2/value embeddings/bigram/long-window+YaRN/MUDD/MTP/QK norm/NorMuon/FP8 train-head speed/EoS或文档边界等；剩余缺口主要是低位边界组排序，包括 sparse attention gate、Adam two-step、Polar-vs-NS5、paired head、logit rescale 和 value/skip gates。
+- Code changes: no; 未修改代码；本轮只分析最新 xsa_off_rerun2 结果并提出下一组实验。
+- Suggested experiments: 2
+- Pending result runs: readme-top10-xsa-off-rerun2-pod72-1780605181-b98caac5
+- Linked experiment ids: readme-top10-xsa-off-rerun2-pod72
+- Input code commits: 943586c879df68aeb2927eb80eee16cfdc872095
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-attn-gate-freeze-rerun3-pod72 | Sparse attention gate third sample | 第三个 attn_gate_freeze 样本若仍在约 3.283-3.284 且不达标，则 sparse attention gate 是稳定小幅贡献，可与 XSA/CWD/Adam 边界组排序；若回到 <=3.28，则前两次可能偏噪声。 | new | 当前两个有效样本为 3.2844/3.2828，均值与 XSA、Adam、CWD 接近；第三样本直接决定低位边界排序。 |
+| readme-top10-adam-every-step-rerun2-pod72 | Adam two-step third sample | 第三个 adam_every_step 样本若仍约 3.2835 且 step_avg 约 57ms，则 README 的 Adam 两步累积是稳定小幅质量和速度贡献；若达标或速度不慢，则降级。 | new | Adam 两步目前两个样本 3.2837/3.2834 且明显更慢，是低位 top10 边界中同时影响质量和速度的候选。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
