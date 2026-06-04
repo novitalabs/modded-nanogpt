@@ -1064,3 +1064,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T11:56:02Z: codex-1780573921699-b4d94a89
+
+- Trigger: 1 run(s) finished
+- Summary: residual_decay_off 本轮达标，当前证据应将 residual decay 从强候选降级为低位/边界项；强证据仍主要是 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、batch schedule mean、long windows、QK norm。新增 paired_head_off 与 mudd_off 两个脚本级 ablation 能继续覆盖 README top-list 中尚未隔离的候选。
+- Goal progress: README record-history delta 先验已建立，当前代码 ablation 已覆盖多数强候选；缺口集中在 paired head attention、MUDD skip family 这类未跑过的候选，以及 MTP/XSA/smear/cautious/block3 等边界项稳定性样本。
+- Code changes: yes; 修改 experiments/arthur/run_readme_ablation.sh，新增 paired_head_off 与 mudd_off 两个可逆 ablation 分支；已通过 bash -n 和生成变体 compile 校验。
+- Suggested experiments: 2
+- Pending result runs: readme-top10-residual-decay-off-1780573741-44be702f
+- Linked experiment ids: readme-top10-residual-decay-off
+- Input code commits: 3cfec61570b624e80b1a16757ab269ba545ddb7a
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-paired-head-off | Ablate paired head attention | 关闭 paired head layers 后若 loss 明显退化，可判断 paired head attention 是否应进入当前 README top10 因果排序。 | new | 该 README 候选尚无当前 root ablation；新脚本开关只把 paired_head_layers 置空，变量隔离清晰。 |
+| readme-top10-mudd-off | Ablate MUDD skips | 关闭 final-layer/post-loop MUDD skip coefficients 后若 loss 或稳定性退化，可估计 MUDD skip family 的当前贡献。 | new | MUDD 是 README 后期候选且尚未隔离；本实验补齐 top10 低位排序证据。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

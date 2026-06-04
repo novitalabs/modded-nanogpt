@@ -211,6 +211,20 @@ elif ablation == "max_doc_count_off":
         "TRAIN_MAX_NUM_DOCS = {16384: 64, 32768: 96, 49152: 128}",
         "TRAIN_MAX_NUM_DOCS = {}  # Arthur ablation: use old heuristic max document count",
     )
+elif ablation == "paired_head_off":
+    replace_once(
+        "self.paired_head_layers = [0, 2, 5, 9]",
+        "self.paired_head_layers = []  # Arthur ablation: disable paired-head attention layers",
+    )
+elif ablation == "mudd_off":
+    replace_once(
+        "if i == self.num_layers - 1:",
+        "if False and i == self.num_layers - 1:  # Arthur ablation: use non-MUDD final-layer path",
+    )
+    replace_once(
+        "mu = self.forward_mudd(x, id=1, num_coef=5)",
+        "mu = torch.zeros((x.size(0), x.size(1), 5), device=x.device, dtype=x.dtype)  # Arthur ablation: disable post-loop MUDD coefficients",
+    )
 else:
     raise SystemExit(f"unknown ablation: {ablation}")
 
