@@ -267,3 +267,31 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T09:03:03Z: codex-1780563541630-e4f69ab5
+
+- Trigger: batch finished with results pending commit
+- Summary: qk_norm_off 成功落盘：val_loss=3.2907, step_avg=57.20ms, target_met=false。当前有限 loss 信号中 value embeddings 和 bigram 最强，qk_norm 次于它们但强于 xsa/smear/fp8/pko；EoS alignment off 为 nan，batch_schedule_constant_final 低 loss 但明显更慢。
+- Goal progress: README historical top10 先验已建立，当前代码已有 value、bigram、EoS、FP8、zero init、embedding skip、QK norm、MTP、smear、PKO、batch schedule 的反事实证据；long-window 与 block3-skip 已 queued。主要缺口是 Muon optimizer family 的当前因果证据，以及 qk_norm、batch schedule 这类关键信号的稳定性样本。
+- Code changes: no; 本轮未修改代码；只核对了 qk_norm_off 结果、现有 ablation 脚本和结果汇总。
+- Suggested experiments: 4
+- Pending result runs: readme-top10-qk-norm-off-1780563181-df979e2f
+- Linked experiment ids: readme-top10-qk-norm-off
+- Input code commits: 274f6e0a4b149a76d5e419bd5b8dc673e808158b
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-polar-express-off | Ablate Polar Express | 把 Polar Express 替换为普通 Nesterov/momentum 更新，可隔离 Muon optimizer family 中正交化更新的当前贡献。 | new | Muon 是 historical rank2，但完整 Muon-off 牵动参数分组和通信；Polar Express 是当前脚本里最干净的 optimizer 子项。 |
+| readme-top10-cautious-wd-off | Ablate cautious WD | 关闭 cautious weight decay 后，若 val_loss 或速度变化明显，可量化 optimizer regularization 对当前 root 的贡献。 | new | 补 optimizer family 的第二个独立子证据，变量单一且脚本已有可逆分支。 |
+| readme-top10-qk-norm-off-rerun1 | QK norm stability sample | qk_norm_off 的 +loss 信号若可复现，则 modernized architecture family 在当前 root 的排名应上调。 | new | QK norm 是 historical rank1 family 的局部证据；当前只有一个样本，值得复核方差。 |
+| readme-top10-residual-decay-off | Ablate residual decay | 关闭 residual stream exponential decay 初始化后，可判断该 README 技巧是否在当前 root 中仍有独立贡献。 | new | rank 较低但脚本已有分支，可补足 top10 之外可能混入 optimizer/architecture 排名的局部技巧。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

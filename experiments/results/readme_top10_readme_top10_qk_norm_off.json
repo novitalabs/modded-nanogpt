@@ -1,0 +1,13 @@
+{
+  "variant_id": "readme_top10_qk_norm_off",
+  "ablation": "qk_norm_off",
+  "log": "logs/readme_top10_qk_norm_off.txt",
+  "step": "1380",
+  "total_steps": "1380",
+  "val_loss": "3.290700",
+  "train_time_min": "1.315700",
+  "step_avg_ms": "57.200000",
+  "target_loss": "3.280000",
+  "target_met": "false",
+  "run_exit_code": "0"
+}
