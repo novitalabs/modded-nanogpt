@@ -974,6 +974,7 @@ local_rerun,track_1_short,logs/readme_top10_bigram_off.txt,1380,1380,3.2999,7619
 local_rerun,track_1_short,logs/readme_top10_bigram_off_clean_rerun.txt,1380,1380,3.2991,76154.0,1.2692333333333334,55.18,31429,48132,True,False
 local_rerun,track_1_short,logs/readme_top10_block3_skip_off.txt,1380,1380,3.2798,76656.0,1.2776,55.55,31429,48372,True,True
 local_rerun,track_1_short,logs/readme_top10_cautious_wd_off.txt,1380,1380,3.2821,77271.0,1.28785,55.99,31262,48292,True,False
+local_rerun,track_1_short,logs/readme_top10_embed_lm_head_untie_off.txt,1380,1380,3.2771,77222.0,1.2870333333333333,55.96,31262,48252,True,True
 local_rerun,track_1_short,logs/readme_top10_embedding_skip_off.txt,1380,1380,3.2779,76550.0,1.2758333333333334,55.47,31262,48312,True,True
 local_rerun,track_1_short,logs/readme_top10_fp8_lm_head_dense_train_off_fixed.txt,1380,1380,3.2779,96314.0,1.6052333333333333,69.79,31326,52328,True,True
 local_rerun,track_1_short,logs/readme_top10_fp8_lm_head_dense_train_off_stability_pod72.txt,1380,1380,3.2824,96511.0,1.6085166666666666,69.94,31428,52288,True,False

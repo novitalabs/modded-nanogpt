@@ -172,6 +172,31 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/summary.json`
 
 
+## 2026-06-04T13:05:02Z: codex-1780578241922-56267ba6
+
+- Trigger: 1 run(s) finished
+- Summary: embed/lm_head untie ablation completed: keeping embed and lm_head tied for all 1380 steps gave val_loss=3.2771, train_time_min=1.2870, step_avg=55.96ms, target_met=true. This single sample does not show an independent loss or speed benefit from the 2/3 untie in current root, so the technique should be demoted to a boundary/low causal contributor until a stability sample contradicts it.
+- Goal progress: README history prior and current ablations now cover another top10-boundary candidate. Strong current evidence remains Polar Express/Muon, EoS alignment, value embeddings, bigram hash embedding, batch schedule mean, long windows, QK norm, MTP/XSA, plus FP8 lm_head as a speed contribution. Remaining gaps are paired head and MUDD first samples already queued, plus stability samples for borderline features such as embed/lm_head untie, block3 skip, cautious WD, and smear.
+- Code changes: no; 未修改 train_gpt.py 或 experiments/arthur/run_readme_ablation.sh。本轮只分析 embed_lm_head_untie_off 结果；dirty 的 results 文件来自实验脚本自动落盘。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-embed-lm-head-untie-off-1780578061-87ea8acf
+- Linked experiment ids: readme-top10-embed-lm-head-untie-off
+- Input code commits: 2116a434e93a4dcfe7837e830309dc248a733c6c
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-embed-lm-head-untie-off-rerun1 | Embed/lm_head untie stability | 第二个全程 tied 样本若仍达标且速度接近默认，则说明 2/3 untie 在当前 root 中不是 top10 强因果项；若明显退化，则首样本可能是边界噪声。 | new | 首样本 val_loss=3.2771，低于阈值且接近默认，信息指向降级；但该项是 README rank13/top10 边界候选，单样本不足以完全排除噪声。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+
 ## 2026-06-04T07:09:08Z: codex-1780556761615-62f65059
 
 - Trigger: plan empty and no running experiments
@@ -1374,6 +1399,30 @@ depending on whether the priority is tighter step count or higher confidence.
 | experiment id | title | hypothesis | status at analysis | notes |
 | --- | --- | --- | --- | --- |
 | readme-top10-embed-lm-head-untie-off | Ablate embed/lm_head untie | 如果 2/3 训练时 untie embed 和 lm_head 是当前代码里的有效优化，那么保持两者全程 tied 会导致 final val_loss 退化或速度/稳定性变化。 | new | README 历史 rank13，delta 接近 paired/smear/cautious 的 top10 边界候选；当前没有 ablation 证据，且本轮已新增可逆脚本分支。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T13:10:33Z: codex-1780578241922-56267ba6
+
+- Trigger: 1 run(s) finished
+- Summary: embed/lm_head untie ablation 单样本达标且速度接近默认：val_loss=3.2771, step_avg=55.96ms。当前证据不支持它是强 top10 因果项。
+- Goal progress: README 历史先验和大多数当前 ablation 已覆盖；强证据仍集中在 Polar/Muon、EoS alignment、value embeddings、bigram hash、batch schedule mean、long windows、QK norm、MTP/XSA，以及 FP8 lm_head 的速度贡献。缺口是 paired head、MUDD 首样本和若干边界项稳定性。
+- Code changes: no; 未修改训练代码或 ablation 脚本；只追加了本轮实验分析日志。结果文件由实验脚本自动落盘。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-embed-lm-head-untie-off-1780578061-87ea8acf
+- Linked experiment ids: readme-top10-embed-lm-head-untie-off
+- Input code commits: 2116a434e93a4dcfe7837e830309dc248a733c6c
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-embed-lm-head-untie-off-rerun1 | Embed/lm_head untie stability | 第二个全程 tied 样本若仍达标且速度接近默认，则 2/3 untie 在当前 root 中不是 top10 强因果项；若明显退化，则首样本可能是噪声。 | new | 首样本达标且无速度退化，信息指向降级；补一个稳定性样本可避免把边界噪声误判为无效。 |
 
 ### Linked Result Files
 
