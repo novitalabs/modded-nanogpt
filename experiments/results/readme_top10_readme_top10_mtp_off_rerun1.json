@@ -1,0 +1,13 @@
+{
+  "variant_id": "readme_top10_mtp_off_rerun1",
+  "ablation": "mtp_off",
+  "log": "logs/readme_top10_mtp_off_rerun1.txt",
+  "step": "1380",
+  "total_steps": "1380",
+  "val_loss": "3.289400",
+  "train_time_min": "1.287250",
+  "step_avg_ms": "55.970000",
+  "target_loss": "3.280000",
+  "target_met": "false",
+  "run_exit_code": "0"
+}

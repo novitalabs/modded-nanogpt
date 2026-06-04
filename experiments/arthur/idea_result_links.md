@@ -70,7 +70,6 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
-
 ## 2026-06-04T11:29:02Z: codex-1780572542015-d83be8a8
 
 - Trigger: 1 run(s) finished
@@ -1082,6 +1081,56 @@ depending on whether the priority is tighter step count or higher confidence.
 | --- | --- | --- | --- | --- |
 | readme-top10-paired-head-off | Ablate paired head attention | 关闭 paired head layers 后若 loss 明显退化，可判断 paired head attention 是否应进入当前 README top10 因果排序。 | new | 该 README 候选尚无当前 root ablation；新脚本开关只把 paired_head_layers 置空，变量隔离清晰。 |
 | readme-top10-mudd-off | Ablate MUDD skips | 关闭 final-layer/post-loop MUDD skip coefficients 后若 loss 或稳定性退化，可估计 MUDD skip family 的当前贡献。 | new | MUDD 是 README 后期候选且尚未隔离；本实验补齐 top10 低位排序证据。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T12:01:36Z: codex-current-mtp-rerun1
+
+- Trigger: 1 run(s) finished
+- Summary: `readme_top10_mtp_off_rerun1` 完成 1380/1380，`val_loss=3.2894`、`target_met=false`；结合首样本 `3.2873`，关闭 MTP 的均值约 `3.2884`，从单样本边界项上调为双样本稳定中等退化信号。当前强证据仍是 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、batch schedule mean、long windows；MTP 与 QK norm 处于中等稳定退化层，residual/max_doc/embedding_skip/block3 等暂未显示强正贡献。
+- Goal progress: README record-history delta 先验已建立，当前代码 ablation 已覆盖多数强候选并补强了 MTP 稳定性。剩余主要缺口是 paired head attention、MUDD skips、XSA 复验、cautious WD/block3/smear 等低位边界项；其中 paired/MUDD/XSA/cautious/block3 已在队列中，smear 仍只有单样本。
+- Code changes: no; 未修改训练代码或 ablation 脚本。本轮只分析 `readme-top10-mtp-off-rerun1` 运行结果；结果文件和汇总表由实验脚本/collect_results 自动落盘。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-mtp-off-rerun1-1780574221-5450edb9
+- Linked experiment ids: readme-top10-mtp-off-rerun1
+- Input code commits: 077ddb641201692cf1ea195d7ec982c04448ba85
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-smear-off-rerun1 | Smear stability sample | 第二个 `smear_off` 样本将判断 one-token lookback smear 的小幅退化是否稳定；若仍高于阈值，可把 smear 排入当前 top10 低位候选，否则降级为噪声/边界项。 | new | `smear_off` 首样本 `val_loss=3.2827` 只比阈值差约 0.0027，信息量高于继续重复已双样本稳定的 MTP/QK/value/bigram。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/readme_top10_ablation_results.csv`
+- `experiments/results/readme_top10_readme_top10_mtp_off_rerun1.json`
+- `experiments/results/summary.json`
+
+## 2026-06-04T12:04:43Z: codex-1780574401678-de9a98fc
+
+- Trigger: 1 run(s) finished
+- Summary: MTP ablation 双样本均未达标，均值约 3.2884，当前可列为中等稳定正贡献；强证据仍集中在 Polar Express/Muon、EoS alignment、value embeddings、bigram hash、batch schedule mean、long windows，QK norm 与 MTP 次之。
+- Goal progress: README 历史先验已建立，当前代码 ablation 已覆盖多数 top10 候选。缺口主要是 paired head、MUDD、XSA/cautious/block3/smear 等低位候选的稳定性；smear 仍只有单样本，适合补一个隔离复跑。
+- Code changes: no; 未修改训练代码或 ablation 脚本；仅追加 Arthur 分析记录，并分析自动生成的 MTP 复跑结果文件和汇总表。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-mtp-off-rerun1-1780574221-5450edb9
+- Linked experiment ids: readme-top10-mtp-off-rerun1
+- Input code commits: 077ddb641201692cf1ea195d7ec982c04448ba85
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-smear-off-rerun1 | Smear stability sample | 第二个 smear_off 样本将判断 one-token lookback smear 的小幅退化是否稳定；若仍高于阈值，可作为当前 top10 低位候选，否则降级为噪声或边界项。 | new | smear_off 首样本 val_loss=3.2827，只比阈值差约 0.0027；相比继续重复已双样本稳定的 MTP/QK/value/bigram，补这个样本更能收敛低位排序。 |
 
 ### Linked Result Files
 
