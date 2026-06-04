@@ -3539,3 +3539,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T21:03:42Z: codex-1780606861758-f4fbf3a8
+
+- Trigger: 1 run(s) finished
+- Summary: logit_rescale_symmetric 第三个样本 val_loss=3.2835；三样本 3.2819/3.2816/3.2835，均值约 3.2823，说明 asymmetric logit rescale 有稳定小幅质量贡献，但弱于 MTP、QK norm、NorMuon、YaRN、MUDD、long-window、bigram/value/rotary/ReLU2 等强或中强候选。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖并复验多数候选。强/中强证据集中在 Rotary、ReLU2、value embeddings、bigram hash、long-window/YaRN、MUDD、MTP、QK norm、NorMuon、batch schedule、FP8 train-head speed 和 EoS alignment；logit rescale、Polar-vs-NS5、XSA、attn gate、Adam two-step 已基本归入低位稳定小贡献组。剩余最直接缺口是已 queued 的 paired_head_off 第三样本。
+- Code changes: no; 未修改训练代码或实验 runner；本轮只分析最新 logit_rescale_symmetric_rerun2_pod72 自动产出的结果文件。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-logit-rescale-symmetric-rerun2-pod72-1780606681-e8f20b71
+- Linked experiment ids: readme-top10-logit-rescale-symmetric-rerun2-pod72
+- Input code commits: bb40c6da37744db4e81475bfaf4227cabc5978ba
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

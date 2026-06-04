@@ -98,3 +98,4 @@ readme_top10_xsa_off_rerun2_pod72,xsa_off,logs/readme_top10_xsa_off_rerun2_pod72
 readme_top10_attn_gate_freeze_rerun3_pod72,attn_gate_freeze,logs/readme_top10_attn_gate_freeze_rerun3_pod72.txt,1380,1380,3.282000,1.262667,54.900000,3.280000,false,0
 readme_top10_adam_every_step_rerun2_pod72,adam_every_step,logs/readme_top10_adam_every_step_rerun2_pod72.txt,1380,1380,3.285100,1.314833,57.170000,3.280000,false,0
 readme_top10_polar_express_to_ns5_rerun2_pod72,polar_express_to_ns5,logs/readme_top10_polar_express_to_ns5_rerun2_pod72.txt,1380,1380,3.281700,1.291017,56.130000,3.280000,false,0
+readme_top10_logit_rescale_symmetric_rerun2_pod72,logit_rescale_symmetric,logs/readme_top10_logit_rescale_symmetric_rerun2_pod72.txt,1380,1380,3.283500,1.288317,56.010000,3.280000,false,0
