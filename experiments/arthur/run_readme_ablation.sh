@@ -206,6 +206,11 @@ elif ablation == "eos_alignment_off":
         train_loader_call,
         "distributed_data_generator(args.train_files, TRAINING_STAGES[0].batch_size, TRAINING_STAGES[0].train_max_seq_len, grad_accum_steps=grad_accum_steps, align_to_bos=False)",
     )
+elif ablation == "max_doc_count_off":
+    replace_once(
+        "TRAIN_MAX_NUM_DOCS = {16384: 64, 32768: 96, 49152: 128}",
+        "TRAIN_MAX_NUM_DOCS = {}  # Arthur ablation: use old heuristic max document count",
+    )
 else:
     raise SystemExit(f"unknown ablation: {ablation}")
 

@@ -742,3 +742,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T10:42:29Z: codex-1780569541143-de051aeb
+
+- Trigger: 1 run(s) finished
+- Summary: EoS alignment off 新样本 val_loss=nan、target_met=false，强化 EoS 对齐是当前 top10 候选之一的强因果证据。当前最强仍是 Polar Express/Muon 子项；其次包括 EoS alignment、value embeddings、bigram hash embedding、batch schedule constant mean、long-window family、QK norm 等，但部分候选还缺首样本或稳定样本。
+- Goal progress: README record-history delta 历史先验已建立，当前代码 ablation 已覆盖大多数候选。主要缺口是把 README 第10项中的 max document count 从 EoS alignment 中拆开验证，以及等待 block3 skip、cautious WD、residual decay、QK/batch/EoS 稳定性样本完成。
+- Code changes: yes; 在 experiments/arthur/run_readme_ablation.sh 新增 max_doc_count_off 可逆 ablation 分支，将 TRAIN_MAX_NUM_DOCS 置空以回到旧启发式 max document count；未修改 train_gpt.py。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-eos-alignment-off-local-1780569361-b4fd4c95
+- Linked experiment ids: readme-top10-eos-alignment-off-local
+- Input code commits: 85606e1b3682c9766a2d54d99047f2494ca97f91
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-max-doc-count-off-local | Ablate max document count table | 单独关闭 TRAIN_MAX_NUM_DOCS 表会判断 README 的 EoS-aligned batches and max document length 记录中，max document count 是否独立贡献 loss 或速度，而不是把全部 credit 归给 EoS alignment。 | new | 现有 EoS ablation 已两次 nan，但它只关闭 align_to_bos；这个实验隔离同一 README 条目里的 max document count 变量。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
