@@ -4197,3 +4197,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T23:17:07Z: codex-1780614902024-7a9e4807
+
+- Trigger: 1 run(s) finished
+- Summary: YaRN-only 第四样本 val_loss=3.2917，强化其独立质量贡献证据；当前 top10 边界主要剩 MTP、QK norm、NorMuon variance reduction 的相对排序。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖主候选并多数达到三样本以上。YaRN-only 已有四样本稳定负向 ablation；MTP 和 QK norm 第四样本已 queued；NorMuon 仍只有三样本，需要补齐同条件第四样本后再做最终边界排序。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur 自动生成的 yarn_off 第四样本结果。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-yarn-off-rerun3-pod72-1780614721-7022a228
+- Linked experiment ids: readme-top10-yarn-off-rerun3-pod72
+- Input code commits: 70ca30a10d5384bfb7a6b02dc75b69a2ca77ca94
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-normuon-varred-off-rerun4-pod72 | NorMuon variance fourth sample | 第四个 normuon_varred_off 样本若仍约 3.287-3.288，则 NorMuon variance reduction 是稳定 top10 边界贡献；若明显低于 MTP/QK/YaRN，则应排在质量 top10 边界下沿。 | new | MTP 和 QK norm 第四样本已 queued；补 NorMuon 第四样本能把第 10 位附近候选拉到同样样本数。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
