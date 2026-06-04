@@ -79,3 +79,4 @@ readme_top10_normuon_varred_off_rerun2_pod72,normuon_varred_off,logs/readme_top1
 readme_top10_max_seq_len_schedule_off_pod72,max_seq_len_schedule_off,logs/readme_top10_max_seq_len_schedule_off_pod72.txt,1380,1380,3.279500,1.293083,56.220000,3.280000,true,0
 readme_top10_value_skip_gates_static_pod72,value_skip_gates_static,logs/readme_top10_value_skip_gates_static_pod72.txt,1380,1380,3.280900,1.275217,55.440000,3.280000,false,0
 readme_top10_logit_rescale_symmetric_pod72,logit_rescale_symmetric,logs/readme_top10_logit_rescale_symmetric_pod72.txt,1380,1380,3.281900,1.291733,56.160000,3.280000,false,0
+readme_top10_logit_rescale_symmetric_rerun1_pod72,logit_rescale_symmetric,logs/readme_top10_logit_rescale_symmetric_rerun1_pod72.txt,1380,1380,3.281600,1.289050,56.050000,3.280000,false,0

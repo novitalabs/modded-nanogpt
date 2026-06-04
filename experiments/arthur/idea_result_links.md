@@ -2961,3 +2961,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T18:59:32Z: codex-1780599481377-b2632012
+
+- Trigger: 1 run(s) finished
+- Summary: logit_rescale_symmetric 两个样本均 target_met=false，val_loss=3.2819/3.2816，说明 asymmetric logit rescale/softcap 的质量贡献有复验支持，但幅度属于边界项。
+- Goal progress: README 历史先验已建立，当前代码可逆 ablation 已覆盖多数候选。强证据包括 Rotary、ReLU2、value embeddings、bigram、long-window/YaRN、MUDD、QK norm、MTP、NorMuon、EoS/文档边界和 FP8 train-head speed；logit rescale 已从单样本升级为稳定边界证据。主要缺口是 value/skip gates 只有一个边界样本，需要复验。
+- Code changes: no; 未修改代码；仅分析新完成的 logit_rescale_symmetric 复跑结果。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-logit-rescale-symmetric-rerun1-pod72-1780599301-0a5a1b30
+- Linked experiment ids: readme-top10-logit-rescale-symmetric-rerun1-pod72
+- Input code commits: 58efc6f4e4bca37f70e37b52c3dd8453adff7e0d
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-value-skip-gates-static-rerun1-pod72 | Value skip gates stability | 第二个 value_skip_gates_static 样本若仍高于 3.28，则 value embedding / skip connection gates 有稳定弱质量贡献；若回到 <=3.28，则首样本更可能是短跑噪声。 | new | 复用已有单变量分支，只冻结 value-embed gate 与 skip data gate，不关闭 value embeddings、block3 skip 或 MUDD；这是当前最弱但未复验的 top10 边界候选。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
