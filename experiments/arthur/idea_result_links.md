@@ -2986,3 +2986,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T19:07:46Z: codex-1780599781355-6a4f4652
+
+- Trigger: 1 run(s) finished
+- Summary: value/skip gates 复验回到达标，当前不支持其进入强 top10；logit rescale 是稳定边界项。Polar Express 现有证据混入了关闭正交化的发散效应，需要用 NS5 替代实验重新隔离。
+- Goal progress: README 历史先验已建立，当前代码 ablation 已覆盖多数 README 技术。强因果证据集中在 Polar/Muon、Rotary、ReLU2、value embeddings、bigram、long-window/YaRN、batch schedule、MUDD、QK norm、MTP、NorMuon；主要缺口是 Polar Express 本身相对经典 NS5 的独立贡献。
+- Code changes: yes; 修改 experiments/arthur/run_readme_ablation.sh，新增 polar_express_to_ns5 ablation 分支：保留当前动量、NorMuon variance reduction、LR/WD 和参数更新路径，仅把 Polar Express 正交化替换为带 Nesterov 动量的经典 Newton-Schulz 5 步 helper。已做 bash -n 和生成代码 compile 校验。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-value-skip-gates-static-rerun1-pod72-1780599601-789d2868
+- Linked experiment ids: readme-top10-value-skip-gates-static-rerun1-pod72
+- Input code commits: 725b0ba749380ba423a9e45dc9b16526a743b5da
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-polar-express-to-ns5-pod72 | Polar Express vs NS5 | 若用经典 NS5 替代 Polar Express 后 loss 仍接近当前但训练变慢，则 Polar Express 主要是系统速度贡献；若 loss 明显变差，则 Polar Express 相对 NS5 也有当前代码质量贡献。 | new | 现有 polar_express_off 关闭了整个正交化，val_loss 发散不能直接归因给 Polar Express；这个实验只替换正交化算法，变量更干净。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

@@ -286,6 +286,43 @@ elif ablation == "polar_express_off":
         p_state["momentum_buffer"].lerp_(grad_chunk, 1 - momentum)
         v_chunk = grad_chunk.lerp(p_state["momentum_buffer"], momentum)""",
     )
+elif ablation == "polar_express_to_ns5":
+    replace_once(
+        """@torch.compile(dynamic=False, fullgraph=True) # Must use dynamic=False or else it's much slower
+def polar_express(grad_chunk: torch.Tensor, momentum_buffer: torch.Tensor, momentum_t: torch.Tensor,
+                  split_baddbmm: bool = False):""",
+        """@torch.compile(dynamic=False, fullgraph=True)
+def ns5_momentum_orthogonalize(grad_chunk: torch.Tensor, momentum_buffer: torch.Tensor, momentum_t: torch.Tensor):
+    momentum = momentum_t.to(grad_chunk.dtype)
+    momentum_buffer.lerp_(grad_chunk, 1 - momentum)
+    g = grad_chunk.lerp(momentum_buffer, momentum)
+    X = g.bfloat16()
+    transposed = X.size(-2) > X.size(-1)
+    if transposed:
+        X = X.transpose(-2, -1)
+    X = X / (X.norm(dim=(-2, -1), keepdim=True) + 1e-7)
+    a, b, c = (3.4445, -4.7750, 2.0315)
+    for _ in range(5):
+        A = X @ X.transpose(-2, -1)
+        B = A @ X
+        X = a * X + b * B + c * (A @ B)
+    if transposed:
+        X = X.transpose(-2, -1)
+    return X
+
+@torch.compile(dynamic=False, fullgraph=True) # Must use dynamic=False or else it's much slower
+def polar_express(grad_chunk: torch.Tensor, momentum_buffer: torch.Tensor, momentum_t: torch.Tensor,
+                  split_baddbmm: bool = False):""",
+    )
+    replace_once(
+        """v_chunk = polar_express(
+            grad_chunk, p_state["momentum_buffer"], self._momentum_t,
+            split_baddbmm=is_large_matrix,
+        )""",
+        """v_chunk = ns5_momentum_orthogonalize(
+            grad_chunk, p_state["momentum_buffer"], self._momentum_t
+        )""",
+    )
 elif ablation == "normuon_varred_off":
     replace_once(
         """        # Variance reduction
