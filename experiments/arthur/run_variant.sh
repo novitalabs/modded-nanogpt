@@ -30,6 +30,7 @@ trap cleanup EXIT
 
 python - "${variant_script}" "${replacements_json}" "${warmup_clamp}" <<'PY'
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -37,10 +38,25 @@ target = Path(sys.argv[1])
 replacements = json.loads(sys.argv[2])
 warmup_clamp = sys.argv[3] == "1"
 code = Path("train_gpt.py").read_text()
+
+def replace_once(old: str, new: str) -> None:
+    global code
+    if old in code:
+        code = code.replace(old, new, 1)
+        return
+
+    # Existing queued extension-boundary experiments may name the previous
+    # default value. Keep them runnable after Arthur changes the default.
+    if old.startswith("num_extension_iterations: int = ") and new.startswith("num_extension_iterations: int = "):
+        code, count = re.subn(r"num_extension_iterations: int = \d+", new, code, count=1)
+        if count:
+            print(f"adapted num_extension_iterations replacement: {old!r} -> {new!r}")
+            return
+
+    raise SystemExit(f"replacement source not found: {old!r}")
+
 for old, new in replacements.items():
-    if old not in code:
-        raise SystemExit(f"replacement source not found: {old!r}")
-    code = code.replace(old, new, 1)
+    replace_once(old, new)
 
 if warmup_clamp:
     old = "warmup_steps = sorted({0, 1} | {s + offset for s in transition_steps for offset in [-2, -1, 0, 1] if s + offset >= 2})"

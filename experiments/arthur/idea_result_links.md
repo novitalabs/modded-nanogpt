@@ -1480,3 +1480,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T13:28:21Z: codex-1780579441338-0a2ea322
+
+- Trigger: 1 run(s) finished
+- Summary: extension-4 最新 failed run 只说明旧实验命令与当前默认值不同步，不能计入 +4 稳定性。README top10 因果证据目前最强的正贡献仍是 Polar Express/Muon 路径、EoS alignment、value embeddings、bigram hash embedding、long windows、QK norm、MTP/XSA；block3 skip 两个样本均达标，当前不像强贡献项。
+- Goal progress: 已用历史 delta 建立先验，并对多数 README 技术完成可逆 ablation。缺口是若干边界项还缺稳定样本，例如 cautious WD、smear、residual decay、embed/lm_head untie、paired head、MUDD；extension-4 本次失败需重跑才能补足 root 默认/步数边界证据。
+- Code changes: yes; 修改 experiments/arthur/run_variant.sh：当旧队列用过期的 num_extension_iterations 默认值做 replacement 时，允许按当前 num_extension_iterations 行自适应替换，避免已排队 extension 边界实验启动前秒退。未修改训练逻辑。
+- Suggested experiments: 1
+- Pending result runs: extension-4-final-only-rerun-2-1780579381-87a04324
+- Linked experiment ids: extension-4-final-only-rerun-2
+- Input code commits: 0990473867f3e9f78b74488ce719b7323ea39b90
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| extension-4-final-only-rerun-2-fixed | 1375 plus 4 extension fixed rerun | 修复 runner 后，1375 scheduled + 4 extension 是否能第三次稳定达到 val_loss <= 3.28。 | new | 刚失败的是 runner replacement 问题，不是训练结果；修复后应重跑同一问题，隔离 +4 extension 稳定性。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
