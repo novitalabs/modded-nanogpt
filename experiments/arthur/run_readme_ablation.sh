@@ -24,7 +24,19 @@ results_dir="$5"
 workdir="$6"
 cd "${workdir}"
 
-active_train="$(ps -eo pid,comm,args | awk '/[t]orchrun .*train_gpt|[p]ython .*train_gpt|[p]ython .*\\.arthur_top10_/ {print}')"
+python_bin="${PYTHON_BIN:-}"
+if [[ -z "${python_bin}" ]]; then
+  if command -v python >/dev/null 2>&1; then
+    python_bin="python"
+  elif command -v python3 >/dev/null 2>&1; then
+    python_bin="python3"
+  else
+    echo "python/python3 not found"
+    exit 127
+  fi
+fi
+
+active_train="$(ps -eo pid,comm,args | awk '/[t]orchrun .*train_gpt|[p]ython[0-9.]* .*train_gpt|[p]ython[0-9.]* .*\\.arthur_top10_/ {print}')"
 if [[ -n "${active_train}" ]]; then
   echo "existing training process detected:"
   echo "${active_train}"
@@ -37,7 +49,7 @@ cleanup() {
 }
 trap cleanup EXIT
 
-python - "${variant_script}" "${ablation}" "${variant_id}" <<'VARIANT_PY'
+"${python_bin}" - "${variant_script}" "${ablation}" "${variant_id}" <<'VARIANT_PY'
 import json
 import sys
 from pathlib import Path
@@ -223,9 +235,9 @@ echo "latest_log=${latest_log}"
 tail -180 "${latest_log}"
 
 mkdir -p "${results_dir}"
-python experiments/collect_results.py
+"${python_bin}" experiments/collect_results.py
 
-python - "${latest_log}" "${variant_id}" "${ablation}" "${target_loss}" "${results_dir}" "${rc}" <<'RESULT_PY'
+"${python_bin}" - "${latest_log}" "${variant_id}" "${ablation}" "${target_loss}" "${results_dir}" "${rc}" <<'RESULT_PY'
 import csv
 import json
 import math

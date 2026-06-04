@@ -323,3 +323,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T09:15:21Z: codex-1780564321617-c96ecaa6
+
+- Trigger: 1 run(s) finished
+- Summary: 本轮确认 `.75` 上 polar_express_off_rerun1 失败为环境问题：脚本调用 `python` 时命令不存在，未开始有效 ablation。当前有效因果信号仍包括 polar_express_off 单样本强退化、qk_norm_off 中等退化、value/bigram 稳定退化，以及 eos_alignment_off 的 nan 异常信号；long_window_off 本地 fallback 还在采集中。
+- Goal progress: README 历史先验已建立，当前代码已覆盖多数 README 技巧的单变量 ablation。缺口是 polar/eos 等强异常信号的稳定性样本、long-window/YaRN 结果、以及 queued 中的 block3 skip/cautious WD/qk stability。
+- Code changes: yes; 修改 experiments/arthur/run_readme_ablation.sh：远端执行时自动选择 PYTHON_BIN/python/python3；variant 生成、结果收集和解析都使用该解释器；并发训练检测扩展到 python3/python3.x 进程。未修改 train_gpt.py。
+- Suggested experiments: 2
+- Pending result runs: readme-top10-polar-express-off-rerun1-1780564261-a8d9da97
+- Linked experiment ids: readme-top10-polar-express-off-rerun1
+- Input code commits: 25a88c3c2c69566386824c85de2b934c0918ff63
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-polar-express-off-rerun2-py3 | Polar Express py3 rerun | 若修复 python/python3 启动问题后 polar_express_off 仍显著发散，可确认 Polar Express 是当前 root 的强因果贡献项。 | new | 上一条 polar stability sample 只因 `.75` 缺 `python` 失败；脚本已修复，优先补有效复跑。 |
+| readme-top10-residual-decay-off | Ablate residual decay | 关闭 residual stream exponential decay 初始化后，可判断该 README 技巧在当前 root 中是否仍有独立贡献。 | new | 不与当前 running/queued 项重复，脚本已有可逆分支，可补 architecture/initialization family 排名证据。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
