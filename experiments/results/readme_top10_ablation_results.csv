@@ -17,3 +17,4 @@ readme_top10_polar_express_off,polar_express_off,logs/readme_top10_polar_express
 readme_top10_long_window_off_local_fallback,long_window_off,logs/readme_top10_long_window_off_local_fallback.txt,1380,1380,3.296900,1.279950,55.650000,3.280000,false,0
 readme_top10_polar_express_off_local_pod72_rerun4,polar_express_off,logs/readme_top10_polar_express_off_local_pod72_rerun4.txt,1380,1380,nan,1.147650,49.900000,3.280000,false,0
 readme_top10_polar_express_off_local_rerun3,polar_express_off,logs/readme_top10_polar_express_off_local_rerun3.txt,1380,1380,nan,1.146033,49.830000,3.280000,false,0
+readme_top10_polar_express_off_rerun2_py3,polar_express_off,logs/readme_top10_polar_express_off_rerun2_py3.txt,1380,1380,10.825800,1.164700,50.640000,3.280000,false,0

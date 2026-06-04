@@ -498,3 +498,52 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T09:53:24Z: codex-current
+
+- Trigger: 1 run(s) finished
+- Summary: 新完成的 `readme_top10_polar_express_off_rerun2_py3` 又得到 `val_loss=10.8258`，polar_express_off 现在有四条有效反证：两次 10.8258、两次 nan。关闭 Polar Express 会稳定导致发散级退化，是当前 root 上最强因果贡献信号。
+- Goal progress: README historical prior 已建立，当前 ablation 已覆盖多数 top10 候选。当前证据层级为 Polar Express/Muon 子项最强，EoS alignment nan 次强，value embeddings 与 bigram hash embedding 有双样本稳定退化，long-window 和 QK norm 仍需稳定性样本。现有队列已经覆盖 long-window、EoS、QK、block3 skip、cautious WD、residual decay 等缺口，本轮不新增重复实验。
+- Code changes: no; 未修改训练代码或运行脚本。仅记录本轮分析；结果表和汇总文件由刚完成的 run/collect_results 产生。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-polar-express-off-rerun2-py3-1780566541-849543fd
+- Linked experiment ids: readme-top10-polar-express-off-rerun2-py3
+- Input code commits: c27f05c1ba6468f04a6c4d0a0aba8f11c0765e42
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/readme_top10_ablation_results.csv`
+- `experiments/results/readme_top10_readme_top10_polar_express_off_rerun2_py3.json`
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T09:54:28Z: codex-1780566721510-301a8c5a
+
+- Trigger: 1 run(s) finished
+- Summary: polar_express_off 现在有四条有效反证：10.8258、nan、nan、10.8258。关闭 Polar Express 会稳定导致发散级退化，是当前 root 上最强因果贡献信号；EoS alignment 有 nan 强异常；value embeddings 和 bigram hash embedding 有双样本稳定退化；long_window_off 与 qk_norm_off 仍是单样本退化信号。
+- Goal progress: README historical prior 已建立，当前 ablation 已覆盖多数 top10 候选。缺口仍是 long-window、EoS、QK、block3 skip、cautious WD、residual decay 的稳定或首样本证据；这些已在现有 queued 实验中覆盖。batch_schedule_constant_final 降低 loss 但显著变慢，应按速度/预算单独评估，不直接混入等预算 top10。
+- Code changes: no; 未修改训练代码或运行脚本；仅追加 experiments/arthur/idea_result_links.md 的本轮分析记录。最新结果文件和汇总 CSV/JSON 来自刚完成的 run/collect_results。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-polar-express-off-rerun2-py3-1780566541-849543fd
+- Linked experiment ids: readme-top10-polar-express-off-rerun2-py3
+- Input code commits: c27f05c1ba6468f04a6c4d0a0aba8f11c0765e42
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
