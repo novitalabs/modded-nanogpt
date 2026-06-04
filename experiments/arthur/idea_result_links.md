@@ -3087,3 +3087,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T19:25:56Z: codex-1780600982073-fd72bd85
+
+- Trigger: 1 run(s) finished
+- Summary: max_seq_len_schedule_off 目前两个有效样本为 3.2795/3.2814，速度基本不变，质量信号贴近阈值且一过一不过，暂只能视为弱边界候选。
+- Goal progress: README 历史先验已建立，当前 ablation 已覆盖并复验大多数候选。强证据仍集中在 Rotary、ReLU2、value embeddings、bigram、long-window/YaRN、batch schedule、MUDD、QK norm、MTP、NorMuon、EoS/文档边界、FP8 train-head speed；max seq length schedule 仍需第三样本决定是否降级为非 top10。
+- Code changes: no; 未修改代码；本轮仅分析新完成的 max_seq_len_schedule_off 复验结果，结果文件由实验运行自动更新。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-max-seq-len-schedule-off-rerun1-pod72-1780600801-9d099f3a
+- Linked experiment ids: readme-top10-max-seq-len-schedule-off-rerun1-pod72
+- Input code commits: b7844dd3e77802c229fd237fbaa2e3f44b929db0
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-max-seq-len-schedule-off-rerun2-pod72 | Max seq length schedule third sample | 第三个 max_seq_len_schedule_off 样本若仍高于 3.28，则第一阶段 896-token warmup 有稳定但弱的质量贡献；若回到 <=3.28，则该调度项应降级为非独立 top10。 | new | 该变量当前一达标一未达标，且历史 rank 22 低位；第三样本能用最小成本决定是否继续占用 top10 边界位置。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
