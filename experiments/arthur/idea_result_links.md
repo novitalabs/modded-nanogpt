@@ -1946,3 +1946,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T15:14:08Z: codex-1780585921468-ed7ac31f
+
+- Trigger: 1 run(s) finished
+- Summary: FP8 dense train head ablation 第三个有效样本完成 1380/1380，val_loss=3.2782、target_met=true、train_time_min=1.6037。结合前两次 3.2779/1.6052 与 3.2824/1.6085，关闭训练 FP8 head 的 loss 退化不稳定，但速度退化稳定，FP8 train head 应作为稳定速度贡献项进入当前 top10。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖并复验多数候选。当前强证据 top10 暂定为 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、batch schedule、long windows、MUDD、QK norm、MTP、FP8 train head；Cautious WD 与 Learnable XSA 是低位替补/边界质量项。zero init、embedding skip、block3 skip、embed/lm_head untie、residual decay、max doc count、smear 当前不支持强贡献。主要缺口是已排队的 PKO 第二样本，以确认 PKO 是否继续降级。
+- Code changes: no; 未修改训练代码或实验 runner；本轮只分析自动落盘的 fp8_lm_head_dense_train_off_rerun2 结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-fp8-lm-head-dense-train-off-rerun2-1780585681-5bb3e04d
+- Linked experiment ids: readme-top10-fp8-lm-head-dense-train-off-rerun2
+- Input code commits: 027dd699d1eac572aaa35c50af69bb0e763157a7
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

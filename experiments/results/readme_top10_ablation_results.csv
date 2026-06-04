@@ -56,3 +56,4 @@ readme_top10_smear_off_rerun2_pod72,smear_off,logs/readme_top10_smear_off_rerun2
 readme_top10_zero_mlp_proj_init_off_rerun1,zero_mlp_proj_init_off,logs/readme_top10_zero_mlp_proj_init_off_rerun1.txt,1380,1380,3.279900,1.286967,55.960000,3.280000,true,0
 readme_top10_embedding_skip_off_rerun1,embedding_skip_off,logs/readme_top10_embedding_skip_off_rerun1.txt,1380,1380,3.279900,1.276117,55.480000,3.280000,true,0
 readme_top10_residual_decay_off_rerun1,residual_decay_off,logs/readme_top10_residual_decay_off_rerun1.txt,1380,1380,3.277900,1.287700,55.990000,3.280000,true,0
+readme_top10_fp8_lm_head_dense_train_off_rerun2,fp8_lm_head_dense_train_off,logs/readme_top10_fp8_lm_head_dense_train_off_rerun2.txt,1380,1380,3.278200,1.603733,69.730000,3.280000,true,0
