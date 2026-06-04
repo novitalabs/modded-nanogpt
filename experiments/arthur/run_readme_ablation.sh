@@ -135,6 +135,15 @@ elif ablation == "batch_schedule_constant_final":
         "TRAIN_MAX_NUM_DOCS = {16384: 64, 32768: 96, 49152: 128}",
         "TRAIN_MAX_NUM_DOCS = {16384: 64, 32768: 96, 49152: 256}",
     )
+elif ablation == "batch_schedule_constant_mean":
+    replace_once(
+        "TrainingStage(duration=1/3, train_max_seq_len=896, batch_size=8 * 2048 * 8, window_sizes=(1, 3), lr_mul=1.0,",
+        "TrainingStage(duration=1/3, train_max_seq_len=896, batch_size=16 * 2048 * 8, window_sizes=(1, 3), lr_mul=1.0,",
+    )
+    replace_once(
+        "TrainingStage(duration=1/3, train_max_seq_len=2048, batch_size=24 * 2048 * 8, window_sizes=(5, 11), lr_mul=1.73,",
+        "TrainingStage(duration=1/3, train_max_seq_len=2048, batch_size=16 * 2048 * 8, window_sizes=(5, 11), lr_mul=1.73,",
+    )
 elif ablation == "zero_mlp_proj_init_off":
     replace_once(
         "self.mlp_bank[:, 1, :, :].zero_()  # c_proj - zero init suggested by @Grad62304977",

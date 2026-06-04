@@ -595,3 +595,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T10:08:54Z: codex-1780567441281-a1f3b7c2
+
+- Trigger: 1 run(s) finished
+- Summary: 当前最强因果证据仍是 Polar Express/Muon 子项：关闭后出现 10.8258 或 nan。其次是 EoS alignment 单样本 nan、value embeddings 双样本稳定退化、bigram hash embedding 双样本稳定退化、long-window 三样本稳定退化。QK norm、MTP、XSA、smear 仍主要是单样本信号；zero projection init、embedding skip、PKO 在当前短跑上未显示明确损失惩罚。
+- Goal progress: README record-history delta 先验已建立，当前 ablation 已覆盖大部分历史 top10 候选。主要缺口是 EoS/QK 稳定样本，以及 block3 skip、cautious WD、residual decay 的首样本证据；这些已有队列覆盖。batch schedule 现有结果 val_loss 很低但训练明显变慢，且 constant_final 改变了 token 预算，因此需要一个更干净的等均值 batch ablation。
+- Code changes: yes; 修改 experiments/arthur/run_readme_ablation.sh，新增 batch_schedule_constant_mean ablation：将前三个 scheduled stages 的 batch 从 8/16/24 调为 16/16/16，近似保持 scheduled training token 预算，用于隔离 batch schedule 形状本身。已通过 bash -n 检查。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-long-window-off-local-fallback-1780567261-d417d66f
+- Linked experiment ids: readme-top10-long-window-off-local-fallback
+- Input code commits: 82bff4ccf4a87f787dc001f197cd4541be0f4f86
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-batch-schedule-constant-mean-local | Mean batch schedule ablation | 如果 batch size schedule 本身有效，那么在近似保持三段 scheduled token 总量的 16/16/16 常量 batch 下，loss 或 time/target tradeoff 应劣于当前 8/16/24 schedule；这比 constant_final 更少混入额外 token 预算。 | new | 现在跑是因为现有 batch_schedule_constant_final 结果 val_loss=3.2346 但 step_avg≈80.85ms，不能直接作为 README batch schedule 的正反证。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
