@@ -4295,3 +4295,30 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T23:40:09Z: codex-1780616101406-5ba98fb8
+
+- Trigger: 1 run(s) finished
+- Summary: normuon_varred_off 第四样本 val_loss=3.2926，四样本均值约 3.2888；它仍是 top10 边界候选，但与 YaRN-only、MTP、QK norm 的差距小于当前噪声。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖主要候选并多数达到三到四个有效样本。强项集中在 Polar/Muon、EoS alignment、Rotary、ReLU2、value embeddings、long-window/YaRN、batch schedule、bigram hash、MUDD；第10位附近仍需少量同条件复验来区分 YaRN-only/MTP/NorMuon/QK norm。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur 自动生成的 normuon_varred_off 第四样本结果。
+- Suggested experiments: 3
+- Pending result runs: readme-top10-normuon-varred-off-rerun4-pod72-1780615921-0e3abdad
+- Linked experiment ids: readme-top10-normuon-varred-off-rerun4-pod72
+- Input code commits: 9240c718244aab644fbb25118ddefc942d010762
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-yarn-off-rerun4-pod72 | YaRN only fifth sample | 第五个 yarn_off 样本若仍高于约 3.289，则 YaRN-only 可稳定压过 MTP/NorMuon/QK 成为边界最强项；若回落，则应并入 long-window family 而不单列。 | new | YaRN-only 当前四样本均值最高但方差不小，是第10位边界的关键分歧。 |
+| readme-top10-normuon-varred-off-rerun5-pod72 | NorMuon variance fifth sample | 第五个 normuon_varred_off 样本判断 3.2926 是否是上行噪声；若均值保持约 3.289，则 NorMuon variance reduction 可进入边界 top10。 | new | 最新样本提高了 NorMuon 均值，但该项方差最大，需要确认不是偶然高点。 |
+| readme-top10-qk-norm-off-rerun5-pod72 | QK norm fifth valid sample | 第五个 qk_norm_off 有效样本判断 QK norm 是否仅略低于 MTP/NorMuon，还是历史先验支持下应保留在 top10 边界内。 | new | QK norm 有强历史先验，但当前四样本均值略低于边界组，需要同条件第五样本收口。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
