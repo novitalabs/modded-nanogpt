@@ -450,3 +450,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T09:43:28Z: codex-1780566119822-b1a685d8
+
+- Trigger: batch finished with results pending commit
+- Summary: 当前 strongest evidence：polar_express_off 两次有效训练均发散或近发散；eos_alignment_off 有 nan 强异常；value_embeds_off、bigram_off 有双样本稳定退化；long_window_off 与 qk_norm_off 仍是单样本退化信号。batch_schedule_constant_final 降低 loss 但明显变慢，应单独按预算/速度权衡。
+- Goal progress: README historical prior 已建立，当前 ablation 已覆盖多数 top10 候选。主要缺口是 long_window_off 的干净稳定性样本，以及 queued 中尚未完成的 EoS/QK/block3 skip/cautious WD/residual decay 证据；现有队列已覆盖这些问题。
+- Code changes: no; 本轮未修改代码；仅核对结果表、历史 ranking、最近 Arthur 分析与启动脚本状态。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-polar-express-off-local-pod72-rerun4-1780565581-e79bb50f
+- Linked experiment ids: readme-top10-polar-express-off-local-pod72-rerun4
+- Input code commits: bcebf537dca1d74444501e30de21d01c734881d2
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
