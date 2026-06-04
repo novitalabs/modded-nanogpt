@@ -97,6 +97,32 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/summary.json`
 
 
+## 2026-06-04T21:51:28Z: codex-1780609741566-a5f02e49
+
+- Trigger: 1 run(s) finished
+- Summary: relu_square_off 第三个有效样本 val_loss=3.3218；三样本 3.3189/3.3143/3.3218，均值约 3.3183，确认 ReLU² 是当前代码中独立强贡献项，强度仅次于 rotary/value-embedding 等核心项。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已把 Rotary、ReLU²、Value embeddings、long-window+YaRN、Batch schedule、Bigram、MUDD、MTP/QK/NorMuon 等主力项排出粗序。仍缺若干高/中历史先验但当前偏中性的第三样本，用来稳定 top10 边界并避免把弱项误排入前十；zero init、embedding skip、block3 skip、max-doc、FP8 lm_head、value gates、embed/lm untie 已在队列中。
+- Code changes: no; 未修改训练代码或 ablation runner；本轮只分析 Arthur 自动产出的 relu_square_off 结果和汇总文件，并追加本分析日志。
+- Suggested experiments: 2
+- Pending result runs: readme-top10-relu-square-off-rerun2-pod72-1780609561-bb9eb480
+- Linked experiment ids: readme-top10-relu-square-off-rerun2-pod72
+- Input code commits: b5758879cdd241ae0244f83d3cea99d1ce1ce8db
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-residual-decay-off-rerun2-pod72 | Residual decay third sample | 第三个 residual_decay_off 样本若仍约 3.278，则 residual decay 在当前代码中不是强 top10 因果项；若显著升高，则 residual/skip family 需上调。 | new | 历史 rank 16，当前只有两个完全近中性样本 3.2779/3.2779；补第三样本可稳固 top10 边界排除。 |
+| readme-top10-pko-off-rerun2-pod72 | Partial Key Offset third sample | 第三个 partial_key_offset_off 样本若仍约 3.279，则 PKO 不是当前强 top10 因果项；若升高，则 attention-positioning family 需上调。 | new | 历史 rank 19，当前两样本 3.2796/3.2791 偏中性；第三样本用于确认是否降级。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+
 ## 2026-06-04T19:43:21Z: codex-single-activation-valid-third
 
 - Trigger: 1 run(s) finished
@@ -3712,6 +3738,31 @@ depending on whether the priority is tighter step count or higher confidence.
 | --- | --- | --- | --- | --- |
 | readme-top10-value-skip-gates-static-rerun2-pod72 | Value skip gates third sample | 第三个 value_skip_gates_static 样本若仍约 3.280，则 value/skip gate 动态本身不是强 top10 因果项；若升高，则 Value embeddings family 的贡献需要拆分上调。 | new | 两样本 3.2809/3.2799 卡在 target 边界，补第三样本可稳定判断 gate 子机制是否只是中性项。 |
 | readme-top10-embed-lm-head-untie-off-rerun2-pod72 | Embed lm_head untie third sample | 第三个 embed_lm_head_untie_off 样本若仍不劣化，则 untie embed/lm_head 在当前代码中不是 top10 强因果项；若升高，则 FP8/embed family 排序需修正。 | new | 历史先验中等但当前两样本偏中性，第三样本可稳固降级，避免误占 top10 边界。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T21:53:26Z: codex-1780609741566-a5f02e49
+
+- Trigger: 1 run(s) finished
+- Summary: relu_square_off 第三个有效样本 val_loss=3.3218；三样本 3.3189/3.3143/3.3218，均值约 3.3183，确认 ReLU² 是当前代码中独立强贡献项。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已把 Rotary、ReLU²、Value embeddings、long-window+YaRN、Batch schedule、Bigram、MUDD、MTP/QK/NorMuon 等主力项排出粗序。仍缺若干高/中历史先验但当前偏中性的第三样本，用于稳定 top10 边界。
+- Code changes: no; 未修改训练代码或 ablation runner；仅追加 experiments/arthur/idea_result_links.md，并分析 Arthur 自动产出的 ReLU² 结果汇总。
+- Suggested experiments: 2
+- Pending result runs: readme-top10-relu-square-off-rerun2-pod72-1780609561-bb9eb480
+- Linked experiment ids: readme-top10-relu-square-off-rerun2-pod72
+- Input code commits: b5758879cdd241ae0244f83d3cea99d1ce1ce8db
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-residual-decay-off-rerun2-pod72 | Residual decay third sample | 第三个 residual_decay_off 样本若仍约 3.278，则 residual decay 在当前代码中不是强 top10 因果项；若显著升高，则 residual/skip family 需上调。 | new | 历史 rank 16，当前两个样本均为 3.2779，补第三样本可稳固 top10 边界排除。 |
+| readme-top10-pko-off-rerun2-pod72 | Partial Key Offset third sample | 第三个 partial_key_offset_off 样本若仍约 3.279，则 PKO 不是当前强 top10 因果项；若升高，则 attention-positioning family 需上调。 | new | 历史 rank 19，当前两样本 3.2796/3.2791 偏中性；第三样本用于确认是否降级。 |
 
 ### Linked Result Files
 

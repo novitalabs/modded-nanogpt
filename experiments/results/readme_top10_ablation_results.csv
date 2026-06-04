@@ -105,3 +105,4 @@ readme_top10_rotary_off_rerun2_pod72,rotary_off,logs/readme_top10_rotary_off_rer
 readme_top10_value_embeds_off_rerun2_pod72,value_embeds_off,logs/readme_top10_value_embeds_off_rerun2_pod72.txt,1380,1380,3.310600,1.248033,54.260000,3.280000,false,0
 readme_top10_bigram_off_rerun2_pod72,bigram_off,logs/readme_top10_bigram_off_rerun2_pod72.txt,1380,1380,3.301900,1.269367,55.190000,3.280000,false,0
 readme_top10_batch_schedule_constant_mean_rerun2_pod72,batch_schedule_constant_mean,logs/readme_top10_batch_schedule_constant_mean_rerun2_pod72.txt,1380,1380,3.302900,1.282117,55.740000,3.280000,false,0
+readme_top10_relu_square_off_rerun2_pod72,relu_square_off,logs/readme_top10_relu_square_off_rerun2_pod72.txt,1380,1380,3.321800,1.300950,56.560000,3.280000,false,0
