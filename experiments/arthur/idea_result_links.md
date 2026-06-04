@@ -60,6 +60,31 @@ captured their outcomes.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+## 2026-06-04T23:02:31Z: codex-1780614061474-f558ad18
+
+- Trigger: 1 run(s) finished
+- Summary: residual_decay_off 第三个样本完整跑到 1380/1380，val_loss=3.2799 且 target_met=true；三样本为 3.2779/3.2779/3.2799，均值约 3.2786，3/3 达标。当前短轨因果证据不支持 residual decay 是 top10 正贡献项，反而更像近中性或可移除项。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖多数候选并形成三样本证据。强正贡献信号仍集中在 rotary、ReLU2、value embeddings、long-window/YaRN、batch schedule、bigram、MUDD、MTP、QK norm、NorMuon；EoS alignment 是 NaN 级稳定性关键项但不能用有限 loss delta 排序。剩余主要缺口是已排队的 Partial Key Offset 第三样本。
+- Code changes: no; 未修改训练代码或实验脚本；仅追加本轮 residual_decay_off 结果分析。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-residual-decay-off-rerun2-pod72-1780613881-52f01037
+- Linked experiment ids: readme-top10-residual-decay-off-rerun2-pod72
+- Input code commits: 246f04af0477d57d966f43b9ecda1b97ebee28cc
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/readme_top10_ablation_results.csv`
+- `experiments/results/readme_top10_readme_top10_residual_decay_off_rerun2_pod72.json`
+- `experiments/results/summary.json`
+
   - Updates `log_results` and `local_rerun_groups` counts after these runs.
 
 ### Decision
@@ -4108,6 +4133,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - Pending result runs: extension-3-final-only-rerun-1-1780613461-be9109e0
 - Linked experiment ids: extension-3-final-only-rerun-1
 - Input code commits: 58ba2513b3840804474bdd5d52ac91be391b207b
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T23:03:39Z: codex-1780614061474-f558ad18
+
+- Trigger: 1 run(s) finished
+- Summary: residual_decay_off 第三个样本达标；三样本 3.2779/3.2779/3.2799，均值约 3.2786，说明 residual decay 在当前短轨 ablation 证据下不是 top10 正贡献项。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖多数候选并形成三样本证据。强证据仍集中在 rotary、ReLU2、value embeddings、long-window/YaRN、batch schedule、bigram、MUDD、MTP、QK norm、NorMuon；EoS alignment 是 NaN 级稳定性关键项。主要缺口只剩已排队的 Partial Key Offset 第三样本。
+- Code changes: no; 未修改训练代码或实验脚本；仅追加 experiments/arthur/idea_result_links.md 的本轮分析记录。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-residual-decay-off-rerun2-pod72-1780613881-52f01037
+- Linked experiment ids: readme-top10-residual-decay-off-rerun2-pod72
+- Input code commits: 246f04af0477d57d966f43b9ecda1b97ebee28cc
 
 ### Ideas
 

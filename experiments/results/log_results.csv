@@ -1050,6 +1050,7 @@ local_rerun,track_1_short,logs/readme_top10_relu_square_off_rerun2_pod72.txt,138
 local_rerun,track_1_short,logs/readme_top10_relu_square_unfused_pod72.txt,1380,1380,3.2815,78565.0,1.3094166666666667,56.93,30979,48892,True,False
 local_rerun,track_1_short,logs/readme_top10_residual_decay_off.txt,1380,1380,3.2779,77209.0,1.2868166666666667,55.95,30529,47532,True,True
 local_rerun,track_1_short,logs/readme_top10_residual_decay_off_rerun1.txt,1380,1380,3.2779,77262.0,1.2877,55.99,30529,47532,True,True
+local_rerun,track_1_short,logs/readme_top10_residual_decay_off_rerun2_pod72.txt,1380,1380,3.2799,77199.0,1.28665,55.94,31429,48412,True,True
 local_rerun,track_1_short,logs/readme_top10_rotary_off_pod72.txt,1380,1380,3.6612,77015.0,1.2835833333333333,55.81,31262,48332,True,False
 local_rerun,track_1_short,logs/readme_top10_rotary_off_rerun1_pod72.txt,1380,1380,3.7593,77077.0,1.2846166666666667,55.85,31262,48332,True,False
 local_rerun,track_1_short,logs/readme_top10_rotary_off_rerun2_pod72.txt,1380,1380,3.5378,77031.0,1.28385,55.82,31429,48392,True,False
