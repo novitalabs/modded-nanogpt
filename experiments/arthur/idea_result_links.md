@@ -70,7 +70,6 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
-
 ## 2026-06-04T16:50:01Z: codex-1780591801553-e1c8d228
 
 - Trigger: 1 run(s) finished
@@ -121,6 +120,32 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/comparison.md`
 - `experiments/results/local_reruns.csv`
 - `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T16:59:01Z: codex-analysis
+
+- Trigger: 1 run(s) finished
+- Summary: `relu_square_off_pod72` 完成 1380/1380，`val_loss=3.3189`、`target_met=false`、`train_time=1.2988min`。和保持 ReLU² 数学不变的 `relu_square_unfused_pod72` 控制样本 `val_loss=3.2815` 相比，直接把 ReLU² 改为 ReLU 带来约 `+0.0374` loss 劣化，说明 ReLU² 本身是强当前代码因果项，不只是 fused kernel 路径差异。
+- Goal progress: README 历史先验已建立，当前代码 ablation 已覆盖主要候选。按当前因果证据，强 top10 候选包括 Polar Express/Muon、EoS alignment、ReLU²、value embeddings、bigram hash embedding、long windows/YaRN、batch schedule、MUDD、QK norm、MTP，以及 FP8 train head 的速度贡献。缺口是 `relu_square_off` 只有一个直接样本，需要复验稳定性；FP8 train head quality 样本已经排队，不重复创建。
+- Code changes: no; 未修改训练代码或 ablation runner；本轮只分析自动落盘的 `relu_square_off_pod72` 结果并追加 Arthur 分析记录。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-relu-square-off-pod72-1780591981-b104f92c
+- Linked experiment ids: readme-top10-relu-square-off-pod72
+- Input code commits: d5053769e15db8a7f8a3c2b377ab267a4f4993a6
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-relu-square-off-rerun1-pod72 | ReLU2 off stability | 第二个 `relu_square_off` 样本若仍显著未达标，可把 ReLU² 从 Modernized architecture 子项提升为稳定强 top10 质量项；若回落到阈值附近，则需要第三样本估计方差。 | new | 当前单样本效应很大，但 top10 排序不应只靠一个直接样本；unfused control 已完成，可直接复验算法关闭。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/readme_top10_ablation_results.csv`
+- `experiments/results/readme_top10_readme_top10_relu_square_off_pod72.json`
 - `experiments/results/summary.json`
 
 ## 2026-06-04T16:06:52Z: codex-1780589041142-235d3a22
@@ -2432,6 +2457,30 @@ depending on whether the priority is tighter step count or higher confidence.
 
 | experiment id | title | hypothesis | status at analysis | notes |
 | --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T17:03:29Z: codex-1780592341451-ed7cc0c0
+
+- Trigger: 1 run(s) finished
+- Summary: relu_square_off_pod72 完成 1380/1380，val_loss=3.3189，target_met=false；与 relu_square_unfused_pod72 的 val_loss=3.2815 对照后，说明 ReLU² 本身有强当前代码因果贡献，不只是 fused kernel 路径差异。
+- Goal progress: README 历史先验已建立，当前代码 ablation 已覆盖主要候选。强 top10 候选现在包括 Polar Express/Muon、EoS alignment、ReLU²、value embeddings、bigram hash embedding、long windows/YaRN、batch schedule、MUDD、QK norm、MTP，以及 FP8 train head 的速度贡献。主要缺口是 ReLU² 只有一个直接样本，FP8 train head quality 样本仍在队列中等待结果。
+- Code changes: no; 未修改训练代码或 ablation runner；仅追加 experiments/arthur/idea_result_links.md 的本轮分析记录。最新 relu_square_off 结果文件和汇总表由运行流程自动写入。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-relu-square-off-pod72-1780591981-b104f92c
+- Linked experiment ids: readme-top10-relu-square-off-pod72
+- Input code commits: d5053769e15db8a7f8a3c2b377ab267a4f4993a6
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-relu-square-off-rerun1-pod72 | ReLU2 off stability | 第二个 relu_square_off 样本若仍显著未达标，可把 ReLU² 从 Modernized architecture 子项提升为稳定强 top10 质量项；若回落到阈值附近，则需要第三样本估计方差。 | new | 当前单样本效应很大，但 top10 排序不应只靠一个直接样本；unfused control 已完成，可直接复验算法关闭。 |
 
 ### Linked Result Files
 
