@@ -70,6 +70,31 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+## 2026-06-04T16:06:52Z: codex-1780589041142-235d3a22
+
+- Trigger: 1 run(s) finished
+- Summary: Adam two-step 复验完成：adam_every_step 第二个有效样本 val_loss=3.2834、target_met=false，首样本为 3.2837；两次都未达标且 train_time_min 约 1.315-1.317，确认当前两步 Adam 累积有稳定正贡献，但效应量仍属于低位候选。
+- Goal progress: README 历史先验已建立，当前代码可逆 ablation 已覆盖并复验主要候选。强证据 top10 仍倾向于 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、batch schedule、long windows、MUDD、QK norm、MTP、FP8 train head；Sparse attention gate 与 Adam two-step 已从缺口转为稳定低位/替补证据。剩余不确定性主要是 Muon/modern architecture 这类耦合大项仍未被完全拆开，只能用子项证据和历史先验支持。
+- Code changes: no; 未修改训练代码或 ablation runner；本轮只分析 readme_top10_adam_every_step_rerun1 自动落盘的结果文件，并追加 Arthur 分析记录。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-adam-every-step-rerun1-1780588861-0df825fb
+- Linked experiment ids: readme-top10-adam-every-step-rerun1
+- Input code commits: 3601f227fd8a3fae3ee5a16a2d86a638c658b0e4
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/readme_top10_ablation_results.csv`
+- `experiments/results/readme_top10_readme_top10_adam_every_step_rerun1.json`
+- `experiments/results/summary.json`
+
 
 ## 2026-06-04T15:25:55Z: codex-1780586641638-1848d4f7
 
@@ -2177,6 +2202,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - Pending result runs: readme-top10-attn-gate-freeze-rerun2-pod72-1780588381-95bbc8d7
 - Linked experiment ids: readme-top10-attn-gate-freeze-rerun2-pod72
 - Input code commits: 220982acc63bcdf21c106d06e0f909a06b36f72c
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T16:08:26Z: codex-1780589041142-235d3a22
+
+- Trigger: 1 run(s) finished
+- Summary: Adam two-step 复验完成：adam_every_step 第二个有效样本 val_loss=3.2834、target_met=false，首样本为 3.2837；两次同向，确认当前两步 Adam 累积有稳定正贡献，但属于低位候选/替补证据。
+- Goal progress: README 历史先验已建立，当前代码可逆 ablation 已覆盖并复验主要候选。当前强证据 top10 仍倾向于 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、batch schedule、long windows、MUDD、QK norm、MTP、FP8 train head。Sparse attention gate 与 Adam two-step 已从缺口转为稳定低位证据；剩余不确定性主要是 Muon/modern architecture 这类耦合大项仍未完全拆分，只能结合历史先验和子项 ablation 判断。
+- Code changes: no; 未修改训练代码或 ablation runner；仅追加 experiments/arthur/idea_result_links.md 的本轮分析记录，结果文件由运行/收集流程自动落盘。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-adam-every-step-rerun1-1780588861-0df825fb
+- Linked experiment ids: readme-top10-adam-every-step-rerun1
+- Input code commits: 3601f227fd8a3fae3ee5a16a2d86a638c658b0e4
 
 ### Ideas
 
