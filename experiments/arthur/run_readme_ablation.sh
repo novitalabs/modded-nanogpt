@@ -217,14 +217,20 @@ started_at="$(date -Iseconds)"
 echo "starting readme_top10 variant=${variant_id} ablation=${ablation} pod=$(hostname) at ${started_at}"
 nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader
 
+if command -v torchrun >/dev/null 2>&1; then
+  launcher=(torchrun)
+else
+  launcher=("${python_bin}" -m torch.distributed.run)
+fi
+
 set +e
-timeout "${timeout_value}" torchrun --standalone --nproc_per_node=8 "${variant_script}" </dev/null
+timeout "${timeout_value}" "${launcher[@]}" --standalone --nproc_per_node=8 "${variant_script}" </dev/null
 rc=$?
 set -e
 
 latest_log="logs/${variant_id}.txt"
 if [[ ! -f "${latest_log}" ]]; then
-  latest_log="$(find logs -maxdepth 1 -type f -name '*.txt' -newermt "${started_at}" -printf '%T@ %p\n' | sort -n | tail -1 | cut -d' ' -f2-)"
+  latest_log="$(find logs -maxdepth 1 -type f -name '*.txt' -newermt "${started_at}" -printf '%T@ %p\n' 2>/dev/null | sort -n | tail -1 | cut -d' ' -f2-)"
 fi
 if [[ -z "${latest_log}" || ! -f "${latest_log}" ]]; then
   echo "no training log found after ablation run"

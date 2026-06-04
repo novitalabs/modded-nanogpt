@@ -375,3 +375,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T09:27:06Z: codex-1780564921761-e3f3c067
+
+- Trigger: 1 run(s) finished
+- Summary: 当前有效证据仍以 eos_alignment_off 的 nan、polar_express_off 单样本发散、value_embeds_off 和 bigram_off 双样本退化、long_window_off 单样本退化、qk_norm_off 单样本退化为主；本轮失败均是执行环境问题，不应计入 ablation 结论。
+- Goal progress: README 历史先验已建立，当前代码已覆盖多数候选优化的可逆 ablation。缺口是 polar_express_off 和 long_window_off 的干净稳定性样本；EoS、QK、block3 skip、cautious WD、residual decay 已在现有队列中覆盖。
+- Code changes: yes; 修改 experiments/arthur/run_readme_ablation.sh：训练 launcher 先用 torchrun，缺失时退到 python -m torch.distributed.run；同时让 logs 不存在时的 find 不再打断后处理。未修改 train_gpt.py。
+- Suggested experiments: 2
+- Pending result runs: readme-top10-polar-express-off-local-rerun3-1780564861-f7099cc6
+- Linked experiment ids: readme-top10-polar-express-off-local-rerun3
+- Input code commits: e52e0f83a773c6f353b915129a917bc9591b8bf3
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-polar-express-off-local-pod72-rerun4 | Polar Express pod72 stability | 若在已验证可用的 .72 pod 上 polar_express_off 再次显著发散，则 Polar Express/Muon 子项可确认为当前 root 的最强因果贡献之一。 | new | 本轮 local direct 因 host 缺 torchrun 失败，.75 又有环境问题；.72 pod 是当前最可靠路径。 |
+| readme-top10-long-window-off-local-pod72-rerun2 | Long window pod72 clean rerun | 若 long_window_off 在 .72 pod 上再次产生约 +0.02 val_loss 退化，则 long-window/FA3 window family 应进入当前 top10 的中上位。 | new | 已有 long_window_off final_result=3.2969，但 run 状态被旧后处理错误标 failed；当前 .75 clean rerun 未进训练。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
