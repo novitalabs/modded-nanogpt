@@ -60,3 +60,4 @@ readme_top10_fp8_lm_head_dense_train_off_rerun2,fp8_lm_head_dense_train_off,logs
 readme_top10_batch_schedule_constant_final,batch_schedule_constant_final,logs/readme_top10_batch_schedule_constant_final.txt,1380,1380,3.233200,1.861450,80.930000,3.280000,true,0
 readme_top10_pko_off_rerun1,partial_key_offset_off,logs/readme_top10_pko_off_rerun1.txt,1380,1380,3.279100,1.283367,55.800000,3.280000,true,0
 readme_top10_adam_every_step,adam_every_step,logs/readme_top10_adam_every_step.txt,1380,1380,3.283700,1.314667,57.160000,3.280000,false,0
+readme_top10_attn_gate_freeze,attn_gate_freeze,logs/readme_top10_attn_gate_freeze.txt,1380,1380,3.284400,1.263567,54.940000,3.280000,false,0

@@ -2092,3 +2092,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T15:49:55Z: codex-1780588141477-6c782366
+
+- Trigger: 1 run(s) finished
+- Summary: Sparse attention gate 新增当前代码因果证据：冻结 gate 后 val_loss=3.2844，未达 3.28 阈值，支持其作为低位 top10 候选；Adam every-step 首样本也支持两步 Adam 累积有贡献但已排队复验。
+- Goal progress: README 历史先验已建立，主要候选已有可逆 ablation。强证据仍集中在 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、batch schedule、long windows、MUDD、QK norm、MTP、FP8 train head；Sparse attention gate 和 Adam two-step 是当前低位候选缺口，需要第二样本确认稳定性。
+- Code changes: no; 未修改代码；本轮只分析 readme_top10_attn_gate_freeze 运行结果。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-attn-gate-freeze-1780587781-a263d26f
+- Linked experiment ids: readme-top10-attn-gate-freeze
+- Input code commits: fc58ac705cc36c9d56fecbbf3ef224c4247575ef
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-attn-gate-freeze-rerun1 | Sparse attention gate stability | 第二个 attn_gate_freeze 样本若仍未达标，则确认 learned sparse attention gate 在当前 root 中有稳定质量贡献，可进入低位 top10 候选；若达标，则首样本可能受方差影响。 | new | attn_gate_freeze 刚产生单样本正向证据；Adam two-step stability 已在队列中，当前最有信息量的是补 sparse attention gate 第二样本。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
