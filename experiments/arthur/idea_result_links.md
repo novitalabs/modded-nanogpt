@@ -425,3 +425,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T09:41:21Z: codex-1780565641362-4e1ff892
+
+- Trigger: 1 run(s) finished
+- Summary: polar_express_off 已有两条有效训练证据：一次 val_loss=10.8258，一次 val_loss=nan，说明关闭 Polar Express 会导致发散级退化，是当前最强因果信号之一。long_window_off 仍只有一条有效样本 val_loss=3.2969；本轮 .75 rerun 失败于缺 kernels 依赖，不计入因果证据。
+- Goal progress: README 历史先验已建立，当前代码 ablation 已覆盖多数 top10 候选。当前最强证据层级为 Polar Express/Muon 子项、EoS alignment 的 nan、value embeddings 双样本退化、bigram 双样本退化、long-window 单样本退化、QK norm 单样本退化。缺口是 long-window 稳定性样本，以及已 queued 的 EoS/QK/block3/cautious WD/residual decay 结果。
+- Code changes: yes; 修改 experiments/arthur/run_readme_ablation.sh：在生成 variant 后、启动 torchrun 前增加 Python 依赖预检；若 torch/triton/kernels import 失败，仅尝试 pip install kernels 后再验证，避免 .75 因缺 kernels 在 import 阶段空跑。未修改 train_gpt.py。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-long-window-off-local-pod72-rerun2-1780565581-4b1f96e1
+- Linked experiment ids: readme-top10-long-window-off-local-pod72-rerun2
+- Input code commits: bcebf537dca1d74444501e30de21d01c734881d2
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-long-window-off-depfix-rerun3 | Long window depfix rerun | 若依赖预检修复后 long_window_off 再次得到约 3.296 左右的退化，则 long-window/FA3 window family 的当前贡献可从单样本升级为稳定信号。 | new | long_window_off 仍缺干净稳定性样本；最新失败是 .75 缺 kernels，启动器已最小修复。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

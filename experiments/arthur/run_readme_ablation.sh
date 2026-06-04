@@ -213,6 +213,20 @@ target.write_text("\n".join(banner) + code)
 print(f"variant_script={target}")
 VARIANT_PY
 
+if ! "${python_bin}" - <<'PY' >/dev/null 2>&1
+import torch, triton
+import kernels
+PY
+then
+  echo "missing kernels package; attempting pip install kernels"
+  "${python_bin}" -m pip install kernels
+  "${python_bin}" - <<'PY'
+import torch, triton
+import kernels
+print("python dependency preflight passed")
+PY
+fi
+
 started_at="$(date -Iseconds)"
 echo "starting readme_top10 variant=${variant_id} ablation=${ablation} pod=$(hostname) at ${started_at}"
 nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader
