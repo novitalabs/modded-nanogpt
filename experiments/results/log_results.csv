@@ -980,6 +980,7 @@ local_rerun,track_1_short,logs/readme_top10_batch_schedule_constant_final_local.
 local_rerun,track_1_short,logs/readme_top10_batch_schedule_constant_final_local_fixed.txt,1380,1380,3.2342,111744.0,1.8624,80.97,31430,48424,True,True
 local_rerun,track_1_short,logs/readme_top10_batch_schedule_constant_mean_local.txt,1380,1380,3.3004,77388.0,1.2898,56.08,31392,48312,True,False
 local_rerun,track_1_short,logs/readme_top10_batch_schedule_constant_mean_rerun1.txt,1380,1380,3.3003,77050.0,1.2841666666666667,55.83,31392,47052,True,False
+local_rerun,track_1_short,logs/readme_top10_batch_schedule_constant_mean_rerun2_pod72.txt,1380,1380,3.3029,76927.0,1.2821166666666666,55.74,31392,48412,True,False
 local_rerun,track_1_short,logs/readme_top10_bigram_off.txt,1380,1380,3.2999,76193.0,1.2698833333333333,55.21,31262,48092,True,False
 local_rerun,track_1_short,logs/readme_top10_bigram_off_clean_rerun.txt,1380,1380,3.3018,76196.0,1.2699333333333334,55.21,31429,48352,True,False
 local_rerun,track_1_short,logs/readme_top10_bigram_off_rerun2_pod72.txt,1380,1380,3.3019,76162.0,1.2693666666666668,55.19,31429,48332,True,False

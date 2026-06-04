@@ -3694,3 +3694,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T21:45:55Z: codex-1780609321657-ba0fa0e8
+
+- Trigger: 1 run(s) finished
+- Summary: batch_schedule_constant_mean 第三个样本 val_loss=3.3029；三样本均值约 3.3012，确认 Batch size schedule 在当前代码中是稳定强贡献项，排序接近 Bigram hash embedding 与 long-window+YaRN。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖大多数候选。当前强证据大致为 Rotary、ReLU2、Value embeddings、long-window+YaRN、Batch schedule、Bigram、MUDD、MTP、QK norm、NorMuon；ReLU2、zero init、embedding skip、block3 skip、max-doc、FP8 lm_head 的第三样本已在队列中。剩余可补的是若干边界/家族拆分项，用于确认是否应排除在 top10 外。
+- Code changes: no; 未修改训练代码或 ablation runner；本轮只分析 Arthur 自动产出的 batch_schedule_constant_mean 结果和汇总文件。
+- Suggested experiments: 2
+- Pending result runs: readme-top10-batch-schedule-mean-rerun2-pod72-1780609141-817f37bb
+- Linked experiment ids: readme-top10-batch-schedule-mean-rerun2-pod72
+- Input code commits: 9aa6b0612b4c3e48cc40fade4e97888912a37f7d
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-value-skip-gates-static-rerun2-pod72 | Value skip gates third sample | 第三个 value_skip_gates_static 样本若仍约 3.280，则 value/skip gate 动态本身不是强 top10 因果项；若升高，则 Value embeddings family 的贡献需要拆分上调。 | new | 两样本 3.2809/3.2799 卡在 target 边界，补第三样本可稳定判断 gate 子机制是否只是中性项。 |
+| readme-top10-embed-lm-head-untie-off-rerun2-pod72 | Embed lm_head untie third sample | 第三个 embed_lm_head_untie_off 样本若仍不劣化，则 untie embed/lm_head 在当前代码中不是 top10 强因果项；若升高，则 FP8/embed family 排序需修正。 | new | 历史先验中等但当前两样本偏中性，第三样本可稳固降级，避免误占 top10 边界。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
