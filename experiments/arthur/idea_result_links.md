@@ -1599,3 +1599,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T13:54:25Z: codex-1780581181822-f6cbba79
+
+- Trigger: 1 run(s) finished
+- Summary: paired_head_off 首样本未达标：val_loss=3.2824、target_met=false、速度略快，说明 paired head attention 可能提供小幅质量收益，但单样本不足以定级。
+- Goal progress: README 历史先验已建立，当前代码 ablation 已覆盖多数强候选。paired head 现在从无当前证据变为单样本边界正贡献；MUDD、smear、residual decay、embed/lm_head untie 等缺口已有队列覆盖。下一步最有价值的是给 paired head 补一个隔离复跑，判断这个小幅退化是否稳定。
+- Code changes: no; 未修改代码；本轮只分析 paired_head_off 结果。当前 dirty 的 results 文件来自刚完成实验自动落盘。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-paired-head-off-1780580821-bb264f1a
+- Linked experiment ids: readme-top10-paired-head-off
+- Input code commits: 4bb3428bc4f2847259cf99fb58ee61df9ea52a7b
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-paired-head-off-rerun1 | Paired head stability sample | 第二个 paired_head_off 样本若仍未达标，则 paired head attention 是当前 root 的稳定小正贡献；若达标，则首样本可能只是边界噪声。 | new | paired_head_off 首样本 val_loss=3.2824，只比阈值差 0.0024；补一个样本能决定它是否应进入当前 top10 低位候选。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

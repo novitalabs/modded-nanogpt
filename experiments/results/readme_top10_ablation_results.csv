@@ -47,3 +47,4 @@ readme_top10_bigram_off_clean_rerun,bigram_off,logs/readme_top10_bigram_off_clea
 readme_top10_block3_skip_off_rerun1,block3_skip_off,logs/readme_top10_block3_skip_off_rerun1.txt,1380,1380,3.279500,1.278333,55.580000,3.280000,true,0
 readme_top10_value_embeds_off,value_embeds_off,logs/readme_top10_value_embeds_off.txt,1380,1380,3.311800,1.247000,54.220000,3.280000,false,0
 readme_top10_cautious_wd_off_rerun1,cautious_wd_off,logs/readme_top10_cautious_wd_off_rerun1.txt,1380,1380,3.286200,1.285083,55.870000,3.280000,false,0
+readme_top10_paired_head_off,paired_head_off,logs/readme_top10_paired_head_off.txt,1380,1380,3.282400,1.265800,55.030000,3.280000,false,0
