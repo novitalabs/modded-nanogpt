@@ -2312,3 +2312,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T16:27:58Z: codex-1780590301855-7313e49d
+
+- Trigger: 1 run(s) finished
+- Summary: cautious WD 第三样本 val_loss=3.2832、target_met=false；三次关闭 cautious WD 均未达标，说明它有稳定但小的质量贡献。当前强证据仍集中在 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、batch schedule、long windows、MUDD、QK norm、MTP、FP8 train head；cautious WD 是紧随其后的低位候选。
+- Goal progress: README 历史先验已建立，当前代码主要可逆 ablation 已覆盖并完成多项复验。缺口主要是少数组合项仍未完全拆分：long-window/YaRN 需要一个更干净的组合关闭样本；FP8 train head 的速度收益已稳定但 loss 样本有 1/3 未达标，可再补一个质量稳定性样本。
+- Code changes: no; 未修改代码；本轮只分析自动落盘的 cautious_wd_off_rerun2_pod72 结果。
+- Suggested experiments: 2
+- Pending result runs: readme-top10-cautious-wd-off-rerun2-pod72-1780590121-8c887707
+- Linked experiment ids: readme-top10-cautious-wd-off-rerun2-pod72
+- Input code commits: 6e386bbe7a0bb4f0842d3384a5d86eca6421813d
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-long-window-yarn-off-pod72 | Long window plus YaRN ablation | 同时关闭 long-window layout 和 YaRN warmup 后若仍显著未达标，可确认 README long-window/FA3/YaRN 家族是稳定 top10 主项，而不是单一替换实现的伪影。 | new | 已有 long_window_off 6/6 未达标；这个样本隔离 YaRN/warmup 残留混淆。 |
+| readme-top10-fp8-train-head-rerun3-pod72 | FP8 train head quality sample | 关闭 FP8 train head 会稳定增加训练时间约 0.32 分钟；若新增样本 loss 达标，则 FP8 主要是速度 top10，若未达标则同时有小质量贡献。 | new | 现有 3 个 FP8 train-head 关闭样本速度劣化稳定，但 loss 为 2/3 达标，补样本可决定它在 top10 中按速度项还是速度+质量项排序。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
