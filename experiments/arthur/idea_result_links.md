@@ -815,3 +815,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T10:59:35Z: codex-1780570681655-4f16f7b8
+
+- Trigger: 1 run(s) finished
+- Summary: batch_schedule_constant_mean 已有两个干净样本，val_loss=3.3004 和 3.3003，均未达 3.28，支持 batch size schedule 是稳定有效的 README 优化项；batch_schedule_constant_final 虽达标但存在 batch/max-doc 混杂，不作为干净因果证据。
+- Goal progress: README 历史先验已建立，当前 ablation 已覆盖多数 top10 候选。强证据包括 Polar Express/Muon 子项、EoS alignment、value embeddings、bigram hash embedding、long-window family、batch schedule、QK norm 等；缺口仍是 max document count 拆分、block3 skip、cautious weight decay、residual decay 首样本，以及若干单样本候选的稳定性确认。现有 queued 实验已覆盖这些缺口。
+- Code changes: no; 未修改代码；本轮只分析刚完成的 batch_schedule_constant_mean_rerun1 结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-batch-schedule-constant-mean-rerun1-1780570501-ac57177c
+- Linked experiment ids: readme-top10-batch-schedule-constant-mean-rerun1
+- Input code commits: 51544dc4d8d1c726a5201ceea3eed31e1dd5ef11
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

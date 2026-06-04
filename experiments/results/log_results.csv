@@ -966,6 +966,7 @@ local_rerun,track_1_short,logs/f5ba902f-129b-4a92-928c-467899d0d213.txt,1380,138
 local_rerun,track_1_short,logs/f9ef8429-df50-4583-83db-d085d0409e52.txt,1373,1373,3.2807,76755.0,1.27925,55.9,31262,48112,True,False
 local_rerun,track_1_short,logs/readme_top10_batch_schedule_constant_final_local_fixed.txt,1380,1380,3.2342,111744.0,1.8624,80.97,31430,48424,True,True
 local_rerun,track_1_short,logs/readme_top10_batch_schedule_constant_mean_local.txt,1380,1380,3.3004,77388.0,1.2898,56.08,31392,48312,True,False
+local_rerun,track_1_short,logs/readme_top10_batch_schedule_constant_mean_rerun1.txt,1380,1380,3.3003,77050.0,1.2841666666666667,55.83,31392,47052,True,False
 local_rerun,track_1_short,logs/readme_top10_bigram_off.txt,1380,1380,3.3023,76165.0,1.2694166666666666,55.19,31429,48312,True,False
 local_rerun,track_1_short,logs/readme_top10_bigram_off_clean_rerun.txt,1380,1380,3.2991,76154.0,1.2692333333333334,55.18,31429,48132,True,False
 local_rerun,track_1_short,logs/readme_top10_embedding_skip_off.txt,1380,1380,3.2779,76550.0,1.2758333333333334,55.47,31262,48312,True,True
