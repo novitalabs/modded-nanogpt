@@ -1,0 +1,13 @@
+{
+  "variant_id": "readme_top10_max_doc_count_off_rerun2_pod72",
+  "ablation": "max_doc_count_off",
+  "log": "logs/readme_top10_max_doc_count_off_rerun2_pod72.txt",
+  "step": "1380",
+  "total_steps": "1380",
+  "val_loss": "3.279400",
+  "train_time_min": "1.294400",
+  "step_avg_ms": "56.280000",
+  "target_loss": "3.280000",
+  "target_met": "true",
+  "run_exit_code": "0"
+}

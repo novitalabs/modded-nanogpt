@@ -97,6 +97,32 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T22:20:33Z: codex-1780611541529-9b5143e4
+
+- Trigger: 1 run(s) finished
+- Summary: max_doc_count_off 第三个有效样本 val_loss=3.2794，三样本 3.2764/3.2788/3.2794 均 target_met=true，均值约 3.2782；单独关闭 TRAIN_MAX_NUM_DOCS table 未造成可见退化，应从 EoS/max-doc family 的强贡献中降级。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖大多数 top 候选；EoS alignment 本身仍有三次 nan 的强反事实信号，但 max document count table 子机制现在有三样本近中性证据。剩余缺口主要是已排队的 FP8 lm_head、value skip gates、embed/lm_head untie、residual decay、PKO 第三样本，用于收紧 top10 边界。
+- Code changes: no; 未修改训练代码或 ablation runner；本轮只分析 Arthur 自动产出的 max_doc_count_off_rerun2_pod72 结果，并追加本记录。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-max-doc-count-off-rerun2-pod72-1780611361-be6bae53
+- Linked experiment ids: readme-top10-max-doc-count-off-rerun2-pod72
+- Input code commits: 437e6f77134dd6c2d9c64409b9431cf446f40041
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/readme_top10_ablation_results.csv`
+- `experiments/results/readme_top10_readme_top10_max_doc_count_off_rerun2_pod72.json`
+- `experiments/results/summary.json`
+
 ## 2026-06-04T21:51:28Z: codex-1780609741566-a5f02e49
 
 - Trigger: 1 run(s) finished
@@ -3848,6 +3874,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - Pending result runs: readme-top10-block3-skip-off-rerun2-pod72-1780611001-9ddd3bbc
 - Linked experiment ids: readme-top10-block3-skip-off-rerun2-pod72
 - Input code commits: c8cca7ff556ecf1547389331f62ba6e52c5001a2
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T22:21:51Z: codex-1780611541529-9b5143e4
+
+- Trigger: 1 run(s) finished
+- Summary: max_doc_count_off 第三个有效样本 val_loss=3.2794；三样本均值约 3.2782 且全部 target_met=true，单独关闭 TRAIN_MAX_NUM_DOCS table 未造成可见退化，应从 EoS/max-doc family 的强贡献中降级。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖大多数候选；强证据仍集中在 Rotary、ReLU²、Value embeddings、long-window/YaRN、Batch schedule、Bigram、MUDD、MTP、QK norm、NorMuon 等。剩余 FP8 lm_head、value skip gates、embed/lm_head untie、residual decay、PKO 第三样本已在队列中，无需新增重复实验。
+- Code changes: no; 未修改训练代码或 ablation runner；仅追加 experiments/arthur/idea_result_links.md 的本轮分析记录。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-max-doc-count-off-rerun2-pod72-1780611361-be6bae53
+- Linked experiment ids: readme-top10-max-doc-count-off-rerun2-pod72
+- Input code commits: 437e6f77134dd6c2d9c64409b9431cf446f40041
 
 ### Ideas
 

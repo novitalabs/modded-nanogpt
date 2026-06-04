@@ -109,3 +109,4 @@ readme_top10_relu_square_off_rerun2_pod72,relu_square_off,logs/readme_top10_relu
 readme_top10_zero_mlp_proj_init_off_rerun2_pod72,zero_mlp_proj_init_off,logs/readme_top10_zero_mlp_proj_init_off_rerun2_pod72.txt,1380,1380,3.279400,1.288733,56.030000,3.280000,true,0
 readme_top10_embedding_skip_off_rerun2_pod72,embedding_skip_off,logs/readme_top10_embedding_skip_off_rerun2_pod72.txt,1380,1380,3.276400,1.276150,55.480000,3.280000,true,0
 readme_top10_block3_skip_off_rerun2_pod72,block3_skip_off,logs/readme_top10_block3_skip_off_rerun2_pod72.txt,1380,1380,3.279800,1.280183,55.660000,3.280000,true,0
+readme_top10_max_doc_count_off_rerun2_pod72,max_doc_count_off,logs/readme_top10_max_doc_count_off_rerun2_pod72.txt,1380,1380,3.279400,1.294400,56.280000,3.280000,true,0
