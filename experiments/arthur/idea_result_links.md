@@ -1036,3 +1036,31 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T11:48:41Z: codex-1780573441107-c2af9cb0
+
+- Trigger: 1 run(s) finished
+- Summary: current-root extension-5 默认路径本次应计为达标样本：1380/1380, val_loss=3.2781, train_time_min=1.2873。当前 README top10 暂定强证据为 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、batch schedule mean、long windows、QK norm；MTP/XSA/smear/cautious WD 属需要复验的边界正信号。
+- Goal progress: README record-history delta 历史先验已建立，当前代码 ablation 已覆盖多数候选；value/bigram/long-window/QK 已有多样本或稳定证据，EoS/Polar 为强异常信号，max_doc_count 已被双样本反证。主要缺口是 residual_decay 首样本，以及 MTP/XSA/smear 等单样本边界项的稳定性。
+- Code changes: no; 本轮未修改代码；只分析 current-root-extension5-rerun-1 的新结果。dirty 的 results 文件来自 run_current_baseline.sh/collect_results.py 自动落盘。
+- Suggested experiments: 4
+- Pending result runs: current-root-extension5-rerun-1-1780573261-3d62cfc3
+- Linked experiment ids: current-root-extension5-rerun-1
+- Input code commits: ca6a423890a7d23ad8de59f1ca8bbb8ffebcfcdb
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-residual-decay-off | Ablate residual decay | 关闭 residual stream exponential decay 初始化后，可判断该 README 技巧在当前 root 中是否仍有独立贡献。 | queued | 这是当前仍缺首样本的 architecture/initialization 候选，信息量高于重复已稳定的 value/bigram/long-window。 |
+| readme-top10-mtp-off-rerun1 | MTP stability sample | 若 mtp_off 再次产生约 +0.009 loss 退化，则 MTP 可进入当前 top10 中段而非单样本边界项。 | new | MTP 首样本退化强于 XSA/smear/cautious WD，但只有一个样本，适合优先复验。 |
+| readme-top10-xsa-off-rerun1 | XSA stability sample | 第二个 xsa_off 样本将判断 Learnable XSA 的小幅退化是否稳定。 | new | XSA 当前只有单样本 val_loss=3.2835，是 top10 低位排序的不确定来源。 |
+| readme-top10-smear-off-rerun1 | Smear stability sample | 第二个 smear_off 样本将判断 one-token lookback smear 的小幅退化是否稳定。 | new | smear_off 首样本只比阈值差约 0.0027，需要复验后再决定是否进入当前 top10。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
