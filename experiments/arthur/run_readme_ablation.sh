@@ -138,12 +138,13 @@ elif ablation == "fp8_lm_head_dense_train_off":
         """        logits = self.lm_head(x)
         logits = 23 * torch.sigmoid((logits + 5) / 7.5)
         logits_for_loss = logits.float()
+        flat_logits = logits_for_loss.reshape(-1, logits_for_loss.size(-1))
         loss_per_token = torch.zeros_like(target_seq, dtype=logits_for_loss.dtype)
         for mtp_offset, mtp_weight in enumerate(mtp_weights):
             if mtp_offset == 0:
-                loss_per_token += mtp_weight * F.cross_entropy(logits_for_loss.view(-1, logits_for_loss.size(-1)), target_seq, reduction="none")
+                loss_per_token += mtp_weight * F.cross_entropy(flat_logits, target_seq, reduction="none")
             elif target_seq.numel() > mtp_offset:
-                loss_per_token[:-mtp_offset] += mtp_weight * F.cross_entropy(logits_for_loss[:-mtp_offset].reshape(-1, logits_for_loss.size(-1)), target_seq[mtp_offset:], reduction="none")""",
+                loss_per_token[:-mtp_offset] += mtp_weight * F.cross_entropy(flat_logits[:-mtp_offset], target_seq[mtp_offset:], reduction="none")""",
     )
 elif ablation == "batch_schedule_constant_final":
     replace_once(

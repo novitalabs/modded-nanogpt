@@ -1258,3 +1258,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T12:39:45Z: codex-1780576621878-d03f048e
+
+- Trigger: 1 run(s) finished
+- Summary: FP8 dense-train ablation 首跑失败，原因是 BF16 dense fallback 的 MTP offset loss 对 3D logits 切了 batch 维，导致 cross_entropy 输入 batch_size=0、target batch_size=262143；该失败不应计入 README top10 因果证据。
+- Goal progress: 历史先验和多数当前 ablation 已覆盖；FP8 lm_head/softcap 家族仍缺真正关闭训练 fused FP8 CE 路径的有效样本。强证据仍主要来自 Polar/Muon、EoS alignment、value embeddings、bigram hash、batch schedule mean、long windows、QK norm 和 MTP。
+- Code changes: yes; 修改 experiments/arthur/run_readme_ablation.sh：修复 fp8_lm_head_dense_train_off 分支的 MTP-shifted CE fallback，先 flatten logits 再按 token 维 offset 计算 loss；未修改 train_gpt.py。已通过 bash -n。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-fp8-lm-head-dense-train-off-1780576561-1e842397
+- Linked experiment ids: readme-top10-fp8-lm-head-dense-train-off
+- Input code commits: 7cb2b0b17a24719813b4e2c60b5f8144aaf89d8e
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-fp8-lm-head-dense-train-off-fixed | Fixed true FP8 train head ablation | 修复 MTP offset loss 后，关闭训练中的 fused FP8 lm_head/softcapped CE 并改用 BF16 dense lm_head 能有效量化 README rank5 FP8 head 家族对速度和 loss 的真实贡献。 | new | 上一跑是实现错误导致的无效失败；历史先验中 FP8 lm_head 家族 rank 很高，且旧 fp8_lm_head_off 未触达训练 FP8 CE 路径。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
