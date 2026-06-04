@@ -70,6 +70,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+## 2026-06-04T18:12:01Z: codex-normuon-varred-off-rerun1-failed
+
+- Trigger: 1 run(s) finished
+- Summary: `readme_top10_normuon_varred_off_rerun1_pod72` did not produce training evidence. `torchrun` exited before any step or validation output because rank 2 hit `httpx.RemoteProtocolError` while `load_flash_attn_interface()` fell back to HuggingFace `snapshot_download`; the parser then correctly found no validation result.
+- Goal progress: The NorMuon variance-reduction causal signal is still based on only one valid sample (`val_loss=3.2867`, `target_met=false`). This failed retry must not be counted for or against NorMuon.
+- Code changes: no; 未修改训练代码或 ablation runner；本轮只记录失败原因并建议同变量重试。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-normuon-varred-off-rerun1-pod72-1780596661-19887ef1
+- Linked experiment ids: readme-top10-normuon-varred-off-rerun1-pod72
+- Input code commits: 23678be190068c02277daa8baa3a083106bbb445
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-normuon-varred-off-rerun2-pod72 | NorMuon variance reduction retry | 第二个有效 normuon_varred_off 样本若仍在约 3.286 且 target_met=false，则 NorMuon variance reduction 可进入 top10 边界组；若回到 <=3.28，则首样本更可能是噪声。 | new | 上一条复验只因 FlashAttention/HuggingFace 下载 fallback 网络错误失败，没有训练证据；用新 id 重试同一单变量 ablation。 |
+
+### Linked Result Files
+
+- `logs/readme_top10_normuon_varred_off_rerun1_pod72.txt`
+- `.arthur-agent/runs/readme-top10-normuon-varred-off-rerun1-pod72-1780596661-19887ef1/run.log`
+
 ## 2026-06-04T18:08:01Z: codex-normuon-varred-off
 
 - Trigger: 1 run(s) finished
@@ -2782,6 +2804,30 @@ depending on whether the priority is tighter step count or higher confidence.
 | experiment id | title | hypothesis | status at analysis | notes |
 | --- | --- | --- | --- | --- |
 | readme-top10-normuon-varred-off-rerun1-pod72 | NorMuon variance reduction stability | 第二个 normuon_varred_off 样本若仍在 3.286 左右且 target_met=false，则 NorMuon variance reduction 可进入 top10 边界组；若回到 <=3.28，则首样本更可能是噪声。 | new | 同一 ablation 复跑，只验证 NorMuon variance reduction，不引入 Polar Express、Adam 步频或 LR 混杂。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T18:16:09Z: codex-1780596721587-de109de5
+
+- Trigger: 1 run(s) finished
+- Summary: NorMuon variance reduction 复验失败属于 FlashAttention/HuggingFace 下载 fallback 网络错误，无训练证据；不能计入排名。
+- Goal progress: README 历史先验和大多数当前代码可逆 ablation 已覆盖；NorMuon variance reduction 仍是 top10 边界缺口，仅有一个有效样本，需第二个有效样本确认。
+- Code changes: no; 未修改训练代码或 ablation runner；仅更新 experiments/arthur/idea_result_links.md 记录失败原因和下一步重试。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-normuon-varred-off-rerun1-pod72-1780596661-19887ef1
+- Linked experiment ids: readme-top10-normuon-varred-off-rerun1-pod72
+- Input code commits: 23678be190068c02277daa8baa3a083106bbb445
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-normuon-varred-off-rerun2-pod72 | NorMuon variance reduction retry | 第二个有效 normuon_varred_off 样本若仍在约 3.286 且 target_met=false，则 NorMuon variance reduction 可进入 top10 边界组；若回到 <=3.28，则首样本更可能是噪声。 | new | 上一条复验只因下载 fallback 网络错误失败，没有训练证据；新 id 重试同一单变量 ablation。 |
 
 ### Linked Result Files
 
