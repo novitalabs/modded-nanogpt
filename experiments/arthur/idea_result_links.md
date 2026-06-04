@@ -70,6 +70,32 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+## 2026-06-04T18:08:01Z: codex-normuon-varred-off
+
+- Trigger: 1 run(s) finished
+- Summary: normuon_varred_off 首样本完成 1380/1380，val_loss=3.2867、target_met=false、train_time=1.2938 分钟；关闭 NorMuon variance reduction 带来中等质量退化，但样本数仍不足以单独挤入已复验强项。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖大多数候选。Rotary、ReLU2、value embeddings、bigram、long-window/YaRN、MUDD、QK norm、MTP、EoS alignment/文档边界、FP8 train-head speed 等已有更清楚信号；NorMuon variance reduction 现在有一个方向正确但未复验的边界证据。
+- Code changes: no; 未修改训练代码或 ablation runner；本轮只分析自动落盘的 normuon_varred_off 结果并追加 Arthur 分析记录。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-normuon-varred-off-pod72-1780596301-823e2708
+- Linked experiment ids: readme-top10-normuon-varred-off-pod72
+- Input code commits: 0465c156fb6116922d7f1ab8adf53ba695829085
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-normuon-varred-off-rerun1-pod72 | NorMuon variance reduction stability | 第二个 normuon_varred_off 样本若仍在 3.286 左右且 target_met=false，则 NorMuon variance reduction 可进入 top10 边界组；若回到 <=3.28，则首样本更可能是噪声。 | new | 这是 Muon/NorMuon 族当前最小单变量缺口，只复跑同一 ablation，不引入 Polar Express、Adam 步频或 LR 混杂。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/readme_top10_ablation_results.csv`
+- `experiments/results/readme_top10_readme_top10_normuon_varred_off_pod72.json`
+- `experiments/results/summary.json`
+
 
 ## 2026-06-04T17:59:02Z: codex-fp8-train-head-rerun3-retry
 
@@ -2732,6 +2758,30 @@ depending on whether the priority is tighter step count or higher confidence.
 | experiment id | title | hypothesis | status at analysis | notes |
 | --- | --- | --- | --- | --- |
 | readme-top10-normuon-varred-off-pod72 | Ablate NorMuon variance reduction | 只关闭 NorMuon low-rank variance reduction，保持 Polar Express、momentum schedule、Adam cadence 和 LR 不变，可判断 NorMuon 本身是否进入当前代码因果 top10。 | new | 当前已有 Polar Express ablation，但还没有把 NorMuon variance reduction 单独拆出来；这是 Muon/NorMuon 排名边界的最小单变量实验。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T18:10:34Z: codex-1780596481698-39e714a0
+
+- Trigger: 1 run(s) finished
+- Summary: NorMuon variance reduction 首次单变量 ablation 显示关闭后 val_loss=3.2867、target_met=false，有进入 top10 边界组的可能，但样本数不足，不能据此定论。
+- Goal progress: README 历史先验已建立，当前代码可逆 ablation 已覆盖大多数候选。强证据集中在 Rotary、ReLU2、value embeddings、bigram hash embedding、long-window/YaRN、MUDD、QK norm、MTP、EoS alignment/文档边界、FP8 train-head speed 等；NorMuon variance reduction 还需要复验来判断是否超过边界项。
+- Code changes: no; 未修改训练代码或 ablation runner；仅追加 experiments/arthur/idea_result_links.md 的本轮实验分析记录。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-normuon-varred-off-pod72-1780596301-823e2708
+- Linked experiment ids: readme-top10-normuon-varred-off-pod72
+- Input code commits: 0465c156fb6116922d7f1ab8adf53ba695829085
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-normuon-varred-off-rerun1-pod72 | NorMuon variance reduction stability | 第二个 normuon_varred_off 样本若仍在 3.286 左右且 target_met=false，则 NorMuon variance reduction 可进入 top10 边界组；若回到 <=3.28，则首样本更可能是噪声。 | new | 同一 ablation 复跑，只验证 NorMuon variance reduction，不引入 Polar Express、Adam 步频或 LR 混杂。 |
 
 ### Linked Result Files
 

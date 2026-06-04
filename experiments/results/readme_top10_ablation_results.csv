@@ -74,3 +74,4 @@ readme_top10_single_activation_input_off_rerun1_pod72,single_activation_input_of
 readme_top10_rotary_off_pod72,rotary_off,logs/readme_top10_rotary_off_pod72.txt,1380,1380,3.661200,1.283583,55.810000,3.280000,false,0
 readme_top10_rotary_off_rerun1_pod72,rotary_off,logs/readme_top10_rotary_off_rerun1_pod72.txt,1380,1380,3.759300,1.284617,55.850000,3.280000,false,0
 readme_top10_fp8_lm_head_dense_train_off_rerun3_pod72_retry,fp8_lm_head_dense_train_off,logs/readme_top10_fp8_lm_head_dense_train_off_rerun3_pod72_retry.txt,1380,1380,3.280900,1.607050,69.870000,3.280000,false,0
+readme_top10_normuon_varred_off_pod72,normuon_varred_off,logs/readme_top10_normuon_varred_off_pod72.txt,1380,1380,3.286700,1.293833,56.250000,3.280000,false,0
