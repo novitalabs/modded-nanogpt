@@ -1019,6 +1019,7 @@ local_rerun,track_1_short,logs/readme_top10_pko_off_rerun1.txt,1380,1380,3.2791,
 local_rerun,track_1_short,logs/readme_top10_polar_express_off.txt,1380,1380,10.8258,69951.0,1.16585,50.69,31429,48292,True,False
 local_rerun,track_1_short,logs/readme_top10_polar_express_off_rerun2_py3.txt,1380,1380,10.8258,69882.0,1.1647,50.64,31429,48412,True,False
 local_rerun,track_1_short,logs/readme_top10_polar_express_to_ns5_pod72.txt,1380,1380,3.2828,77377.0,1.2896166666666666,56.07,31429,48412,True,False
+local_rerun,track_1_short,logs/readme_top10_polar_express_to_ns5_rerun1_pod72.txt,1380,1380,3.2844,77510.0,1.2918333333333334,56.17,31429,48452,True,False
 local_rerun,track_1_short,logs/readme_top10_qk_norm_off.txt,1380,1380,3.2907,78942.0,1.3157,57.2,31262,46418,True,False
 local_rerun,track_1_short,logs/readme_top10_qk_norm_off_rerun1.txt,1380,1380,3.2866,78613.0,1.3102166666666666,56.97,31262,47138,True,False
 local_rerun,track_1_short,logs/readme_top10_relu_square_off_pod72.txt,1380,1380,3.3189,77927.0,1.2987833333333334,56.47,31429,49752,True,False

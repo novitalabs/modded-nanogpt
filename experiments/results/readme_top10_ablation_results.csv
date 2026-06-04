@@ -82,3 +82,4 @@ readme_top10_logit_rescale_symmetric_pod72,logit_rescale_symmetric,logs/readme_t
 readme_top10_logit_rescale_symmetric_rerun1_pod72,logit_rescale_symmetric,logs/readme_top10_logit_rescale_symmetric_rerun1_pod72.txt,1380,1380,3.281600,1.289050,56.050000,3.280000,false,0
 readme_top10_value_skip_gates_static_rerun1_pod72,value_skip_gates_static,logs/readme_top10_value_skip_gates_static_rerun1_pod72.txt,1380,1380,3.279900,1.273917,55.390000,3.280000,true,0
 readme_top10_polar_express_to_ns5_pod72,polar_express_to_ns5,logs/readme_top10_polar_express_to_ns5_pod72.txt,1380,1380,3.282800,1.289617,56.070000,3.280000,false,0
+readme_top10_polar_express_to_ns5_rerun1_pod72,polar_express_to_ns5,logs/readme_top10_polar_express_to_ns5_rerun1_pod72.txt,1380,1380,3.284400,1.291833,56.170000,3.280000,false,0

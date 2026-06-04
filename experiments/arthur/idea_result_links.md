@@ -70,6 +70,33 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T19:17:01Z: codex-polar-express-to-ns5-rerun1
+
+- Trigger: 1 run(s) finished
+- Summary: `polar_express_to_ns5` 第二个有效样本完成 1380/1380，`val_loss=3.2844`、`target_met=false`、`train_time=1.2918min`；结合首样本 `3.2828`，说明 Polar Express 相对经典 NS5 有稳定但边界幅度的质量贡献。该结果比 `polar_express_off` 更干净，因为它保留 Muon/NorMuon 更新路径，只替换正交化算法。
+- Goal progress: README 历史先验和当前可逆 ablation 已覆盖并复验大多数强候选。强当前因果证据仍是 Rotary、ReLU2、value embeddings、bigram hash、long-window/YaRN、batch schedule、MUDD、QK norm、MTP、NorMuon variance reduction、EoS/文档边界以及 FP8 train-head 的速度贡献；Polar Express vs NS5 现在从单样本缺口升级为稳定边界质量证据。剩余缺口里，`max_seq_len_schedule_off` 只有一个达标样本，尚不能判断 max seq length schedule 是否独立进入 top10 或应降级。
+- Code changes: no; 未修改训练代码或 ablation runner；本轮只记录 `polar_express_to_ns5` 复验结论，结果汇总文件由运行流程自动更新。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-polar-express-to-ns5-rerun1-pod72-1780600441-8cabb16e
+- Linked experiment ids: readme-top10-polar-express-to-ns5-rerun1-pod72
+- Input code commits: 9f2735d9458169781e77a37f5994a83bd632e743
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-max-seq-len-schedule-off-rerun1-pod72 | Max seq length schedule stability | 第二个 `max_seq_len_schedule_off` 样本若仍 `val_loss <= 3.28` 且速度接近默认，则 max seq length schedule 应从独立 top10 降级；若未达标或明显变慢，则说明第一阶段 896-token warmup 有稳定贡献。 | new | README 历史先验里 max seq length schedule 是近期调度项；当前只有一个达标样本 `3.2795`，复验同一单变量能直接减少 top10 边界不确定性。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/readme_top10_ablation_results.csv`
+- `experiments/results/readme_top10_readme_top10_polar_express_to_ns5_rerun1_pod72.json`
+- `experiments/results/summary.json`
+
 ## 2026-06-04T18:20:01Z: codex-normuon-varred-off-rerun2
 
 - Trigger: 1 run(s) finished
@@ -3028,6 +3055,30 @@ depending on whether the priority is tighter step count or higher confidence.
 | experiment id | title | hypothesis | status at analysis | notes |
 | --- | --- | --- | --- | --- |
 | readme-top10-polar-express-to-ns5-rerun1-pod72 | Polar Express vs NS5 stability | 第二个 polar_express_to_ns5 样本若仍高于 3.28，则 Polar Express 相对经典 NS5 有稳定独立质量贡献；若回到 <=3.28，则首样本更可能是短跑噪声。 | new | 首样本是边界未达标，且该分支只替换正交化算法，不混入关闭 Muon/正交化导致的发散效应；现在复验最能决定 Polar Express 是否作为独立 top10 项保留。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T19:19:21Z: codex-1780600621406-c7989817
+
+- Trigger: 1 run(s) finished
+- Summary: polar_express_to_ns5 两个有效样本均 target_met=false，Polar Express 相对 NS5 的独立质量贡献成立但幅度属于边界项。
+- Goal progress: README 历史先验和当前可逆 ablation 已覆盖大多数强候选。强证据仍集中在 Rotary、ReLU2、value embeddings、bigram、long-window/YaRN、batch schedule、MUDD、QK norm、MTP、NorMuon、EoS/文档边界和 FP8 train-head speed；当前主要缺口是 max_seq_len_schedule_off 只有一个达标样本，尚不能判断该调度项是否应进入独立 top10。
+- Code changes: yes; 未修改训练代码或 ablation runner；仅追加 experiments/arthur/idea_result_links.md，记录 polar_express_to_ns5 复验结论和下一步实验。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-polar-express-to-ns5-rerun1-pod72-1780600441-8cabb16e
+- Linked experiment ids: readme-top10-polar-express-to-ns5-rerun1-pod72
+- Input code commits: 9f2735d9458169781e77a37f5994a83bd632e743
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-max-seq-len-schedule-off-rerun1-pod72 | Max seq length schedule stability | 第二个 max_seq_len_schedule_off 样本若仍 val_loss <= 3.28 且速度接近默认，则 max seq length schedule 应从独立 top10 降级；若未达标或明显变慢，则说明第一阶段 896-token warmup 有稳定贡献。 | new | 当前 max_seq_len_schedule_off 只有一个样本 val_loss=3.2795、target_met=true；复验同一单变量能直接减少 top10 边界不确定性。 |
 
 ### Linked Result Files
 
