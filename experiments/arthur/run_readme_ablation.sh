@@ -8,14 +8,21 @@ ABLATION="${ABLATION:?set ABLATION}"
 TARGET_LOSS="${TARGET_LOSS:-3.28}"
 RESULTS_DIR="${RESULTS_DIR:-experiments/results}"
 
-kubectl exec -i "${POD}" -- bash -s -- "${TIMEOUT}" "${VARIANT_ID}" "${ABLATION}" "${TARGET_LOSS}" "${RESULTS_DIR}" <<'REMOTE'
+if [[ "${RUN_README_ABLATION_DIRECT:-0}" == "1" ]] || ! command -v kubectl >/dev/null 2>&1; then
+  RUNNER=(bash -s -- "${TIMEOUT}" "${VARIANT_ID}" "${ABLATION}" "${TARGET_LOSS}" "${RESULTS_DIR}" "$(pwd -P)")
+else
+  RUNNER=(kubectl exec -i "${POD}" -- bash -s -- "${TIMEOUT}" "${VARIANT_ID}" "${ABLATION}" "${TARGET_LOSS}" "${RESULTS_DIR}" "/workspace/modded-nanogpt")
+fi
+
+"${RUNNER[@]}" <<'REMOTE'
 set -euo pipefail
 timeout_value="$1"
 variant_id="$2"
 ablation="$3"
 target_loss="$4"
 results_dir="$5"
-cd /workspace/modded-nanogpt
+workdir="$6"
+cd "${workdir}"
 
 active_train="$(ps -eo pid,comm,args | awk '/[t]orchrun .*train_gpt|[p]ython .*train_gpt|[p]ython .*\\.arthur_top10_/ {print}')"
 if [[ -n "${active_train}" ]]; then

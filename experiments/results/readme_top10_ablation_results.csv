@@ -13,3 +13,4 @@ readme_top10_batch_schedule_constant_final_local_fixed,batch_schedule_constant_f
 readme_top10_eos_alignment_off_local_nan_record,eos_alignment_off,logs/readme_top10_eos_alignment_off_local_nan_record.txt,1380,1380,nan,1.147550,49.890000,3.280000,false,0
 readme_top10_embedding_skip_off,embedding_skip_off,logs/readme_top10_embedding_skip_off.txt,1380,1380,3.277900,1.275833,55.470000,3.280000,true,0
 readme_top10_qk_norm_off,qk_norm_off,logs/readme_top10_qk_norm_off.txt,1380,1380,3.290700,1.315700,57.200000,3.280000,false,0
+readme_top10_polar_express_off,polar_express_off,logs/readme_top10_polar_express_off.txt,1380,1380,10.825800,1.165850,50.690000,3.280000,false,0

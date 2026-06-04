@@ -295,3 +295,31 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T09:10:21Z: codex-1780564021210-908b92f6
+
+- Trigger: 1 run(s) finished
+- Summary: 当前因果证据显示 polar_express_off 最强但需复跑确认；eos_alignment_off 为 nan；value_embeds_off 与 bigram_off 有稳定正向贡献；qk_norm_off、mtp_off、xsa_off、smear_off 为较弱正贡献；batch_schedule_constant_final 降低 loss 但明显变慢，主要应按速度/预算效果评估。
+- Goal progress: README historical top10 先验已建立，当前代码已有多数关键 ablation 证据。缺口是 long_window_off 尚无训练结果，block3_skip/cautious_wd/qk_norm stability 仍在队列中，polar/eos 这类极强或异常信号还需要稳定性样本后才能给最终 top10 排名。
+- Code changes: yes; 修改 experiments/arthur/run_readme_ablation.sh：增加无 kubectl 或 RUN_README_ABLATION_DIRECT=1 时的 direct runner，保留有 kubectl 时原 pod 执行路径；未修改 train_gpt.py。
+- Suggested experiments: 4
+- Pending result runs: readme-top10-polar-express-off-1780563841-f899d1ef, readme-top10-long-window-off-1780563841-acb0619f
+- Linked experiment ids: readme-top10-long-window-off, readme-top10-polar-express-off
+- Input code commits: d4ef31d93ac234b0d74390b503ffa3b0422189ab
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-long-window-off-local-fallback | Retry long windows ablation | 把长窗口层改为短窗口后若 loss 或速度明显变化，可隔离 long-short sliding window pattern 的当前贡献；上一轮失败只是 .75 pod 缺 kubectl。 | new | 脚本已修复 .75 direct 执行路径，应立即补齐这个 README top10 缺口。 |
+| readme-top10-polar-express-off-rerun1 | Polar Express stability sample | polar_express_off 的 10.8258 loss 若可复现，则 Polar Express/Muon 子项应排在当前 top10 前列。 | new | 当前最强单样本信号，需要排除偶然发散或实现替代过强。 |
+| readme-top10-eos-alignment-off-rerun1 | EoS alignment stability sample | 关闭 EoS batch alignment 若再次得到 nan 或显著恶化，可确认该数据排布技巧在当前 root 中是强贡献项。 | new | 已有结果为 nan，但异常信号应至少复核一次。 |
+| readme-top10-residual-decay-off | Ablate residual decay | 关闭 residual stream exponential decay 初始化后，可判断该 README 技巧是否在当前 root 中仍有独立贡献。 | new | 脚本已有可逆分支，适合作为补足 architecture/initialization family 排名的低风险单变量实验。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
