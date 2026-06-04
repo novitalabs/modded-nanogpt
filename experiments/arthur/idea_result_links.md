@@ -2664,3 +2664,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T17:54:10Z: codex-1780595461648-62392376
+
+- Trigger: 1 run(s) finished
+- Summary: 最新 FP8 train-head quality sample 未产生训练证据，失败原因是 direct local 环境缺少 torch/triton；现有有效证据仍显示关闭真实 FP8 train head 稳定变慢约 0.32 分钟，loss 为 2/3 达标，质量方向仍需补样本。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖并复验大多数候选。Rotary、ReLU2、value embeddings、bigram、long-window/YaRN、batch schedule、MUDD、QK norm、MTP 等已有较清晰因果信号；FP8 train head 已有稳定速度贡献，但质量贡献仍是主要缺口之一。
+- Code changes: no; 未修改代码；本轮只确认失败原因为错误执行环境。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-fp8-train-head-rerun3-pod72-1780595401-c6b0c09e
+- Linked experiment ids: readme-top10-fp8-train-head-rerun3-pod72
+- Input code commits: 3e5eac87bab0225bb66e3aae16de1a9c3245047d
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-fp8-train-head-rerun3-pod72-retry | FP8 train head pod72 retry | 在 pod72 正确训练环境中关闭真实 FP8 train head 后，若 loss 仍大多达标但训练时间约 1.60 分钟，则 FP8 train head 主要是速度 top10；若再次未达标，则说明它也有小质量贡献。 | new | 上一条同变量实验只因 direct local 缺依赖失败；这个复跑只改变调度路径，不改变 ablation 变量。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
