@@ -1,0 +1,13 @@
+{
+  "variant_id": "readme_top10_attn_gate_freeze_rerun2_pod72",
+  "ablation": "attn_gate_freeze",
+  "log": "logs/readme_top10_attn_gate_freeze_rerun2_pod72.txt",
+  "step": "1380",
+  "total_steps": "1380",
+  "val_loss": "3.282800",
+  "train_time_min": "1.264017",
+  "step_avg_ms": "54.960000",
+  "target_loss": "3.280000",
+  "target_met": "false",
+  "run_exit_code": "0"
+}

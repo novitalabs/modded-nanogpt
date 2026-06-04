@@ -2142,3 +2142,51 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+## 2026-06-04T15:59:00Z: codex-1780588561186-8b55fb2a
+
+- Trigger: 1 run(s) finished
+- Summary: attn_gate_freeze 的 .72 有效复验完成，val_loss=3.2828、target_met=false；与首样本 3.2844 同向，确认 learned sparse attention gate 在当前 root 中有稳定正向质量贡献，但效应量低于 bigram/value/long-window/MTP/QK/MUDD 等强项。
+- Goal progress: README 历史先验已建立，主要候选已有当前代码可逆 ablation，多数已有重复样本。当前强证据 top10 仍倾向于 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、batch schedule、long windows、MUDD、QK norm、MTP、FP8 train head；Sparse attention gate 现在是已复验的低位候选，Adam two-step 仍只有一个有效样本且已有 pod72 复验排队。
+- Code changes: no; 未修改训练代码或实验 runner；本轮只分析 readme_top10_attn_gate_freeze_rerun2_pod72 运行产生的结果文件。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-attn-gate-freeze-rerun2-pod72-1780588381-95bbc8d7
+- Linked experiment ids: readme-top10-attn-gate-freeze-rerun2-pod72
+- Input code commits: 220982acc63bcdf21c106d06e0f909a06b36f72c
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/readme_top10_ablation_results.csv`
+- `experiments/results/readme_top10_readme_top10_attn_gate_freeze_rerun2_pod72.json`
+- `experiments/results/summary.json`
+
+## 2026-06-04T16:00:34Z: codex-1780588561186-8b55fb2a
+
+- Trigger: 1 run(s) finished
+- Summary: Sparse attention gate 冻结复验未达标：val_loss=3.2828，首样本为 3.2844，两个有效样本都支持 learned gate 对当前 root 有正向质量贡献，但属于低位候选而非强项。
+- Goal progress: README 历史先验已建立，主要候选的当前代码可逆 ablation 已基本覆盖并多数复验。当前强证据 top10 仍倾向于 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、batch schedule、long windows、MUDD、QK norm、MTP、FP8 train head；Sparse attention gate 可作为已复验低位候选。剩余主要缺口是 Adam two-step 只有一个有效样本，pod72 复验已排队。
+- Code changes: no; 未修改训练代码或实验 runner；仅追加本轮 Arthur 分析记录，结果文件由运行/收集流程落盘。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-attn-gate-freeze-rerun2-pod72-1780588381-95bbc8d7
+- Linked experiment ids: readme-top10-attn-gate-freeze-rerun2-pod72
+- Input code commits: 220982acc63bcdf21c106d06e0f909a06b36f72c
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
