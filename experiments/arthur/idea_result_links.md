@@ -70,6 +70,7 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
 ## 2026-06-04T13:32:01Z: codex-1780579921701-75b507e1
 
 - Trigger: 1 run(s) finished
@@ -1830,6 +1831,55 @@ depending on whether the priority is tighter step count or higher confidence.
 - Pending result runs: readme-top10-zero-mlp-proj-init-off-rerun1-1780584301-8b44e70b
 - Linked experiment ids: readme-top10-zero-mlp-proj-init-off-rerun1
 - Input code commits: cf9dd27214eacca3df349096a3059626a6d2817c
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+
+## 2026-06-04T14:54:01Z: codex-current-embedding-skip-rerun
+
+- Trigger: 1 run(s) finished
+- Summary: `readme_top10_embedding_skip_off_rerun1` 完成 1380/1380，`val_loss=3.2799`、`target_met=true`；结合首样本 `3.2779`，关闭 embedding-to-block skip 未产生稳定退化，embedding skip 应从强 top10 候选降级为边界/中性项。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖多数候选。zero init、embedding skip、block3 skip、embed/lm_head untie、smear 已有复验后不支持强贡献；强证据仍集中在 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、batch schedule mean、long windows、MUDD、QK norm、MTP，以及 FP8 train head 的速度贡献。主要缺口只剩已排队的 residual_decay_off 第二样本。
+- Code changes: no; 未修改训练代码或 ablation 脚本；本轮只分析自动落盘的 embedding_skip_off_rerun1 结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-embedding-skip-off-rerun1-1780584661-0840cbda
+- Linked experiment ids: readme-top10-embedding-skip-off-rerun1
+- Input code commits: e3cfe366c15f2738857655c9c3544a0ccaf523b5
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/readme_top10_ablation_results.csv`
+- `experiments/results/readme_top10_readme_top10_embedding_skip_off_rerun1.json`
+- `experiments/results/summary.json`
+
+## 2026-06-04T14:59:23Z: codex-1780584841821-20d6ade8
+
+- Trigger: 1 run(s) finished
+- Summary: embedding_skip_off 第二个有效样本完成 1380/1380，val_loss=3.2799、target_met=true；结合首样本 3.2779，关闭 embedding-to-block skip 未产生稳定退化，应从强 top10 候选降级为边界/中性项。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖多数候选。强证据仍集中在 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、batch schedule mean、long windows、MUDD、QK norm、MTP，以及 FP8 train head 的速度贡献。zero init、embedding skip、block3 skip、embed/lm_head untie、smear 复验后不支持强贡献；主要缺口只剩已排队的 residual_decay_off 第二样本。
+- Code changes: no; 未修改训练代码或 ablation 脚本；仅补充 Arthur journal 记录，结果汇总文件由实验脚本自动落盘。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-embedding-skip-off-rerun1-1780584661-0840cbda
+- Linked experiment ids: readme-top10-embedding-skip-off-rerun1
+- Input code commits: e3cfe366c15f2738857655c9c3544a0ccaf523b5
 
 ### Ideas
 
