@@ -71,6 +71,33 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/summary.json`
 
 
+## 2026-06-04T17:59:02Z: codex-fp8-train-head-rerun3-retry
+
+- Trigger: 1 run(s) finished
+- Summary: FP8 train-head dense-train-off retry completed 1380/1380 with val_loss=3.2809, target_met=false, train_time=1.6071 min. Across four valid samples for this ablation, loss is borderline (2/4 target_met, mean 3.2798) while train_time is consistently about 1.604-1.609 min versus current-root target runs near 1.29 min, so the strongest causal evidence is a stable speed contribution rather than a robust quality contribution.
+- Goal progress: README historical prior and current-code reversible ablations now cover most top candidates with repeated samples. Strong current-code quality evidence remains Rotary, ReLU2, value embeddings, bigram hash embedding, long-window/YaRN, MUDD, QK norm, MTP, and EoS/Polar Express instability; FP8 train head is better classified as speed-critical and quality-borderline. The main remaining gap is a clean single-variable test for NorMuon variance reduction separate from Polar Express and the rest of Muon.
+- Code changes: yes; added a `normuon_varred_off` branch to `experiments/arthur/run_readme_ablation.sh` so the next NorMuon-isolation experiment can be run and recorded with the same result parser as the other README top10 ablations. This entry also records the automatically generated FP8 retry result files.
+- Suggested experiments: 1
+- Pending result runs: readme-top10-fp8-train-head-rerun3-pod72-retry-1780595701-eee21ec5
+- Linked experiment ids: readme-top10-fp8-train-head-rerun3-pod72-retry
+- Input code commits: dceb53f5394b169eceec7254f5d237f4e3e40a7f
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-normuon-varred-off-pod72 | Ablate NorMuon variance reduction | Disabling only the NorMuon low-rank variance-reduction normalization while leaving Polar Express, momentum schedule, Adam cadence, and LR untouched will show whether NorMuon itself belongs in the causal top10 or whether prior Muon evidence is dominated by Polar Express/optimizer-family effects. | new | README historical prior has NorMuon as a smaller but repeated optimizer-family item; current ablations have Polar Express but not NorMuon isolated. |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/readme_top10_ablation_results.csv`
+- `experiments/results/readme_top10_readme_top10_fp8_lm_head_dense_train_off_rerun3_pod72_retry.json`
+- `experiments/results/summary.json`
+
+
 ## 2026-06-04T16:50:01Z: codex-1780591801553-e1c8d228
 
 - Trigger: 1 run(s) finished
@@ -2681,6 +2708,30 @@ depending on whether the priority is tighter step count or higher confidence.
 | experiment id | title | hypothesis | status at analysis | notes |
 | --- | --- | --- | --- | --- |
 | readme-top10-fp8-train-head-rerun3-pod72-retry | FP8 train head pod72 retry | 在 pod72 正确训练环境中关闭真实 FP8 train head 后，若 loss 仍大多达标但训练时间约 1.60 分钟，则 FP8 train head 主要是速度 top10；若再次未达标，则说明它也有小质量贡献。 | new | 上一条同变量实验只因 direct local 缺依赖失败；这个复跑只改变调度路径，不改变 ablation 变量。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T18:04:22Z: codex-1780595942053-9c4ee789
+
+- Trigger: 1 run(s) finished
+- Summary: FP8 train-head 关闭后的质量影响边界化，但速度退化稳定；Rotary/ReLU2/value/bigram/long-window/MUDD/QK norm/MTP 等已有更强质量因果证据。
+- Goal progress: README 历史先验已建立，当前代码 ablation 已覆盖并复验大多数候选。剩余关键缺口是将 NorMuon variance reduction 从 Polar Express 和整体 Muon 优化族里单独拆出来验证。
+- Code changes: yes; 更新 experiments/arthur/idea_result_links.md 记录 FP8 retry 结果；在 experiments/arthur/run_readme_ablation.sh 新增 normuon_varred_off ablation 分支，仅禁用 NorMuon variance reduction。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-fp8-train-head-rerun3-pod72-retry-1780595701-eee21ec5
+- Linked experiment ids: readme-top10-fp8-train-head-rerun3-pod72-retry
+- Input code commits: dceb53f5394b169eceec7254f5d237f4e3e40a7f
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-normuon-varred-off-pod72 | Ablate NorMuon variance reduction | 只关闭 NorMuon low-rank variance reduction，保持 Polar Express、momentum schedule、Adam cadence 和 LR 不变，可判断 NorMuon 本身是否进入当前代码因果 top10。 | new | 当前已有 Polar Express ablation，但还没有把 NorMuon variance reduction 单独拆出来；这是 Muon/NorMuon 排名边界的最小单变量实验。 |
 
 ### Linked Result Files
 

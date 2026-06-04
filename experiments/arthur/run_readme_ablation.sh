@@ -263,6 +263,17 @@ elif ablation == "polar_express_off":
         p_state["momentum_buffer"].lerp_(grad_chunk, 1 - momentum)
         v_chunk = grad_chunk.lerp(p_state["momentum_buffer"], momentum)""",
     )
+elif ablation == "normuon_varred_off":
+    replace_once(
+        """        # Variance reduction
+        red_dim = -1 if chunk_shape[-2] >= chunk_shape[-1] else -2
+        v_chunk = NorMuonAndAdam._apply_normuon_variance_reduction(
+            v_chunk, p_state["second_momentum_buffer"], p_cfg.beta2, red_dim
+        )""",
+        """        # Arthur ablation: disable NorMuon variance reduction
+        red_dim = -1 if chunk_shape[-2] >= chunk_shape[-1] else -2
+        v_chunk = v_chunk""",
+    )
 elif ablation == "eos_alignment_off":
     train_loader_call = "distributed_data_generator(args.train_files, TRAINING_STAGES[0].batch_size, TRAINING_STAGES[0].train_max_seq_len, grad_accum_steps=grad_accum_steps)"
     replace_once(
