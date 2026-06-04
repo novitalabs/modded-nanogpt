@@ -4322,3 +4322,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T23:46:02Z: codex-1780616641960-54a48ffe
+
+- Trigger: 1 run(s) finished
+- Summary: yarn_off 第五个有效样本 val_loss=3.2872，五样本均值约 3.2890；YaRN-only 仍是 top10 边界候选，但未明显压过 MTP、NorMuon variance reduction、QK norm。
+- Goal progress: README 历史先验已建立，当前代码可逆 ablation 已覆盖主要候选。强证据项已基本成型，剩余缺口集中在第10位附近：MTP、YaRN-only、NorMuon variance reduction、QK norm 的均值差小于当前采样噪声。已有 NorMuon/QK 第五样本排队，先让它们完成再更新最终排序。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur 已生成的 yarn_off 结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-yarn-off-rerun4-pod72-1780616461-04fed670
+- Linked experiment ids: readme-top10-yarn-off-rerun4-pod72
+- Input code commits: de776b7272cc7b9bfc7ca2af8d60c85ae3b2bb61
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

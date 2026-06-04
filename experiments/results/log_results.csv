@@ -1077,6 +1077,7 @@ local_rerun,track_1_short,logs/readme_top10_yarn_off_pod72.txt,1380,1380,3.2885,
 local_rerun,track_1_short,logs/readme_top10_yarn_off_rerun1_pod72.txt,1380,1380,3.29,77239.0,1.2873166666666667,55.97,31262,48192,True,False
 local_rerun,track_1_short,logs/readme_top10_yarn_off_rerun2_pod72.txt,1380,1380,3.2878,77104.0,1.2850666666666666,55.87,31262,48252,True,False
 local_rerun,track_1_short,logs/readme_top10_yarn_off_rerun3_pod72.txt,1380,1380,3.2917,77113.0,1.2852166666666667,55.88,30529,47532,True,False
+local_rerun,track_1_short,logs/readme_top10_yarn_off_rerun4_pod72.txt,1380,1380,3.2872,77166.0,1.2861,55.92,31262,48292,True,False
 local_rerun,track_1_short,logs/readme_top10_zero_mlp_proj_init_off.txt,1380,1380,3.2782,77154.0,1.2859,55.91,30529,47532,True,True
 local_rerun,track_1_short,logs/readme_top10_zero_mlp_proj_init_off_rerun1.txt,1380,1380,3.2799,77218.0,1.2869666666666666,55.96,31262,48352,True,True
 local_rerun,track_1_short,logs/readme_top10_zero_mlp_proj_init_off_rerun2_pod72.txt,1380,1380,3.2794,77324.0,1.2887333333333333,56.03,31262,48352,True,True
