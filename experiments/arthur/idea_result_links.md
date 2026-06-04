@@ -3641,3 +3641,30 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T21:30:51Z: codex-1780608361538-115dd302
+
+- Trigger: 1 run(s) finished
+- Summary: value_embeds_off 第三个有效样本 val_loss=3.3106；按唯一 variant 计三样本 3.3153/3.3118/3.3106，均值约 3.3126，确认 Value embeddings 是当前强贡献项。
+- Goal progress: 历史先验已建立，当前强证据集中在 Rotary、Value embeddings、long-window+YaRN、MUDD、MTP、QK norm、NorMuon；ReLU2、batch schedule、bigram 第三样本已在队列中。主要缺口是 zero projection init 与 embedding/block skip family 历史先验很高，但当前只有两次近中性样本，需要第三样本稳固降级或修正排名。
+- Code changes: no; 未修改训练代码或实验 runner；当前待提交变更是 Arthur 运行自动产出的结果汇总/JSON。
+- Suggested experiments: 3
+- Pending result runs: readme-top10-value-embeds-off-rerun2-pod72-1780608181-7b61c842
+- Linked experiment ids: readme-top10-value-embeds-off-rerun2-pod72
+- Input code commits: 27ef9ff4ab51e3531eb1b1c4e3d2d641f52dec91
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-zero-mlp-proj-init-off-rerun2-pod72 | Zero init third sample | 第三个 zero_mlp_proj_init_off 样本若仍约 3.278-3.280，则 zero projection init 在当前代码中不是强 top10 因果项；若明显升高，则修正当前排序。 | new | 历史 rank 3 但当前两样本近中性，是需要明确降级的高先验冲突项。 |
+| readme-top10-embedding-skip-off-rerun2-pod72 | Embedding skip third sample | 第三个 embedding_skip_off 样本若仍接近或低于 3.28，则 embedding skip 本身不是当前 top10 强贡献；若升高，则 skip family 需上调。 | new | Embedding/block skip connections 历史 rank 4，但 embedding_skip_off 两样本目前不强，需要独立第三样本。 |
+| readme-top10-block3-skip-off-rerun2-pod72 | Block3 skip third sample | 第三个 block3_skip_off 样本若仍约 3.279-3.280，则 block3 skip 不足以进入当前强 top10；若升高，则 skip family 排名需上调。 | new | 与 embedding_skip_off 隔离变量，补齐 skip family 的当前因果证据。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
