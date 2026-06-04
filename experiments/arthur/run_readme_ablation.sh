@@ -113,6 +113,15 @@ elif ablation == "long_window_yarn_off":
             self.model.yarn.apply(self.ws_long * self.block_size, new_ws_long * self.block_size)
             self.model.yarn_paired_head.apply(self.ws_long * self.block_size, new_ws_long * self.block_size)""",
     )
+elif ablation == "yarn_off":
+    replace_once(
+        """if new_ws_long != self.ws_long:
+            self.model.yarn.apply(self.ws_long * self.block_size, new_ws_long * self.block_size)
+            self.model.yarn_paired_head.apply(self.ws_long * self.block_size, new_ws_long * self.block_size)""",
+        """if False and new_ws_long != self.ws_long:
+            self.model.yarn.apply(self.ws_long * self.block_size, new_ws_long * self.block_size)
+            self.model.yarn_paired_head.apply(self.ws_long * self.block_size, new_ws_long * self.block_size)""",
+    )
 elif ablation == "mtp_off":
     replace_once(
         "mtp_weights_start=[1.0, 0.5, 0.25], mtp_weights_end=[1.0, 0.5, 0.0]),",

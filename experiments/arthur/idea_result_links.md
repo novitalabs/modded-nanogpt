@@ -3213,3 +3213,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T19:51:38Z: codex-1780602481823-fae4c42b
+
+- Trigger: 1 run(s) finished
+- Summary: long_window_yarn_off 已有两个有效样本 3.3021/3.3013，均显著高于 3.28，组合项可列为稳定强 top10 候选；single_activation_input_off、max_seq_len_schedule_off 等已降级为弱边界项。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖并复验多数候选。当前主要缺口是拆分 long-window/YaRN 家族：需要确认 YaRN 动态缩放是否独立贡献，还是 long-window 本身解释主要退化。
+- Code changes: yes; 修改 experiments/arthur/run_readme_ablation.sh，新增 yarn_off ablation 分支；它只在生成的临时 variant 中跳过 advance_schedule() 里的两次 Yarn.apply()，未修改 train_gpt.py。已通过 bash -n 和替换源匹配检查。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-long-window-yarn-off-rerun1-pod72-1780602301-8f374f04
+- Linked experiment ids: readme-top10-long-window-yarn-off-rerun1-pod72
+- Input code commits: 5b977849dbcf95d75e80776d42ca8a034cf64c7c
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-yarn-off-pod72 | Ablate YaRN only | 保留 long-window schedule 但禁用窗口变化时的 YaRN apply；若 val_loss 明显高于 3.28，则 YaRN 是 long-window/FA3 家族的独立质量贡献，否则组合项主要由 long-window layout 解释。 | new | 现在跑可以把已确认强的 long_window_yarn_off 组合项拆成单变量证据，帮助最终 top10 排序。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
