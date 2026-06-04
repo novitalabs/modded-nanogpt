@@ -4271,3 +4271,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T23:31:58Z: codex-1780615801921-fce65a39
+
+- Trigger: 1 run(s) finished
+- Summary: qk_norm_off 第四个有效样本 val_loss=3.2892，四样本均值约 3.2886；QK norm 仍是 top10 边界候选，但目前略低于 MTP 和 YaRN-only。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖主要候选并多数达到三到四个有效样本。top10 上半区证据较稳定，边界主要剩 NorMuon variance reduction 第四样本来确认其与 QK norm、MTP、YaRN-only 的相对排序。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur 自动生成的 qk_norm_off 第四有效样本结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-qk-norm-off-rerun4-pod72-1780615621-b9c7bf49
+- Linked experiment ids: readme-top10-qk-norm-off-rerun4-pod72
+- Input code commits: 37a2c52782596e33b22fd98983a742c06f0009f8
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
