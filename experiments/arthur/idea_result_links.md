@@ -71,6 +71,34 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/summary.json`
 
 
+## 2026-06-04T15:06:23Z: codex-current-residual-decay-rerun
+
+- Trigger: 1 run(s) finished
+- Summary: `readme_top10_residual_decay_off_rerun1` 完成 1380/1380，`val_loss=3.2779`、`target_met=true`；结合首样本 `3.2779`，关闭指数 residual decay 未产生可见退化，应从当前强 top10 候选降级为中性/边界项。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖并复验多数候选。强因果证据仍集中在 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、batch schedule mean、long windows、MUDD、QK norm、MTP、Cautious WD，以及 FP8 train head 的速度贡献；zero init、embedding skip、block3 skip、embed/lm_head untie、residual decay、max doc count、smear 目前不支持强贡献。剩余排序缺口主要是 `partial_key_offset_off` 只有一个中性样本，`fp8_lm_head_dense_train_off` 的 loss 信号混合但速度退化很大。
+- Code changes: no; 未修改训练代码或实验 runner；仅追加本轮 Arthur journal 记录。结果汇总文件由 run/collect_results 自动更新。
+- Suggested experiments: 2
+- Pending result runs: readme-top10-residual-decay-off-rerun1-1780585201-05e4683e
+- Linked experiment ids: readme-top10-residual-decay-off-rerun1
+- Input code commits: bcc6a655d5b637840f5f07c9a15ad90ac3d1cd11
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-fp8-lm-head-dense-train-off-rerun2 | FP8 train head third sample | 第三个 `fp8_lm_head_dense_train_off` 样本将判断 loss 从 `3.2779/3.2824` 的分歧是否只是方差；无论 loss 方向如何，若训练时间仍约 `1.61m`，FP8 train head 的速度贡献可稳定进入 top10。 | new | FP8 family 历史先验高，当前 dense-train-off 两次都比默认慢约 0.32m，但 loss 一达标一未达标；补第三个样本可区分“纯速度项”和“速度+轻微质量项”。 |
+| readme-top10-pko-off-rerun1 | Partial Key Offset stability | 第二个 `partial_key_offset_off` 样本将判断首样本 `3.2796` 的中性结果是否稳定；若仍达标，则 PKO 不应挤入当前 top10。 | new | PKO 当前只有一个样本，历史先验低但处在低位边界；补样本比继续重复已双样本中性的 residual/zero/embedding skip 更有信息量。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/readme_top10_ablation_results.csv`
+- `experiments/results/readme_top10_readme_top10_residual_decay_off_rerun1.json`
+- `experiments/results/summary.json`
+
+
 ## 2026-06-04T13:32:01Z: codex-1780579921701-75b507e1
 
 - Trigger: 1 run(s) finished
@@ -1885,6 +1913,31 @@ depending on whether the priority is tighter step count or higher confidence.
 
 | experiment id | title | hypothesis | status at analysis | notes |
 | --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T15:07:30Z: codex-1780585381205-8ee9dc0d
+
+- Trigger: 1 run(s) finished
+- Summary: residual_decay_off_rerun1 完成 1380/1380，val_loss=3.2779、target_met=true；结合首样本 3.2779，指数 residual decay 在当前 root 短轨中表现为中性/边界项。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖并复验多数候选。强证据集中在 Polar Express/Muon、EoS alignment、value embeddings、bigram hash、batch schedule mean、long windows、MUDD、QK norm、MTP、Cautious WD，以及 FP8 train head 的速度贡献；zero init、embedding skip、block3 skip、embed/lm_head untie、residual decay、max doc count、smear 目前不支持强贡献。剩余缺口是 FP8 loss 信号混合但速度退化稳定、PKO 只有单样本。
+- Code changes: no; 未修改训练代码或实验 runner；仅追加 experiments/arthur/idea_result_links.md 本轮分析记录。
+- Suggested experiments: 2
+- Pending result runs: readme-top10-residual-decay-off-rerun1-1780585201-05e4683e
+- Linked experiment ids: readme-top10-residual-decay-off-rerun1
+- Input code commits: bcc6a655d5b637840f5f07c9a15ad90ac3d1cd11
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-fp8-lm-head-dense-train-off-rerun2 | FP8 train head third sample | 第三个 fp8_lm_head_dense_train_off 样本将判断 loss 的 3.2779/3.2824 分歧是否只是方差；若训练时间仍约 1.61m，则 FP8 train head 的速度贡献稳定进入 top10。 | new | FP8 family 历史先验高，当前 dense-train-off 两次都显著变慢但 loss 一达标一未达标，需要第三样本区分纯速度项和轻微质量项。 |
+| readme-top10-pko-off-rerun1 | Partial Key Offset stability | 第二个 partial_key_offset_off 样本将判断首样本 3.2796 的中性结果是否稳定；若仍达标，则 PKO 不应进入当前 top10。 | new | PKO 当前只有一个中性样本，历史先验低但处在低位边界；补样本比重复已双样本中性的项目更有信息量。 |
 
 ### Linked Result Files
 

@@ -1004,6 +1004,7 @@ local_rerun,track_1_short,logs/readme_top10_polar_express_off_rerun2_py3.txt,138
 local_rerun,track_1_short,logs/readme_top10_qk_norm_off.txt,1380,1380,3.2907,78942.0,1.3157,57.2,31262,46418,True,False
 local_rerun,track_1_short,logs/readme_top10_qk_norm_off_rerun1.txt,1380,1380,3.2866,78613.0,1.3102166666666666,56.97,31262,47138,True,False
 local_rerun,track_1_short,logs/readme_top10_residual_decay_off.txt,1380,1380,3.2779,77209.0,1.2868166666666667,55.95,30529,47532,True,True
+local_rerun,track_1_short,logs/readme_top10_residual_decay_off_rerun1.txt,1380,1380,3.2779,77262.0,1.2877,55.99,30529,47532,True,True
 local_rerun,track_1_short,logs/readme_top10_smear_off.txt,1380,1380,3.2827,76945.0,1.2824166666666668,55.76,31230,47952,True,False
 local_rerun,track_1_short,logs/readme_top10_smear_off_rerun2_pod72.txt,1380,1380,3.279,76978.0,1.2829666666666666,55.78,31230,48112,True,True
 local_rerun,track_1_short,logs/readme_top10_value_embeds_off.txt,1380,1380,3.3118,74820.0,1.247,54.22,30646,46932,True,False
