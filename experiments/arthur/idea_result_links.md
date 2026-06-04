@@ -70,6 +70,7 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
 ## 2026-06-04T16:50:01Z: codex-1780591801553-e1c8d228
 
 - Trigger: 1 run(s) finished
@@ -2556,6 +2557,57 @@ depending on whether the priority is tighter step count or higher confidence.
 | experiment id | title | hypothesis | status at analysis | notes |
 | --- | --- | --- | --- | --- |
 | readme-top10-rotary-off-pod72 | Ablate rotary embeddings | 关闭 Rotary embeddings 若显著劣化 loss 或速度，可把 Modernized architecture 的历史 rank 1 贡献进一步拆分到 Rotary；若影响小，则当前强贡献主要来自 ReLU2/QK norm。 | new | 历史 prior 最高的 Modernized architecture 仍缺 Rotary 的当前代码直接 ablation；新分支隔离单一变量。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+
+## 2026-06-04T17:35:14Z: codex-1780594441743-f7080e3e
+
+- Trigger: 1 run(s) finished
+- Summary: `readme_top10_rotary_off_pod72` 完成 1380/1380，`val_loss=3.6612`、`target_met=false`、`train_time=1.2836min`。关闭 non-paired 与 paired-head 两处 Rotary embeddings 后 loss 相对当前 root 约 `+0.38`，这是除 Polar Express/EoS 发散类外最强的单项质量退化信号；Modernized architecture 的历史 rank 1 现在可拆成 Rotary、ReLU2、QK norm 三个当前有效子项，其中 Rotary 单样本效应最大。
+- Goal progress: README 历史先验已建立，当前代码 ablation 已覆盖大多数 README top 技术。当前强 top10 候选按因果强度大致为 Polar Express/Muon、EoS alignment、Rotary embeddings、ReLU2、value embeddings、bigram hash embedding、long window/YaRN、batch schedule、MUDD、QK norm/MTP/FP8 train-head speed 边界组。主要缺口是 Rotary 只有一个直接样本，需要复验稳定性；FP8 train head quality 样本仍在队列中。
+- Code changes: no; 未修改训练代码或 ablation runner；本轮只分析自动落盘的 `rotary_off_pod72` 结果并追加 Arthur 分析记录。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-rotary-off-pod72-1780594141-7053a8c6
+- Linked experiment ids: readme-top10-rotary-off-pod72
+- Input code commits: d534def8153373f0ab8c59e65cf4271bb776a127
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-rotary-off-rerun1-pod72 | Rotary off stability | 第二个 rotary_off 样本若仍大幅劣化 loss，则 Rotary embeddings 可作为独立强 top10 质量项；若回落显著，则需要第三样本区分 ablation 方差和脚本替换副作用。 | new | 首样本效应非常大但只跑了一次；top10 排序中它会挤压 MUDD/QK/MTP 等中等项，复验优先级高。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/readme_top10_ablation_results.csv`
+- `experiments/results/readme_top10_readme_top10_rotary_off_pod72.json`
+- `experiments/results/summary.json`
+
+## 2026-06-04T17:38:40Z: codex-1780594441743-f7080e3e
+
+- Trigger: 1 run(s) finished
+- Summary: readme_top10_rotary_off_pod72 完成 1380/1380，val_loss=3.6612，target_met=false；Rotary embeddings 目前是 Modernized architecture 中最强的单样本因果子项。
+- Goal progress: README 历史先验已建立，当前代码 ablation 已覆盖大多数 top 候选。强候选包括 Polar Express/Muon、EoS alignment、Rotary、ReLU2、value embeddings、bigram、long window/YaRN、batch schedule、MUDD、QK norm/MTP/FP8 train-head speed。缺口是 Rotary 只有一个直接样本，FP8 train head quality 样本仍在队列中。
+- Code changes: no; 未修改训练代码或 ablation runner；仅追加 experiments/arthur/idea_result_links.md 的实验分析记录。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-rotary-off-pod72-1780594141-7053a8c6
+- Linked experiment ids: readme-top10-rotary-off-pod72
+- Input code commits: d534def8153373f0ab8c59e65cf4271bb776a127
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-rotary-off-rerun1-pod72 | Rotary off stability | 第二个 rotary_off 样本若仍大幅劣化 loss，则 Rotary embeddings 可作为独立强 top10 质量项。 | new | 首样本效应很大但只有一次；复验会直接影响 top10 中 Rotary 与 ReLU2/value/bigram/long-window 等强项的排序。 |
 
 ### Linked Result Files
 
