@@ -1624,3 +1624,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T14:00:00Z: codex-1780581361789-5d60f643
+
+- Trigger: 1 run(s) finished
+- Summary: readme-top10-mudd-off 失败不是质量结果，而是 ablation 生成代码错误：post-loop MUDD 零系数用了 (B,T,5)，但原始 forward_mudd 返回 5 个 (B,T,1) 系数；已修复 runner，并保留 cache[9] 以支持跳过 final-layer MUDD 后的 post-loop 路径。
+- Goal progress: 当前已有 value embeddings、cautious WD、paired head 等新证据；MUDD 仍无有效当前代码因果样本。缺口是重跑修复后的 MUDD off，并等待已排队的 paired head stability 等边界样本。
+- Code changes: yes; 修改 experiments/arthur/run_readme_ablation.sh：修复 mudd_off 变体生成逻辑，post-loop MUDD 使用 5 个 zeros_like(x[..., :1]) 系数 tuple，并在跳过 final-layer MUDD 前保留 cache[9]。已通过 bash -n 和生成片段 compile 校验。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-mudd-off-1780581301-e4d46466
+- Linked experiment ids: readme-top10-mudd-off
+- Input code commits: 2bbada1b9f980de598b451f5fee96941f35f0589
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-mudd-off-fixed-rerun1 | Fixed MUDD ablation | 修复后的 mudd_off 若能完整跑完，val_loss 相对 root 的退化幅度可估计 MUDD skip connections 在当前代码中的真实贡献。 | new | 上一轮 MUDD 样本因 shape/cache 生成错误无效；修复后需要立即补一个有效首样本。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

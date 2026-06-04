@@ -263,11 +263,11 @@ elif ablation == "paired_head_off":
 elif ablation == "mudd_off":
     replace_once(
         "if i == self.num_layers - 1:",
-        "if False and i == self.num_layers - 1:  # Arthur ablation: use non-MUDD final-layer path",
+        "if i == self.num_layers - 1:\n                    cache[9] = x\n                if False and i == self.num_layers - 1:  # Arthur ablation: use non-MUDD final-layer path",
     )
     replace_once(
         "mu = self.forward_mudd(x, id=1, num_coef=5)",
-        "mu = torch.zeros((x.size(0), x.size(1), 5), device=x.device, dtype=x.dtype)  # Arthur ablation: disable post-loop MUDD coefficients",
+        "zero_mudd_coef = torch.zeros_like(x[..., :1])  # Arthur ablation: disable post-loop MUDD coefficients\n        mu = (zero_mudd_coef, zero_mudd_coef, zero_mudd_coef, zero_mudd_coef, zero_mudd_coef)",
     )
 else:
     raise SystemExit(f"unknown ablation: {ablation}")
