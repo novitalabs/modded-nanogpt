@@ -1,0 +1,13 @@
+{
+  "variant_id": "readme_top10_long_window_off",
+  "ablation": "long_window_off",
+  "log": "logs/readme_top10_long_window_off.txt",
+  "step": "1380",
+  "total_steps": "1380",
+  "val_loss": "3.298900",
+  "train_time_min": "1.276517",
+  "step_avg_ms": "55.500000",
+  "target_loss": "3.280000",
+  "target_met": "false",
+  "run_exit_code": "0"
+}

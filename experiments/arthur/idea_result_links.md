@@ -791,3 +791,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T10:54:21Z: codex-1780570381079-75496863
+
+- Trigger: 1 run(s) finished
+- Summary: long_window_off 现在有 6 条有效反事实样本，val_loss 约 3.2954-3.2989，均未达 3.28，说明关闭长窗口会稳定退化；最新样本 val_loss=3.2989 强化该结论。当前最强因果证据仍是 Polar Express/Muon 子项，其次是 EoS alignment、value embeddings、bigram hash embedding、batch_schedule_constant_mean、long-window family、QK norm 等。
+- Goal progress: README record-history delta 历史先验已建立，当前代码 ablation 已覆盖多数 top10 候选。缺口仍是 block3 skip、cautious weight decay、residual decay 的首样本，以及 QK/EoS/batch schedule/max document count 的稳定或拆分样本；这些已经在现有 queued 实验中覆盖，先让队列继续推进。
+- Code changes: no; 未修改代码；本轮只分析刚完成的 readme-top10-long-window-off 结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-long-window-off-1780570201-001417aa
+- Linked experiment ids: readme-top10-long-window-off
+- Input code commits: a4ecdab4701ee642a6b2ed4b263807306605827f
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
