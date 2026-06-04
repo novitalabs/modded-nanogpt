@@ -2067,3 +2067,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T15:42:02Z: codex-1780587601534-54e2faa9
+
+- Trigger: 1 run(s) finished
+- Summary: adam_every_step 将 Adam 参数改为每步更新后未达标，val_loss=3.2837 且速度变慢，支持当前两步 Adam 累积有贡献；但该项目前只有一个当前代码因果样本，仍属于低位 top10/替补边界证据。
+- Goal progress: README 历史先验已建立，多数候选已有当前代码可逆 ablation 和复验。强证据仍集中在 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、batch schedule、long windows、MUDD、QK norm、MTP、FP8 train head；Adam 两步累积新增正向证据，需第二样本判断是否稳定进入低位 top10。Sparse attention gate 已排队，是另一个剩余直接因果缺口。
+- Code changes: no; 未修改代码；本轮只分析 readme_top10_adam_every_step 运行产生的结果文件。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-adam-every-step-1780587420-ddc5f513
+- Linked experiment ids: readme-top10-adam-every-step
+- Input code commits: ce589deba316e9fea304189645c5e0c89ebd3a39
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-adam-every-step-rerun1 | Adam two-step stability | 第二个 adam_every_step 样本若仍未达标或显著变慢，则确认两步 Adam 累积在当前 root 中有稳定贡献，可作为低位 top10 候选；若达标且接近 baseline，则首样本可能只是方差。 | new | 已有 readme-top10-attn-gate-freeze 以 priority 86 排队，应先补 sparse attention gate；Adam 首样本为正向但单样本，随后复验可降低低位排序不确定性。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
