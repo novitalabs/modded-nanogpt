@@ -70,6 +70,33 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T11:29:02Z: codex-1780572542015-d83be8a8
+
+- Trigger: 1 run(s) finished
+- Summary: block3_skip_off 完成 1380/1380，val_loss=3.2798、train_time_min=1.2776、target_met=true。该结果没有给出强退化信号；结合 embedding_skip_off=3.2779，skip family 在当前 root 中应暂时降为边界候选，而不是强 top10 证据。
+- Goal progress: README record-history delta 历史先验已建立，当前代码 ablation 已覆盖 skip family 的 embedding 和 block3 两个拆分项。本轮补齐 block3 skip 首样本；剩余缺口主要是 residual decay 首样本，以及 QK/EoS/cautious WD 等稳定性样本。block3 skip 因结果贴近 3.280 阈值，需要一个复跑来确认是否只是噪声。
+- Code changes: no; 未修改源码；本轮只分析 readme-top10-block3-skip-off 运行结果，并追加实验日志。运行产物已由实验脚本落盘，等待 Arthur 提交。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-block3-skip-off-1780572181-fd70e2f0
+- Linked experiment ids: readme-top10-block3-skip-off
+- Input code commits: b7bdb28ce42e2fd54362a05644539217feb924ce
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-block3-skip-off-rerun1 | Block3 skip stability sample | 第二个 block3_skip_off 样本将判断 3.2798 的边界结果是否稳定；若仍 target_met 且接近 baseline，则 block3 skip 当前因果贡献应降级。 | new | block3 skip 是历史 skip-family 高先验项，但首样本只在阈值边缘，不能单样本定级。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/readme_top10_ablation_results.csv`
+- `experiments/results/readme_top10_readme_top10_block3_skip_off.json`
+- `experiments/results/summary.json`
+
 ## 2026-06-04T10:19:09Z: codex-1780567982051-0da1b9b7
 
 - Trigger: 1 run(s) finished
@@ -929,6 +956,30 @@ depending on whether the priority is tighter step count or higher confidence.
 
 | experiment id | title | hypothesis | status at analysis | notes |
 | --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T11:30:56Z: codex-1780572542015-d83be8a8
+
+- Trigger: 1 run(s) finished
+- Summary: 当前强因果证据仍集中在 Polar Express/Muon、value embeddings、bigram hash、batch schedule mean、long windows、QK norm 等；block3 skip 首样本接近阈值但不强。
+- Goal progress: 历史先验已建立，当前 ablation 已覆盖 skip family 两个拆分项。剩余缺口主要是 residual decay 首样本，以及 QK/EoS/cautious WD/block3 skip 稳定性样本。
+- Code changes: no; 未修改训练源码；只在 experiments/arthur/idea_result_links.md 追加本轮分析。运行结果文件由实验脚本生成。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-block3-skip-off-1780572181-fd70e2f0
+- Linked experiment ids: readme-top10-block3-skip-off
+- Input code commits: b7bdb28ce42e2fd54362a05644539217feb924ce
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-block3-skip-off-rerun1 | Block3 skip stability sample | 第二个 block3_skip_off 样本将判断 3.2798 的边界结果是否稳定；若仍 target_met 且接近 baseline，则 block3 skip 当前因果贡献应降级。 | new | block3 skip 是历史 skip-family 高先验项，但首样本只在阈值边缘，不能单样本定级。 |
 
 ### Linked Result Files
 
