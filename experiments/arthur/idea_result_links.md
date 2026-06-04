@@ -863,3 +863,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T11:11:21Z: codex-1780571341287-17ef1a66
+
+- Trigger: 1 run(s) finished
+- Summary: cautious_wd_off 完成 1380/1380，val_loss=3.2821、train_time_min=1.28785、target_met=false。该结果支持 cautious weight decay 有正向贡献，但当前效应很小，低于 value/bigram/long-window/QK 等强候选，暂不能凭单样本进入 top10。
+- Goal progress: README record-history delta 历史先验已建立，当前代码 ablation 已覆盖大多数候选。本轮补齐了 cautious WD 首样本；剩余关键缺口仍是 max document count 拆分、block3 skip、residual decay 首样本，以及 QK/EoS 等稳定性样本，其中多数已在现有队列中。
+- Code changes: no; 未修改代码；本轮只分析 readme-top10-cautious-wd-off 运行结果。运行产物已由实验脚本落盘，等待 Arthur 提交。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-cautious-wd-off-1780571162-79f9ff94
+- Linked experiment ids: readme-top10-cautious-wd-off
+- Input code commits: f5334f7fd719fb03939cb81c7ed3d5b37d382f98
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-cautious-wd-off-rerun1 | Cautious WD stability sample | 第二个 cautious_wd_off 样本将判断 3.2821 的轻微退化是否稳定，还是接近随机波动；这决定 cautious WD 是否只作为边界候选。 | new | cautious WD 首样本只比阈值差 0.0021，证据不足以定级；优先级低于仍缺首样本的 max-doc/block3/residual。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

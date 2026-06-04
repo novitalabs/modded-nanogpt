@@ -970,6 +970,7 @@ local_rerun,track_1_short,logs/readme_top10_batch_schedule_constant_mean_local.t
 local_rerun,track_1_short,logs/readme_top10_batch_schedule_constant_mean_rerun1.txt,1380,1380,3.3003,77050.0,1.2841666666666667,55.83,31392,47052,True,False
 local_rerun,track_1_short,logs/readme_top10_bigram_off.txt,1380,1380,3.3023,76165.0,1.2694166666666666,55.19,31429,48312,True,False
 local_rerun,track_1_short,logs/readme_top10_bigram_off_clean_rerun.txt,1380,1380,3.2991,76154.0,1.2692333333333334,55.18,31429,48132,True,False
+local_rerun,track_1_short,logs/readme_top10_cautious_wd_off.txt,1380,1380,3.2821,77271.0,1.28785,55.99,31262,48292,True,False
 local_rerun,track_1_short,logs/readme_top10_embedding_skip_off.txt,1380,1380,3.2779,76550.0,1.2758333333333334,55.47,31262,48312,True,True
 local_rerun,track_1_short,logs/readme_top10_fp8_lm_head_off_local.txt,1380,1380,3.2805,77083.0,1.2847166666666667,55.86,31262,48112,True,False
 local_rerun,track_1_short,logs/readme_top10_long_window_off.txt,1380,1380,3.2989,76591.0,1.2765166666666667,55.5,31328,48232,True,False

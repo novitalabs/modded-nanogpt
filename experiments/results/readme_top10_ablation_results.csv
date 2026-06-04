@@ -29,3 +29,4 @@ readme_top10_batch_schedule_constant_final_local_fixed,batch_schedule_constant_f
 readme_top10_long_window_off,long_window_off,logs/readme_top10_long_window_off.txt,1380,1380,3.298900,1.276517,55.500000,3.280000,false,0
 readme_top10_batch_schedule_constant_mean_rerun1,batch_schedule_constant_mean,logs/readme_top10_batch_schedule_constant_mean_rerun1.txt,1380,1380,3.300300,1.284167,55.830000,3.280000,false,0
 readme_top10_batch_schedule_constant_final_local,batch_schedule_constant_final,logs/readme_top10_batch_schedule_constant_final_local.txt,1380,1380,3.233000,1.860483,80.890000,3.280000,true,0
+readme_top10_cautious_wd_off,cautious_wd_off,logs/readme_top10_cautious_wd_off.txt,1380,1380,3.282100,1.287850,55.990000,3.280000,false,0
