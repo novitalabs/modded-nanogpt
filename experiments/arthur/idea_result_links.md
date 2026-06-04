@@ -2041,3 +2041,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T15:37:00Z: codex-1780587061875-30d1ba0f
+
+- Trigger: 1 run(s) finished
+- Summary: PKO rerun 达标且与首样本一致偏中性，当前证据将 Partial Key Offset 降级。强证据 top10 仍倾向于 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、batch schedule、long windows、MUDD、QK norm、MTP、FP8 train head；PKO、zero init、embedding skip、block3 skip、residual decay 等不支持进入强贡献组。
+- Goal progress: README 历史先验已建立，多数当前代码可逆 ablation 已完成并有重复样本。主要缺口是少数 README 候选尚无直接当前代码因果样本，尤其 Sparse attention gate 与 Adam/embed-lm_head 两步累积；full Muon/NorMuon/现代架构整体仍较耦合，需要更重的专门拆分才可继续精排。
+- Code changes: yes; 修改 experiments/arthur/run_readme_ablation.sh，新增 attn_gate_freeze 与 adam_every_step 两个临时可逆 ablation 分支；未修改 train_gpt.py。
+- Suggested experiments: 2
+- Pending result runs: readme-top10-pko-off-rerun1-1780586881-1c35bc5e
+- Linked experiment ids: readme-top10-pko-off-rerun1
+- Input code commits: 3657974a89a650edd1f3cb6b9f3b3a976a0e1e28
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-adam-every-step | Ablate Adam two-step accumulation | 将 Adam 参数从隔步更新改为每步更新，可以检验当前代码里的两步梯度累积是否仍贡献 loss/速度权衡；该实现覆盖 embed/lm_head 及同属 Adam bank 的门控参数。 | new | README top list 中该项仍缺当前代码直接因果证据；一次实验回答 Adam 两步累积是否应进入 top10。 |
+| readme-top10-attn-gate-freeze | Freeze sparse attention gate | 将 sparse attention gate 固定在初始化 0.5 缩放，若 loss 明显恶化则说明 learned attention gating 在当前 root 中仍有独立贡献。 | new | Sparse attention gate 是 README 候选但尚无当前代码 ablation；该实验只冻结 gate 学习，隔离变量较清楚。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

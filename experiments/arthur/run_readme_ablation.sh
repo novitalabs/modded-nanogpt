@@ -260,6 +260,20 @@ elif ablation == "paired_head_off":
         "self.paired_head_layers = [0, 2, 5, 9]",
         "self.paired_head_layers = []  # Arthur ablation: disable paired-head attention layers",
     )
+elif ablation == "attn_gate_freeze":
+    replace_once(
+        "y = y * torch.sigmoid(F.linear(x[..., :12], attn_gate_w)).view(B, T, self.num_heads, 1)",
+        "y = y * 0.5  # Arthur ablation: freeze sparse attention gate at init scale",
+    )
+elif ablation == "adam_every_step":
+    replace_once(
+        '''    def _is_adam_step(self, step: int):
+        """Adam params are only updated on odd steps."""
+        return step % 2 == 1''',
+        '''    def _is_adam_step(self, step: int):
+        """Arthur ablation: update Adam params every step instead of 2-step accumulation."""
+        return True''',
+    )
 elif ablation == "mudd_off":
     replace_once(
         "if i == self.num_layers - 1:",
