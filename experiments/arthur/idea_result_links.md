@@ -547,3 +547,51 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+## 2026-06-04T09:59:12Z: codex-current
+
+- Trigger: 1 run(s) finished
+- Summary: 新完成的 `readme_top10_long_window_off_local_pod72_rerun2` 得到 `val_loss=3.2975`、`train_time_min=1.2786`，与已有 `long_window_off` 样本 `val_loss=3.2969` 一致。关闭 long-window/FA3 window family 在当前 root 上稳定损害 loss 约 +0.018，证据从单样本升级为双样本稳定退化。
+- Goal progress: README historical prior 已建立，当前 ablation 已覆盖多数 top10 候选。当前强证据层级为 Polar Express/Muon 子项最强，EoS alignment nan 强异常，value embeddings 与 bigram hash embedding 双样本退化，long-window 双样本退化，QK norm 单样本退化。剩余缺口是 EoS/QK 的稳定样本，以及 block3 skip、cautious WD、residual decay 等现有 queued 实验的首样本证据。
+- Code changes: no; 本轮未修改训练代码或运行脚本。仅追加本分析记录；最新 long-window 结果文件和汇总 CSV/JSON 来自刚完成的 run/collect_results。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-long-window-off-local-pod72-rerun2-1780566901-8d5a8340
+- Linked experiment ids: readme-top10-long-window-off-local-pod72-rerun2
+- Input code commits: c6fffd7ee21c5de36573f6fccdd486a2fde355e3
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/readme_top10_ablation_results.csv`
+- `experiments/results/readme_top10_readme_top10_long_window_off_local_pod72_rerun2.json`
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T10:00:28Z: codex-1780567082027-81beb7c4
+
+- Trigger: 1 run(s) finished
+- Summary: long_window_off 新样本 val_loss=3.2975，与已有 3.2969 一致；关闭 long-window/FA3 window family 稳定损害当前 root 的 loss。当前最强因果证据仍是 Polar Express/Muon 子项，之后是 EoS alignment nan、value embeddings 双样本退化、bigram hash embedding 双样本退化、long-window 双样本退化、QK norm 单样本退化。
+- Goal progress: README record-history delta 先验已建立，当前代码 ablation 已覆盖多数 top10 候选。缺口主要是 EoS/QK 的稳定性样本，以及 block3 skip、cautious WD、residual decay 等 queued 实验的首样本证据；这些已有队列覆盖，当前不需要重复新增。
+- Code changes: no; 未修改训练代码或运行脚本；仅追加 experiments/arthur/idea_result_links.md 的本轮分析记录。结果 CSV/JSON 由刚完成的 run/collect_results 产生。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-long-window-off-local-pod72-rerun2-1780566901-8d5a8340
+- Linked experiment ids: readme-top10-long-window-off-local-pod72-rerun2
+- Input code commits: c6fffd7ee21c5de36573f6fccdd486a2fde355e3
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
