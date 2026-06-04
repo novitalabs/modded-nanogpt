@@ -122,6 +122,29 @@ elif ablation == "fp8_lm_head_off":
         'use_fp8 = not os.environ.get("DISABLE_FP8", False)',
         "use_fp8 = False",
     )
+elif ablation == "fp8_lm_head_dense_train_off":
+    replace_once(
+        'use_fp8 = not os.environ.get("DISABLE_FP8", False)',
+        "use_fp8 = False",
+    )
+    replace_once(
+        """        if self.training:
+            loss_per_token = FusedSoftcappedCrossEntropy.apply(x.view(-1, x.size(-1)), target_seq, mtp_weights, self.lm_head.weight, self.lm_head.x_s, self.lm_head.w_s, self.lm_head.grad_s, grad_scale)
+        else:
+            logits = self.lm_head(x)
+            logits = 23 * torch.sigmoid((logits + 5) / 7.5)
+            logits_for_loss = logits.float()
+            loss_per_token = F.cross_entropy(logits_for_loss.view(-1, logits_for_loss.size(-1)), target_seq, reduction="none")""",
+        """        logits = self.lm_head(x)
+        logits = 23 * torch.sigmoid((logits + 5) / 7.5)
+        logits_for_loss = logits.float()
+        loss_per_token = torch.zeros_like(target_seq, dtype=logits_for_loss.dtype)
+        for mtp_offset, mtp_weight in enumerate(mtp_weights):
+            if mtp_offset == 0:
+                loss_per_token += mtp_weight * F.cross_entropy(logits_for_loss.view(-1, logits_for_loss.size(-1)), target_seq, reduction="none")
+            elif target_seq.numel() > mtp_offset:
+                loss_per_token[:-mtp_offset] += mtp_weight * F.cross_entropy(logits_for_loss[:-mtp_offset].reshape(-1, logits_for_loss.size(-1)), target_seq[mtp_offset:], reduction="none")""",
+    )
 elif ablation == "batch_schedule_constant_final":
     replace_once(
         "TrainingStage(duration=1/3, train_max_seq_len=896, batch_size=8 * 2048 * 8, window_sizes=(1, 3), lr_mul=1.0,",

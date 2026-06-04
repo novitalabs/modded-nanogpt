@@ -1233,3 +1233,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T12:35:21Z: codex-1780576021433-2e3f65f4
+
+- Trigger: 1 run(s) finished
+- Summary: FP8 lm_head 新样本 val_loss=3.2774 达标，但旧 fp8_lm_head_off 分支基本没有关闭训练中的 FP8 head 路径，不能作为 rank5 的有效因果证据；强证据仍集中在 EoS alignment、Polar/Muon、value embeddings、bigram hash、batch schedule mean、long windows、QK norm 和 MTP。
+- Goal progress: README 历史先验已建立，当前 ablation 覆盖多数候选；本轮发现 FP8/head 家族证据存在方法缺口，并新增了真正 dense-train 反事实分支。剩余主要缺口是该 FP8 真实 ablation，以及队列中的 paired head、MUDD、smear/cautious/block3 等低位排序样本。
+- Code changes: yes; 修改 experiments/arthur/run_readme_ablation.sh，新增 fp8_lm_head_dense_train_off 分支：关闭 use_fp8，并把训练 fused FP8 softcapped CE 替换为 BF16 dense lm_head + softcap + MTP-shifted CE fallback；未修改 train_gpt.py。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-fp8-lm-head-off-1780575841-73cacfa6
+- Linked experiment ids: readme-top10-fp8-lm-head-off
+- Input code commits: 2345754dec5161c12b91e533eeb77abc6c3ba284
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-fp8-lm-head-dense-train-off | True FP8 train head ablation | 关闭训练中的 fused FP8 lm_head/softcapped CE 路径并改用 BF16 dense lm_head 后，若训练时间显著变慢或 loss 改变，才能量化 README rank5 FP8 head 家族在当前代码中的真实贡献。 | new | 旧 fp8_lm_head_off 未触达训练 FP8 CE 路径；历史先验 rank5 很高，需要这个隔离变量的真实反事实样本。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

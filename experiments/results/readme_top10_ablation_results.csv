@@ -39,3 +39,4 @@ readme_top10_residual_decay_off,residual_decay_off,logs/readme_top10_residual_de
 readme_top10_mtp_off_rerun1,mtp_off,logs/readme_top10_mtp_off_rerun1.txt,1380,1380,3.289400,1.287250,55.970000,3.280000,false,0
 readme_top10_xsa_off_rerun1,xsa_off,logs/readme_top10_xsa_off_rerun1.txt,1380,1380,3.284000,1.266217,55.050000,3.280000,false,0
 readme_top10_bigram_off,bigram_off,logs/readme_top10_bigram_off.txt,1380,1380,3.299900,1.269883,55.210000,3.280000,false,0
+readme_top10_fp8_lm_head_off,fp8_lm_head_off,logs/readme_top10_fp8_lm_head_off.txt,1380,1380,3.277400,1.287950,56.000000,3.280000,true,0
