@@ -1061,6 +1061,7 @@ local_rerun,track_1_short,logs/readme_top10_value_embeds_off_clean_rerun.txt,138
 local_rerun,track_1_short,logs/readme_top10_value_embeds_off_rerun2_pod72.txt,1380,1380,3.3106,74882.0,1.2480333333333333,54.26,30544,46772,True,False
 local_rerun,track_1_short,logs/readme_top10_value_skip_gates_static_pod72.txt,1380,1380,3.2809,76513.0,1.2752166666666667,55.44,31262,48326,True,False
 local_rerun,track_1_short,logs/readme_top10_value_skip_gates_static_rerun1_pod72.txt,1380,1380,3.2799,76435.0,1.2739166666666666,55.39,31429,48388,True,True
+local_rerun,track_1_short,logs/readme_top10_value_skip_gates_static_rerun2_pod72.txt,1380,1380,3.2787,76451.0,1.2741833333333332,55.4,31429,48446,True,True
 local_rerun,track_1_short,logs/readme_top10_xsa_off.txt,1380,1380,3.2835,75984.0,1.2664,55.06,31429,47264,True,False
 local_rerun,track_1_short,logs/readme_top10_xsa_off_rerun1.txt,1380,1380,3.284,75973.0,1.2662166666666668,55.05,31327,47184,True,False
 local_rerun,track_1_short,logs/readme_top10_xsa_off_rerun2_pod72.txt,1380,1380,3.2826,75961.0,1.2660166666666666,55.04,31429,47964,True,False

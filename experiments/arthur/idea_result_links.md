@@ -3956,3 +3956,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T22:33:10Z: codex-1780612261918-fe738aea
+
+- Trigger: 1 run(s) finished
+- Summary: value_skip_gates_static 第三个样本 val_loss=3.2787、target_met=true；三样本为 3.2809/3.2799/3.2787，均值约 3.2798，2/3 达标。该项当前应降级为边界或近中性证据。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖多数候选。强证据仍集中在 Rotary、ReLU2、value embeddings、long-window/YaRN、batch schedule、bigram、MUDD、MTP、QK norm、NorMuon 等；剩余主要缺口是已排队的 embed/lm_head untie、residual decay、Partial Key Offset 第三样本。
+- Code changes: no; 未修改代码；本轮只分析 Arthur 自动产出的 value_skip_gates_static_rerun2_pod72 结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-value-skip-gates-static-rerun2-pod72-1780612081-f8346801
+- Linked experiment ids: readme-top10-value-skip-gates-static-rerun2-pod72
+- Input code commits: 60b7fd658cf14a74924056a2305f9904a279af52
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
