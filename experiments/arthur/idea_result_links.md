@@ -1793,3 +1793,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T14:44:37Z: codex-1780584062071-c895ef7d
+
+- Trigger: 1 run(s) finished
+- Summary: smear_off_rerun2_pod72 成功完成 1380/1380，val_loss=3.2790、target_met=true；与首样本 3.2827 分歧，smear one-token lookback 当前降级为边界/噪声项。
+- Goal progress: 强因果证据仍集中在 EoS alignment、Polar/Muon 子项、value embeddings、bigram hash、batch schedule mean、long windows、MUDD、QK norm、MTP；smear 不再是强候选。剩余缺口是 residual_decay 已排队复验，以及历史 rank3/rank4 的 zero projection init 与 embedding skip 仍只有一个中性样本，需要复验才能安全降级。
+- Code changes: no; 未修改代码；本轮只分析 smear_off_rerun2_pod72，结果文件由实验脚本自动落盘。
+- Suggested experiments: 2
+- Pending result runs: readme-top10-smear-off-rerun2-pod72-1780583881-941e5560
+- Linked experiment ids: readme-top10-smear-off-rerun2-pod72
+- Input code commits: d9556120bffe20f662f07b46629754174fa3dac4
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-zero-mlp-proj-init-off-rerun1 | Zero init stability | 第二个 zero_mlp_proj_init_off 样本将判断取消 MLP projection zero init 仍可达标是否稳定；若仍无退化，则历史 rank3 zero-init 在当前 root 中应降级。 | new | zero init 历史先验很高，但首个当前 ablation val_loss=3.2782 达标；需要复验确认不是单次噪声。 |
+| readme-top10-embedding-skip-off-rerun1 | Embedding skip stability | 第二个 embedding_skip_off 样本将判断 embedding-to-block skip 在当前 root 中是否确实不是强贡献项；若仍达标，则 skip family 主要证据来自其它子项而非 embedding skip。 | new | embedding skip 历史先验高，但首样本 val_loss=3.2779 达标，且 block3_skip_off 双样本也接近中性；复验可决定是否整体降级该子项。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
