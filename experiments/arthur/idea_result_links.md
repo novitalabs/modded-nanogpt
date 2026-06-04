@@ -474,3 +474,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T09:48:50Z: codex-1780566421405-e1362529
+
+- Trigger: 1 run(s) finished
+- Summary: polar_express_off 已有三条有效反证：val_loss=10.8258、nan、nan，关闭 Polar Express 会导致发散级退化；当前 provisional 强信号依次包括 Polar Express/Muon 子项、EoS alignment nan、value embeddings 双样本退化、bigram 双样本退化、long-window 单样本退化、QK norm 单样本退化。batch_schedule_constant_final 降低 loss 但显著变慢，应按速度/预算单独评估。
+- Goal progress: README historical prior 已建立，当前代码 ablation 已覆盖多数 top10 候选。主要缺口仍是 long_window_off、EoS alignment、QK norm 的稳定性样本，以及 block3 skip、cautious WD、residual decay 的待完成结果；这些已经在现有 .72/local 队列中覆盖，当前不应新增重复实验。
+- Code changes: no; 本轮未修改代码；仅核对并归纳新产生的 polar_express_off 结果文件和汇总 CSV。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-polar-express-off-local-rerun3-1780566227-cd9f513e
+- Linked experiment ids: readme-top10-polar-express-off-local-rerun3
+- Input code commits: ced53fe0c6a6fa4432713e884ccc4a135adb6404
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
