@@ -71,6 +71,30 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/summary.json`
 
 
+## 2026-06-04T15:25:55Z: codex-1780586641638-1848d4f7
+
+- Trigger: 1 run(s) finished
+- Summary: readme_top10_batch_schedule_constant_final 第三个/第四个有效样本完成 1380/1380，val_loss=3.2332、target_met=true、train_time_min=1.8615。结合同组 3.2330/3.2342/3.2346，constant-final batch 在固定步数下 loss 更低但训练时间稳定显著变慢；再结合 constant-mean 两次 3.3003/3.3004 目标未命中，batch schedule 的速度/质量权衡贡献证据很强。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖并复验多数候选。当前强证据 top10 暂定为 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、batch schedule、long windows、MUDD、QK norm、MTP、FP8 train head；Cautious WD 和 Learnable XSA 是边界替补，paired head 更弱。zero init、embedding skip、block3 skip、embed/lm_head untie、residual decay、max doc count、smear 目前不支持强贡献。主要缺口仍是已排队的 PKO 第二样本。
+- Code changes: no; 未修改训练代码或实验 runner；本轮只分析自动落盘的 batch_schedule_constant_final 结果并追加本记录。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-batch-schedule-constant-final-1780586401-e0e59e23
+- Linked experiment ids: readme-top10-batch-schedule-constant-final
+- Input code commits: d0389b38a6ef7829fb69cb5907754597891c3571
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+
 ## 2026-06-04T15:06:23Z: codex-current-residual-decay-rerun
 
 - Trigger: 1 run(s) finished
@@ -1981,6 +2005,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - Pending result runs: extension-5-final-only-1780586102-da72fc25
 - Linked experiment ids: extension-5-final-only
 - Input code commits: 525ad3f5ce347b2c43b64d362f519c2a4c43f09c
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T15:27:55Z: codex-1780586641638-1848d4f7
+
+- Trigger: 1 run(s) finished
+- Summary: batch schedule 的因果证据进一步增强：constant-final 固定步数 loss 更低但显著变慢，constant-mean 稳定退化；当前强证据 top10 暂定为 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、batch schedule、long windows、MUDD、QK norm、MTP、FP8 train head。
+- Goal progress: README 历史先验已建立，当前代码可逆 ablation 已覆盖并复验多数候选。Cautious WD、Learnable XSA、paired head 属于边界或替补；zero init、embedding skip、block3 skip、embed/lm_head untie、residual decay、max doc count、smear 当前不支持强贡献。剩余主要缺口是已排队的 PKO 第二样本，以确认单样本中性结果是否稳定。
+- Code changes: no; 未修改训练代码或实验 runner；仅追加了 experiments/arthur/idea_result_links.md 的本轮分析记录，结果汇总文件由运行/收集流程自动更新。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-batch-schedule-constant-final-1780586401-e0e59e23
+- Linked experiment ids: readme-top10-batch-schedule-constant-final
+- Input code commits: d0389b38a6ef7829fb69cb5907754597891c3571
 
 ### Ideas
 
