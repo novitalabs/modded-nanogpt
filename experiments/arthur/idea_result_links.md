@@ -694,3 +694,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T10:30:56Z: codex-1780569001906-feae00f8
+
+- Trigger: 1 run(s) finished
+- Summary: long_window_off 新样本 val_loss=3.2962，第四次稳定未达 3.28 目标，强化 long-window/FA3-window family 的正向因果证据；当前排序上它应低于 Polar Express、EoS alignment、value embeddings、bigram hash embedding、batch schedule。
+- Goal progress: README record-history delta 先验已建立，当前 ablation 已覆盖多数 README top10 候选。缺口仍是 EoS/QK/batch schedule 的稳定样本，以及 block3 skip、cautious WD、residual decay 的首样本；这些已经在现有队列中，不需要新增重复实验。
+- Code changes: no; 未修改代码；本轮只分析 readme-top10-long-window-off-depfix-rerun3 的落盘结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-long-window-off-depfix-rerun3-1780568821-0dddaf72
+- Linked experiment ids: readme-top10-long-window-off-depfix-rerun3
+- Input code commits: 793263f047d2291000b6fb5c94503d2e6cd3d551
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
