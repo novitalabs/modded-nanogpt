@@ -670,3 +670,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T10:26:27Z: codex-1780568641588-1dc86fbe
+
+- Trigger: 1 run(s) finished
+- Summary: long_window_off 新样本 val_loss=3.2954、target_met=false，强化了 long-window/FA3-window family 的稳定负向因果证据。当前最强证据仍是 Polar Express/Muon 子项，关闭后多次出现 10.8258 或 nan；其次是 EoS alignment 单样本 nan、value embeddings 双样本约 3.312-3.315、bigram 双样本约 3.299-3.302、batch_schedule_constant_mean 单样本 3.3004，以及 long_window_off 多样本约 3.295-3.297。
+- Goal progress: README record-history delta 先验已建立，当前代码 ablation 已覆盖大多数历史 top10。缺口仍是 EoS/QK/batch schedule 的稳定性样本，以及 block3 skip、cautious WD、residual decay 的首样本；这些实验已经在现有队列中，当前无需新增重复实验。
+- Code changes: no; 未修改代码；本轮只分析刚完成的 long_window_off 结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-long-window-off-clean-rerun1-1780568461-e881b202
+- Linked experiment ids: readme-top10-long-window-off-clean-rerun1
+- Input code commits: 78451a8f43690877e4cc76aa8232b4cbee3b8534
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
