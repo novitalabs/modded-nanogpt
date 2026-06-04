@@ -2117,3 +2117,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T15:52:23Z: codex-1780588261925-fa9b4461
+
+- Trigger: 1 run(s) finished
+- Summary: 本轮失败是环境/命令问题，不计入 ablation 证据；sparse attention gate 仍只有一个有效样本，冻结 gate 后 val_loss=3.2844、target_met=false，支持但尚未确认其低位 top10 地位。
+- Goal progress: README 历史先验已建立，主要候选已有当前代码可逆 ablation。强证据仍偏向 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、batch schedule、long windows、MUDD、QK norm、MTP、FP8 train head；Sparse attention gate 和 Adam two-step 是当前低位候选的不确定缺口，需要有效第二样本。
+- Code changes: no; 未修改代码；本轮只判定 readme-top10-attn-gate-freeze-rerun1 为本地 Python 依赖失败。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-attn-gate-freeze-rerun1-1780588201-8991de8f
+- Linked experiment ids: readme-top10-attn-gate-freeze-rerun1
+- Input code commits: 57a551a6f0ffe5667e67441a5169d61ef7ea0592
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-attn-gate-freeze-rerun2-pod72 | Sparse attention gate pod72 stability | 在 .72 pod 上复跑 attn_gate_freeze，若第二个有效样本仍未达标，则确认 learned sparse attention gate 在当前 root 中有稳定质量贡献；若达标，则首样本可能只是方差。 | new | 上一条 rerun 因 RUN_README_ABLATION_DIRECT=1 落到本地无 torch/triton 的 /usr/bin/python；本实验强制走 .72 pod，只补同一变量的有效稳定性样本。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
