@@ -718,3 +718,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T10:35:58Z: codex-1780569241330-55167916
+
+- Trigger: 1 run(s) finished
+- Summary: polar_express_off 现在有 5 条有效反事实证据：两次 val_loss=10.8258，三次 val_loss=nan。关闭 Polar Express 会稳定导致发散级退化，是当前 root 上最强因果贡献信号。当前较强证据层级为 Polar Express/Muon 子项、EoS alignment nan、value embeddings 双样本退化、bigram hash embedding 双样本退化、batch_schedule_constant_mean 单样本退化、long-window 多样本退化、QK norm 单样本退化。
+- Goal progress: README record-history delta 历史先验已建立，当前代码 ablation 已覆盖大多数历史 top10 候选。主要缺口仍是 EoS/QK/batch schedule 的稳定性样本，以及 block3 skip、cautious WD、residual decay 的首样本证据；这些已在现有 queued 实验中覆盖，当前不需要新增重复实验。
+- Code changes: no; 未修改代码；本轮只分析刚完成的 polar_express_off_rerun1 结果。结果 CSV/JSON 已由运行落盘，等待 Arthur 提交。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-polar-express-off-rerun1-1780569061-41667276
+- Linked experiment ids: readme-top10-polar-express-off-rerun1
+- Input code commits: e933bfc48111680094f688fe928a7ba7095652d9
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
