@@ -70,6 +70,32 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+## 2026-06-04T18:20:01Z: codex-normuon-varred-off-rerun2
+
+- Trigger: 1 run(s) finished
+- Summary: `normuon_varred_off` 第二个有效样本完成 1380/1380，`val_loss=3.2878`、`target_met=false`、`train_time=1.2923min`；与首样本 `3.2867` 同向，说明 NorMuon variance reduction 有稳定中等质量贡献。
+- Goal progress: README 历史先验和当前代码可逆 ablation 已覆盖大多数候选。当前强证据仍是 EoS/Polar Express 发散类、Rotary、ReLU2、value embeddings、bigram、long-window/YaRN、batch schedule、MUDD、QK norm、MTP；NorMuon variance reduction 现在从缺口转为已复验的边界/候补 top10 证据，强于 Cautious WD/XSA/Adam/sparse gate 低位组但弱于 MTP/QK/MUDD。
+- Code changes: yes; 在 `experiments/arthur/run_readme_ablation.sh` 新增 `max_seq_len_schedule_off` 可逆 ablation 分支，只把第一阶段 `train_max_seq_len` 从 896 改为 2048，用于后续隔离 max seq length schedule。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-normuon-varred-off-rerun2-pod72-1780597021-079950d0
+- Linked experiment ids: readme-top10-normuon-varred-off-rerun2-pod72
+- Input code commits: f13fe19b621e59259222cd228747887659ad0845
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-max-seq-len-schedule-off-pod72 | Ablate max seq length schedule | 去掉第一阶段 896-token max seq length warmup、从一开始使用 2048，若 loss 或速度明显变差，则 max seq length schedule 可作为 batch/window 调度族的独立证据；若接近默认，则该 README 方法应降为非 top10。 | new | README 历史先验里 max seq length schedule 是尚未单独覆盖的调度项；新增 runner 分支只改 train_max_seq_len，不改 batch/window/LR/MTP。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/readme_top10_ablation_results.csv`
+- `experiments/results/readme_top10_readme_top10_normuon_varred_off_rerun2_pod72.json`
+- `experiments/results/summary.json`
+
 ## 2026-06-04T18:12:01Z: codex-normuon-varred-off-rerun1-failed
 
 - Trigger: 1 run(s) finished
@@ -2828,6 +2854,30 @@ depending on whether the priority is tighter step count or higher confidence.
 | experiment id | title | hypothesis | status at analysis | notes |
 | --- | --- | --- | --- | --- |
 | readme-top10-normuon-varred-off-rerun2-pod72 | NorMuon variance reduction retry | 第二个有效 normuon_varred_off 样本若仍在约 3.286 且 target_met=false，则 NorMuon variance reduction 可进入 top10 边界组；若回到 <=3.28，则首样本更可能是噪声。 | new | 上一条复验只因下载 fallback 网络错误失败，没有训练证据；新 id 重试同一单变量 ablation。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T18:27:29Z: codex-1780597201939-021bb171
+
+- Trigger: 1 run(s) finished
+- Summary: NorMuon variance reduction 已有两个有效关闭样本：3.2867 和 3.2878，均未达 3.28，支持其为稳定中等贡献/边界 top10 候选。
+- Goal progress: README 历史先验和当前代码可逆 ablation 已覆盖大多数候选；强证据集中在 EoS/Polar Express、Rotary、ReLU2、value embeddings、bigram、long-window/YaRN、batch schedule、MUDD、QK norm、MTP、FP8 train-head speed。缺口转向尚未单独隔离的调度项，尤其 max seq length schedule。
+- Code changes: yes; 更新 experiments/arthur/run_readme_ablation.sh，新增 max_seq_len_schedule_off 分支，仅把第一阶段 train_max_seq_len 从 896 改为 2048；更新 experiments/arthur/idea_result_links.md 记录 NorMuon rerun2 结论和下一实验。未修改 train_gpt.py。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-normuon-varred-off-rerun2-pod72-1780597021-079950d0
+- Linked experiment ids: readme-top10-normuon-varred-off-rerun2-pod72
+- Input code commits: f13fe19b621e59259222cd228747887659ad0845
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-max-seq-len-schedule-off-pod72 | Ablate max seq length schedule | 去掉第一阶段 896-token max seq length warmup、从一开始使用 2048；若 loss 或速度明显变差，则 max seq length schedule 是独立有效调度项，否则应降为非 top10。 | new | README 历史先验中 max seq length schedule 尚未单独覆盖；新分支只改 train_max_seq_len，不混入 batch/window/LR/MTP。 |
 
 ### Linked Result Files
 
