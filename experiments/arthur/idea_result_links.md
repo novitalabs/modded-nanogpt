@@ -1332,3 +1332,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T12:53:21Z: codex-1780577401157-20bdd49c
+
+- Trigger: 1 run(s) finished
+- Summary: 最新 fp8_lm_head_dense_train_off_stability 失败无因果意义，失败点是 direct host Python 缺 torch。已有有效 fixed 样本显示关闭训练 fused FP8 lm_head/softcapped CE 后 val_loss=3.2779 仍达标，但 step_avg=69.79ms，明显慢于当前默认/旧 proxy 的约 56ms，FP8 head 家族目前更像强速度贡献。
+- Goal progress: README 历史先验和多数当前 ablation 已覆盖；FP8 真实训练路径已有 1 个有效样本，但稳定性样本因环境问题无效。缺口仍是补一个 .72 pod 上的干净 FP8 dense-train stability 样本，并等待 paired head、MUDD、smear 等已排队低位候选完成。
+- Code changes: yes; 修改 experiments/arthur/run_readme_ablation.sh：自动优先选择能导入 torch/triton 的 Python；将 torch/triton 预检与 kernels 预检分开，只有缺 kernels 时才 pip install kernels；缺 torch/triton 时清晰报错退出。未修改 train_gpt.py。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-fp8-lm-head-dense-train-off-stability-1780577342-7e925d6a
+- Linked experiment ids: readme-top10-fp8-lm-head-dense-train-off-stability
+- Input code commits: b042d330e4e534d38b782429cc7671da8f791595
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-fp8-lm-head-dense-train-off-stability-pod72 | True FP8 train head pod72 stability | 在已验证可用的 .72 pod 上复跑真实 dense-train FP8 关闭样本，确认 BF16 dense fallback 的约 70ms step_avg 与 loss≈3.278 是否稳定。 | new | 上一条 stability 失败是 direct host 缺 torch；fixed 样本用 .72 pod 成功，当前需要同路径稳定性证据。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

@@ -26,13 +26,28 @@ cd "${workdir}"
 
 python_bin="${PYTHON_BIN:-}"
 if [[ -z "${python_bin}" ]]; then
+  python_candidates=()
   if command -v python >/dev/null 2>&1; then
-    python_bin="python"
-  elif command -v python3 >/dev/null 2>&1; then
-    python_bin="python3"
-  else
+    python_candidates+=("$(command -v python)")
+  fi
+  if command -v python3 >/dev/null 2>&1; then
+    python_candidates+=("$(command -v python3)")
+  fi
+  if [[ ${#python_candidates[@]} -eq 0 ]]; then
     echo "python/python3 not found"
     exit 127
+  fi
+  for candidate in "${python_candidates[@]}"; do
+    if "${candidate}" - <<'PY' >/dev/null 2>&1
+import torch, triton
+PY
+    then
+      python_bin="${candidate}"
+      break
+    fi
+  done
+  if [[ -z "${python_bin}" ]]; then
+    python_bin="${python_candidates[0]}"
   fi
 fi
 
@@ -267,17 +282,36 @@ VARIANT_PY
 
 if ! "${python_bin}" - <<'PY' >/dev/null 2>&1
 import torch, triton
+PY
+then
+  echo "python dependency preflight failed: ${python_bin} cannot import torch and triton"
+  "${python_bin}" - <<'PY' || true
+import sys
+print(f"python={sys.executable}")
+for module in ("torch", "triton"):
+    try:
+        __import__(module)
+        print(f"{module}=ok")
+    except Exception as exc:
+        print(f"{module}=missing: {type(exc).__name__}: {exc}")
+PY
+  exit 7
+fi
+
+if ! "${python_bin}" - <<'PY' >/dev/null 2>&1
 import kernels
 PY
 then
   echo "missing kernels package; attempting pip install kernels"
   "${python_bin}" -m pip install kernels
-  "${python_bin}" - <<'PY'
+fi
+
+"${python_bin}" - <<'PY'
+import sys
 import torch, triton
 import kernels
-print("python dependency preflight passed")
+print(f"python dependency preflight passed: {sys.executable}")
 PY
-fi
 
 started_at="$(date -Iseconds)"
 echo "starting readme_top10 variant=${variant_id} ablation=${ablation} pod=$(hostname) at ${started_at}"
