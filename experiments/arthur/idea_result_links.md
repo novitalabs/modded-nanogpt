@@ -1431,3 +1431,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T13:17:41Z: codex-1780578841929-01551959
+
+- Trigger: 1 run(s) finished
+- Summary: bigram hash embedding ablation 最新样本再次明显未达标，当前 CSV 中 bigram_off 记录均指向约 3.30 的稳定 loss 退化；它应保持在当前 top10 强因果证据层。
+- Goal progress: README 历史先验已建立，当前 ablation 已形成较清楚层级：Polar Express/Muon、EoS alignment、value embeddings、batch schedule mean、bigram hash、long windows 为强证据；QK norm、MTP 为中等稳定证据；XSA 和 FP8 lm_head 速度贡献可作为低位/维度不同的候选。剩余缺口主要是低位边界项，现有 queued 实验已覆盖。
+- Code changes: no; 未修改代码；本轮只分析 readme_top10_bigram_off_clean_rerun 结果，运行产物由实验脚本自动更新。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-bigram-off-clean-rerun-1780578661-0993d92c
+- Linked experiment ids: readme-top10-bigram-off-clean-rerun
+- Input code commits: 14b97ede1eccd89c8f55a007ab588fc55e542500
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

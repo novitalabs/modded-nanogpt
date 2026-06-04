@@ -43,3 +43,4 @@ readme_top10_fp8_lm_head_off,fp8_lm_head_off,logs/readme_top10_fp8_lm_head_off.t
 readme_top10_fp8_lm_head_dense_train_off_fixed,fp8_lm_head_dense_train_off,logs/readme_top10_fp8_lm_head_dense_train_off_fixed.txt,1380,1380,3.277900,1.605233,69.790000,3.280000,true,0
 readme_top10_fp8_lm_head_dense_train_off_stability_pod72,fp8_lm_head_dense_train_off,logs/readme_top10_fp8_lm_head_dense_train_off_stability_pod72.txt,1380,1380,3.282400,1.608517,69.940000,3.280000,false,0
 readme_top10_embed_lm_head_untie_off,embed_lm_head_untie_off,logs/readme_top10_embed_lm_head_untie_off.txt,1380,1380,3.277100,1.287033,55.960000,3.280000,true,0
+readme_top10_bigram_off_clean_rerun,bigram_off,logs/readme_top10_bigram_off_clean_rerun.txt,1380,1380,3.301800,1.269933,55.210000,3.280000,false,0
