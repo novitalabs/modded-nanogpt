@@ -1819,3 +1819,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T14:50:21Z: codex-1780584481218-6a11e141
+
+- Trigger: 1 run(s) finished
+- Summary: zero_mlp_proj_init_off 第二个有效样本完成 1380/1380，val_loss=3.2799、target_met=true；结合首样本 3.2782，取消 MLP projection zero init 未产生稳定退化，应从当前强因果 top10 候选降级。当前强证据仍集中在 Polar Express/Muon、EoS alignment、value embeddings、bigram hash embedding、batch schedule、long windows、MUDD、QK norm、MTP，以及 FP8 train head 的速度贡献。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖多数候选。zero init 这个历史高先验项现在有 2 个中性样本；smear 也已降为边界/噪声项。主要缺口是已排队的 embedding_skip_off 复验和 residual_decay_off 复验，完成后低位 top10 边界会更清楚。
+- Code changes: no; 未修改训练代码或 ablation 脚本；本轮只分析自动落盘的 zero_mlp_proj_init_off_rerun1 结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-zero-mlp-proj-init-off-rerun1-1780584301-8b44e70b
+- Linked experiment ids: readme-top10-zero-mlp-proj-init-off-rerun1
+- Input code commits: cf9dd27214eacca3df349096a3059626a6d2817c
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
