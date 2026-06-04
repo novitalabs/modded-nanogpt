@@ -2936,3 +2936,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T18:54:27Z: codex-1780599181780-438f236f
+
+- Trigger: 1 run(s) finished
+- Summary: logit_rescale_symmetric 首样本 val_loss=3.2819、target_met=false，支持 asymmetric logit rescale/softcap 有边界质量贡献，但样本数不足以定论。
+- Goal progress: README 历史先验已建立，当前代码可逆 ablation 已覆盖多数候选。强证据仍集中在 Rotary、ReLU2、value embeddings、bigram、long-window/YaRN、MUDD、QK norm、MTP、NorMuon、EoS/文档边界、FP8 train-head speed 等；asymmetric logit rescale 和 value/skip gates 仍需复验以决定是否进入 top10 边界。
+- Code changes: no; 未修改代码；仅分析新完成的 logit_rescale_symmetric 结果。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-logit-rescale-symmetric-pod72-1780598821-f421ed51
+- Linked experiment ids: readme-top10-logit-rescale-symmetric-pod72
+- Input code commits: 540df87d908355e6d4c68313bb35b90c903c18c3
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-logit-rescale-symmetric-rerun1-pod72 | Logit rescale stability | 第二个 logit_rescale_symmetric 样本若仍高于 3.28，则 asymmetric logit rescale/softcap 是 FP8 head 方法族中的稳定独立质量贡献；若回到 <=3.28，则首样本可能是短跑噪声。 | new | 复用已有单变量分支，只改变 logit rescale/softcap 形式，不混入 FP8 lm_head、MTP 或训练步数变化。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
