@@ -97,6 +97,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+## 2026-06-04T22:54:01Z: codex-1780613641594-fbc0f1d0
+
+- Trigger: 1 run(s) finished
+- Summary: extension-3-final-only-rerun-1 完整跑完 1378/1378，日志给出 val_loss=3.2786，低于 3.28；Arthur run status 标成 failed 但 exit_code=0，按训练日志应视为边界达标样本而非运行失败。1378 步组现在 3 个样本仅 1 个达标，均值约 3.2803，说明 +3 extension 有偶发达标但稳定性不足。
+- Goal progress: README 历史先验已建立，当前 ablation 已形成大部分三样本证据。当前强因果信号仍集中在 rotary、ReLU2、value embeddings、long-window/YaRN、batch schedule、bigram、MUDD、MTP、QK norm、NorMuon 等；EoS alignment 是 NaN 级稳定性关键项。剩余缺口主要是已排队的 residual_decay 与 Partial Key Offset 第三样本，不需要为本轮 extension-3 结果新增 README ablation。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只追加 Arthur journal 分析记录。
+- Suggested experiments: 0
+- Pending result runs: extension-3-final-only-rerun-1-1780613461-be9109e0
+- Linked experiment ids: extension-3-final-only-rerun-1
+- Input code commits: 58ba2513b3840804474bdd5d52ac91be391b207b
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
 
 ## 2026-06-04T22:43:02Z: codex-1780612921610-4e7d8939
 
@@ -4062,6 +4085,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - Pending result runs: extension-2-final-only-1780613101-490781af
 - Linked experiment ids: extension-2-final-only
 - Input code commits: 7e6e26f875528f56addfcd8a865043f37701cc75
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T22:57:25Z: codex-1780613641594-fbc0f1d0
+
+- Trigger: 1 run(s) finished
+- Summary: extension-3-final-only-rerun-1 日志显示完整完成且 val_loss=3.2786 达标；Arthur 状态标 failed 但 exit_code=0，应按边界达标样本记录。1378 步组整体仍不稳定：3 个样本仅 1 个达标，均值约 3.2803。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖大部分候选并形成三样本证据。强因果信号仍集中在 rotary、ReLU2、value embeddings、long-window/YaRN、batch schedule、bigram、MUDD、MTP、QK norm、NorMuon 等；EoS alignment 是 NaN 级稳定性关键项。剩余主要缺口是已排队的 residual_decay 与 Partial Key Offset 第三样本。
+- Code changes: no; 未修改训练代码或实验脚本；仅追加 experiments/arthur/idea_result_links.md 的本轮分析记录。
+- Suggested experiments: 0
+- Pending result runs: extension-3-final-only-rerun-1-1780613461-be9109e0
+- Linked experiment ids: extension-3-final-only-rerun-1
+- Input code commits: 58ba2513b3840804474bdd5d52ac91be391b207b
 
 ### Ideas
 
