@@ -3238,3 +3238,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T19:58:27Z: codex-1780603021974-06160029
+
+- Trigger: 1 run(s) finished
+- Summary: YaRN-only ablation 首样本 val_loss=3.2885，明显高于 3.28 阈值，但弱于 long_window_off 约 3.296-3.299 和 long_window_yarn_off 约 3.301-3.302；当前证据支持 YaRN 有独立贡献，但仍需复验。
+- Goal progress: README 历史先验和多数当前代码可逆 ablation 已覆盖。long-window/YaRN 组合已是稳定强候选；当前缺口是 YaRN-only 只有一个有效样本，需要第二个样本确认是否进入稳定 top10 或仅作组合项子贡献。
+- Code changes: no; 未修改代码；本轮仅分析 readme_top10_yarn_off_pod72 结果。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-yarn-off-pod72-1780602721-0484ca2a
+- Linked experiment ids: readme-top10-yarn-off-pod72
+- Input code commits: 62dc3767b3e156e02a03d61c2320607613effdec
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-yarn-off-rerun1-pod72 | YaRN only stability | 第二个 yarn_off 样本若仍显著高于 3.28，则 YaRN 动态缩放是 long-window/FA3 家族中的稳定独立质量贡献；若回到阈值附近，则首样本可能是短跑噪声。 | new | 复用已有 yarn_off 单变量分支，只跳过 Yarn.apply，不改 long-window schedule；这是当前拆分 long-window/YaRN 组合贡献的信息增益最高实验。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
