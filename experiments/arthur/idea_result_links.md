@@ -70,6 +70,31 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T12:47:17Z: codex-fp8-dense-train-fixed-result
+
+- Trigger: 1 run(s) finished
+- Summary: `readme_top10_fp8_lm_head_dense_train_off_fixed` 完成 1380/1380，`val_loss=3.2779`、`target_met=true`，但训练时间 `1.6052 min`、`step_avg=69.79ms`，相对同一代码附近默认/root 与旧 proxy FP8 ablation 的约 `56ms` 明显变慢；这说明真正 fused FP8 lm_head/softcapped CE 主要贡献是训练速度，单样本没有显示质量收益。
+- Goal progress: README 历史先验中 FP8 head 家族为高位候选；当前因果证据从旧 proxy ablation 修正为真实训练路径 ablation。它应作为速度强贡献纳入 top10，但还需要至少一个稳定性样本确认 `~25%` step_avg 回退不是单次运行噪声。质量贡献暂不成立，当前 loss 与默认样本在噪声范围内。
+- Code changes: no; 本轮未修改训练代码或 ablation 脚本。`experiments/arthur/run_readme_ablation.sh` 的 dense-train 修复已在上一轮完成，本轮只分析修复后的有效运行结果。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-fp8-lm-head-dense-train-off-fixed-1780576801-86af077f
+- Linked experiment ids: readme-top10-fp8-lm-head-dense-train-off-fixed
+- Input code commits: f4ee8f4675ac2c655bd57d4a2a716013a31c63a9
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-fp8-lm-head-dense-train-off-stability | True FP8 train head stability | 再跑一次真实 dense-train FP8 关闭样本，验证 BF16 dense fallback 的 `~70ms` step_avg 与 loss≈3.278 是否稳定，从而把 FP8 head 家族定性为速度强贡献而非质量贡献。 | new | 当前只有一个有效真实样本；旧 `fp8_lm_head_off` 未触达训练 fused CE 路径，不能替代稳定性样本。 |
+
+### Linked Result Files
+
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/readme_top10_ablation_results.csv`
+- `experiments/results/readme_top10_readme_top10_fp8_lm_head_dense_train_off_fixed.json`
+
 ## 2026-06-04T11:29:02Z: codex-1780572542015-d83be8a8
 
 - Trigger: 1 run(s) finished
@@ -1275,6 +1300,30 @@ depending on whether the priority is tighter step count or higher confidence.
 | experiment id | title | hypothesis | status at analysis | notes |
 | --- | --- | --- | --- | --- |
 | readme-top10-fp8-lm-head-dense-train-off-fixed | Fixed true FP8 train head ablation | 修复 MTP offset loss 后，关闭训练中的 fused FP8 lm_head/softcapped CE 并改用 BF16 dense lm_head 能有效量化 README rank5 FP8 head 家族对速度和 loss 的真实贡献。 | new | 上一跑是实现错误导致的无效失败；历史先验中 FP8 lm_head 家族 rank 很高，且旧 fp8_lm_head_off 未触达训练 FP8 CE 路径。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-04T12:48:29Z: codex-1780577161197-293c747f
+
+- Trigger: 1 run(s) finished
+- Summary: 真实关闭训练 fused FP8 lm_head/softcapped CE 后，loss 基本不变但速度明显回退：1380/1380 val_loss=3.2779, step_avg=69.79ms, target_met=true。FP8 head 家族应暂列为速度强贡献，不应按质量贡献解释。
+- Goal progress: README 历史先验和多数当前 ablation 已覆盖；本轮补上了 FP8 head 高位候选的真实训练路径证据。缺口是 FP8 dense-train 目前只有一个有效样本，仍需稳定性样本确认约 25% 速度回退；paired head、MUDD、smear 等低位候选也仍待队列样本完成。
+- Code changes: no; 未修改训练代码或 ablation 脚本；仅追加 experiments/arthur/idea_result_links.md 的本轮分析记录，结果 CSV/JSON 由实验脚本自动生成。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-fp8-lm-head-dense-train-off-fixed-1780576801-86af077f
+- Linked experiment ids: readme-top10-fp8-lm-head-dense-train-off-fixed
+- Input code commits: f4ee8f4675ac2c655bd57d4a2a716013a31c63a9
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-fp8-lm-head-dense-train-off-stability | True FP8 train head stability | 再跑一次真实 dense-train FP8 关闭样本，验证 BF16 dense fallback 的约 70ms step_avg 与 loss≈3.278 是否稳定，从而把 FP8 head 家族定性为速度强贡献而非质量贡献。 | new | 旧 fp8_lm_head_off 未触达训练 fused CE 路径；当前只有一个有效真实样本，需要隔离变量稳定性确认。 |
 
 ### Linked Result Files
 
