@@ -349,3 +349,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T09:20:04Z: codex-1780564621724-3cf00d68
+
+- Trigger: 2 run(s) finished
+- Summary: 当前最强有效因果信号依次是 eos_alignment_off 的 nan 异常、polar_express_off 单样本发散、value_embeds_off 双样本稳定退化、bigram_off 双样本稳定退化、long_window_off 单样本退化、qk_norm_off 单样本中等退化。batch_schedule_constant_final 降低 loss 但显著变慢，应单独按速度/预算收益评估。
+- Goal progress: README 历史先验已建立，当前 ablation 已覆盖大多数 top10 技巧。新补齐了 long_window_off 的有效结果，但 polar/eos/long-window/qk_norm 仍需要稳定性样本；现有队列已覆盖 eos、qk_norm、block3 skip、cautious WD、residual decay。
+- Code changes: no; 本轮未修改代码；确认当前 run_readme_ablation.sh 语法检查通过。新增 dirty 结果来自 long_window_off 运行落盘，不是代码改动。
+- Suggested experiments: 2
+- Pending result runs: readme-top10-long-window-off-local-fallback-1780564261-5a299c21, readme-top10-polar-express-off-rerun2-py3-1780564561-01847a2b
+- Linked experiment ids: readme-top10-long-window-off-local-fallback, readme-top10-polar-express-off-rerun2-py3
+- Input code commits: 25a88c3c2c69566386824c85de2b934c0918ff63, 969df08153d241f6142fa1c7249fb41dcebf5b68
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-polar-express-off-local-rerun3 | Polar Express local stability | 若在 local/.72 直接执行时 polar_express_off 仍显著发散，则可确认 Polar Express 是当前 root 的强因果贡献项，而非 .75 环境噪声。 | new | .75 两次复跑分别失败于 python 缺失和 tar 同步，均未产生训练证据；应先用 local/.72 获取有效稳定性样本。 |
+| readme-top10-long-window-off-clean-rerun1 | Long window clean rerun | 若 long_window_off 再次带来约 +0.02 val_loss 退化，则 long-short sliding window/FA3 family 在当前 top10 中应排在 bigram 之后、qk_norm 之前。 | new | 上一条 long_window_off 已有有效 final_result，但 Arthur run 状态因旧脚本后处理语法错误标 failed；需要 clean rerun 给队列一个干净成功样本。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

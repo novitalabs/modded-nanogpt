@@ -1,0 +1,13 @@
+{
+  "variant_id": "readme_top10_long_window_off_local_fallback",
+  "ablation": "long_window_off",
+  "log": "logs/readme_top10_long_window_off_local_fallback.txt",
+  "step": "1380",
+  "total_steps": "1380",
+  "val_loss": "3.296900",
+  "train_time_min": "1.279950",
+  "step_avg_ms": "55.650000",
+  "target_loss": "3.280000",
+  "target_met": "false",
+  "run_exit_code": "0"
+}
