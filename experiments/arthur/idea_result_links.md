@@ -888,3 +888,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T11:17:46Z: codex-1780571761227-f3a85e91
+
+- Trigger: 1 run(s) finished
+- Summary: max_doc_count_off 产生了有效结果：val_loss=3.2764、target_met=true、train_time_min=1.2953。该结果暂时反驳“当前 TRAIN_MAX_NUM_DOCS table 明显有益”的假设，但单样本不足以定论。
+- Goal progress: README 历史先验已建立，当前 ablation 已覆盖多数候选。强因果证据仍集中在 Polar Express/Muon、EoS alignment、value embeddings、bigram hash、batch schedule、long windows、QK norm 等；max document count 现在从缺口变为反常/待复验项。block3 skip、residual decay、QK/EoS 稳定样本等仍在现有队列中。
+- Code changes: no; 未修改代码；本轮只分析 readme-top10-max-doc-count-off-local 结果。运行产物已落盘，等待 Arthur 提交。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-max-doc-count-off-local-1780571521-44621830
+- Linked experiment ids: readme-top10-max-doc-count-off-local
+- Input code commits: fc7c93d284f2a1c1ee4ed91fbe961f1c93dc054c
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-max-doc-count-off-rerun1 | Max doc count stability sample | 第二个 max_doc_count_off 样本将验证关闭 TRAIN_MAX_NUM_DOCS table 后仍能达标且不退化；若稳定，则 max document count table 在当前代码中应降级为无效或边界候选。 | new | 首样本与历史先验方向相反，而且 Arthur 状态误标为 failed；需要干净复跑来决定是否保留该优化项。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
