@@ -2539,3 +2539,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T17:28:29Z: codex-1780593841474-1453695f
+
+- Trigger: 1 run(s) finished
+- Summary: single_activation_input_off 两个样本分别为 3.2804 和 3.2798，平均 3.2801，证据只支持边界/低位贡献；ReLU2、value embeddings、bigram、long window/YaRN、MUDD、QK norm、MTP、Cautious WD、batch schedule、FP8 train head 速度项仍是更强候选。
+- Goal progress: README 历史先验已建立，当前代码 ablation 已覆盖大多数候选。新增 rotary_off 支持后，可以补 Modernized architecture 历史 rank 1 中除 ReLU2/QK norm 外的 Rotary embeddings 因果证据；FP8 train head quality 样本仍等待队列结果。
+- Code changes: yes; 修改 experiments/arthur/run_readme_ablation.sh，新增 rotary_off ablation 分支，仅在生成的临时 variant 中跳过 non-paired 和 paired-head 两处 yarn.rotary(q/k)，未修改 train_gpt.py；已通过 bash -n 和 Python variant compile 校验。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-single-activation-input-off-rerun1-pod72-1780593661-b1a08a19
+- Linked experiment ids: readme-top10-single-activation-input-off-rerun1-pod72
+- Input code commits: 33c792aa931ef4ceaa270a1c407f4e6f933d684b
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-rotary-off-pod72 | Ablate rotary embeddings | 关闭 Rotary embeddings 若显著劣化 loss 或速度，可把 Modernized architecture 的历史 rank 1 贡献进一步拆分到 Rotary；若影响小，则当前强贡献主要来自 ReLU2/QK norm。 | new | 历史 prior 最高的 Modernized architecture 仍缺 Rotary 的当前代码直接 ablation；新分支隔离单一变量。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

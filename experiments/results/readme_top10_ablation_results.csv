@@ -70,3 +70,4 @@ readme_top10_relu_square_unfused_pod72,relu_square_unfused,logs/readme_top10_rel
 readme_top10_relu_square_off_pod72,relu_square_off,logs/readme_top10_relu_square_off_pod72.txt,1380,1380,3.318900,1.298783,56.470000,3.280000,false,0
 readme_top10_relu_square_off_rerun1_pod72,relu_square_off,logs/readme_top10_relu_square_off_rerun1_pod72.txt,1380,1380,3.314300,1.300417,56.540000,3.280000,false,0
 readme_top10_single_activation_input_off_pod72,single_activation_input_off,logs/readme_top10_single_activation_input_off_pod72.txt,1380,1380,3.280400,1.287633,55.980000,3.280000,false,0
+readme_top10_single_activation_input_off_rerun1_pod72,single_activation_input_off,logs/readme_top10_single_activation_input_off_rerun1_pod72.txt,1380,1380,3.279800,1.288050,56.000000,3.280000,true,0

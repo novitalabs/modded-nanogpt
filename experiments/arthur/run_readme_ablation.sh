@@ -230,6 +230,15 @@ elif ablation == "qk_norm_off":
         "q, k = norm(q), norm(k) # QK norm @Grad62304977",
         "q, k = q, k  # Arthur ablation: disable QK norm",
     )
+elif ablation == "rotary_off":
+    replace_once(
+        "q, k = yarn.rotary(q), yarn.rotary(k)",
+        "q, k = q, k  # Arthur ablation: disable non-paired rotary embeddings",
+    )
+    replace_once(
+        "q, k = yarn.rotary(q), yarn.rotary(k)",
+        "q, k = q, k  # Arthur ablation: disable paired-head rotary embeddings",
+    )
 elif ablation == "relu_square_off":
     replace_once(
         "ReLUSqrdMLP = FusedLinearReLUSquareFunction.apply",
