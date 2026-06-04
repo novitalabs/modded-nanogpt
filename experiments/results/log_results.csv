@@ -1050,5 +1050,6 @@ local_rerun,track_1_short,logs/readme_top10_xsa_off.txt,1380,1380,3.2835,75984.0
 local_rerun,track_1_short,logs/readme_top10_xsa_off_rerun1.txt,1380,1380,3.284,75973.0,1.2662166666666668,55.05,31327,47184,True,False
 local_rerun,track_1_short,logs/readme_top10_yarn_off_pod72.txt,1380,1380,3.2885,77195.0,1.2865833333333334,55.94,30529,47532,True,False
 local_rerun,track_1_short,logs/readme_top10_yarn_off_rerun1_pod72.txt,1380,1380,3.29,77239.0,1.2873166666666667,55.97,31262,48192,True,False
+local_rerun,track_1_short,logs/readme_top10_yarn_off_rerun2_pod72.txt,1380,1380,3.2878,77104.0,1.2850666666666666,55.87,31262,48252,True,False
 local_rerun,track_1_short,logs/readme_top10_zero_mlp_proj_init_off.txt,1380,1380,3.2782,77154.0,1.2859,55.91,30529,47532,True,True
 local_rerun,track_1_short,logs/readme_top10_zero_mlp_proj_init_off_rerun1.txt,1380,1380,3.2799,77218.0,1.2869666666666666,55.96,31262,48352,True,True

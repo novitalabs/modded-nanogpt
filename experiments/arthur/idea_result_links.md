@@ -3388,3 +3388,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T20:32:26Z: codex-1780604941381-f54fbbca
+
+- Trigger: 1 run(s) finished
+- Summary: yarn_off 第三个有效样本 val_loss=3.2878；三次样本均高于 3.28，支持 YaRN-only 是稳定中强质量贡献，和 MTP、QK norm、NorMuon 一起构成当前 top10 边界组。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖并复验多数候选。强证据包括 Rotary/ReLU2/QK 现代架构、Muon/Polar orthogonalization、value embeddings、bigram hash、long windows+YaRN、MUDD、MTP、QK norm、NorMuon/YaRN-only 等；剩余缺口主要是较低位候选 XSA、sparse attention gate、Adam two-step、Polar-vs-NS5 的排序稳定性。下一步优先补 XSA 第三个样本，确认它是否能挑战 NorMuon/CWD 之后的边界位置。
+- Code changes: no; 未修改代码；本轮只分析最新 yarn_off_rerun2 结果。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-yarn-off-rerun2-pod72-1780604761-f9dcd8c6
+- Linked experiment ids: readme-top10-yarn-off-rerun2-pod72
+- Input code commits: 72352a7b8a03f6592d07fc2d7c83e7bda2c98b11
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-xsa-off-rerun2-pod72 | XSA third sample | 第三个 xsa_off 样本若仍在约 3.2835-3.2840，则 Learnable XSA 是稳定小幅贡献但低于 NorMuon/QK/MTP/YaRN；若升到 3.286+，则需要上调其 top10 边界权重。 | new | XSA 当前两个样本为 3.2835/3.2840，是低位候选中样本数少且均值靠前的一项；第三样本能直接判断它是否只是小幅稳定贡献，还是需要进入 top10 边界讨论。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
