@@ -1649,3 +1649,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-04T14:07:46Z: codex-1780581961250-9f688e97
+
+- Trigger: 1 run(s) finished
+- Summary: readme_top10_mudd_off_fixed_rerun1 有效落盘：val_loss=3.2904、train_time_min=1.2624、target_met=false。关闭 MUDD 后质量明显劣化，支持 MUDD skip connections 是当前代码中的正贡献项，但目前只有一个有效样本。
+- Goal progress: README record-history delta 先验已建立，当前 ablation 已覆盖大多数 top10 候选。MUDD 已补到首个有效当前因果样本；剩余缺口是确认 MUDD 退化是否稳定，并等待现有队列中的 paired head、smear、residual decay、embed/lm_head untie 等边界项复验。
+- Code changes: no; 未修改代码；本轮只分析 readme-top10-mudd-off-fixed-rerun1 结果。结果文件由实验脚本自动落盘。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-mudd-off-fixed-rerun1-1780581600-22b700e1
+- Linked experiment ids: readme-top10-mudd-off-fixed-rerun1
+- Input code commits: 487b13d365fdf87acd2981e2acff40391ff43337
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-mudd-off-fixed-rerun2 | MUDD stability sample | 第二个 mudd_off 有效样本若仍明显未达标，则 MUDD skip connections 可从单样本信号升级为稳定中等正贡献；若接近或低于阈值，则首样本可能受噪声影响。 | new | MUDD fixed 首样本 val_loss=3.2904，退化幅度足以影响 top10 低位排序；补一个同变量复跑能判断是否稳定。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
