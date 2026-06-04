@@ -1163,3 +1163,49 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+## 2026-06-04T12:14:01Z: codex-current-bigram-rerun
+
+- Trigger: 1 run(s) finished
+- Summary: `readme_top10_bigram_off` 完成 1380/1380，`val_loss=3.2999`、`target_met=false`；结合 clean rerun `3.2991`，关闭 bigram hash embedding 的双样本均值约 `3.2995`，是当前代码中稳定的强退化信号。
+- Goal progress: README 历史先验 rank 9 的 bigram hash embedding 已从单样本提升为双样本稳定正贡献，当前因果证据层级更清楚：Polar Express/Muon、value embeddings、batch size ramp、bigram hash、long windows 属于强证据；QK norm 与 MTP 属于中等稳定证据；XSA 小幅稳定正贡献。剩余不确定性主要在 paired head、MUDD、smear、cautious WD、block3 skip 等低位候选，现有 queued 实验已经覆盖这些问题。
+- Code changes: no; 未修改训练代码或 ablation 脚本。本轮只分析 `readme-top10-bigram-off` 运行结果；结果文件和汇总表由实验脚本自动落盘。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-bigram-off-1780575061-970c52e4
+- Linked experiment ids: readme-top10-bigram-off
+- Input code commits: 5edc0385d616827560046d5c2307c18a8e8192bb
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/readme_top10_ablation_results.csv`
+- `experiments/results/readme_top10_readme_top10_bigram_off.json`
+
+## 2026-06-04T12:17:50Z: codex-1780575241457-921e052d
+
+- Trigger: 1 run(s) finished
+- Summary: bigram hash embedding ablation 双样本均明显退化，均值约 3.2995，可从历史 rank9 提升为当前代码里的强因果证据之一。
+- Goal progress: README 历史先验已建立，当前 ablation 证据显示 Polar Express/Muon、value embeddings、batch size ramp、bigram hash、long windows 属于强证据；QK norm 与 MTP 为中等稳定证据；XSA 为小幅稳定正贡献。剩余低位排序缺口已由现有 queued 实验覆盖。
+- Code changes: no; 未修改训练代码或 ablation 脚本；仅追加 experiments/arthur/idea_result_links.md 的本轮分析记录，结果 CSV/JSON 来自刚完成的 run 自动落盘。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-bigram-off-1780575061-970c52e4
+- Linked experiment ids: readme-top10-bigram-off
+- Input code commits: 5edc0385d616827560046d5c2307c18a8e8192bb
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

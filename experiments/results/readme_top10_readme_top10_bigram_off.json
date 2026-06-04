@@ -4,9 +4,9 @@
   "log": "logs/readme_top10_bigram_off.txt",
   "step": "1380",
   "total_steps": "1380",
-  "val_loss": "3.302300",
-  "train_time_min": "1.269417",
-  "step_avg_ms": "55.190000",
+  "val_loss": "3.299900",
+  "train_time_min": "1.269883",
+  "step_avg_ms": "55.210000",
   "target_loss": "3.280000",
   "target_met": "false",
   "run_exit_code": "0"
