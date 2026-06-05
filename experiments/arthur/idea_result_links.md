@@ -5377,3 +5377,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T03:16:24Z: codex-1780629280470-e0ac0fd9
+
+- Trigger: batch finished with results pending commit
+- Summary: 当前 top10 可收口为：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。
+- Goal progress: README record-history delta 历史先验已建立，当前代码可逆 ablation 已覆盖主要候选并形成多样本证据。最新 FP8 train-head 第五样本确认关闭 fused/FP8 train head 后 loss 仍可达标但速度稳定退化到约 1.60min，因此 FP8 路径按速度收益入榜的证据已足够。剩余弱边界项 YaRN-only、NorMuon variance、MTP、QK norm 的普通复跑差距低于短跑噪声，不建议继续加样强行排序。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur 自动落盘的 FP8 train-head 第五样本结果。dirty 结果文件来自实验运行。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-fp8-train-head-speed-rerun4-pod72-1780629061-7ca96808
+- Linked experiment ids: readme-top10-fp8-train-head-speed-rerun4-pod72
+- Input code commits: 5f45325dba8b9cadbaebc52b042477c1d31a9e21
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
