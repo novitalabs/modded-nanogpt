@@ -1,0 +1,13 @@
+{
+  "variant_id": "readme_top20_single_activation_input_off_rerun5_pod72",
+  "ablation": "single_activation_input_off",
+  "log": "logs/readme_top20_single_activation_input_off_rerun5_pod72.txt",
+  "step": "1380",
+  "total_steps": "1380",
+  "val_loss": "3.279700",
+  "train_time_min": "1.296383",
+  "step_avg_ms": "56.360000",
+  "target_loss": "3.280000",
+  "target_met": "true",
+  "run_exit_code": "0"
+}

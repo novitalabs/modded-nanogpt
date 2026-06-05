@@ -5890,3 +5890,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T05:02:46Z: codex-1780635541425-37771ee6
+
+- Trigger: 1 run(s) finished
+- Summary: 当前 top10 分层不变：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN 家族，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。single_activation_input_off 当前 n=5、2 hit / 3 miss、mean=3.28066，仍是 top20 末端边界项。
+- Goal progress: 历史先验和主要可逆 ablation 已覆盖。top20 下半区强证据仍来自 Adam two-step、sparse gate、CWD、paired head、XSA、logit rescale；末端缺口集中在 single activation、max_seq schedule、Polar/NS5。max_seq 第五样本正在跑，Polar 第六样本已排队，还需要 single activation 第六样本减少单点噪声。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 single activation 第五样本，结果文件由 Arthur run 自动生成/刷新。
+- Suggested experiments: 1
+- Pending result runs: readme-top20-single-activation-fifth-pod72-1780635361-9ef734ad
+- Linked experiment ids: readme-top20-single-activation-fifth-pod72
+- Input code commits: 74584c603931925f1d6676cc436d2196b5bce759
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top20-single-activation-sixth-pod72 | Single activation sixth sample | 关闭 single activation input 若第六样本再次达标，则该项应降为 top20 弱边界；若重新 miss，则保留为 top20 末端候选并与 max_seq/Polar 精排。 | new | 不重复当前 running 的 max_seq 第五样本和 queued 的 Polar 第六样本；用于收窄 single activation 的边界不确定性。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

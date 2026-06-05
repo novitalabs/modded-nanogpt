@@ -1114,5 +1114,7 @@ local_rerun,track_1_short,logs/readme_top20_max_seq_len_schedule_off_rerun3_pod7
 local_rerun,track_1_short,logs/readme_top20_paired_head_off_rerun3_pod72.txt,1380,1380,3.2835,76286.0,1.2714333333333334,55.28,31262,48254,True,False
 local_rerun,track_1_short,logs/readme_top20_polar_express_to_ns5_rerun3_pod72.txt,1380,1380,3.2793,78006.0,1.3001,56.53,31429,48512,True,True
 local_rerun,track_1_short,logs/readme_top20_polar_express_to_ns5_rerun4_pod72.txt,1380,1380,3.2796,77353.0,1.2892166666666667,56.05,31429,48372,True,True
+local_rerun,track_1_short,logs/readme_top20_single_activation_input_off_rerun4_pod72.txt,1380,1380,3.2825,77756.0,1.2959333333333334,56.35,31262,48392,True,False
+local_rerun,track_1_short,logs/readme_top20_single_activation_input_off_rerun5_pod72.txt,1380,1380,3.2797,77783.0,1.2963833333333334,56.36,31262,48352,True,True
 local_rerun,track_1_short,logs/readme_top20_smear_off_rerun4_pod72.txt,1380,1380,3.2785,76922.0,1.2820333333333334,55.74,31230,48112,True,True
 local_rerun,track_1_short,logs/readme_top20_xsa_off_rerun3_pod72.txt,1380,1380,3.2811,76010.0,1.2668333333333333,55.08,31429,47864,True,False
