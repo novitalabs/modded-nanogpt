@@ -5713,3 +5713,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T04:09:42Z: codex-1780632481470-833551cd
+
+- Trigger: batch finished with results pending commit
+- Summary: 当前 top10 分层不变：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN 家族，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。最新 logit rescale 第四样本 val_loss=3.2835，Adam node75 cross-check val_loss=3.2831，paired-head 第四样本 val_loss=3.2835，XSA 第四样本 val_loss=3.2811，均不改变 top10，只支持 top20 下半区边界排序。
+- Goal progress: README record-history delta 历史先验已建立，当前代码可逆 ablation 已覆盖主要优化方法。top10 证据已充分；top20 精排还差 sparse attention gate 第四样本，它已经处于 queued。等该样本完成后再统一比较 Adam、sparse gate、paired head、logit rescale、XSA、Polar/NS5、cautious WD 等边界项。
+- Code changes: no; 未修改代码；只分析最新实验结果与当前队列状态。
+- Suggested experiments: 0
+- Pending result runs: readme-top20-logit-rescale-fourth-pod72-1780632241-6e3afc4e
+- Linked experiment ids: readme-top20-logit-rescale-fourth-pod72
+- Input code commits: 7e6c7292db50edf5d48491ec3a8bb8584dc89239
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
