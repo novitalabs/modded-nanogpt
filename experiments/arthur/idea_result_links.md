@@ -6263,3 +6263,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T06:37:41Z: codex-1780641361454-1ec31dab
+
+- Trigger: batch finished with results pending commit
+- Summary: 当前 top10 分层不变：Muon/正交化更新家族、Rotary、ReLU2、value embeddings、long-window/FA3/YaRN、bigram、batch schedule、EoS alignment、FP8 train-head 速度路径、MUDD。新增 Polar→NS5 node75 样本 val_loss=3.2814、target_met=false，使 Polar/NS5 达到 n=7、5/7 miss、mean≈3.28146，支持其仍是 top20 末端有效候选。
+- Goal progress: README 历史先验和当前代码可逆 ablation 已覆盖主要候选。top20 下半区强证据仍包括 Adam two-step、sparse gate、CWD、paired head、XSA、logit rescale；末端目前 Polar/NS5 强于 single activation、max_seq schedule、smear。剩余关键缺口是已排队的 max_seq node75 fixed retry，用于判断 max_seq 是否仍在 cutoff 内。
+- Code changes: no; 未修改代码；仅分析 Arthur 自动生成/刷新后的 Polar→NS5 node75 结果与汇总表。
+- Suggested experiments: 0
+- Pending result runs: readme-top20-polar-ns5-seventh-node75-1780640821-d7bdbd5b
+- Linked experiment ids: readme-top20-polar-ns5-seventh-node75
+- Input code commits: 63053f6301ff7a2744afb1dad1c7b07541720b08
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
