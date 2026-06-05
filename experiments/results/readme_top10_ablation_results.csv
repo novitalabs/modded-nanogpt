@@ -125,3 +125,4 @@ readme_top10_normuon_varred_off_rerun5_pod72,normuon_varred_off,logs/readme_top1
 readme_top10_qk_norm_off_rerun5_pod72,qk_norm_off,logs/readme_top10_qk_norm_off_rerun5_pod72.txt,1380,1380,3.287800,1.309017,56.910000,3.280000,false,0
 readme_top10_mtp_off_rerun4_pod72,mtp_off,logs/readme_top10_mtp_off_rerun4_pod72.txt,1380,1380,3.287700,1.283450,55.800000,3.280000,false,0
 readme_top10_mudd_off_rerun4_pod72,mudd_off,logs/readme_top10_mudd_off_rerun4_pod72.txt,1380,1380,3.290200,1.259500,54.760000,3.280000,false,0
+readme_top10_batch_schedule_constant_mean_rerun3_pod72,batch_schedule_constant_mean,logs/readme_top10_batch_schedule_constant_mean_rerun3_pod72.txt,1380,1380,3.300100,1.280900,55.690000,3.280000,false,0

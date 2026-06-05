@@ -4446,3 +4446,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T00:20:21Z: codex-1780618621303-a1c63fe8
+
+- Trigger: 1 run(s) finished
+- Summary: batch_schedule_constant_mean 第四样本 val_loss=3.3001，四样本均值约 3.3009；它与 bigram_off 均值约 3.3012、long_window_yarn_off 三样本均值约 3.3023 属同一强贡献层，稳定高于 MUDD/YaRN/MTP/NorMuon/QK 边界组。
+- Goal progress: README 历史先验已建立，当前代码可逆 ablation 已覆盖主要候选并形成多样本证据。强证据集中在 Muon/Polar family、EoS alignment、Rotary、ReLU2、value embeddings、long-window/YaRN、bigram hash、batch schedule；MUDD 已有四样本稳定正贡献。剩余主要缺口是已排队的 long_window_yarn_off 第四样本，用于收口 long-window/YaRN 与 batch/bigram 的中段排序；第10位附近 YaRN-only、MTP、NorMuon variance、QK norm 仍需保留不确定性说明。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur 自动生成的 batch_schedule_constant_mean 第四样本结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-batch-schedule-mean-rerun3-pod72-1780618441-986538b7
+- Linked experiment ids: readme-top10-batch-schedule-mean-rerun3-pod72
+- Input code commits: b191b7c0b9721e5ca46ddc725d5e1066a024cc49
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
