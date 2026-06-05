@@ -4642,3 +4642,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T01:09:52Z: codex-1780621621502-1154fe9d
+
+- Trigger: 1 run(s) finished
+- Summary: no-extension-steps-warmup-clamp 完整跑完但 val_loss=3.2841 > 3.28；这是 1375 no-extension 组的又一个有效 miss。README top10 当前可暂定为：Muon/正交化，EoS alignment，Rotary，ReLU2，value embeddings，long-window+YaRN，bigram hash，batch schedule，MUDD，以及低置信度边界项 YaRN-only/NorMuon/MTP/QK norm 中当前均值最高的 YaRN-only。
+- Goal progress: README record-history delta 先验已建立，当前代码主要可逆 ablation 已覆盖并形成多样本证据。强项排序稳定；第10位边界四组 6 样本均值只差约 0.0006 loss，低于普通短跑重复噪声，应在结论中标注低置信度而不是继续机械补样。EoS alignment 仍主要是 NaN/失稳证据，能证明稳定性关键但缺少有限 loss delta。
+- Code changes: no; 未修改代码；本轮只分析 Arthur/collector 生成的结果汇总变更。
+- Suggested experiments: 0
+- Pending result runs: no-extension-steps-warmup-clamp-1780621441-e08fc82c
+- Linked experiment ids: no-extension-steps-warmup-clamp
+- Input code commits: 368d87bb8ba54c9c41a68ae729690982f6e6df36
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

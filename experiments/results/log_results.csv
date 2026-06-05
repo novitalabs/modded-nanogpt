@@ -941,6 +941,7 @@ records,track_2_medium,records/track_2_medium/2025-12-31_BulkSmallTrackTransfer/
 records,track_2_medium,records/track_2_medium/2025-12-31_BulkSmallTrackTransfer/944dcfd9-55b5-4440-bce3-43740ededb33.txt,4740,4740,2.9166,1041483.0,17.35805,219.72,57397,62992,True,True
 local_rerun,track_2_medium,logs/000_b0d39018-53e5-4a9c-bbe1-0e28e69393d1.txt,1625,5960,3.2515,364952.0,6.082533333333333,224.59,,,False,False
 local_rerun,track_2_medium,logs/000_cb759f2a-2d38-4884-bc01-eeb5703c2e78.txt,5960,5960,2.919982,1386526.0,23.108766666666668,232.64,52129,55354,True,True
+local_rerun,track_1_short,logs/053cf61b-ae76-475f-b377-83440fc347e7.txt,1375,1375,3.2841,76785.0,1.27975,55.84,31262,48352,True,False
 local_rerun,track_1_short,logs/0f81976f-6806-4dd1-91b2-060eca77ed4a.txt,1374,1374,3.2812,77356.0,1.2892666666666666,56.3,31347,48392,True,False
 local_rerun,track_1_short,logs/1d1c8d4d-9758-45c3-b62f-9ecb9cbcda81.txt,1377,1377,3.2817,77106.0,1.2851,56.0,31429,48492,True,False
 local_rerun,track_1_short,logs/281366d5-7b3a-416a-99de-fcf8212aacfa.txt,1375,1375,3.279,76867.0,1.2811166666666667,55.9,31262,48192,True,True
