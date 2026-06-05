@@ -4714,3 +4714,50 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T01:23:58Z: codex-1780622581694-085e47c1
+
+- Trigger: 1 run(s) finished
+- Summary: scheduled_1370_no_extension_warmup_clamp 完整结束但未达标，val_loss=3.2804 > 3.28；这是 1370 no-extension 边界组第三个有效 miss，但只差阈值 0.0004。README 优化项 top10 结论不变：Muon/正交化、EoS alignment、Rotary、ReLU2、value embeddings、long-window+YaRN、bigram hash、batch schedule、MUDD，以及低置信度第10位 YaRN-only。
+- Goal progress: README record-history delta 先验已建立，当前代码主要可逆 ablation 已覆盖并形成多样本因果证据。1370/1373/1375 no-extension 边界补样只是在校准总步数阈值，不改变 README top10 排序；第10位仍被 YaRN-only、NorMuon variance、MTP、QK norm 的短跑噪声限制，应在最终结论中标注低置信度。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只追加 Arthur 分析记录并保留 Arthur/collector 已生成的结果汇总变更。
+- Suggested experiments: 0
+- Pending result runs: scheduled-1370-no-extension-warmup-clamp-1780622401-9387cfba
+- Linked experiment ids: scheduled-1370-no-extension-warmup-clamp
+- Input code commits: 634d248050aa6bbd3fde14dd93b4ab702da80633
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
+## 2026-06-05T01:27:08Z: codex-1780622581694-085e47c1
+
+- Trigger: 1 run(s) finished
+- Summary: scheduled_1370_no_extension_warmup_clamp 完整结束但未达标，val_loss=3.2804 > 3.28；1370 no-extension 组已有 3 个有效 miss。README top10 结论不变：Muon/正交化、EoS alignment、Rotary、ReLU2、value embeddings、long-window+YaRN、bigram hash、batch schedule、MUDD，以及低置信度第10位 YaRN-only。
+- Goal progress: README record-history delta 先验已建立，当前代码主要可逆 ablation 已覆盖并形成多样本因果证据。强项排序稳定；第10位仍受 YaRN-only、NorMuon variance、MTP、QK norm 的短跑噪声限制，应标注低置信度。EoS alignment 主要是 NaN/失稳证据，能证明稳定性关键但缺少有限 loss delta。
+- Code changes: no; 未修改训练代码；仅追加 experiments/arthur/idea_result_links.md 分析记录。Arthur/collector 已更新 experiments/results 下的结果汇总文件。
+- Suggested experiments: 0
+- Pending result runs: scheduled-1370-no-extension-warmup-clamp-1780622401-9387cfba
+- Linked experiment ids: scheduled-1370-no-extension-warmup-clamp
+- Input code commits: 634d248050aa6bbd3fde14dd93b4ab702da80633
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
