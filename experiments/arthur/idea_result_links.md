@@ -4546,3 +4546,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T00:43:30Z: codex-1780620121826-b168c55e
+
+- Trigger: 1 run(s) finished
+- Summary: mtp_off 第六样本 val_loss=3.2879，六样本均值约 3.28857；MTP 仍处于 top10 边界竞争，但暂低于 YaRN-only 和 NorMuon variance 的当前均值。qk_norm_off 仍只有五个有效样本，必须等待已排队的第六样本后再判断第10位。
+- Goal progress: README 历史先验已建立，当前代码主要可逆 ablation 已覆盖并形成多样本证据。强贡献项包括 Polar/Muon orthogonalization、Rotary、ReLU2、value embeddings、long-window+YaRN、bigram hash、batch schedule、MUDD；剩余缺口集中在 YaRN-only、NorMuon variance、MTP、QK norm 的第10位边界。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur 自动生成的 mtp_off 第六样本结果产物。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-mtp-off-rerun5-pod72-1780619941-f6c8538b
+- Linked experiment ids: readme-top10-mtp-off-rerun5-pod72
+- Input code commits: 4e2718575a57fe09eb63b88c806deb4adf1fa717
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
