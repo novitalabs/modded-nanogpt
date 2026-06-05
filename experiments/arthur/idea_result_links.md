@@ -5689,3 +5689,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T04:07:53Z: codex-1780632361683-415953d3
+
+- Trigger: 1 run(s) finished
+- Summary: 当前 top10 分层不变：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN 家族，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。Adam two-step 的 node75 cross-check 进一步确认其属于 top20 下半区；logit rescale 第四样本也继续 miss target，支持保留为边界 top20 候选。
+- Goal progress: README record-history delta 历史先验已建立，当前代码可逆 ablation 已覆盖主要优化方法并保留 top10 结论。top20 下半区正在用第四样本精排：Adam、XSA、paired head、logit rescale 已有新增证据；sparse attention gate 第四样本仍 queued，完成后可再统一排序 15-20 位。当前证据不足以合理新增不重复实验。
+- Code changes: no; 未修改代码；只读取并分析最新实验结果文件和日志。
+- Suggested experiments: 0
+- Pending result runs: readme-top20-adam-every-step-rerun3-node75-proxy-1780631642-05b548c1
+- Linked experiment ids: readme-top20-adam-every-step-rerun3-node75-proxy
+- Input code commits: ae8f28a483e0ba3ce9242028fdf2af01ad2efe6d
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

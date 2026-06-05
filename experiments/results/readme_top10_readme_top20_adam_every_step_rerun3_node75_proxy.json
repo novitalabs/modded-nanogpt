@@ -1,0 +1,13 @@
+{
+  "variant_id": "readme_top20_adam_every_step_rerun3_node75_proxy",
+  "ablation": "adam_every_step",
+  "log": "logs/readme_top20_adam_every_step_rerun3_node75_proxy.txt",
+  "step": "1380",
+  "total_steps": "1380",
+  "val_loss": "3.283100",
+  "train_time_min": "1.322450",
+  "step_avg_ms": "57.500000",
+  "target_loss": "3.280000",
+  "target_met": "false",
+  "run_exit_code": "0"
+}
