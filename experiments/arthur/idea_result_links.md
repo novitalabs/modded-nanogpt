@@ -4813,3 +4813,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T01:48:23Z: codex-1780623961523-72234adb
+
+- Trigger: 1 run(s) finished
+- Summary: readme_top10_yarn_off_rerun6_pod72 完整结束，val_loss=3.2890，target_met=false；YaRN-only 7 样本均值约 3.28906，仍是第10位边界首选但低置信度。
+- Goal progress: README record-history delta 先验已建立，当前代码的主要可逆 ablation 已覆盖并多样本复验。强项排序稳定：Muon/正交化、EoS alignment、Rotary、ReLU2、value embeddings、long-window+YaRN、bigram hash、batch schedule、MUDD；第10位仍在 YaRN-only、NorMuon variance、MTP、QK norm 间，差距低于短跑噪声，需要完成边界组第7样本对齐。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur/collector 已生成的 YaRN-only 结果文件和汇总更新。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-yarn-off-rerun6-pod72-1780623781-81ad54c9
+- Linked experiment ids: readme-top10-yarn-off-rerun6-pod72
+- Input code commits: be0f5929e49b67087a9f3a091e695b5151e7e0d3
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-qk-norm-off-rerun7-pod72 | QK norm seventh boundary sample | 第7个 qk_norm_off 样本判断 QK norm 是否仍处于第10位边界竞争，或应稳定排在 YaRN-only/NorMuon/MTP 后。 | new | YaRN 第7样本已完成；NorMuon 和 MTP 第7样本已在队列中。QK norm 仍只有6个有效样本，补齐后可做边界组同样本数比较。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
