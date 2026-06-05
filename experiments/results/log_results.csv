@@ -1107,6 +1107,7 @@ local_rerun,track_1_short,logs/readme_top10_zero_mlp_proj_init_off.txt,1380,1380
 local_rerun,track_1_short,logs/readme_top10_zero_mlp_proj_init_off_rerun1.txt,1380,1380,3.2799,77218.0,1.2869666666666666,55.96,31262,48352,True,True
 local_rerun,track_1_short,logs/readme_top10_zero_mlp_proj_init_off_rerun2_pod72.txt,1380,1380,3.2794,77324.0,1.2887333333333333,56.03,31262,48352,True,True
 local_rerun,track_1_short,logs/readme_top20_adam_every_step_rerun3_node75_proxy.txt,1380,1380,3.2831,79347.0,1.32245,57.5,31145,48112,True,False
+local_rerun,track_1_short,logs/readme_top20_attn_gate_freeze_rerun4_pod72.txt,1380,1380,3.2863,75824.0,1.2637333333333334,54.95,31429,48008,True,False
 local_rerun,track_1_short,logs/readme_top20_logit_rescale_symmetric_rerun3_pod72.txt,1380,1380,3.2835,77304.0,1.2884,56.02,31372,48332,True,False
 local_rerun,track_1_short,logs/readme_top20_paired_head_off_rerun3_pod72.txt,1380,1380,3.2835,76286.0,1.2714333333333334,55.28,31262,48254,True,False
 local_rerun,track_1_short,logs/readme_top20_xsa_off_rerun3_pod72.txt,1380,1380,3.2811,76010.0,1.2668333333333333,55.08,31429,47864,True,False

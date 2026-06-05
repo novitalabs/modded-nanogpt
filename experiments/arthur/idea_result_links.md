@@ -5737,3 +5737,30 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T04:16:53Z: codex-1780632781390-ffe44570
+
+- Trigger: 1 run(s) finished
+- Summary: 当前 top10 分层不变：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN 家族，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。attn_gate_freeze 第四样本 val_loss=3.2863，使 sparse attention gate 更像 top20 下半区有效项而非近中性项。
+- Goal progress: README record-history delta 历史先验已建立，当前代码可逆 ablation 已覆盖主要优化项。top10 证据充分；top20 的 15-20 位仍需在 cautious WD、Adam two-step、sparse gate、paired head、Polar Express/NS5、XSA、logit rescale、max seq schedule 等边界项之间精排。
+- Code changes: no; 未修改代码；只分析最新 attn gate 结果、现有 JSON/CSV 结果和 runner 支持的可逆 ablation。
+- Suggested experiments: 3
+- Pending result runs: readme-top20-attn-gate-fourth-pod72-1780632601-4e65c7e0
+- Linked experiment ids: readme-top20-attn-gate-fourth-pod72
+- Input code commits: 86d6d8d4d80f4bc5b33da2564e7d39edcd63d2ac
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top20-cautious-wd-fourth-pod72 | Cautious WD fourth sample | 关闭 cautious weight decay 若继续稳定落在 val_loss≈3.283-3.286，则 CWD 应保留在 top20 下半区并与 sparse gate/Adam 边界组直接比较。 | new | CWD 目前 n=3 mean≈3.2838，和最新 sparse gate、Adam 边界项几乎重叠；第四样本信息量高。 |
+| readme-top20-polar-ns5-fourth-pod72 | Polar vs NS5 fourth sample | 把 Polar Express 替换回 NS5 若继续稳定 miss，则 Polar Express 应进入 top20；若均值回落到 logit/XSA 以下，则仅保留为近中性边界项。 | new | Polar/NS5 当前 n=3 mean≈3.2830，正处在 top20 第15-20名边界。 |
+| readme-top20-max-seq-fourth-pod72 | Max seq schedule fourth sample | 关闭 max seq length schedule 若仍只在 3.280-3.281 附近波动，则该项应排在 top20 之外或第20名边缘；若再次 miss 明显，则保留边界候选。 | new | 用于判定第20名附近的近中性项是否应被 sparse gate/CWD/Adam/paired/logit 等替代。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
