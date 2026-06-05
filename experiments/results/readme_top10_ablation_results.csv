@@ -146,3 +146,4 @@ readme_top20_cautious_wd_off_rerun3_pod72,cautious_wd_off,logs/readme_top20_caut
 readme_top20_paired_head_off_rerun3_pod72,paired_head_off,logs/readme_top20_paired_head_off_rerun3_pod72.txt,1380,1380,3.283500,1.271433,55.280000,3.280000,false,0
 readme_top20_max_seq_len_schedule_off_rerun3_pod72,max_seq_len_schedule_off,logs/readme_top20_max_seq_len_schedule_off_rerun3_pod72.txt,1380,1380,3.281300,1.288533,56.020000,3.280000,false,0
 readme_top20_polar_express_to_ns5_rerun3_pod72,polar_express_to_ns5,logs/readme_top20_polar_express_to_ns5_rerun3_pod72.txt,1380,1380,3.279300,1.300100,56.530000,3.280000,true,0
+readme_top20_polar_express_to_ns5_rerun4_pod72,polar_express_to_ns5,logs/readme_top20_polar_express_to_ns5_rerun4_pod72.txt,1380,1380,3.279600,1.289217,56.050000,3.280000,true,0

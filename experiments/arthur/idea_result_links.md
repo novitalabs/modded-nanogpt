@@ -5815,3 +5815,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T04:41:57Z: codex-1780634341875-c382703c
+
+- Trigger: 1 run(s) finished
+- Summary: 当前 top10 分层不变：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN 家族，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。Polar→NS5 第五样本 val_loss=3.2796，说明 Polar Express 目前只是 top20 下半区边界项。
+- Goal progress: README record-history delta 历史先验已建立，当前代码可逆 ablation 已覆盖主要候选。top20 的末端仍需 single_activation_input_off 第四样本和 smear_off 第四样本来区分 max_seq、Polar、smear、single activation 这组弱边界项；目前已有运行/排队覆盖，不需要追加新实验。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Polar→NS5 第五样本，结果文件和汇总文件由 Arthur run 自动生成/刷新。
+- Suggested experiments: 0
+- Pending result runs: readme-top20-polar-ns5-fifth-pod72-1780634161-39bf4d2a
+- Linked experiment ids: readme-top20-polar-ns5-fifth-pod72
+- Input code commits: 9044190199b2496232306e6045a509cc8df039f3
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
