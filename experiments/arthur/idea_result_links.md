@@ -6287,3 +6287,24 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T06:53:57Z: codex-1780642261751-69b213bf
+
+- Trigger: plan empty and no running experiments
+- Summary: 当前 top10 分层不变：Muon/正交化更新家族、Rotary、ReLU2、value embeddings、long-window/FA3/YaRN、bigram、batch schedule、EoS alignment、FP8 train-head 速度路径、MUDD。top20 末端仍主要在 max_seq schedule、smear、single activation、Polar/NS5 之间排序；Polar/NS5 最新 node75 样本为 val_loss=3.2814，支持其仍有小幅但稳定贡献。
+- Goal progress: README 历史先验已建立，当前可逆 ablation 已覆盖 README 技法主体。max_seq_len_schedule_off 目前 n=7、5/7 miss、mean≈3.28039，但第七个 pod72 样本达标 3.2781，node75 复核两次都不是有效因果样本：一次旧 pod 不存在，一次等待 slot 后被停止。本轮分析期间检测到 readme-top20-max-seq-eighth-pod72-fixed 已启动，应先等待该样本完成再决定是否继续 node75 复核或下调 max_seq。
+- Code changes: no; 本轮未修改代码；只读取 Arthur 事件、日志和结果表并更新实验决策。
+- Suggested experiments: 0
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
