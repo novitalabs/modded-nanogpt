@@ -5443,3 +5443,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T03:28:39Z: codex-1780629961962-34027482
+
+- Trigger: 1 run(s) finished
+- Summary: 当前综合 top10 不变：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN 家族，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。
+- Goal progress: README 历史先验和当前代码可逆 ablation 已足够支撑 top10 收口。最新 node75 MUDD smoke 是 FA3 依赖下载/缓存失败，未产生训练日志或 val_loss，不改变 MUDD 已有 pod72 五样本证据。若继续利用 .75，应先做 node75 FA3 离线缓存/代理预检，而不是继续跑 ablation。
+- Code changes: no; 未修改代码；只检查 Arthur run 日志、结果表和现有 journal。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-mudd-off-rerun6-node75-smoke-1780629621-5b079cee
+- Linked experiment ids: readme-top10-mudd-off-rerun6-node75-smoke
+- Input code commits: d0f921d0c98b39121cc6ddad7cb9b2934d71f7e2
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
