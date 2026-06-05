@@ -4666,3 +4666,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T01:14:27Z: codex-1780621982016-5d98868d
+
+- Trigger: 1 run(s) finished
+- Summary: no-extension-steps 完整跑完但 val_loss=3.2844，属于有效质量 miss；README top10 排序未变。当前强证据 top10 暂定为 Muon/正交化、EoS alignment、Rotary、ReLU2、value embeddings、long-window+YaRN、bigram hash、batch schedule、MUDD，以及低置信度边界项 YaRN-only。
+- Goal progress: README record-history delta 先验已建立，当前代码主要可逆 ablation 已覆盖并有多样本因果证据。缺口仍是第10位边界组差距约 0.0006 loss，低于普通短跑重复噪声；EoS alignment 主要是 NaN/失稳证据而非有限 loss delta。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur/collector 已生成的结果文件变更。
+- Suggested experiments: 0
+- Pending result runs: no-extension-steps-1780621801-356d31cd
+- Linked experiment ids: no-extension-steps
+- Input code commits: 92040fa9b1f13af9a25a66f1c75bff26cf00b2b7
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
