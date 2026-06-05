@@ -5467,3 +5467,24 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T03:30:49Z: codex-1780630141940-d3802afe
+
+- Trigger: plan empty and no running experiments
+- Summary: 当前综合 top10：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN 家族，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。
+- Goal progress: README record-history delta 先验已建立，当前代码可逆 ablation 已覆盖主要 README 优化项。关键证据包括 rotary_off n=3 mean_loss≈3.6528、relu_square_off n=3 mean_loss≈3.3183、value_embeds_off n=4 mean_loss≈3.3125、long_window_yarn_off n=4 mean_loss≈3.3028、bigram_off n=5 mean_loss≈3.3010、batch_schedule_constant_mean n=4 mean_loss≈3.3009、mudd_off n=5 mean_loss≈3.2911；EoS alignment 关闭多次 NaN；FP8 train-head 关闭主要体现为速度退化。剩余缺口是 Muon 完整替换仍主要依赖历史先验和子路径证据，但当前低风险可逆 ablation 不适合继续强行拆。
+- Code changes: no; 未修改代码；只读取并聚合现有结果。
+- Suggested experiments: 0
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
