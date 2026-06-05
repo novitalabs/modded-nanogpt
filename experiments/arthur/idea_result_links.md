@@ -4785,3 +4785,31 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T01:42:06Z: codex-1780623482011-b968ad81
+
+- Trigger: 1 run(s) finished
+- Summary: scheduled_1374_no_extension 新样本完整结束但未达标，val_loss=3.2816 > 3.28；unknown_total_steps_1374 现在 2 次有效运行、0 次达标、均值约 3.2814。README top10 结论不变：Muon/正交化、EoS alignment、Rotary、ReLU2、value embeddings、long-window+YaRN、bigram hash、batch schedule、MUDD，以及低置信度第10位 YaRN-only。
+- Goal progress: README record-history delta 先验已建立，当前代码主要可逆 ablation 已覆盖并形成多样本因果证据。强项排序稳定；剩余缺口是第10位边界，YaRN-only、NorMuon variance、MTP、QK norm 六样本均值约为 3.28907/3.28883/3.28857/3.28843，差距小于短跑噪声，不能声称严格区分。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur/collector 已生成的 scheduled_1374 结果汇总更新。
+- Suggested experiments: 4
+- Pending result runs: scheduled-1374-no-extension-1780623301-42fe3c29
+- Linked experiment ids: scheduled-1374-no-extension
+- Input code commits: efb0d8d41338b57eaa217ffad4be12a4b56ecf99
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-yarn-off-rerun6-pod72 | YaRN-only seventh boundary sample | 第7个 yarn_off 样本若仍保持约 3.289，则 YaRN-only 继续作为第10位边界首选；若回落，则应降低置信度。 | new | 只补第10位边界候选，同条件复跑，避免继续消耗在总步数边界上。 |
+| readme-top10-normuon-varred-off-rerun7-pod72 | NorMuon variance seventh sample | 第7个 normuon_varred_off 样本判断 NorMuon variance reduction 是否能追平或超过 YaRN-only 的边界证据。 | new | NorMuon 当前均值只比 YaRN-only 低约 0.00023，需要同条件补样。 |
+| readme-top10-mtp-off-rerun6-pod72 | MTP seventh boundary sample | 第7个 mtp_off 样本若上行，则 MTP 仍可竞争第10位；若保持较低均值，则排在 YaRN/NorMuon 后。 | new | MTP 贡献稳定但均值略低，补样用于边界排序。 |
+| readme-top10-qk-norm-off-rerun7-pod72 | QK norm seventh boundary sample | 第7个 qk_norm_off 样本判断 QK norm 是否只是边界组下沿，还是应靠历史先验保留在第10位竞争中。 | new | QK norm 当前六样本均值最低但历史先验强，适合最后一轮同条件补样。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
