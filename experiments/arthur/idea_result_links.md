@@ -5334,3 +5334,24 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T03:06:59Z: codex-1780628701599-012706aa
+
+- Trigger: plan empty and no running experiments
+- Summary: 当前综合 top10 收口为：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 batch size schedule，6 long-window/FA3/YaRN 家族，7 bigram hash embedding，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。
+- Goal progress: README record-history delta 历史先验已建立；当前代码可逆 ablation 已覆盖主要候选。关键证据包括 rotary_off≈3.65、relu_square_off≈3.318、value_embeds_off≈3.313、long_window_yarn_off≈3.303、bigram/batch≈3.301、EoS alignment 关闭后多次 NaN、MUDD 5 个有效样本均值≈3.291，强于 YaRN-only、NorMuon variance、MTP、QK norm 等第10名后弱边界组。Muon 完整替换没有低风险当前 ablation，仍主要由历史 delta 和子路径证据支撑。
+- Code changes: no; 未修改代码；只读取 README、Arthur journal、结果 CSV 和实验脚本。
+- Suggested experiments: 0
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
