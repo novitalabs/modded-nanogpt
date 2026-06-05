@@ -5915,3 +5915,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T05:10:06Z: codex-1780635901971-e87c539f
+
+- Trigger: 1 run(s) finished
+- Summary: 当前 top10 分层不变：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN 家族，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。top20 下半区强证据仍是 Adam two-step、sparse gate、CWD、paired head、XSA、logit rescale；末端边界目前 Polar/NS5 n=6 mean=3.28147、max_seq n=5 mean=3.28076、single_activation n=5 mean=3.28066、smear n=4 mean=3.27995。
+- Goal progress: README record-history delta 历史先验已建立，当前代码可逆 ablation 已覆盖主要候选。max_seq 第五样本和 Polar 第六样本均 miss，增强二者作为 top20 末端候选的证据；single_activation 第六样本已排队。缺口是把 max_seq 补到同等 n=6，并用 smear 第五样本确认它是否仍应落在边界外或弱 top20。
+- Code changes: no; 未修改训练代码或实验脚本；仅合并 experiments/results/readme_top10_ablation_results.csv，恢复 single_activation 第五样本行并保留 max_seq/Polar 新样本行。
+- Suggested experiments: 2
+- Pending result runs: readme-top20-max-seq-fifth-pod72-1780635361-f201cb20
+- Linked experiment ids: readme-top20-max-seq-fifth-pod72
+- Input code commits: 74584c603931925f1d6676cc436d2196b5bce759
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top20-max-seq-sixth-pod72 | Max seq schedule sixth sample | 关闭 max seq length schedule 若第六样本继续 miss，则 max_seq 应稳居 top20 末端候选；若达标，则与 single activation 精排。 | new | 补齐 max_seq 到 n=6，与 Polar 和 queued single_activation 的样本量对齐。 |
+| readme-top20-smear-fifth-pod72 | Smear fifth sample | 关闭 smear 若第五样本仍达标，则 smear 应降为 top20 边界外或弱项；若 miss，则重新纳入末端精排。 | new | smear 当前 n=4、3 hit/1 miss、mean 接近阈值；第五样本能确认它是否挑战 top20 cutoff。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
