@@ -4761,3 +4761,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T01:34:52Z: codex-1780623061197-a7882128
+
+- Trigger: 1 run(s) finished
+- Summary: scheduled_1370_no_extension 最新样本完整结束但未达标，val_loss=3.2832 > 3.28；1370 no-extension 组汇总为 4 次有效运行、0 次达标、均值约 3.2844、最好 3.2804。README 优化项 top10 暂定不变：Muon/正交化、EoS alignment、Rotary、ReLU2、value embeddings、long-window+YaRN、bigram hash、batch schedule、MUDD，以及低置信度第10位 YaRN-only。
+- Goal progress: README record-history delta 先验已建立，当前代码的主要可逆 ablation 已形成多样本因果证据。强项排序稳定；第10位边界仍受 YaRN-only、NorMuon variance、MTP、QK norm 之间小于约 0.001 loss 的短跑噪声限制，因此只能标注低置信度，不能声称严格区分。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只保留 Arthur/collector 对 experiments/results/comparison.md、experiments/results/local_reruns.csv、experiments/results/log_results.csv、experiments/results/summary.json 的结果汇总更新。
+- Suggested experiments: 0
+- Pending result runs: scheduled-1370-no-extension-1780622881-414a4e4e
+- Linked experiment ids: scheduled-1370-no-extension
+- Input code commits: 9767f1a0af0eed22531c8b41f8b8d9238f478bf2
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
