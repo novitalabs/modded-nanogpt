@@ -6015,3 +6015,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T05:29:48Z: codex-1780637101915-de5db92d
+
+- Trigger: 1 run(s) finished
+- Summary: 当前 top10 分层不变：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN 家族，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。max_seq schedule 第六样本 val_loss=3.2808、target_met=false，使其当前 n=6、1 hit/5 miss、mean=3.28077；Polar/NS5 n=6 mean=3.28147，single activation n=6 mean=3.28052，smear n=5 mean=3.27972。
+- Goal progress: README 历史先验和当前代码可逆 ablation 已覆盖主要候选。max_seq 第六样本补齐后，top20 末端主要由 Polar/NS5、max_seq schedule、single activation 支撑；smear、PKO、value/skip gates 更像边界外或弱候选。当前已有 PKO fourth boundary control 和 value skip gates fourth sample queued，足够回答剩余边界控制问题。
+- Code changes: no; 未修改训练代码或实验脚本；仅刷新结果汇总文件并保留已提交的 single/smear 样本行，新增 max_seq 第六样本结果 JSON/CSV 汇总。
+- Suggested experiments: 0
+- Pending result runs: readme-top20-max-seq-sixth-pod72-1780636381-0b544627
+- Linked experiment ids: readme-top20-max-seq-sixth-pod72
+- Input code commits: e110d6e5a3bfdba0540ef250d0664f74be6894b0
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
