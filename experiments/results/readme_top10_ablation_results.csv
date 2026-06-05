@@ -161,3 +161,4 @@ readme_top20_single_activation_input_off_rerun7_pod72,single_activation_input_of
 readme_top20_smear_off_rerun6_node75,smear_off,logs/readme_top20_smear_off_rerun6_node75.txt,1380,1380,3.284600,1.288517,56.020000,3.280000,false,0
 readme_top20_smear_off_rerun7_pod72,smear_off,logs/readme_top20_smear_off_rerun7_pod72.txt,1380,1380,3.279700,1.280250,55.660000,3.280000,true,0
 readme_top20_single_activation_input_off_rerun8_node75,single_activation_input_off,logs/readme_top20_single_activation_input_off_rerun8_node75.txt,1380,1380,3.281600,1.294133,56.270000,3.280000,false,0
+readme_top20_max_seq_len_schedule_off_rerun6_pod72,max_seq_len_schedule_off,logs/readme_top20_max_seq_len_schedule_off_rerun6_pod72.txt,1380,1380,3.278100,1.286167,55.920000,3.280000,true,0

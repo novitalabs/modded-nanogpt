@@ -6188,3 +6188,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T06:25:00Z: codex-1780640512299-20a8a751
+
+- Trigger: experiment finished with results pending commit
+- Summary: 当前 top10 分层不变：Muon/正交化更新家族、Rotary、ReLU2、value embeddings、long-window/FA3/YaRN、bigram、batch schedule、EoS alignment、FP8 train-head 速度路径、MUDD。node75 smoke 成功，仅确认 .75 的 8xH200 可用；max_seq_schedule_off 第七样本 val_loss=3.2781、target_met=true，使其 n=7、5/7 miss、mean≈3.28039，仍在 top20 cutoff 附近但证据变弱。single_activation_input_off n=8、5/8 miss、mean≈3.28066；smear_off n=7、2/7 miss、mean≈3.28041 且中位数达标，更偏弱项或边界外。
+- Goal progress: README 历史先验和当前代码可逆 ablation 已覆盖主要候选。剩余缺口集中在第20名附近：max_seq schedule 最新 pod72 达标，需要 node75 交叉验证；Polar Express vs NS5 仍比 single/max_seq 平均损失更高，但缺少 node75 样本。补这两项能更清楚地区分 top20 末端排序。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur/实验脚本生成的 node75 smoke 结果和 max_seq 第七样本结果。
+- Suggested experiments: 2
+- Pending result runs: arthur-window-node75-1420-smoke-1780640462-842ddd1e
+- Linked experiment ids: arthur-window-node75-1420-smoke
+- Input code commits: 08e83ddbe0db5969074ace6a18b785bfdfad51d0
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top20-max-seq-eighth-node75 | Max seq node75 cross-check | 关闭 max seq length schedule 若 node75 第八样本重新 miss，则第七个 pod72 达标样本更像边界波动，max_seq 仍保留 top20 cutoff 内；若再次达标，则应下调到 cutoff 竞争外侧。 | new | .75 smoke 刚确认 H200 空窗可用；此实验隔离 max_seq schedule 最新达标样本是否为 pod72/随机边界波动。 |
+| readme-top20-polar-ns5-seventh-node75 | Polar vs NS5 node75 check | 将 Polar Express 替换为 NS5 若 node75 第七样本仍 miss，则 Polar 作为 top20 末端强于 single/max_seq；若达标，则 Polar 也进入 cutoff 竞争区。 | new | Polar-vs-NS5 当前 n=6、4/6 miss、mean≈3.28147，但样本主要在 pod72；node75 复核可减少末端排序的不确定性。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

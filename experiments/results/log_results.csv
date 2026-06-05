@@ -1113,6 +1113,7 @@ local_rerun,track_1_short,logs/readme_top20_logit_rescale_symmetric_rerun3_pod72
 local_rerun,track_1_short,logs/readme_top20_max_seq_len_schedule_off_rerun3_pod72.txt,1380,1380,3.2813,77312.0,1.2885333333333333,56.02,31428,48432,True,False
 local_rerun,track_1_short,logs/readme_top20_max_seq_len_schedule_off_rerun4_pod72.txt,1380,1380,3.2805,77758.0,1.2959666666666667,56.35,31428,48472,True,False
 local_rerun,track_1_short,logs/readme_top20_max_seq_len_schedule_off_rerun5_pod72.txt,1380,1380,3.2808,77637.0,1.29395,56.26,31262,48272,True,False
+local_rerun,track_1_short,logs/readme_top20_max_seq_len_schedule_off_rerun6_pod72.txt,1380,1380,3.2781,77170.0,1.2861666666666667,55.92,31262,48312,True,True
 local_rerun,track_1_short,logs/readme_top20_paired_head_off_rerun3_pod72.txt,1380,1380,3.2835,76286.0,1.2714333333333334,55.28,31262,48254,True,False
 local_rerun,track_1_short,logs/readme_top20_pko_off_rerun3_pod72.txt,1380,1380,3.2765,77364.0,1.2894,56.06,31429,48392,True,True
 local_rerun,track_1_short,logs/readme_top20_polar_express_to_ns5_rerun3_pod72.txt,1380,1380,3.2793,78006.0,1.3001,56.53,31429,48512,True,True
