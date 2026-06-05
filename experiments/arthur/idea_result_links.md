@@ -4422,3 +4422,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T00:13:22Z: codex-1780618201421-90963fcc
+
+- Trigger: 1 run(s) finished
+- Summary: mudd_off 第四个有效样本 val_loss=3.2902，四样本均值约 3.2906；MUDD 的正贡献证据已明显强于第10位边界组，当前可作为 top10 候选保留。
+- Goal progress: README 历史先验已完成，当前代码的主要可逆 ablation 已形成多样本证据。剩余缺口主要是已排队的 batch schedule 与 long-window/YaRN 第四样本，用于收口强项中段排序；第10位附近仍需在 YaRN-only、MTP、NorMuon variance、QK norm 之间保持不确定性说明。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur 自动生成的 mudd_off 结果产物。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-mudd-off-rerun4-pod72-1780618021-da35e32b
+- Linked experiment ids: readme-top10-mudd-off-rerun4-pod72
+- Input code commits: 9c0942770277c21d49a9f4886a74924186c6db4c
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
