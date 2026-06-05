@@ -1130,5 +1130,6 @@ local_rerun,track_1_short,logs/readme_top20_smear_off_rerun4_pod72.txt,1380,1380
 local_rerun,track_1_short,logs/readme_top20_smear_off_rerun5_pod72.txt,1380,1380,3.2788,76935.0,1.28225,55.75,31397,47252,True,True
 local_rerun,track_1_short,logs/readme_top20_smear_off_rerun6_node75.txt,1380,1380,3.2846,77311.0,1.2885166666666668,56.02,31397,48212,True,False
 local_rerun,track_1_short,logs/readme_top20_smear_off_rerun7_pod72.txt,1380,1380,3.2797,76815.0,1.28025,55.66,31397,48212,True,True
+local_rerun,track_1_short,logs/readme_top20_smear_off_rerun8_pod72.txt,1380,1380,3.2815,76947.0,1.28245,55.76,30947,47312,True,False
 local_rerun,track_1_short,logs/readme_top20_value_skip_gates_static_rerun3_pod72.txt,1380,1380,3.2775,76340.0,1.2723333333333333,55.32,31429,48388,True,True
 local_rerun,track_1_short,logs/readme_top20_xsa_off_rerun3_pod72.txt,1380,1380,3.2811,76010.0,1.2668333333333333,55.08,31429,47864,True,False
