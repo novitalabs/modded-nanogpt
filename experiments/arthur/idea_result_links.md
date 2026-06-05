@@ -5839,3 +5839,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T04:48:02Z: codex-1780634701509-d6945a86
+
+- Trigger: 1 run(s) finished
+- Summary: 当前 top10 分层不变：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN 家族，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。smear_off 第四样本 val_loss=3.2785 且 target_met=true，使 Smear 更偏 top20 末端或边界外弱项。
+- Goal progress: README record-history delta 历史先验已建立，当前代码可逆 ablation 已覆盖主要候选。top20 下半区目前主要由 Adam two-step、sparse gate、CWD、paired head、XSA、logit rescale 支撑；Polar/max_seq/smear/single activation 是弱边界组。缺口是等待正在运行的 single_activation_input_off 第四样本完成，以决定是否还需要第五样本或直接收口。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 smear 第四样本及现有汇总结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top20-smear-fourth-pod72-1780634521-915ec8ed
+- Linked experiment ids: readme-top20-smear-fourth-pod72
+- Input code commits: ad052cb651b911ad3aaf087e7ba7e8cc7561470b
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
