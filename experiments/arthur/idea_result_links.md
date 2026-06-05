@@ -5355,3 +5355,25 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T03:10:33Z: codex-1780628821241-c470cf30
+
+- Trigger: plan empty and no running experiments
+- Summary: 当前 top10 基本收口：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。
+- Goal progress: README record-history delta 历史先验已建立，当前代码可逆 ablation 已覆盖主要候选并形成多样本证据。强 loss/stability 证据已足够；剩余主要缺口是 FP8 train-head/fused head 作为速度型 top10 项，需要再补一个同条件样本确认约 1.60min vs 当前 root 约 1.29min 的时延惩罚稳定存在。
+- Code changes: no; 未修改代码；只读取现有结果、实验脚本并聚合 ablation 统计。
+- Suggested experiments: 1
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-fp8-train-head-speed-rerun4-pod72 | FP8 train-head speed fifth sample | 关闭 FP8 train-head/fused lm_head 训练路径会稳定把训练时间从约 1.29min 拉高到约 1.60min，即使 loss 影响接近中性，因此该路径应按速度收益进入 top10。 | new | FP8 路径是当前 top10 中主要按速度而非 loss delta 入榜的一项；已有 4 个样本显示约 +0.31min 时延，补第五样本用于确认速度收益稳定。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
