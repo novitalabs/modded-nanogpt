@@ -5641,3 +5641,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T03:58:58Z: codex-1780631821421-1fa4b022
+
+- Trigger: 1 run(s) finished
+- Summary: 当前 top10 保持不变：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN 家族，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。XSA 第四样本确认其为 top20 下半区边界候选，暂不进入 top10。
+- Goal progress: README record-history delta 历史先验已建立；当前代码可逆 ablation 已覆盖主要 README 优化项。最新 XSA-off 样本 val_loss=3.2811，使 xsa_off 聚合为 n=4 mean≈3.2828，和 paired head、sparse gate、logit rescale、Polar Express/NS5 边界组非常接近。当前缺口仍是 top20 第15-20位的精排；Adam node75 cross-check 正在运行，paired/logit/sparse gate 第四样本已排队，等待这些结果比新增实验更有信息量。
+- Code changes: no; 未修改代码；只读取并分析最新 Arthur 结果、结果表和运行状态。
+- Suggested experiments: 0
+- Pending result runs: readme-top20-xsa-off-rerun3-pod72-1780631642-07f64599
+- Linked experiment ids: readme-top20-xsa-off-rerun3-pod72
+- Input code commits: ae8f28a483e0ba3ce9242028fdf2af01ad2efe6d
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

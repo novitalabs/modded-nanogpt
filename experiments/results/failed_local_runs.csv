@@ -1,0 +1,4 @@
+label,track,path,error_type,reason
+2025-11-12_BlockMaskRedundantOp,track_2_medium,logs/000_5b519ff4-cd22-4d33-99a9-4ed3dfa78efb.txt,startup_failure,Exited before validation; kubectl stderr showed Torch 2.11 Dynamo/FlexAttention compiled-autograd incompatibility
+2025-11-12_BlockMaskRedundantOp,track_2_medium,logs/000_86ddb1f2-0d57-4e6b-af85-ce6a3d2de3f6.txt,startup_failure,Exited before validation; kubectl stderr showed Torch 2.11 Dynamo/FlexAttention compiled-autograd incompatibility
+2025-11-12_BlockMaskRedundantOp,track_2_medium,logs/000_b0d39018-53e5-4a9c-bbe1-0e28e69393d1.txt,partial_run,Exited before completion after validation step 1625/5960
