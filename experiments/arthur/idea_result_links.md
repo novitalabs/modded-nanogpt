@@ -5617,3 +5617,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T03:53:55Z: codex-1780631460110-358d4ea4
+
+- Trigger: plan empty and no running experiments
+- Summary: 当前 top10 保持不变：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN 家族，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。top20 下半区仍需细分。
+- Goal progress: README record-history delta 历史先验已建立，当前代码可逆 ablation 已覆盖主要优化方法。top10 证据充分；top20 的 15-20 位仍缺少对 paired head、logit rescale、sparse attention gate 等边界项的第四样本，用来区分弱正贡献和近中性项。
+- Code changes: no; 未修改代码或实验状态文件；只分析现有结果与 runner 支持的可逆 ablation。
+- Suggested experiments: 3
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top20-paired-head-fourth-pod72 | Paired head fourth sample | 关闭 paired head attention 若继续稳定落在 val_loss≈3.282-3.285，则 paired head 应进入 top20 下半区；若回落到 3.280 边界，则降级为近中性。 | new | 隔离 paired head 一个变量；当前 n=3 mean_loss≈3.2829，正好处在 top20 边界。 |
+| readme-top20-logit-rescale-fourth-pod72 | Logit rescale fourth sample | 把 asymmetric logit rescale 改回 symmetric softcap 若继续稳定 miss，则该 logit 路径应保留在 top20；否则降级到近中性。 | new | 当前 n=3 mean_loss≈3.2823，和 paired/sparse/polar 边界项非常接近。 |
+| readme-top20-attn-gate-fourth-pod72 | Sparse gate fourth sample | 冻结 sparse attention gate 若继续产生约 0.003 loss 退化，则 sparse gate 应进入 top20 下半区。 | new | 当前 n=3 mean_loss≈3.2831；补样用于决定它是否高于 logit/paired/polar 边界组。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
