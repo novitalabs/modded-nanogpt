@@ -6063,3 +6063,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T05:48:23Z: codex-1780638061351-43f8c833
+
+- Trigger: 1 run(s) finished
+- Summary: 当前 top10 分层不变：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN 家族，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。PKO 第四样本达标后为 n=4、4/4 hit、mean≈3.27858，value/skip gates 第四样本后为 n=4、3/4 hit、mean≈3.27925，两者都不像强 top20。
+- Goal progress: README 历史先验和当前代码可逆 ablation 已覆盖主要候选。top20 下半区强证据仍包括 Adam two-step、sparse gate、CWD、paired head、XSA、logit rescale；末端由 Polar/NS5、max_seq schedule、single activation 支撑。smear、PKO、value/skip gates 当前证据偏弱，需要再补 single activation 和 smear 的边界样本来最终确认第20名附近排序。
+- Code changes: no; 未修改训练代码或实验脚本；仅修正 experiments/results/readme_top10_ablation_results.csv 的并发结果合并，保留 value skip gates 第四样本和 PKO 第四样本两行。
+- Suggested experiments: 2
+- Pending result runs: readme-top20-pko-fourth-pod72-1780637401-d276db0f
+- Linked experiment ids: readme-top20-pko-fourth-pod72
+- Input code commits: 4e14239b4f440abe0e8722939cbe86c7bb169ecf
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top20-single-activation-seventh-pod72 | Single activation seventh boundary sample | 关闭 single activation input 若第七样本继续 miss 或均值保持高于 smear/PKO/value-gates，则保留为 top20 cutoff 内；若明显达标并拉低均值，则降为边界外。 | new | single_activation 当前 n=6、mean≈3.28052、3/6 hit，是第20名附近最不稳定的候选。 |
+| readme-top20-smear-sixth-boundary-control | Smear sixth boundary control | 关闭 smear 若第六样本仍达标，则 smear 应排在 top20 cutoff 外；若 miss 并把均值推回 target 以上，则重新参与第20名竞争。 | new | smear 当前 n=5、mean≈3.27972、4/5 hit，作为 single/max_seq cutoff 的最近反向控制。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
