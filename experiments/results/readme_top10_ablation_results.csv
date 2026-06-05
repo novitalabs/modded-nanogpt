@@ -158,3 +158,4 @@ readme_top20_max_seq_len_schedule_off_rerun5_pod72,max_seq_len_schedule_off,logs
 readme_top20_value_skip_gates_static_rerun3_pod72,value_skip_gates_static,logs/readme_top20_value_skip_gates_static_rerun3_pod72.txt,1380,1380,3.277500,1.272333,55.320000,3.280000,true,0
 readme_top20_pko_off_rerun3_pod72,partial_key_offset_off,logs/readme_top20_pko_off_rerun3_pod72.txt,1380,1380,3.276500,1.289400,56.060000,3.280000,true,0
 readme_top20_single_activation_input_off_rerun7_pod72,single_activation_input_off,logs/readme_top20_single_activation_input_off_rerun7_pod72.txt,1380,1380,3.280600,1.287900,56.000000,3.280000,false,0
+readme_top20_smear_off_rerun6_node75,smear_off,logs/readme_top20_smear_off_rerun6_node75.txt,1380,1380,3.284600,1.288517,56.020000,3.280000,false,0

@@ -6113,3 +6113,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T06:05:00Z: codex-1780639201923-e199f27b
+
+- Trigger: 1 run(s) finished
+- Summary: 当前 top10 分层不变：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN 家族，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。smear 第六样本 val_loss=3.2846、target_met=false，使 smear 当前 n=6、mean≈3.28053、2/6 miss；single activation n=7、mean≈3.28053、4/7 miss；max_seq schedule n=6、mean≈3.28077、5/6 miss。
+- Goal progress: README 历史先验和当前代码可逆 ablation 已覆盖主要候选。top20 下半区强证据仍包括 Adam two-step、sparse gate、CWD、paired head、XSA、logit rescale；末端仍主要由 Polar/NS5、max_seq schedule、single activation 支撑。smear 需要一个 pod72 复核来判断 node75 miss 是否离群。
+- Code changes: no; 未修改训练代码或实验脚本；仅刷新 experiments/results 汇总，并合并 readme_top10_ablation_results.csv，保留 single_activation 第七样本和 smear 第六样本。
+- Suggested experiments: 2
+- Pending result runs: readme-top20-smear-sixth-boundary-control-1780638541-5cef0ae9
+- Linked experiment ids: readme-top20-smear-sixth-boundary-control
+- Input code commits: f0c242b0908ad737a63b11839f8355c847796b6a
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top20-smear-seventh-pod72 | Smear pod72 outlier check | 关闭 smear 若 pod72 第七样本重新达标，则 node75 第六样本更像离群，smear 继续偏 top20 外；若再次 miss，则 smear 进入 cutoff 竞争。 | new | smear 当前均值被单个 node75 miss 拉高；pod72 复核能隔离硬件/随机波动。 |
+| readme-top20-single-activation-eighth-node75 | Single activation node75 check | 关闭 single activation 若 node75 第八样本仍 miss，则 single activation 作为 top20 cutoff 内候选更稳；若达标，则需和 smear 继续并列边界处理。 | new | single activation 当前 n=7、4/7 miss，与 smear 均值几乎相同；跨节点复核能减少 cutoff 排序不确定性。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
