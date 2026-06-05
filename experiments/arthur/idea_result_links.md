@@ -4497,3 +4497,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T00:33:21Z: codex-1780619461579-baad7bbd
+
+- Trigger: 1 run(s) finished
+- Summary: yarn_off 第六样本 val_loss=3.2892，六样本均值约 3.28907；YaRN-only 目前略领先 MTP 五样本均值约 3.28870、NorMuon variance 五样本均值约 3.28876、QK norm 五样本均值约 3.28842，但差距仍在采样噪声范围内。
+- Goal progress: README 历史先验已建立，当前代码主要可逆 ablation 已覆盖并形成多样本证据。强贡献层仍是 Polar/Muon orthogonalization、Rotary、ReLU2、value embeddings、long-window+YaRN、bigram hash、batch schedule、MUDD；第10位边界仍需等待已排队的 MTP/NorMuon 第六样本，并补齐 QK norm 第六样本。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur 自动生成的 yarn_off 第六样本结果产物。
+- Suggested experiments: 1
+- Pending result runs: readme-top10-yarn-off-rerun5-pod72-1780619281-98ad0413
+- Linked experiment ids: readme-top10-yarn-off-rerun5-pod72
+- Input code commits: d47eeffab1ab038e4c07906b0af7b6e66b3fb188
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-qk-norm-off-rerun6-pod72 | QK norm sixth boundary sample | 第六个 qk_norm_off 样本用于判断 QK norm 是否仍处于第10位边界竞争，或应稳定排在 YaRN/MTP/NorMuon 后。 | new | MTP 和 NorMuon 第六样本已 queued；QK norm 当前只有五个有效样本，补一个同条件样本可完成边界组 6-sample 对齐。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

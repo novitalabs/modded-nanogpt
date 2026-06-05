@@ -1,0 +1,13 @@
+{
+  "variant_id": "readme_top10_yarn_off_rerun5_pod72",
+  "ablation": "yarn_off",
+  "log": "logs/readme_top10_yarn_off_rerun5_pod72.txt",
+  "step": "1380",
+  "total_steps": "1380",
+  "val_loss": "3.289200",
+  "train_time_min": "1.285250",
+  "step_avg_ms": "55.880000",
+  "target_loss": "3.280000",
+  "target_met": "false",
+  "run_exit_code": "0"
+}
