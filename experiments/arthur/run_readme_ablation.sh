@@ -2,6 +2,7 @@
 set -euo pipefail
 
 POD="${MODDED_NANOGPT_POD:-modded-nanogpt-repro}"
+REMOTE_WORKDIR="${MODDED_NANOGPT_WORKDIR:-/workspace/modded-nanogpt}"
 TIMEOUT="${VARIANT_TIMEOUT:-45m}"
 VARIANT_ID="${VARIANT_ID:?set VARIANT_ID}"
 ABLATION="${ABLATION:?set ABLATION}"
@@ -11,7 +12,7 @@ RESULTS_DIR="${RESULTS_DIR:-experiments/results}"
 if [[ "${RUN_README_ABLATION_DIRECT:-0}" == "1" ]] || ! command -v kubectl >/dev/null 2>&1; then
   RUNNER=(bash -s -- "${TIMEOUT}" "${VARIANT_ID}" "${ABLATION}" "${TARGET_LOSS}" "${RESULTS_DIR}" "$(pwd -P)")
 else
-  RUNNER=(kubectl exec -i "${POD}" -- bash -s -- "${TIMEOUT}" "${VARIANT_ID}" "${ABLATION}" "${TARGET_LOSS}" "${RESULTS_DIR}" "/workspace/modded-nanogpt")
+  RUNNER=(kubectl exec -i "${POD}" -- bash -s -- "${TIMEOUT}" "${VARIANT_ID}" "${ABLATION}" "${TARGET_LOSS}" "${RESULTS_DIR}" "${REMOTE_WORKDIR}")
 fi
 
 "${RUNNER[@]}" <<'REMOTE'

@@ -6238,3 +6238,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T06:35:32Z: codex-1780640881535-a524da43
+
+- Trigger: experiment finished with results pending commit
+- Summary: 当前 top10 分层不变：Muon/正交化更新家族、Rotary、ReLU2、value embeddings、long-window/FA3/YaRN、bigram、batch schedule、EoS alignment、FP8 train-head 速度路径、MUDD。readme-top20-max-seq-eighth-node75 本轮失败是基础设施/命令目标错误：pod modded-nanogpt-repro-75 不存在，不能计入 max_seq_len_schedule_off 因果证据。
+- Goal progress: README 历史先验和当前可逆 ablation 已覆盖主要候选。top20 末端仍缺 max_seq_len_schedule_off 的有效 node75 交叉验证；Polar/NS5 node75 复核正在 arthur-exp-75 上运行，应等待其完成后再分析排序。
+- Code changes: yes; 修改 experiments/arthur/run_readme_ablation.sh：新增 MODDED_NANOGPT_WORKDIR，kubectl 分支可显式使用 arthur-exp-75 的 /workspace/arthur-workspace；已通过 bash -n 校验。
+- Suggested experiments: 1
+- Pending result runs: readme-top20-max-seq-eighth-node75-1780640821-0054f4e8
+- Linked experiment ids: readme-top20-max-seq-eighth-node75
+- Input code commits: 63053f6301ff7a2744afb1dad1c7b07541720b08
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top20-max-seq-eighth-node75-fixed | Max seq node75 fixed retry | 关闭 max seq length schedule 若在正确的 arthur-exp-75 上重新 miss，则第七个 pod72 达标样本更像边界波动，max_seq 仍保留 top20 cutoff 内；若再次达标，则应下调到 cutoff 竞争外侧。 | new | 只重跑上次因错误 pod 名失败的 max_seq node75 复核；命令会等待当前 Polar/NS5 node75 训练空闲，避免资源冲突。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
