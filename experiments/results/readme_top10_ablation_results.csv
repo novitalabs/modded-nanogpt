@@ -148,3 +148,4 @@ readme_top20_max_seq_len_schedule_off_rerun3_pod72,max_seq_len_schedule_off,logs
 readme_top20_polar_express_to_ns5_rerun3_pod72,polar_express_to_ns5,logs/readme_top20_polar_express_to_ns5_rerun3_pod72.txt,1380,1380,3.279300,1.300100,56.530000,3.280000,true,0
 readme_top20_polar_express_to_ns5_rerun4_pod72,polar_express_to_ns5,logs/readme_top20_polar_express_to_ns5_rerun4_pod72.txt,1380,1380,3.279600,1.289217,56.050000,3.280000,true,0
 readme_top20_smear_off_rerun4_pod72,smear_off,logs/readme_top20_smear_off_rerun4_pod72.txt,1380,1380,3.278500,1.282033,55.740000,3.280000,true,0
+readme_top20_single_activation_input_off_rerun4_pod72,single_activation_input_off,logs/readme_top20_single_activation_input_off_rerun4_pod72.txt,1380,1380,3.282500,1.295933,56.350000,3.280000,false,0

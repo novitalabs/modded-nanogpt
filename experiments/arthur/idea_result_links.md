@@ -5863,3 +5863,30 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T04:56:00Z: codex-1780634941282-d0e19a3f
+
+- Trigger: 1 run(s) finished
+- Summary: 当前 top10 分层不变：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN 家族，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。single_activation_input_off 第四样本 val_loss=3.2825、target_met=false，使它比 smear/max_seq 更像 top20 末端候选。
+- Goal progress: 历史先验和主要 current-code ablation 已覆盖。top20 强边界组仍是 Adam two-step、sparse gate、CWD、paired head、XSA、logit rescale；末端缺口集中在 single activation、max_seq schedule、Polar/NS5 之间，需要少量第五/第六样本精排。
+- Code changes: no; 未修改训练代码或实验脚本；只整理结果文件，将 single activation 第四样本追加到 ablation CSV，并保留自动生成的 per-run JSON。
+- Suggested experiments: 3
+- Pending result runs: readme-top20-single-activation-fourth-pod72-1780634161-e324cbe8
+- Linked experiment ids: readme-top20-single-activation-fourth-pod72
+- Input code commits: 9044190199b2496232306e6045a509cc8df039f3
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top20-single-activation-fifth-pod72 | Single activation fifth sample | 关闭 single activation input 若第五样本继续 miss，则该项应保留为 top20 末端候选并高于 smear/max_seq 弱边界项。 | new | 当前 n=4 mean≈3.2809、3/4 miss，正卡第20名附近。 |
+| readme-top20-max-seq-fifth-pod72 | Max seq schedule fifth sample | 关闭 max seq length schedule 若第五样本仍轻微 miss，则 max_seq 与 single activation 竞争 top20 末端；若达标则降为边界外。 | new | 当前 n=4 mean≈3.2808、3/4 miss，和 single activation 差距很小。 |
+| readme-top20-polar-ns5-sixth-pod72 | Polar vs NS5 sixth sample | Polar→NS5 若第六样本再次达标，则 Polar Express 应降为近中性边界；若重新 miss，则保留为 top20 末端候选。 | new | 当前 n=5 mean≈3.2816，但最近两次达标，需要确认是否只是噪声回落。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
