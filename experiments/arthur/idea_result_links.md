@@ -6308,3 +6308,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T06:57:47Z: codex-1780642502058-1d41781c
+
+- Trigger: batch finished with results pending commit
+- Summary: 当前 top10 分层不变：Muon/正交化更新家族、Rotary、ReLU2、value embeddings、long-window/FA3/YaRN、bigram、batch schedule、EoS alignment、FP8 train-head 速度路径、MUDD。新增 max_seq_len_schedule_off 第八个 pod72 样本 val_loss=3.2807、target_met=false，支持它仍是 top20 末端边界有效项。
+- Goal progress: README 历史先验和当前代码可逆 ablation 已覆盖主要候选。top20 cutoff 仍有缺口：max_seq n=8 mean≈3.28043、single n=8 mean≈3.28066、smear n=7 mean≈3.28041；需要继续补齐 smear/single 的同环境样本来区分末端排序。node75 当前窗口/slot 不稳定，先用 pod72 避免把基础设施失败混入因果证据。
+- Code changes: no; 本轮未修改代码；工作区只有 Arthur/collector 生成的结果 CSV/JSON/summary 待提交。
+- Suggested experiments: 2
+- Pending result runs: readme-top20-max-seq-eighth-pod72-fixed-1780642276-2d97fb35
+- Linked experiment ids: readme-top20-max-seq-eighth-pod72-fixed
+- Input code commits: ee1e57b24d5d2e07e726f6ae13e55d8e2019b53c
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top20-smear-eighth-pod72 | Smear eighth pod72 sample | 关闭 smear one-token lookback 若第八个 pod72 样本继续达标，则此前 node75 miss 更像环境/随机 outlier，smear 应下调到 top20 cutoff 外侧；若 miss，则 smear 仍是边界有效项。 | new | smear 当前 n=7、2/7 miss，但均值被 node75 miss 拉到 cutoff 附近；补一个 pod72 样本隔离环境 outlier。 |
+| readme-top20-single-ninth-pod72 | Single activation ninth pod72 sample | 关闭 single activation input 若第九个 pod72 样本仍 miss，则 single activation 比 max_seq/smear 更稳地留在 top20 末端；若达标，则三者仍需按均值和 miss rate 继续分层。 | new | single 当前 n=8、5/8 miss、mean≈3.28066，和 max_seq/smear 同属 cutoff 竞争区；补同环境样本能减少末端排序不确定性。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
