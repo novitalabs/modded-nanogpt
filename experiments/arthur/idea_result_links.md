@@ -5082,3 +5082,24 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T02:42:28Z: codex-1780627261262-4cd6cf3d
+
+- Trigger: plan empty and no running experiments
+- Summary: 当前综合 top10 收口为：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 batch size schedule，6 long-window/FA3/YaRN 家族，7 bigram hash embedding，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。
+- Goal progress: README record-history delta 历史先验已建立，当前代码可逆 ablation 已覆盖主要候选并形成多样本因果证据。MUDD 第5样本 val_loss=3.2931，确认其强于第10位后的弱边界组；YaRN-only、NorMuon variance、MTP、QK norm 约7样本均值接近且低于 MUDD，继续普通短轨重复难以有效区分。主要 caveat 是 FP8 路径更多按速度收益排序，而非 loss delta。
+- Code changes: no; 未修改代码；只读取并分析现有结果汇总、Arthur journal 和 ablation CSV。
+- Suggested experiments: 0
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
