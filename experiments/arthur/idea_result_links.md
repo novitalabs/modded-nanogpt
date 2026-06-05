@@ -6139,3 +6139,28 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T06:13:04Z: codex-1780639681702-c7901c07
+
+- Trigger: 1 run(s) finished
+- Summary: 当前 top10 分层不变：Muon/正交化更新家族、Rotary、ReLU2、value embeddings、long-window/FA3/YaRN、bigram、batch schedule、EoS alignment、FP8 train-head 速度路径、MUDD 仍是高层结论。smear 第七样本 val_loss=3.2797 达标，使 smear 当前 n=7、mean≈3.28041、5/7 达标，node75 miss 暂按边界/节点波动处理。
+- Goal progress: README 历史先验和当前代码可逆 ablation 已覆盖主要 top20 候选。剩余不确定性集中在 top20 cutoff：max_seq schedule、single activation、smear、Polar-vs-NS5 等小幅项；single activation 第八个 node75 样本正在运行，下一步补 max_seq schedule 可减少 cutoff 排序不确定性。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur 已生成的 smear 第七样本结果和汇总。
+- Suggested experiments: 1
+- Pending result runs: readme-top20-smear-seventh-pod72-1780639500-372f22e6
+- Linked experiment ids: readme-top20-smear-seventh-pod72
+- Input code commits: d4eb3b895b7e55e760cdb5c87d750e05b66024f4
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top20-max-seq-seventh-pod72 | Max seq schedule seventh sample | 关闭 max seq length schedule 若第七样本仍 miss，则 max_seq schedule 稳定高于 single/smear 边界项；若达标，则需要把它降为 top20 cutoff 竞争项。 | new | node75 当前被 single activation 复核占用；pod72 可用于独立边界变量，且 max_seq 当前 n=6、5/6 miss、mean≈3.28077，正好卡在 top20 cutoff 附近。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
