@@ -4862,3 +4862,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T01:59:09Z: codex-1780624681408-339cd3e5
+
+- Trigger: 1 run(s) finished
+- Summary: readme_top10_mtp_off_rerun6_pod72 完整结束，val_loss=3.2868，target_met=false；MTP-off 7 样本均值约 3.28831，低于 YaRN-only 和 NorMuon variance-off，暂不支持把 MTP 放入 top10 边界首选。
+- Goal progress: README record-history delta 先验已建立，当前代码主要可逆 ablation 已覆盖并形成多样本因果证据。强项排序仍稳定：Muon/正交化、EoS alignment、Rotary、ReLU2、value embeddings、long-window+YaRN、bigram hash、batch schedule、MUDD。第10位仍是低置信度边界，当前 YaRN-only 7 样本均值略高，但 QK norm 第7样本已 queued，需等它完成后做同样本数比较。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur/collector 已生成的 MTP 第7样本结果汇总。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-mtp-off-rerun6-pod72-1780624502-932b8ece
+- Linked experiment ids: readme-top10-mtp-off-rerun6-pod72
+- Input code commits: 13810870185213d06c197451a5c1d06d4a280bcf
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
