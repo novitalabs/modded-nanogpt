@@ -5015,3 +5015,25 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T02:30:22Z: codex-1780626301946-18ccd511
+
+- Trigger: plan empty and no running experiments
+- Summary: 当前综合 top10：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 batch size schedule，6 long-window/FA3/YaRN 家族，7 bigram hash embedding，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。弱边界项 YaRN-only、NorMuon variance、MTP、QK norm 7 样本均值非常接近，不再适合普通重复强行排序。
+- Goal progress: README record-history delta 先验已建立，当前代码可逆 ablation 已覆盖主要 README 优化方法并形成多样本因果证据。强项排序稳定；剩余缺口是第10位 MUDD 只有4个有效样本，虽均值约3.2906且方差很低，但可补一个 holdout 样本确认它与弱边界组的差距。
+- Code changes: no; 未修改代码；本轮只分析现有结果汇总、Arthur journal 和 ablation runner。
+- Suggested experiments: 1
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-mudd-off-rerun5-pod72 | MUDD fifth holdout sample | 如果第5个 mudd_off 样本仍在约3.290附近，则 MUDD skips 可作为当前top10第10位收口；若明显回落到3.288-3.289边界组，则需要降低其置信度。 | new | 只隔离 MUDD 一个变量；这是当前top10边界的最高信息量补样。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
