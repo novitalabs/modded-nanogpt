@@ -5488,3 +5488,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T03:40:33Z: codex-1780630741630-8ee16f8d
+
+- Trigger: 1 run(s) finished
+- Summary: 当前综合 top10 不变：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN 家族，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。
+- Goal progress: README record-history delta 历史先验已建立，当前代码可逆 ablation 已覆盖主要 README 优化项。最新 node75 proxy 的 MUDD-off 样本成功且与 pod72 样本一致：val_loss=3.2912、target_met=false，使 MUDD-off 聚合约为 n=6 mean_loss≈3.2911。边界候选 YaRN-only、NorMuon variance、MTP、QK norm 的多样本均值约 3.288-3.289，低于 MUDD-off；继续加普通短跑样本的排序收益很低。
+- Code changes: no; 未修改代码；只分析最新 Arthur 运行结果和现有结果表。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-mudd-off-rerun7-node75-proxy-1780630262-b63863ad
+- Linked experiment ids: readme-top10-mudd-off-rerun7-node75-proxy
+- Input code commits: 3244b405193d8242d7fbe32fd77f62b6209e3323
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
