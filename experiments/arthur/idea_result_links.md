@@ -4395,3 +4395,30 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T00:06:08Z: codex-1780617661658-f0c89987
+
+- Trigger: 1 run(s) finished
+- Summary: mtp_off 第五样本完成，五样本均值约 3.28870；MTP 稳定有正贡献，但未显著压过 YaRN-only=3.28904、NorMuon variance=3.28876、QK norm=3.28842。当前强证据仍集中在 Polar/Muon、Rotary/ReLU2、value embeddings、long-window/YaRN、batch schedule、bigram、EoS alignment；MUDD 以 3 个样本均值约 3.29073 卡在 top10 边界上。
+- Goal progress: README 历史先验已完成，当前代码主要候选 ablation 已覆盖并多数有 3-5 个有效样本。缺口转为最终排序收口：MUDD 只有 3 个有效样本但可能进入 top10；batch schedule 与 bigram、long-window/YaRN 的强项排序仍需要同条件补样；EoS alignment 是多次 NaN 的强失败证据但不是有限 loss 均值证据。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur 自动生成的 mtp_off 第五样本结果。当前脏文件是结果收集器更新的实验结果产物。
+- Suggested experiments: 3
+- Pending result runs: readme-top10-mtp-off-rerun4-pod72-1780617481-e1c69676
+- Linked experiment ids: readme-top10-mtp-off-rerun4-pod72
+- Input code commits: d4a9401459172f409bae4a73f65c23a77c0888df
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-mudd-off-rerun4-pod72 | MUDD fourth sample | 第四个 mudd_off 样本若仍约 3.290-3.291，则 MUDD skip connections 应稳定进入当前因果 top10；若回落到边界组，则只作为候选保留。 | new | MUDD 当前均值高于 YaRN/MTP/NorMuon/QK 边界组，但只有 3 个有效样本，是第9-10位最需要收口的单变量。 |
+| readme-top10-batch-schedule-mean-rerun3-pod72 | Batch schedule fourth sample | 第四个 constant-mean batch ablation 若仍约 3.301，则 batch size schedule 与 bigram、long-window/YaRN 同属稳定强项；若明显回落，则需降低其当前因果排序。 | new | Batch schedule 是 README 历史 top10，当前 3 样本均值 3.3012，和 bigram 3.3010 非常接近。 |
+| readme-top10-long-window-yarn-off-rerun3-pod72 | Long-window YaRN fourth sample | 第四个 long_window_yarn_off 样本若继续约 3.302，则 long-window/YaRN 组合稳定强于 batch 和 bigram；若回落，则拆分后的 long_window_off 与 yarn_off 权重应重新评估。 | new | 该组合项是历史 top10 且当前强信号，但只有 3 个有效样本；补样可收口强项中段排序。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
