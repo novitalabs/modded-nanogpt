@@ -4838,3 +4838,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T01:54:04Z: codex-1780624321544-e29b3660
+
+- Trigger: 1 run(s) finished
+- Summary: readme_top10_normuon_varred_off_rerun7_pod72 完整结束，val_loss=3.2898，target_met=false；NorMuon variance-off 7 样本均值约 3.28897，仍处在第10位边界竞争，但不能与 YaRN-only、MTP、QK norm 严格区分。
+- Goal progress: README record-history delta 历史先验已建立，当前代码主要可逆 ablation 已形成多样本因果证据。强项排序仍稳定：Muon/正交化、EoS alignment、Rotary、ReLU2、value embeddings、long-window+YaRN、bigram hash、batch schedule、MUDD。缺口是第10位边界：YaRN-only 和 NorMuon 已补到7样本，MTP 与 QK norm 的第7样本已在队列中，等待完成后再更新边界结论。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur/collector 已生成的 NorMuon 第7样本结果汇总。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-normuon-varred-off-rerun7-pod72-1780624141-43d59956
+- Linked experiment ids: readme-top10-normuon-varred-off-rerun7-pod72
+- Input code commits: 94b54b66c408446d880b2f80aa56a5cc7663a9a3
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

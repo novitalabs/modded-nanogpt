@@ -1048,6 +1048,7 @@ local_rerun,track_1_short,logs/readme_top10_normuon_varred_off_rerun3_pod72.txt,
 local_rerun,track_1_short,logs/readme_top10_normuon_varred_off_rerun4_pod72.txt,1380,1380,3.2926,77415.0,1.29025,56.1,31429,48412,True,False
 local_rerun,track_1_short,logs/readme_top10_normuon_varred_off_rerun5_pod72.txt,1380,1380,3.2886,77396.0,1.2899333333333334,56.08,31429,48472,True,False
 local_rerun,track_1_short,logs/readme_top10_normuon_varred_off_rerun6_pod72.txt,1380,1380,3.2892,77509.0,1.2918166666666666,56.17,31429,48312,True,False
+local_rerun,track_1_short,logs/readme_top10_normuon_varred_off_rerun7_pod72.txt,1380,1380,3.2898,77432.0,1.2905333333333333,56.11,31262,48232,True,False
 local_rerun,track_1_short,logs/readme_top10_paired_head_off.txt,1380,1380,3.2824,75948.0,1.2658,55.03,31429,48512,True,False
 local_rerun,track_1_short,logs/readme_top10_paired_head_off_rerun1.txt,1380,1380,3.2816,76021.0,1.2670166666666667,55.09,31262,48252,True,False
 local_rerun,track_1_short,logs/readme_top10_paired_head_off_rerun2_pod72.txt,1380,1380,3.2846,76014.0,1.2669,55.08,31235,48232,True,False

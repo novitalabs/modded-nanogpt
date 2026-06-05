@@ -1,0 +1,13 @@
+{
+  "variant_id": "readme_top10_normuon_varred_off_rerun7_pod72",
+  "ablation": "normuon_varred_off",
+  "log": "logs/readme_top10_normuon_varred_off_rerun7_pod72.txt",
+  "step": "1380",
+  "total_steps": "1380",
+  "val_loss": "3.289800",
+  "train_time_min": "1.290533",
+  "step_avg_ms": "56.110000",
+  "target_loss": "3.280000",
+  "target_met": "false",
+  "run_exit_code": "0"
+}
