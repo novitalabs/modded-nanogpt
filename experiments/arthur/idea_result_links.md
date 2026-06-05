@@ -6039,3 +6039,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T05:34:05Z: codex-1780637581358-091c7c69
+
+- Trigger: 1 run(s) finished
+- Summary: 当前 top10 分层不变：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN 家族，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。value skip gates 第四样本 val_loss=3.2775、target_met=true，使其 n=4 mean≈3.27925、3/4 hit，更像 top20 边界外弱候选。
+- Goal progress: README 历史先验和当前代码可逆 ablation 已覆盖主要候选。top20 末端目前由 Polar/NS5、max_seq schedule、single activation 支撑；smear、value/skip gates 证据偏弱。仍需等待正在运行的 PKO fourth boundary control，确认 Partial Key Offset 是否也应排除在 cutoff 外。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur 自动生成/刷新的 value skip gates 结果文件。
+- Suggested experiments: 0
+- Pending result runs: readme-top20-value-skip-gates-fourth-pod72-1780637401-076bf3b9
+- Linked experiment ids: readme-top20-value-skip-gates-fourth-pod72
+- Input code commits: 4e14239b4f440abe0e8722939cbe86c7bb169ecf
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

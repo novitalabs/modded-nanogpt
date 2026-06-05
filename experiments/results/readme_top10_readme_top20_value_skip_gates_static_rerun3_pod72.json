@@ -1,0 +1,13 @@
+{
+  "variant_id": "readme_top20_value_skip_gates_static_rerun3_pod72",
+  "ablation": "value_skip_gates_static",
+  "log": "logs/readme_top20_value_skip_gates_static_rerun3_pod72.txt",
+  "step": "1380",
+  "total_steps": "1380",
+  "val_loss": "3.277500",
+  "train_time_min": "1.272333",
+  "step_avg_ms": "55.320000",
+  "target_loss": "3.280000",
+  "target_met": "true",
+  "run_exit_code": "0"
+}
