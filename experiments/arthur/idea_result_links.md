@@ -5665,3 +5665,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T04:03:06Z: codex-1780632121611-abc880a8
+
+- Trigger: 1 run(s) finished
+- Summary: 当前 top10 保持不变：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN 家族，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。paired_head_off 第四样本 val_loss=3.2835，n=4 mean_loss≈3.2830，确认其属于 top20 下半区边界候选。
+- Goal progress: README record-history delta 历史先验已建立，当前代码可逆 ablation 已覆盖主要候选并稳定保留 top10 分层结论。top20 精排仍缺 Adam node75 cross-check、logit rescale 第四样本、sparse attention gate 第四样本；这些已处于 running/queued，等待完成比新增实验更有信息量。
+- Code changes: no; 未修改代码；本轮只分析刚完成的 paired-head 结果。结果文件由 Arthur run 自动更新，等待 Arthur 提交。
+- Suggested experiments: 0
+- Pending result runs: readme-top20-paired-head-fourth-pod72-1780631941-1d098b44
+- Linked experiment ids: readme-top20-paired-head-fourth-pod72
+- Input code commits: e1b6952cbb6425b13d0ccdfdb555647ba3c86cb1
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+

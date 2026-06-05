@@ -1106,4 +1106,5 @@ local_rerun,track_1_short,logs/readme_top10_yarn_off_rerun6_pod72.txt,1380,1380,
 local_rerun,track_1_short,logs/readme_top10_zero_mlp_proj_init_off.txt,1380,1380,3.2782,77154.0,1.2859,55.91,30529,47532,True,True
 local_rerun,track_1_short,logs/readme_top10_zero_mlp_proj_init_off_rerun1.txt,1380,1380,3.2799,77218.0,1.2869666666666666,55.96,31262,48352,True,True
 local_rerun,track_1_short,logs/readme_top10_zero_mlp_proj_init_off_rerun2_pod72.txt,1380,1380,3.2794,77324.0,1.2887333333333333,56.03,31262,48352,True,True
+local_rerun,track_1_short,logs/readme_top20_paired_head_off_rerun3_pod72.txt,1380,1380,3.2835,76286.0,1.2714333333333334,55.28,31262,48254,True,False
 local_rerun,track_1_short,logs/readme_top20_xsa_off_rerun3_pod72.txt,1380,1380,3.2811,76010.0,1.2668333333333333,55.08,31429,47864,True,False

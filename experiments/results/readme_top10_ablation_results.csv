@@ -139,3 +139,4 @@ readme_top10_mudd_off_rerun5_pod72,mudd_off,logs/readme_top10_mudd_off_rerun5_po
 readme_top10_fp8_lm_head_dense_train_off_rerun4_pod72,fp8_lm_head_dense_train_off,logs/readme_top10_fp8_lm_head_dense_train_off_rerun4_pod72.txt,1380,1380,3.276500,1.598883,69.520000,3.280000,true,0
 readme_top10_mudd_off_rerun7_node75_proxy,mudd_off,logs/readme_top10_mudd_off_rerun7_node75_proxy.txt,1380,1380,3.291200,1.267883,55.130000,3.280000,false,0
 readme_top20_xsa_off_rerun3_pod72,xsa_off,logs/readme_top20_xsa_off_rerun3_pod72.txt,1380,1380,3.281100,1.266833,55.080000,3.280000,false,0
+readme_top20_paired_head_off_rerun3_pod72,paired_head_off,logs/readme_top20_paired_head_off_rerun3_pod72.txt,1380,1380,3.283500,1.271433,55.280000,3.280000,false,0
