@@ -5941,3 +5941,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T05:12:59Z: codex-1780636261818-71c9e416
+
+- Trigger: batch finished with results pending commit
+- Summary: 当前 top10 分层不变：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN 家族，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。top20 下半区强证据仍是 Adam two-step、sparse gate、CWD、paired head、XSA、logit rescale；末端边界为 Polar/NS5、max_seq schedule、single activation、smear。
+- Goal progress: README history 先验和当前代码可逆 ablation 已覆盖主要候选。Polar/NS5 当前 n=6 mean=3.28147 且 4/6 miss；max_seq 当前 n=5 mean=3.28076 且 4/5 miss；single_activation 当前 n=5 mean=3.28066 且 3/5 miss；smear 当前 n=4 mean=3.27995 且 1/4 miss。已有 single_activation 第六、max_seq 第六、smear 第五排队，等待这些样本即可精排 top20 cutoff。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析最新 pending result 和现有汇总。
+- Suggested experiments: 0
+- Pending result runs: readme-top20-polar-ns5-sixth-pod72-1780635781-1c9e2213
+- Linked experiment ids: readme-top20-polar-ns5-sixth-pod72
+- Input code commits: 8fda2639febb46aa9014c070a50212a392ddc3bf
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
