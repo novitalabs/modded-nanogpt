@@ -5037,3 +5037,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T02:38:06Z: codex-1780626841358-89f59869
+
+- Trigger: 1 run(s) finished
+- Summary: 当前综合 top10 收口为：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 batch size schedule，6 long-window/FA3/YaRN 家族，7 bigram hash embedding，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。MUDD 第5样本 val_loss=3.2931，确认其强于弱边界组。
+- Goal progress: README record-history delta 先验已建立；当前代码可逆 ablation 已覆盖主要候选并形成多样本因果证据。弱边界项 YaRN-only、NorMuon variance、MTP、QK norm 已有7样本左右，均值接近且低于 MUDD，不再适合继续普通复跑强行排序。主要剩余 caveat 是 FP8 路径主要按速度收益排序，而非 loss delta。
+- Code changes: no; 未修改代码；本轮只分析最新 MUDD 结果和现有汇总。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-mudd-off-rerun5-pod72-1780626661-e96d5e40
+- Linked experiment ids: readme-top10-mudd-off-rerun5-pod72
+- Input code commits: 864341a738c1dc03671675cbf7bcdfcbf1f40c0a
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
