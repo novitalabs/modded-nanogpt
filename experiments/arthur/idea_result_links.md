@@ -4618,3 +4618,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T01:03:30Z: codex-1780621201494-815f7c3a
+
+- Trigger: 1 run(s) finished
+- Summary: scheduled-1373-no-extension 成功，val_loss=3.2798，确认 1373 scheduled/no-extension 至少有一个达标样本；README top10 因果排序未变。当前强证据 top10 可暂定为 Muon/正交化、EoS alignment、Rotary、ReLU2、value embeddings、long-window+YaRN、bigram hash、batch schedule、MUDD，以及低置信度边界项 YaRN-only/NorMuon/MTP/QK norm 中当前均值最高的 YaRN-only。
+- Goal progress: README 历史先验已建立，当前代码主要可逆 ablation 已覆盖并形成多样本证据。缺口是第10位边界均值差约 0.0006 loss，低于普通重复实验噪声；EoS alignment 只有 4/4 NaN 失稳证据，能证明关键稳定性但不能给有限 loss delta。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur/collector 已生成的结果汇总变更。
+- Suggested experiments: 0
+- Pending result runs: scheduled-1373-no-extension-1780621021-c12aab7c
+- Linked experiment ids: scheduled-1373-no-extension
+- Input code commits: fded6b9aef3746a0d6589a40325521b072a06786
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
