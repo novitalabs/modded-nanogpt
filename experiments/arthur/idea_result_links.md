@@ -5788,3 +5788,30 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T04:35:46Z: codex-1780633561454-995e9709
+
+- Trigger: 2 run(s) finished
+- Summary: 当前 top10 分层不变：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN 家族，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。最新 Polar→NS5 第四样本 val_loss=3.2793，max_seq_schedule_off 第四样本 val_loss=3.2813；两者都只影响 top20 下半区排序。
+- Goal progress: README record-history delta 历史先验已建立，当前代码可逆 ablation 已覆盖主要候选。top20 的 15-20 位目前主要在 attn_gate、Adam two-step、CWD、paired head、XSA、logit rescale、Polar/NS5、max_seq、smear、single activation 之间精排；还需要少量边界复验。
+- Code changes: no; 未修改训练代码或 runner；只合并/刷新结果文件，尤其是 experiments/results/readme_top10_ablation_results.csv 中已完成的 XSA、paired、cautious、max_seq、Polar 边界样本。
+- Suggested experiments: 3
+- Pending result runs: readme-top20-polar-ns5-fourth-pod72-1780633021-823855e4, readme-top20-max-seq-fourth-pod72-1780633382-bfacc3e4
+- Linked experiment ids: readme-top20-max-seq-fourth-pod72, readme-top20-polar-ns5-fourth-pod72
+- Input code commits: 7aa877154a926e23ad383a856829993ff8262945, 9ba8384f2040e86c64b1e0db7d5db375e5ca0d91
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top20-polar-ns5-fifth-pod72 | Polar vs NS5 fifth sample | Polar→NS5 若第五样本继续接近达标，则 Polar Express 应降为近中性边界；若重新稳定 miss，则保留在 top20 第20名附近。 | new | 第四样本从 miss 组跳到 3.2793，需要一个确认样本决定它是否高于 max_seq/smear/single 边界组。 |
+| readme-top20-single-activation-fourth-pod72 | Single activation fourth sample | 关闭 single activation input 若第四样本仍约 3.280-3.281，则该项是弱边界贡献而非稳定 top20 中段项。 | new | 当前 n=3 mean≈3.2804，正贴近第20名边界。 |
+| readme-top20-smear-fourth-pod72 | Smear fourth sample | 关闭 smear 若第四样本仍只轻微高于阈值，则 smear 保留为 top20 末端或边界外候选。 | new | 当前 n=3 mean≈3.2804，需与 max_seq 和 single activation 的弱边界组比较。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
