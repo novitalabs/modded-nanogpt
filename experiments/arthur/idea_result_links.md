@@ -6089,3 +6089,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T05:53:34Z: codex-1780638721710-ec0f9476
+
+- Trigger: 1 run(s) finished
+- Summary: 当前 top10 分层不变：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN 家族，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。single_activation_input_off 第七样本 val_loss=3.2806、target_met=false，使其 n=7、4/7 miss、mean≈3.28053，仍是 top20 末端候选。
+- Goal progress: README 历史先验和当前代码可逆 ablation 已覆盖主要候选。top20 下半区强证据仍包括 Adam two-step、sparse gate、CWD、paired head、XSA、logit rescale；末端目前由 Polar/NS5、max_seq schedule、single activation 支撑。smear 第六样本正在运行，是判断 smear 是否边界外的当前关键缺口。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur 自动落盘的 single_activation_input_off 第七样本结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top20-single-activation-seventh-pod72-1780638541-4c5f95e2
+- Linked experiment ids: readme-top20-single-activation-seventh-pod72
+- Input code commits: f0c242b0908ad737a63b11839f8355c847796b6a
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
