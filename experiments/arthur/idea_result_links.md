@@ -6214,3 +6214,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T06:26:55Z: codex-1780640701514-f58351de
+
+- Trigger: batch finished with results pending commit
+- Summary: 当前 top10 分层不变：Muon/正交化更新家族、Rotary、ReLU2、value embeddings、long-window/FA3/YaRN、bigram、batch schedule、EoS alignment、FP8 train-head 速度路径、MUDD。max_seq_len_schedule_off 最新第七样本达标，当前 n=7、5/7 miss、mean≈3.28039；single_activation_input_off n=8、5/8 miss、mean≈3.28066；smear_off n=7、2/7 miss、mean≈3.28041；Polar→NS5 n=6、4/6 miss、mean≈3.28147。
+- Goal progress: README 历史先验和当前代码可逆 ablation 已覆盖主要候选。top10 结论稳定；top20 末端仍需已排队的 max_seq node75 与 Polar/NS5 node75 交叉验证来区分 cutoff 排序。当前没有足够新增信息去创建不重复实验。
+- Code changes: no; 未修改代码；仅复核结果汇总、Arthur 日志与当前队列。
+- Suggested experiments: 0
+- Pending result runs: readme-top20-max-seq-seventh-pod72-1780640401-80d37120
+- Linked experiment ids: readme-top20-max-seq-seventh-pod72
+- Input code commits: 08e83ddbe0db5969074ace6a18b785bfdfad51d0
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
