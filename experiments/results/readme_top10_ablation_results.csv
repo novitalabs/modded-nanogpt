@@ -141,3 +141,4 @@ readme_top10_mudd_off_rerun7_node75_proxy,mudd_off,logs/readme_top10_mudd_off_re
 readme_top20_adam_every_step_rerun3_node75_proxy,adam_every_step,logs/readme_top20_adam_every_step_rerun3_node75_proxy.txt,1380,1380,3.283100,1.322450,57.500000,3.280000,false,0
 readme_top20_logit_rescale_symmetric_rerun3_pod72,logit_rescale_symmetric,logs/readme_top20_logit_rescale_symmetric_rerun3_pod72.txt,1380,1380,3.283500,1.288400,56.020000,3.280000,false,0
 readme_top20_attn_gate_freeze_rerun4_pod72,attn_gate_freeze,logs/readme_top20_attn_gate_freeze_rerun4_pod72.txt,1380,1380,3.286300,1.263733,54.950000,3.280000,false,0
+readme_top20_cautious_wd_off_rerun3_pod72,cautious_wd_off,logs/readme_top20_cautious_wd_off_rerun3_pod72.txt,1380,1380,3.282700,1.286133,55.920000,3.280000,false,0

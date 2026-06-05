@@ -5764,3 +5764,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T04:22:21Z: codex-1780633201674-15a1591c
+
+- Trigger: 1 run(s) finished
+- Summary: 当前 top10 分层不变：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN 家族，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。cautious_wd_off 第四样本 val_loss=3.2827，使 Cautious WD 继续保留在 top20 下半区边界组。
+- Goal progress: README record-history delta 历史先验已建立，当前代码可逆 ablation 已覆盖主要候选。top10 证据稳定；top20 的 15-20 位仍需等待正在运行的 Polar Express/NS5 第四样本和已排队的 max seq schedule 第四样本后统一精排。
+- Code changes: no; 未修改训练代码；本轮只分析 cautious WD 第四样本，结果文件由 Arthur run 自动生成并待提交。
+- Suggested experiments: 0
+- Pending result runs: readme-top20-cautious-wd-fourth-pod72-1780633021-e77b3ff4
+- Linked experiment ids: readme-top20-cautious-wd-fourth-pod72
+- Input code commits: 9ba8384f2040e86c64b1e0db7d5db375e5ca0d91
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
