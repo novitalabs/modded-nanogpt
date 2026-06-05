@@ -4522,3 +4522,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T00:38:52Z: codex-1780619821330-4f37a1e7
+
+- Trigger: 1 run(s) finished
+- Summary: normuon_varred_off 第六样本 val_loss=3.2892，六样本均值约 3.28883；NorMuon variance reduction 仍是 top10 边界候选，但尚不能和 YaRN-only、MTP、QK norm 拉开显著差距。
+- Goal progress: README 历史先验已建立，当前代码主要可逆 ablation 已覆盖。强贡献项仍包括 Polar/Muon orthogonalization、Rotary/ReLU2、value embeddings、long-window+YaRN、bigram hash、batch schedule、MUDD；第10位边界等待已排队的 mtp_off 第六样本和 qk_norm_off 第六样本后再收口。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur 自动生成的 normuon_varred_off 第六样本结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-normuon-varred-off-rerun6-pod72-1780619641-da8b958c
+- Linked experiment ids: readme-top10-normuon-varred-off-rerun6-pod72
+- Input code commits: 8e3b1f886a02cf2b281b6193e3e1a2b18b7345a3
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
