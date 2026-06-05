@@ -4594,3 +4594,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T00:56:40Z: codex-1780620841592-f95321f7
+
+- Trigger: 1 run(s) finished
+- Summary: 本轮新结果是 extension-3-final-only: val_loss=3.2793，1378 步组累计 4 样本均值约 3.2800、2/4 达标。README top10 当前因果证据层级未变：Muon/正交化与 EoS alignment 是稳定性关键项；Rotary、ReLU2、value embeddings、long-window+YaRN、bigram hash、batch schedule、MUDD 为强有限 loss 退化项；第10位边界在 YaRN-only、NorMuon variance、MTP、QK norm 之间，按当前均值暂取 YaRN-only但置信度低。
+- Goal progress: README record-history delta 先验已建立，当前代码可逆 ablation 已覆盖主要候选并形成多样本证据。剩余缺口主要是 EoS alignment 只有 4/4 NaN 失败证据、缺少有限 loss delta；第10位边界差距约 0.0006 loss，普通补样难以高效收口，应在最终结论中保留不确定性。
+- Code changes: no; 未修改代码；本轮只分析 Arthur 自动生成/更新的 extension-3 结果汇总文件。
+- Suggested experiments: 0
+- Pending result runs: extension-3-final-only-1780620661-0e0a2929
+- Linked experiment ids: extension-3-final-only
+- Input code commits: dfc831e3f8c94e0e135d8d34c91bf9ecff571621
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
