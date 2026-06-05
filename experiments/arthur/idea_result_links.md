@@ -6164,3 +6164,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T06:19:30Z: codex-1780640041795-1dbc7923
+
+- Trigger: 1 run(s) finished
+- Summary: 当前 top10 分层不变：Muon/正交化更新家族、Rotary、ReLU2、value embeddings、long-window/FA3/YaRN、bigram、batch schedule、EoS alignment、FP8 train-head 速度路径、MUDD。single_activation_input_off 现为 n=8、5/8 miss、mean≈3.28066；max_seq_schedule_off 为 n=6、5/6 miss、mean≈3.28077；smear_off 为 n=7、5/7 hit、mean≈3.28041，更偏边界外或弱项。
+- Goal progress: README 历史先验和当前代码可逆 ablation 已覆盖主要 top20 候选。剩余缺口集中在第20名附近：max_seq schedule 与 single activation 的弱差异需要等待已 queued 的 max_seq 第七样本来对齐样本量；smear、PKO、value/skip gates 当前证据偏弱。
+- Code changes: no; 未修改训练代码或实验脚本；仅刷新并合并 experiments/results 汇总，保留 smear 第七样本并新增 single activation 第八样本结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top20-single-activation-eighth-node75-1780639500-752718c7
+- Linked experiment ids: readme-top20-single-activation-eighth-node75
+- Input code commits: d4eb3b895b7e55e760cdb5c87d750e05b66024f4
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
