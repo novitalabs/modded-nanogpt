@@ -1120,4 +1120,5 @@ local_rerun,track_1_short,logs/readme_top20_single_activation_input_off_rerun4_p
 local_rerun,track_1_short,logs/readme_top20_single_activation_input_off_rerun5_pod72.txt,1380,1380,3.2797,77783.0,1.2963833333333334,56.36,31262,48352,True,True
 local_rerun,track_1_short,logs/readme_top20_single_activation_input_off_rerun6_pod72.txt,1380,1380,3.2798,77339.0,1.2889833333333334,56.04,31429,48432,True,True
 local_rerun,track_1_short,logs/readme_top20_smear_off_rerun4_pod72.txt,1380,1380,3.2785,76922.0,1.2820333333333334,55.74,31230,48112,True,True
+local_rerun,track_1_short,logs/readme_top20_smear_off_rerun5_pod72.txt,1380,1380,3.2788,76935.0,1.28225,55.75,31397,47252,True,True
 local_rerun,track_1_short,logs/readme_top20_xsa_off_rerun3_pod72.txt,1380,1380,3.2811,76010.0,1.2668333333333333,55.08,31429,47864,True,False

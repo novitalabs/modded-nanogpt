@@ -5989,3 +5989,29 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T05:24:25Z: codex-1780636861778-760a742e
+
+- Trigger: 1 run(s) finished
+- Summary: 当前 top10 分层不变：1 Muon/正交化更新家族，2 Rotary embeddings，3 ReLU² MLP，4 value embeddings，5 long-window/FA3/YaRN 家族，6 bigram hash embedding，7 batch size schedule，8 EoS batch alignment，9 FP8 train-head/fused lm_head 速度路径，10 MUDD skips。smear_off 第五样本达标后，Smear 不再是强 top20 候选；top20 下半区强证据仍是 Adam two-step、sparse gate、CWD、paired head、XSA、logit rescale，末端主要在 Polar/NS5、max_seq schedule、single activation 之间。
+- Goal progress: README 历史先验和当前代码可逆 ablation 已覆盖主要候选。smear 已补到 n=5 并偏弱；single_activation 已 n=6；Polar/NS5 已 n=6；max_seq 第六样本仍在运行，是当前 cutoff 的关键缺口。为防止漏掉历史先验中靠近第20名的候补，还需要少量 out-of-top20 控制样本验证 value/skip gates 和 PKO 是否确实低于 cutoff。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur 自动生成/刷新结果。
+- Suggested experiments: 2
+- Pending result runs: readme-top20-smear-fifth-pod72-1780636681-6b327286
+- Linked experiment ids: readme-top20-smear-fifth-pod72
+- Input code commits: 7868f3e0bf142a15ba06d1c0684183a647b29271
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top20-value-skip-gates-fourth-pod72 | Value skip gates fourth sample | 冻结 value/skip gates 若第四样本仍达标或均值低于 single/max_seq cutoff，则该项应排在 top20 外；若明显 miss，则重新纳入第20名竞争。 | new | 当前 n=3 mean=3.27983、2/3 hit，是 smear 之后最接近 cutoff 的历史候补之一。 |
+| readme-top20-pko-fourth-pod72 | PKO fourth boundary control | 关闭 Partial Key Offset 若第四样本仍达标，则 PKO 在当前代码中应低于 top20 cutoff；若明显 miss，则修正其边界排名。 | new | PKO 历史先验在 top20 附近，但当前 n=3 全部达标、mean=3.27927；补一个同条件样本确认排除。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
