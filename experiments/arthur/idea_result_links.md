@@ -4470,3 +4470,30 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T00:27:03Z: codex-1780619042015-d9602f1f
+
+- Trigger: 1 run(s) finished
+- Summary: long_window_yarn_off 第四样本 val_loss=3.3043，四样本均值约 3.3028；长窗口+YaRN 组合稳定强于 bigram、batch schedule 和 MUDD 边界层。EoS alignment off 多次 NaN 仍是强失败证据，但缺少有限 loss 均值。
+- Goal progress: README 历史先验已建立，当前代码可逆 ablation 已覆盖主要候选并形成多样本证据。强项基本稳定：Muon/正交化基础、Rotary/ReLU2、value embeddings、long-window+YaRN、bigram、batch schedule、MUDD。剩余缺口集中在第10位边界，YaRN-only、MTP、NorMuon variance、QK norm 之间仍需更多同条件样本。
+- Code changes: no; 未修改代码；本轮只分析 Arthur 自动生成的 long_window_yarn_off 结果产物。
+- Suggested experiments: 3
+- Pending result runs: readme-top10-long-window-yarn-off-rerun3-pod72-1780618861-46843261
+- Linked experiment ids: readme-top10-long-window-yarn-off-rerun3-pod72
+- Input code commits: ff40a1dd8d17800e97f4d49c2d6574f603eba650
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+| readme-top10-yarn-off-rerun5-pod72 | YaRN-only sixth boundary sample | 第六个 yarn_off 样本若仍约 3.289 或更高，则 YaRN-only 更可能占据当前因果 top10 的边界位。 | new | YaRN-only 当前五样本均值约 3.28904，是第10位边界组最高候选。 |
+| readme-top10-normuon-varred-off-rerun6-pod72 | NorMuon variance sixth boundary sample | 第六个 normuon_varred_off 样本用于判断 NorMuon variance reduction 是否稳定压过 MTP/QK norm 边界组。 | new | NorMuon 当前五样本均值约 3.28876，和 MTP 差距极小。 |
+| readme-top10-mtp-off-rerun5-pod72 | MTP sixth boundary sample | 第六个 mtp_off 样本若继续约 3.2887，则 MTP 保持 top10 边界竞争；若回落，则应排在 YaRN/NorMuon 后。 | new | MTP 当前五样本均值约 3.28870，是第10位边界的直接竞争者。 |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
