@@ -4570,3 +4570,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T00:50:41Z: codex-1780620421572-0d21db25
+
+- Trigger: 1 run(s) finished
+- Summary: qk_norm_off 第六样本确认 QK norm 仍有稳定正贡献，但在第10位边界组中略低于 YaRN-only、NorMuon variance 和 MTP。当前 top10 证据层级可暂定为：Muon/正交化、EoS batch alignment、Rotary、ReLU2、value embeddings、long-window+YaRN、bigram hash、batch size schedule、MUDD，以及第10位边界的 YaRN-only/NorMuon/MTP/QK norm 之一；按当前均值暂取 YaRN-only，但需标注低置信度。
+- Goal progress: README record-history delta 先验已建立，当前代码主要可逆 ablation 已覆盖并形成多样本因果证据。强项和中强项排序已经基本稳定；剩余缺口是第10位边界组差距只有约 0.0006 loss，普通重复实验很难高效区分，应在最终结论中保留不确定性而不是继续机械补样。
+- Code changes: no; 未修改训练代码或实验脚本；本轮仅分析 Arthur 自动生成的 qk_norm_off 第六样本结果。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-qk-norm-off-rerun6-pod72-1780620241-42f9e2f8
+- Linked experiment ids: readme-top10-qk-norm-off-rerun6-pod72
+- Input code commits: 072698fef865d66a3fe9ee27c21e5fd87307f0cf
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
