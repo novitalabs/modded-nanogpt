@@ -1067,6 +1067,7 @@ local_rerun,track_1_short,logs/readme_top10_qk_norm_off_rerun2_pod72.txt,1380,13
 local_rerun,track_1_short,logs/readme_top10_qk_norm_off_rerun4_pod72.txt,1380,1380,3.2892,78571.0,1.3095166666666667,56.94,31327,47198,True,False
 local_rerun,track_1_short,logs/readme_top10_qk_norm_off_rerun5_pod72.txt,1380,1380,3.2878,78541.0,1.3090166666666667,56.91,31429,47078,True,False
 local_rerun,track_1_short,logs/readme_top10_qk_norm_off_rerun6_pod72.txt,1380,1380,3.2885,78637.0,1.3106166666666668,56.98,31429,47258,True,False
+local_rerun,track_1_short,logs/readme_top10_qk_norm_off_rerun7_pod72.txt,1380,1380,3.2845,78678.0,1.3113,57.01,31429,47318,True,False
 local_rerun,track_1_short,logs/readme_top10_relu_square_off_pod72.txt,1380,1380,3.3189,77927.0,1.2987833333333334,56.47,31429,49752,True,False
 local_rerun,track_1_short,logs/readme_top10_relu_square_off_rerun1_pod72.txt,1380,1380,3.3143,78025.0,1.3004166666666668,56.54,31429,49732,True,False
 local_rerun,track_1_short,logs/readme_top10_relu_square_off_rerun2_pod72.txt,1380,1380,3.3218,78057.0,1.30095,56.56,31262,49672,True,False

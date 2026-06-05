@@ -4886,3 +4886,27 @@ depending on whether the priority is tighter step count or higher confidence.
 - `experiments/results/log_results.csv`
 - `experiments/results/summary.json`
 
+
+## 2026-06-05T02:11:35Z: codex-1780624981212-e2cce851
+
+- Trigger: 1 run(s) finished
+- Summary: qk_norm_off 第7样本完整结束但未达标，val_loss=3.2845。当前强证据层级稳定：Muon/正交化家族、EoS batch alignment、Rotary、ReLU2、value embeddings、long-window+YaRN、bigram hash、batch size schedule、MUDD。第10位仍是低置信度边界，按7样本固定步数loss均值暂取 YaRN-only，但 NorMuon variance reduction 与它几乎不可区分；MTP 与 QK norm 略低。
+- Goal progress: README record-history delta 先验已建立，当前代码可逆 ablation 已覆盖主要候选并形成多样本因果证据。FP8 train-head 在固定步数loss上近中性，但关闭真实训练FP8路径会把step_avg从约56ms推到约70ms，应作为速度强贡献保留在README speedrun解释中；EoS alignment 是4/4 NaN失稳证据，属于稳定性关键项而非有限loss delta。剩余缺口主要是第10位边界的统计不确定性，普通重复实验已难以高效收口。
+- Code changes: no; 未修改训练代码或实验脚本；本轮只分析 Arthur/collector 已生成的 qk_norm_off 第7样本和现有汇总。
+- Suggested experiments: 0
+- Pending result runs: readme-top10-qk-norm-off-rerun7-pod72-1780624802-31a48a2b
+- Linked experiment ids: readme-top10-qk-norm-off-rerun7-pod72
+- Input code commits: 29c14fff9cf5223de7f64c634065236faad8956e
+
+### Ideas
+
+| experiment id | title | hypothesis | status at analysis | notes |
+| --- | --- | --- | --- | --- |
+
+### Linked Result Files
+
+- `experiments/results/comparison.md`
+- `experiments/results/local_reruns.csv`
+- `experiments/results/log_results.csv`
+- `experiments/results/summary.json`
+
